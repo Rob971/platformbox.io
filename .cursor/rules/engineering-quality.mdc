@@ -1,5 +1,5 @@
 ---
-description: Quality gates, git hygiene, and verification checklist for this repo
+description: Use when finishing tasks, committing, reviewing diffs, adding dependencies, or verifying lint/build quality gates
 alwaysApply: false
 ---
 
