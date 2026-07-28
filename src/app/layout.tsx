@@ -12,16 +12,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl =
+  process.env.GITHUB_PAGES === "true"
+    ? "https://rob971.github.io/platformbox.io"
+    : "https://www.platformbox.io";
+
 export const metadata: Metadata = {
   title: "PlatformBox.io — The 14-Day Enterprise Internal Developer Platform",
   description:
     "We give your engineers a self-serve Golden Path to deploy code instantly without needing to hire a full-time Platform Engineering team.",
-  metadataBase: new URL("https://www.platformbox.io"),
+  metadataBase: new URL(siteUrl),
   openGraph: {
     title: "PlatformBox.io — The 14-Day Enterprise Internal Developer Platform",
     description:
       "A fixed-price $20,000 engineering engagement that delivers a production-ready Internal Developer Platform in 14 days.",
-    url: "https://www.platformbox.io",
+    url: siteUrl,
     siteName: "PlatformBox.io",
     type: "website",
   },
