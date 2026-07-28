@@ -1,0 +1,48 @@
+---
+description: Tailwind CSS v4 theming, utilities, and globals.css conventions
+globs: "{src/**/*.{tsx,ts,css},src/app/globals.css,postcss.config.*}"
+alwaysApply: false
+---
+
+# Tailwind CSS v4
+
+## Setup (this repo)
+
+- Entry: `src/app/globals.css` with `@import "tailwindcss";`
+- Tokens via `@theme inline` mapping to CSS variables
+- PostCSS plugin: `@tailwindcss/postcss` in `postcss.config.mjs`
+- **No** `tailwind.config.js` unless a plugin absolutely requires it — prefer CSS-first config
+
+## Token rules
+
+Define brand colors, fonts, and radii as CSS variables in `:root`, then expose them in `@theme inline`:
+
+```css
+:root {
+  --background: #09090b;
+  --accent: #3b82f6;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+}
+```
+
+- Prefer semantic utilities: `bg-background`, `text-accent`, `border-white/10`.
+- Do not hard-code one-off hex values in JSX when a token exists — extend tokens instead.
+- Keep the dark charcoal + electric blue system; do not introduce purple/indigo default AI themes.
+
+## Utility guidance
+
+- Use responsive prefixes (`sm:`, `md:`, `lg:`) mobile-first.
+- Prefer spacing/typography scale consistency (`gap-4`, `p-6`, `text-sm` / `text-base` / `text-4xl`).
+- Glass cards: `border border-white/10 bg-white/[0.03] backdrop-blur-sm` (or existing equivalents).
+- Avoid `@apply` except rare shared primitives; compose utilities in JSX.
+- Avoid large arbitrary-value sprawl (`w-[137px]`) — use scale or a token.
+
+## Performance
+
+- Rely on Tailwind’s generated CSS; do not duplicate large custom CSS for the same effect.
+- Keep decorative gradients/grids in CSS classes (e.g. `.grid-glow`), not inline style objects, when reusable.

@@ -1,0 +1,55 @@
+---
+description: React 19 + TypeScript component patterns for PlatformBox
+globs: "src/**/*.{tsx,ts,jsx,js}"
+alwaysApply: false
+---
+
+# React 19 + TypeScript
+
+## Defaults
+
+- Functional components only.
+- Prefer **named exports** for reusable components; default export is fine for `page.tsx` / `layout.tsx`.
+- Colocate types next to components; export props types when reused.
+- Avoid `any`. Use `unknown` + narrowing at boundaries.
+
+## Server vs Client
+
+| Need | Placement |
+| --- | --- |
+| Static/marketing markup, metadata, data fetch | Server Component |
+| `useState`, `useEffect`, events, Framer Motion | Client Component (`"use client"` at file top) |
+| Shared presentational UI with no hooks | Server Component (or shared without the directive) |
+
+Rules:
+
+- `"use client"` is a **module boundary**. Everything it imports becomes part of the client graph — keep boundaries thin.
+- Pass serializable props from Server → Client. Do not pass functions, class instances, or non-POJO data across the boundary unless supported.
+- Do not add `useMemo` / `useCallback` by default. Use them only for measured perf issues or unstable dep requirements.
+- Prefer modern React 19 patterns when they fit: `use()`, Actions, and progressive enhancement for forms.
+
+## Structure
+
+```text
+src/
+  app/                 # routes only
+  components/          # shared UI
+  components/ui/       # primitives if needed
+  lib/                 # pure helpers, constants
+```
+
+- One responsibility per component; extract when a file exceeds ~200 lines or mixes unrelated concerns.
+- Keep landing sections composable (`Hero`, `Bottleneck`, `Deliverables`, `Economics`, `Footer`) rather than one monolithic client page when refactoring.
+
+## Accessibility
+
+- Semantic landmarks: `header`, `main`, `section`, `footer`.
+- Buttons/links need discernible names; icons need `aria-hidden` or an `aria-label`.
+- Do not remove focus styles; ensure accent contrast on dark backgrounds.
+- Prefer native elements over `div` + `onClick` for interactive controls.
+
+## Imports
+
+- Use `@/` alias.
+- Lucide: named icon imports only (`import { Code2 } from "lucide-react"`). Brand icons may be absent — use inline SVG if needed.
+- Do not import entire icon packs or barrel-re-export huge modules into client islands.

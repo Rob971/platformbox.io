@@ -1,0 +1,30 @@
+---
+description: Mandatory entrypoint — read before any implementation, review, or commit
+alwaysApply: true
+---
+
+# Agents mandatory
+
+You are working in **PlatformBox.io**: Next.js 16 App Router, React 19, Tailwind v4, Framer Motion, Lucide.
+
+## Before coding
+
+1. Read root `AGENTS.md`.
+2. For any Next.js API you are unsure about, open the matching file under `node_modules/next/dist/docs/` — training data is stale for this version.
+3. Load scoped rules that match the files you will edit (Next, React, Tailwind, Motion, design).
+
+## Non-negotiables
+
+- TypeScript only for app code.
+- Server Components by default; `"use client"` only for interactivity / motion / browser APIs.
+- Preserve the dark Linear/Vercel aesthetic and brand tokens in `src/app/globals.css`.
+- Do not invent alternative product copy when exact copy already exists on the page.
+- Prefer small, focused diffs; no drive-by refactors.
+- Verify with `npm run lint` and `npm run build` before considering UI work done.
+
+## Never
+
+- Add Pages Router, CSS-in-JS, or a second component library.
+- Create `middleware.ts` (use `proxy.ts` per Next.js 16).
+- Commit `.env*`, credentials, or build artifacts.
+- Mention these rule files in user-facing PR descriptions unless asked.

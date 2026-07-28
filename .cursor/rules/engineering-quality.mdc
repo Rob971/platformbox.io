@@ -1,0 +1,37 @@
+---
+description: Quality gates, git hygiene, and verification checklist for this repo
+alwaysApply: false
+---
+
+# Engineering quality
+
+## Before finishing a task
+
+1. `npm run lint`
+2. `npm run build`
+3. Spot-check critical routes (at least `/`) if UI changed
+4. Ensure no secrets or `.env*` files are staged
+
+## Git
+
+- Clear, descriptive commit messages (what + why).
+- Do not commit: `node_modules/`, `.next/`, `.env*`, personal credentials, large binaries unless requested.
+- Keep `AGENTS.md` Next.js markers intact (`BEGIN/END:nextjs-agent-rules`); add project notes **outside** those markers.
+
+## Code review mindset (self-check)
+
+- Is `"use client"` pushed to the smallest leaf?
+- Are internal links using `next/link`?
+- Are new colors/spacing using design tokens?
+- Does motion respect the calm premium profile?
+- Would a Fractional CTO trust this page in 5 seconds?
+
+## Dependencies
+
+- Prefer the existing stack before adding libraries.
+- Justify any new dependency in the PR body (size, license, why not existing tools).
+- After adding deps: update lockfile and re-run build.
+
+## When docs and training data conflict
+
+**Bundled Next.js docs win.** Quote the local doc path in your reasoning when making a non-obvious framework choice.
