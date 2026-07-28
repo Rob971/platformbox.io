@@ -12,10 +12,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl =
-  process.env.GITHUB_PAGES === "true"
-    ? "https://rob971.github.io/platformbox.io"
-    : "https://www.platformbox.io";
+const siteUrl = "https://www.platformbox.io";
 
 export const metadata: Metadata = {
   title: "PlatformBox.io — The 14-Day Enterprise Internal Developer Platform",

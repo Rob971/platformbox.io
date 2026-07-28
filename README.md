@@ -2,19 +2,32 @@
 
 Premium landing page for the 14-Day Enterprise Internal Developer Platform.
 
-## Live site (GitHub Pages)
+## Live URLs
 
-**https://rob971.github.io/platformbox.io/**
+| URL | Notes |
+| --- | --- |
+| **https://www.platformbox.io** | Custom domain (after DNS — see below) |
+| https://rob971.github.io/platformbox.io/ | GitHub Pages fallback |
 
-### One-time enable (required)
-
-GitHub blocks bots from turning Pages on. Do this once as the repo owner:
+### Enable Pages (one-time)
 
 1. Open [Settings → Pages](https://github.com/Rob971/platformbox.io/settings/pages)
-2. Under **Build and deployment → Source**, choose either:
-   - **Deploy from a branch** → Branch: `gh-pages` → folder: `/ (root)` → **Save**
-   - or **GitHub Actions**, then re-run the *Deploy GitHub Pages* workflow
-3. Wait ~1 minute, then open the URL above
+2. **Source:** Deploy from a branch → `gh-pages` → `/ (root)` → **Save**
+3. **Custom domain:** `www.platformbox.io` → **Save** → later enable **Enforce HTTPS**
+
+### Connect your domain
+
+Full guide: **[docs/CUSTOM-DOMAIN.md](docs/CUSTOM-DOMAIN.md)**
+
+Quick DNS (replace Framer records):
+
+| Type | Host | Value |
+| --- | --- | --- |
+| CNAME | `www` | `rob971.github.io` |
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
 
 ## Stack
 
@@ -33,21 +46,10 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Quality gate (enforced in CI)
+## Quality gate
 
 ```bash
 npm run check   # lint + enforce agent rules + build
-```
-
-## Deploy
-
-Pushes to `main` deploy automatically via `.github/workflows/deploy-pages.yml`.
-
-Local static build (same as Pages):
-
-```bash
-npm run build:pages
-npx serve out
 ```
 
 Agent instructions: `AGENTS.md` and `.cursor/rules/`.

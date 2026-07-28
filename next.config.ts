@@ -1,18 +1,14 @@
 import type { NextConfig } from "next";
 
-const repo = "platformbox.io";
-const isGithubPages = process.env.GITHUB_PAGES === "true";
-
+/**
+ * Static marketing site for GitHub Pages + custom domain (platformbox.io).
+ * No basePath: custom domains serve from `/`. Using `/platformbox.io` would
+ * break assets on www.platformbox.io.
+ */
 const nextConfig: NextConfig = {
   output: "export",
   images: { unoptimized: true },
   trailingSlash: true,
-  ...(isGithubPages
-    ? {
-        basePath: `/${repo}`,
-        assetPrefix: `/${repo}/`,
-      }
-    : {}),
 };
 
 export default nextConfig;
