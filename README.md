@@ -6,6 +6,16 @@ Premium landing page for the 14-Day Enterprise Internal Developer Platform.
 
 **https://rob971.github.io/platformbox.io/**
 
+### One-time enable (required)
+
+GitHub blocks bots from turning Pages on. Do this once as the repo owner:
+
+1. Open [Settings → Pages](https://github.com/Rob971/platformbox.io/settings/pages)
+2. Under **Build and deployment → Source**, choose either:
+   - **Deploy from a branch** → Branch: `gh-pages` → folder: `/ (root)` → **Save**
+   - or **GitHub Actions**, then re-run the *Deploy GitHub Pages* workflow
+3. Wait ~1 minute, then open the URL above
+
 ## Stack
 
 - Next.js (App Router) — static export
