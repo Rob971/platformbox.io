@@ -104,3 +104,10 @@ Propagation is often minutes; worst case up to 24–48 hours.
 | `CNAME` missing after deploy | `public/CNAME` + peaceiris `cname:` keep it; redeploy from `main` |
 
 Official docs: [Managing a custom domain for GitHub Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
+
+---
+
+## Related
+
+- Booking CTA: [BOOKING.md](./BOOKING.md)
+- Project overview: [README.md](../README.md)

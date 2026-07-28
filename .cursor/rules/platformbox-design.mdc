@@ -23,7 +23,10 @@ Ultra-premium B2B. Visual north stars: Linear.app / Vercel. Strict dark mode.
 
 ## UX
 
-- Primary CTA: solid accent. Secondary: outline/glass.
+- Primary CTA: solid accent → Planfy booking widget  
+  (`https://www.planfy.com/booking-widget/platformbox-io`, see `docs/BOOKING.md`)
+- Secondary: outline/glass (scroll to deliverables / blueprint)
 - Cards for deliverables/ROI only — never hero cards.
 - Calm motion only; fully responsive.
 - Keep approved copy unless the user supplies new copy.
+- Do not leave booking CTAs as `#` placeholders.

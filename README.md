@@ -1,13 +1,27 @@
 # PlatformBox.io
 
-Premium landing page for the 14-Day Enterprise Internal Developer Platform.
+Premium landing page for the **14-Day Enterprise Internal Developer Platform** — a fixed-price **$20,000 USD** engineering engagement for Fractional CTOs and post-Series A teams.
 
 ## Live URLs
 
 | URL | Notes |
 | --- | --- |
-| **https://www.platformbox.io** | Custom domain (after DNS — see below) |
+| **https://www.platformbox.io** | Custom domain (after DNS) |
 | https://rob971.github.io/platformbox.io/ | GitHub Pages fallback |
+
+## Booking CTA
+
+All **Book an Architecture Audit** buttons open the Planfy widget:
+
+**https://www.planfy.com/booking-widget/platformbox-io**
+
+Defined once in `src/components/landing-page.tsx` as `BOOKING_URL` (nav, hero, and pricing card).
+
+See **[docs/BOOKING.md](docs/BOOKING.md)**.
+
+## Custom domain
+
+Full DNS guide: **[docs/CUSTOM-DOMAIN.md](docs/CUSTOM-DOMAIN.md)**
 
 ### Enable Pages (one-time)
 
@@ -15,11 +29,7 @@ Premium landing page for the 14-Day Enterprise Internal Developer Platform.
 2. **Source:** Deploy from a branch → `gh-pages` → `/ (root)` → **Save**
 3. **Custom domain:** `www.platformbox.io` → **Save** → later enable **Enforce HTTPS**
 
-### Connect your domain
-
-Full guide: **[docs/CUSTOM-DOMAIN.md](docs/CUSTOM-DOMAIN.md)**
-
-Quick DNS (replace Framer records):
+### Quick DNS (replace Framer records)
 
 | Type | Host | Value |
 | --- | --- | --- |
@@ -31,9 +41,9 @@ Quick DNS (replace Framer records):
 
 ## Stack
 
-- Next.js (App Router) — static export
-- React
-- Tailwind CSS
+- Next.js 16 (App Router) — static export for GitHub Pages
+- React 19 + TypeScript
+- Tailwind CSS v4
 - Framer Motion
 - Lucide React
 
@@ -52,4 +62,16 @@ Open [http://localhost:3000](http://localhost:3000).
 npm run check   # lint + enforce agent rules + build
 ```
 
-Agent instructions: `AGENTS.md` and `.cursor/rules/`.
+## Docs
+
+| Doc | Purpose |
+| --- | --- |
+| [docs/BOOKING.md](docs/BOOKING.md) | Planfy booking CTA |
+| [docs/CUSTOM-DOMAIN.md](docs/CUSTOM-DOMAIN.md) | Connect `platformbox.io` to GitHub Pages |
+| [AGENTS.md](AGENTS.md) | Agent / contributor instructions |
+| [.cursor/rules/](.cursor/rules/) | Enforced Cursor project rules |
+
+## Contact
+
+- Email: [roberto@platformbox.io](mailto:roberto@platformbox.io)
+- LinkedIn: [robertocornano](https://www.linkedin.com/in/robertocornano/)

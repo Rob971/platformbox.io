@@ -10,6 +10,11 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 PlatformBox.io is a premium B2B marketing site for a fixed-price **$20,000 / 14-day** Enterprise Internal Developer Platform engagement aimed at Fractional CTOs and post-Series A engineering leaders.
 
+**Booking CTA (all Architecture Audit buttons):**  
+https://www.planfy.com/booking-widget/platformbox-io  
+
+Canonical constant: `BOOKING_URL` in `src/components/landing-page.tsx`. See `docs/BOOKING.md`.
+
 ## Stack (locked)
 
 | Layer | Choice |
