@@ -13,6 +13,8 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 
+const BOOKING_URL = "https://www.planfy.com/booking-widget/platformbox-io";
+
 function LinkedInIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -108,7 +110,9 @@ export function LandingPage() {
             PlatformBox<span className="text-accent">.io</span>
           </Link>
           <a
-            href="#audit"
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden text-sm text-zinc-400 transition-colors hover:text-white sm:inline"
           >
             Book an Architecture Audit
@@ -150,7 +154,9 @@ export function LandingPage() {
             >
               <a
                 id="audit"
-                href="#"
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-accent px-6 text-sm font-medium text-white transition-colors hover:bg-accent-hover sm:w-auto"
               >
                 Book an Architecture Audit
@@ -278,7 +284,9 @@ export function LandingPage() {
                     </p>
                   </div>
                   <a
-                    href="#"
+                    href={BOOKING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-200"
                   >
                     Book an Architecture Audit
