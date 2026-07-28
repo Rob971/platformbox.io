@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "enforce": "node scripts/enforce-agent-rules.mjs",
+    "check": "npm run lint && npm run enforce && npm run build"
   },
   "dependencies": {
     "framer-motion": "^12.42.2",

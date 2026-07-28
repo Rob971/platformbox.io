@@ -1,52 +1,29 @@
 ---
-description: PlatformBox.io brand, UX, and landing-page design system
-globs: "src/**/*.{tsx,ts,css}"
-alwaysApply: false
+description: PlatformBox brand and landing composition — always enforced for UI work
+alwaysApply: true
 ---
 
-# PlatformBox design system
+# PlatformBox design (ENFORCED)
 
-## Brand positioning
+Ultra-premium B2B. Visual north stars: Linear.app / Vercel. Strict dark mode.
 
-Ultra-premium B2B SaaS for Fractional CTOs. Visual north stars: **Linear.app** and **Vercel** — strict dark mode, high signal, low noise.
+## Tokens (must remain in `src/app/globals.css`)
 
-## Visual tokens
-
-| Token | Direction |
-| --- | --- |
-| Background | Zinc-950 / near-black charcoal |
-| Text | White headings, zinc-400 body |
-| Accent | Electric blue (CTA, links, icon accents) — not purple |
-| Borders | `border-white/10` glass edges |
-| Radius | Subtle (`rounded-lg` / `rounded-xl`), not pill-heavy |
-| Type | Geist / tight tracking on headlines |
-
-CSS variables live in `src/app/globals.css`. Extend there first.
+- `--background`, `--foreground`, `--muted`, `--accent`, `--accent-hover`
+- `@import "tailwindcss"` + `@theme inline` mapping
+- Accent = electric blue (not purple/indigo defaults)
 
 ## Landing composition
 
-1. **Hero** — brand, one H1, one supporting sentence, CTA pair, atmospheric grid/glow. No stats strips, promo chips, or card clutter in the first viewport.
-2. **Problem** — one job: name the bottleneck.
-3. **Deliverables** — 2×2 glass bento; icon + title + short text.
-4. **Economics** — ROI list + distinct investment card (`$20,000 USD` / `14 Days`).
-5. **Footer** — minimal: copyright, email, LinkedIn.
+1. Hero — brand, one H1, one supporting sentence, CTA pair; no stats/chips clutter
+2. Problem — one job
+3. Deliverables — 2×2 glass bento
+4. Economics — ROI + distinct `$20,000 USD` / `14 Days` card
+5. Footer — copyright, email, LinkedIn
 
-## UX rules
+## UX
 
-- One purpose per section; one headline; usually one short supporting line.
-- Primary CTA: solid accent. Secondary: outline / low-contrast glass.
-- Cards only when they group interactive or scannable deliverables — not around the hero.
-- Motion: 2–3 intentional entrance patterns sitewide; professional, not playful.
-- Fully responsive: stacked CTAs and single-column grids on small screens.
-
-## Copy
-
-- Use the approved product copy already on the page unless the user provides new copy.
-- Do not invent testimonials, fake logos, or unverifiable metrics.
-- Keep currency/pricing strings consistent with the source of truth on the page (`$20,000 USD`, € figures in ROI bullets as written).
-
-## Icons
-
-- Lucide, stroke-consistent, modest size (`h-4` / `h-5`).
-- Place icons in a small bordered well for deliverable cards.
-- If a Lucide brand icon is missing, use a minimal inline SVG.
+- Primary CTA: solid accent. Secondary: outline/glass.
+- Cards for deliverables/ROI only — never hero cards.
+- Calm motion only; fully responsive.
+- Keep approved copy unless the user supplies new copy.

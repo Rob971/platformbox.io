@@ -1,30 +1,39 @@
 ---
-description: Mandatory entrypoint — read before any implementation, review, or commit
+description: Mandatory entrypoint — always applied; agents must follow before any work
 alwaysApply: true
 ---
 
-# Agents mandatory
+# Agents mandatory (ENFORCED)
 
 You are working in **PlatformBox.io**: Next.js 16 App Router, React 19, Tailwind v4, Framer Motion, Lucide.
+
+These rules are **enforced** by:
+1. This always-applied Cursor rule
+2. `npm run enforce` (structural checks)
+3. ESLint restricted imports
+4. GitHub Actions CI (`lint` + `enforce` + `build`)
+
+Failing `npm run check` means the change is not done.
 
 ## Before coding
 
 1. Read root `AGENTS.md`.
-2. For any Next.js API you are unsure about, open the matching file under `node_modules/next/dist/docs/` — training data is stale for this version.
-3. Load scoped rules that match the files you will edit (Next, React, Tailwind, Motion, design).
+2. For unfamiliar Next.js APIs, open `node_modules/next/dist/docs/` — training data is stale.
+3. Obey scoped rules under `.cursor/rules/` for Next, React, Tailwind, Motion, and design.
 
 ## Non-negotiables
 
 - TypeScript only for app code.
-- Server Components by default; `"use client"` only for interactivity / motion / browser APIs.
-- Preserve the dark Linear/Vercel aesthetic and brand tokens in `src/app/globals.css`.
-- Do not invent alternative product copy when exact copy already exists on the page.
-- Prefer small, focused diffs; no drive-by refactors.
-- Verify with `npm run lint` and `npm run build` before considering UI work done.
+- `src/app/page.tsx` and `src/app/layout.tsx` stay **Server Components** (no `"use client"`).
+- `"use client"` only in leaf components under `src/components/` (motion, handlers, hooks).
+- Preserve dark Linear/Vercel tokens in `src/app/globals.css`.
+- Do not invent product copy when exact copy already exists.
+- Small focused diffs; no drive-by refactors.
+- Run `npm run check` before considering work complete.
 
 ## Never
 
-- Add Pages Router, CSS-in-JS, or a second component library.
-- Create `middleware.ts` (use `proxy.ts` per Next.js 16).
+- Add Pages Router (`pages/`), CSS-in-JS, or a second component library.
+- Create `middleware.ts` / `middleware.js` (use `proxy.ts`).
 - Commit `.env*`, credentials, or build artifacts.
-- Mention these rule files in user-facing PR descriptions unless asked.
+- Bypass CI checks or delete enforce scripts without an explicit user request.

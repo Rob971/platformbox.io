@@ -19,9 +19,10 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Production
+## Quality gate (enforced in CI)
 
 ```bash
-npm run build
-npm start
+npm run check   # lint + enforce agent rules + build
 ```
+
+Agent instructions: `AGENTS.md` and `.cursor/rules/`.

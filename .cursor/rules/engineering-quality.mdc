@@ -1,37 +1,31 @@
 ---
-description: Use when finishing tasks, committing, reviewing diffs, adding dependencies, or verifying lint/build quality gates
-alwaysApply: false
+description: Quality gates — always enforced; must pass before finishing work
+alwaysApply: true
 ---
 
-# Engineering quality
+# Engineering quality (ENFORCED)
 
-## Before finishing a task
+## Required gate
 
-1. `npm run lint`
-2. `npm run build`
-3. Spot-check critical routes (at least `/`) if UI changed
-4. Ensure no secrets or `.env*` files are staged
+```bash
+npm run check   # lint + enforce + build
+```
+
+Do not claim completion if this fails.
 
 ## Git
 
-- Clear, descriptive commit messages (what + why).
-- Do not commit: `node_modules/`, `.next/`, `.env*`, personal credentials, large binaries unless requested.
-- Keep `AGENTS.md` Next.js markers intact (`BEGIN/END:nextjs-agent-rules`); add project notes **outside** those markers.
+- Descriptive commits; no secrets, `.env*`, `.next/`, or `node_modules/`.
+- Keep `AGENTS.md` Next.js `BEGIN/END:nextjs-agent-rules` markers intact.
 
-## Code review mindset (self-check)
+## Self-check
 
-- Is `"use client"` pushed to the smallest leaf?
-- Are internal links using `next/link`?
-- Are new colors/spacing using design tokens?
-- Does motion respect the calm premium profile?
-- Would a Fractional CTO trust this page in 5 seconds?
+- `"use client"` only on leaf components?
+- Internal routes use `next/link`?
+- Colors/spacing use design tokens?
+- Bundled Next.js docs win over training data when they conflict.
 
 ## Dependencies
 
-- Prefer the existing stack before adding libraries.
-- Justify any new dependency in the PR body (size, license, why not existing tools).
-- After adding deps: update lockfile and re-run build.
-
-## When docs and training data conflict
-
-**Bundled Next.js docs win.** Quote the local doc path in your reasoning when making a non-obvious framework choice.
+- Prefer existing stack; justify new deps in the PR.
+- Banned without explicit approval: styled-components, @emotion/*, @mui/*, pages router packages.
