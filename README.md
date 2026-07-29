@@ -1,6 +1,6 @@
 # PlatformBox.io
 
-Premium landing page for the **14-Day Enterprise Internal Developer Platform** — a fixed-price **$20,000 USD** engineering engagement for Fractional CTOs and post-Series A teams.
+Premium landing page for the **14-Day Enterprise Internal Developer Platform** — a fixed-price **€20,000 EUR** engineering engagement for Fractional CTOs and post-Series A teams.
 
 ## Live URLs
 

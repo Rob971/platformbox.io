@@ -273,13 +273,13 @@ export function LandingPage() {
                       Fixed Project Fee
                     </p>
                     <p className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-                      $20,000
+                      €20,000
                       <span className="ml-2 text-lg font-medium text-zinc-400">
-                        USD
+                        EUR
                       </span>
                     </p>
                     <p className="mt-4 text-sm leading-relaxed text-zinc-300">
-                      The Investment: $20,000 USD (Fixed Project Fee) |
+                      The Investment: €20,000 EUR (Fixed Project Fee) |
                       Timeline: 14 Days.
                     </p>
                   </div>

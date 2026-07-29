@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "PlatformBox.io — The 14-Day Enterprise Internal Developer Platform",
     description:
-      "A fixed-price $20,000 engineering engagement that delivers a production-ready Internal Developer Platform in 14 days.",
+      "A fixed-price €20,000 engineering engagement that delivers a production-ready Internal Developer Platform in 14 days.",
     url: siteUrl,
     siteName: "PlatformBox.io",
     type: "website",
