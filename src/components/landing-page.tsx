@@ -257,93 +257,57 @@ export function LandingPage() {
         </section>
 
         <section className="relative mx-auto mb-16 max-w-5xl px-6">
-          <div className="mx-auto w-full max-w-4xl rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_40px_120px_-50px_rgba(15,23,42,0.75)]">
+          <div className="relative mx-auto w-full max-w-4xl overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_40px_120px_-50px_rgba(15,23,42,0.75)]">
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 via-transparent to-white/0" />
-
-            <div className="relative grid gap-3 md:hidden">
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div className="rounded-3xl border border-white/10 bg-zinc-950/90 p-4 text-center shadow-lg shadow-black/20">
-                  <div className="mx-auto inline-flex h-18 w-18 items-center justify-center rounded-3xl bg-zinc-900 p-3">
+            <div className="relative grid gap-5 py-8">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="rounded-3xl border border-white/10 bg-zinc-950/90 p-5 text-center shadow-lg shadow-black/20">
+                  <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-zinc-900 p-3">
                     <ModularIaCIcon className="h-full w-full" />
                   </div>
                   <p className="mt-4 text-sm font-semibold text-white">Modular IaC</p>
-                  <p className="mt-1 text-xs leading-snug text-zinc-400">Scalable infrastructure blocks</p>
+                  <p className="mt-2 text-xs leading-snug text-zinc-400">Scalable infrastructure blocks</p>
                 </div>
-                <div className="rounded-3xl border border-white/10 bg-zinc-950/90 p-4 text-center shadow-lg shadow-black/20">
-                  <div className="mx-auto inline-flex h-18 w-18 items-center justify-center rounded-3xl bg-zinc-900 p-3">
+                <div className="rounded-3xl border border-white/10 bg-zinc-950/90 p-5 text-center shadow-lg shadow-black/20">
+                  <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-zinc-900 p-3">
                     <SecurityComplianceIcon className="h-full w-full" />
                   </div>
                   <p className="mt-4 text-sm font-semibold text-white">Security & Compliance</p>
-                  <p className="mt-1 text-xs leading-snug text-zinc-400">Locked networks and governance</p>
+                  <p className="mt-2 text-xs leading-snug text-zinc-400">Locked networks and governance</p>
                 </div>
-                <div className="rounded-3xl border border-white/10 bg-zinc-950/90 p-4 text-center shadow-lg shadow-black/20">
-                  <div className="mx-auto inline-flex h-18 w-18 items-center justify-center rounded-3xl bg-zinc-900 p-3">
+                <div className="rounded-3xl border border-white/10 bg-zinc-950/90 p-5 text-center shadow-lg shadow-black/20">
+                  <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-zinc-900 p-3">
                     <CICDVelocityIcon className="h-full w-full" />
                   </div>
                   <p className="mt-4 text-sm font-semibold text-white">CI/CD & Velocity</p>
-                  <p className="mt-1 text-xs leading-snug text-zinc-400">Rapid feedback loops</p>
+                  <p className="mt-2 text-xs leading-snug text-zinc-400">Rapid feedback loops</p>
                 </div>
-                <div className="rounded-3xl border border-white/10 bg-zinc-950/90 p-4 text-center shadow-lg shadow-black/20">
-                  <div className="mx-auto inline-flex h-18 w-18 items-center justify-center rounded-3xl bg-zinc-900 p-3">
+                <div className="rounded-3xl border border-white/10 bg-zinc-950/90 p-5 text-center shadow-lg shadow-black/20">
+                  <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-zinc-900 p-3">
                     <FractionalCTOIcon className="h-full w-full" />
                   </div>
                   <p className="mt-4 text-sm font-semibold text-white">Fractional CTO Strategy</p>
-                  <p className="mt-1 text-xs leading-snug text-zinc-400">Guided technical direction</p>
+                  <p className="mt-2 text-xs leading-snug text-zinc-400">Guided technical direction</p>
                 </div>
-                <div className="rounded-3xl border border-white/10 bg-zinc-950/90 p-4 text-center shadow-lg shadow-black/20 sm:col-span-2">
-                  <div className="mx-auto inline-flex h-18 w-18 items-center justify-center rounded-3xl bg-zinc-900 p-3">
+              </div>
+
+              <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+                <div className="rounded-3xl border border-white/10 bg-zinc-950/90 p-8 text-center shadow-lg shadow-black/20">
+                  <div className="mx-auto inline-flex h-24 w-24 items-center justify-center rounded-full border border-accent/20 bg-zinc-950 p-4 shadow-[0_10px_50px_-30px_rgba(56,189,248,0.75)]">
+                    <PlatformBoxLogoIcon className="h-full w-full" />
+                  </div>
+                  <p className="mt-5 text-lg font-semibold text-white">PlatformBox Core</p>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                    A connected platform suite for modern engineering teams.
+                  </p>
+                </div>
+                <div className="rounded-3xl border border-white/10 bg-zinc-950/90 p-5 shadow-lg shadow-black/20">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-zinc-900 p-3">
                     <FinOpsIcon className="h-full w-full" />
                   </div>
                   <p className="mt-4 text-sm font-semibold text-white">FinOps Optimization</p>
-                  <p className="mt-1 text-xs leading-snug text-zinc-400">Cost reduction that scales</p>
+                  <p className="mt-2 text-xs leading-snug text-zinc-400">Cost reduction that scales with every release.</p>
                 </div>
-              </div>
-
-              <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-full border border-accent/40 bg-zinc-950/80 p-3 shadow-[0_20px_80px_-30px_rgba(56,189,248,0.5)] sm:h-40 sm:w-40 sm:p-4">
-                <PlatformBoxLogoIcon className="h-full w-full" />
-              </div>
-            </div>
-
-            <div className="relative hidden h-[360px] md:block">
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 via-transparent to-white/0" />
-              <div className="pointer-events-none absolute left-6 top-8 w-32 text-xs uppercase tracking-[0.3em] text-zinc-400">
-                <div className="mb-3 font-semibold">Modular IaC</div>
-                <div className="text-sm leading-relaxed text-zinc-300">Scalable infrastructure blocks</div>
-              </div>
-              <div className="pointer-events-none absolute right-6 top-8 w-32 text-xs uppercase tracking-[0.3em] text-zinc-400 text-right">
-                <div className="mb-3 font-semibold">Security & Compliance</div>
-                <div className="text-sm leading-relaxed text-zinc-300">Locked networks and governance</div>
-              </div>
-              <div className="pointer-events-none absolute left-6 top-[50%] w-32 -translate-y-1/2 text-xs uppercase tracking-[0.3em] text-zinc-400">
-                <div className="mb-3 font-semibold">CI/CD & Velocity</div>
-                <div className="text-sm leading-relaxed text-zinc-300">Rapid feedback loops</div>
-              </div>
-              <div className="pointer-events-none absolute right-6 top-[50%] w-32 -translate-y-1/2 text-xs uppercase tracking-[0.3em] text-zinc-400 text-right">
-                <div className="mb-3 font-semibold">Fractional CTO Strategy</div>
-                <div className="text-sm leading-relaxed text-zinc-300">Guided technical direction</div>
-              </div>
-              <div className="pointer-events-none absolute left-6 bottom-8 w-32 text-xs uppercase tracking-[0.3em] text-zinc-400">
-                <div className="mb-3 font-semibold">FinOps Optimization</div>
-                <div className="text-sm leading-relaxed text-zinc-300">Cost reduction that scales</div>
-              </div>
-
-              <div className="absolute left-[5%] top-[20%] h-24 w-24 rounded-3xl border border-white/10 bg-zinc-950/90 p-4 shadow-lg shadow-black/20">
-                <ModularIaCIcon className="h-full w-full" />
-              </div>
-              <div className="absolute right-[5%] top-[16%] h-20 w-20 rounded-3xl border border-white/10 bg-zinc-950/90 p-3 shadow-lg shadow-black/20">
-                <SecurityComplianceIcon className="h-full w-full" />
-              </div>
-              <div className="absolute left-[5%] top-[54%] h-20 w-20 rounded-3xl border border-white/10 bg-zinc-950/90 p-3 shadow-lg shadow-black/20">
-                <CICDVelocityIcon className="h-full w-full" />
-              </div>
-              <div className="absolute right-[5%] top-[54%] h-20 w-20 rounded-3xl border border-white/10 bg-zinc-950/90 p-3 shadow-lg shadow-black/20">
-                <FractionalCTOIcon className="h-full w-full" />
-              </div>
-              <div className="absolute left-[18%] bottom-[10%] h-20 w-20 rounded-3xl border border-white/10 bg-zinc-950/90 p-3 shadow-lg shadow-black/20">
-                <FinOpsIcon className="h-full w-full" />
-              </div>
-              <div className="absolute inset-x-1/2 top-[29%] -translate-x-1/2 h-36 w-36 rounded-full border border-accent/40 bg-zinc-950/80 p-3 shadow-[0_20px_80px_-30px_rgba(56,189,248,0.5)]">
-                <PlatformBoxLogoIcon className="h-full w-full" />
               </div>
             </div>
           </div>
