@@ -1,8 +1,8 @@
 @AGENTS.md
 
-# Claude / Cursor
+# Claude / Clinerules
 
-Project rules live in `.cursor/rules/*.mdc`. Always-applied entrypoint: `agents-mandatory.mdc`.
+Project instructions live in the `.clinerules/` directory as modular Markdown files.
 
 Human docs:
 

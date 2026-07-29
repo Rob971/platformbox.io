@@ -7,4 +7,4 @@
 | [DEPLOY.md](./DEPLOY.md) | Build, push, Pages deploy, and git auth |
 
 Project overview and quickstart: [../README.md](../README.md)  
-Agent rules: [../AGENTS.md](../AGENTS.md) · [../.cursor/rules/](../.cursor/rules/)
+Agent rules: [../AGENTS.md](../AGENTS.md) · [../.clinerules/](../.clinerules/)

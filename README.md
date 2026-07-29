@@ -54,7 +54,7 @@ src/app/                 # App Router (Server Components: page, layout)
 src/components/          # Client islands (landing page + motion)
 public/CNAME             # www.platformbox.io for GitHub Pages
 docs/                    # Human docs (booking, domain, deploy)
-.cursor/rules/           # Enforced Cursor agent rules
+.clinerules/             # Modular project instructions for agents
 .github/workflows/       # CI + Pages publish
 scripts/enforce-agent-rules.mjs
 ```
@@ -102,7 +102,7 @@ npm run check   # lint + enforce agent rules + build
 | [docs/CUSTOM-DOMAIN.md](docs/CUSTOM-DOMAIN.md) | Connect `platformbox.io` to GitHub Pages |
 | [docs/DEPLOY.md](docs/DEPLOY.md) | Build, Pages deploy, git auth |
 | [AGENTS.md](AGENTS.md) | Agent / contributor instructions |
-| [.cursor/rules/](.cursor/rules/) | Enforced Cursor project rules |
+| [.clinerules/](.clinerules/) | Modular repository instructions for agents |
 
 ## Contact
 

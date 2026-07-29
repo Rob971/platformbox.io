@@ -40,7 +40,7 @@ npx serve out
 
 GitHub does **not** accept account passwords for `git push` over HTTPS.
 
-### Preferred (this environment / Cursor Cloud)
+### Preferred (this environment)
 
 ```bash
 git remote set-url origin https://github.com/Rob971/platformbox.io.git
@@ -81,7 +81,7 @@ Cause: expired/embedded token on the remote, or password auth. Fix with `gh auth
 ## Release checklist
 
 1. `npm run check`
-2. Commit on a `cursor/...-b73d` branch (or directly on `main` if intentional)
+2. Commit on a feature branch (or directly on `main` if intentional)
 3. `git push` (with working auth)
 4. Confirm Actions: CI green + `Publish gh-pages branch` success
 5. Spot-check https://www.platformbox.io (or the github.io fallback)

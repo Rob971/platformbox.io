@@ -32,7 +32,7 @@ Do not introduce competing frameworks (Pages Router, CSS-in-JS, styled-component
 
 | Layer | What it does |
 | --- | --- |
-| `.cursor/rules/*` with `alwaysApply: true` | Injected into every Cursor Agent session |
+| `.clinerules/` | Provides the repository’s modular agent instructions |
 | `npm run enforce` | Fails on missing rules, `middleware.ts`, Pages Router, client `page`/`layout`, missing design tokens, banned deps |
 | ESLint `no-restricted-imports` | Blocks styled-components / Emotion / MUI |
 | GitHub Actions `.github/workflows/ci.yml` | Runs `enforce` + `lint` + `build` on PRs and pushes |
@@ -41,7 +41,7 @@ Do not introduce competing frameworks (Pages Router, CSS-in-JS, styled-component
 
 ## Mandatory workflow
 
-1. Read `.cursor/rules/agents-mandatory.mdc` and any glob-matched rules under `.cursor/rules/`.
+1. Read the relevant files in `.clinerules/` before making changes.
 2. Before Next.js / React Router / caching / proxy work, open the matching doc under `node_modules/next/dist/docs/` for **this installed version**.
 3. Prefer Server Components by default. `page.tsx` / `layout.tsx` must stay server; add `"use client"` only in `src/components/` leaves (motion, handlers, hooks, browser APIs).
 4. Keep marketing copy exact unless the user asks to change it.

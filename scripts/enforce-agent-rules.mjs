@@ -39,33 +39,16 @@ function walk(dir, filter, out = []) {
 
 // --- Required agent rule files ---
 const requiredRules = [
-  "agents-mandatory.mdc",
-  "nextjs-app-router.mdc",
-  "react-typescript.mdc",
-  "tailwind-v4.mdc",
-  "framer-motion.mdc",
-  "platformbox-design.mdc",
-  "engineering-quality.mdc",
+  "01-coding.md",
+  "02-architecture.md",
+  "03-design.md",
+  "04-quality.md",
+  "05-motion.md",
 ];
 
 for (const file of requiredRules) {
-  const rel = `.cursor/rules/${file}`;
-  assert(exists(rel), `Missing required Cursor rule: ${rel}`);
-}
-
-// Always-apply enforcement for core rules
-for (const file of [
-  "agents-mandatory.mdc",
-  "platformbox-design.mdc",
-  "engineering-quality.mdc",
-]) {
-  const rel = `.cursor/rules/${file}`;
-  if (!exists(rel)) continue;
-  const body = read(rel);
-  assert(
-    /alwaysApply:\s*true/.test(body),
-    `${rel} must set alwaysApply: true so Cursor enforces it`,
-  );
+  const rel = `.clinerules/${file}`;
+  assert(exists(rel), `Missing required Clinerules file: ${rel}`);
 }
 
 // --- AGENTS.md ---
