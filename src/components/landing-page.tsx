@@ -28,6 +28,90 @@ function LinkedInIcon({ className }: { className?: string }) {
   );
 }
 
+function PlatformBoxLogoIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 120 120" aria-hidden>
+      <defs>
+        <linearGradient id="pb-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#7c3aed" />
+          <stop offset="100%" stopColor="#0ea5e9" />
+        </linearGradient>
+      </defs>
+      <g fill="none" stroke="url(#pb-gradient)" strokeWidth="6">
+        <polygon points="60 12 96 30 96 72 60 90 24 72 24 30" />
+        <polyline points="37 48 60 34 83 48" />
+        <polyline points="60 34 60 76" />
+        <path d="M60 76l19-11" strokeLinecap="round" />
+      </g>
+    </svg>
+  );
+}
+
+function ModularIaCIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 120 120" aria-hidden>
+      <rect x="18" y="24" width="28" height="28" rx="6" fill="none" stroke="#38bdf8" strokeWidth="6" />
+      <rect x="48" y="24" width="28" height="28" rx="6" fill="none" stroke="#38bdf8" strokeWidth="6" />
+      <rect x="33" y="54" width="28" height="28" rx="6" fill="none" stroke="#38bdf8" strokeWidth="6" />
+      <rect x="63" y="54" width="28" height="28" rx="6" fill="none" stroke="#38bdf8" strokeWidth="6" />
+      <path d="M72 28v-8l16 12-16 12v-8" stroke="#7dd3fc" strokeWidth="5" fill="none" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function CICDVelocityIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 120 120" aria-hidden>
+      <path d="M30 36c10-6 22-8 34-4 10 3 18 10 22 20" fill="none" stroke="#facc15" strokeWidth="7" strokeLinecap="round" />
+      <path d="M93 31 105 38 93 45" fill="none" stroke="#facc15" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M90 84c-10 6-22 8-34 4-10-3-18-10-22-20" fill="none" stroke="#facc15" strokeWidth="7" strokeLinecap="round" />
+      <path d="M27 79 15 72 27 65" fill="none" stroke="#facc15" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function SecurityComplianceIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 120 120" aria-hidden>
+      <path d="M60 24l30 14v25c0 20-22 28-30 36-8-8-30-16-30-36V38l30-14z" fill="none" stroke="#22c55e" strokeWidth="6" />
+      <rect x="50" y="48" width="20" height="18" rx="4" fill="none" stroke="#22c55e" strokeWidth="5" />
+      <path d="M60 60v6" fill="none" stroke="#22c55e" strokeWidth="5" strokeLinecap="round" />
+      <circle cx="27" cy="27" r="5" fill="#22c55e" />
+      <circle cx="93" cy="30" r="5" fill="#22c55e" />
+      <circle cx="60" cy="96" r="5" fill="#22c55e" />
+      <path d="M32 30 48 45" stroke="#22c55e" strokeWidth="3" fill="none" />
+      <path d="M92 34 78 45" stroke="#22c55e" strokeWidth="3" fill="none" />
+      <path d="M60 87 60 66" stroke="#22c55e" strokeWidth="3" fill="none" />
+    </svg>
+  );
+}
+
+function FractionalCTOIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 120 120" aria-hidden>
+      <circle cx="60" cy="60" r="26" fill="none" stroke="#a855f7" strokeWidth="6" />
+      <path d="M60 26 70 58 96 58" fill="none" stroke="#a855f7" strokeWidth="6" strokeLinecap="round" />
+      <path d="M28 42 62 52 82 22" fill="none" stroke="#a855f7" strokeWidth="6" strokeLinecap="round" />
+      <path d="M60 86v22" fill="none" stroke="#a855f7" strokeWidth="6" strokeLinecap="round" />
+      <path d="M79 54 95 70" fill="none" stroke="#a855f7" strokeWidth="4" />
+      <path d="M35 74 21 86" fill="none" stroke="#a855f7" strokeWidth="4" />
+      <rect x="74" y="72" width="8" height="12" rx="2" fill="#a855f7" />
+      <rect x="30" y="34" width="8" height="12" rx="2" fill="#a855f7" />
+    </svg>
+  );
+}
+
+function FinOpsIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 120 120" aria-hidden>
+      <path d="M30 88h18v-28h-18zM54 88h18v-16H54zM78 88h18v-40H78z" fill="none" stroke="#f97316" strokeWidth="6" strokeLinecap="round" />
+      <path d="M90 72 108 60 90 48" fill="none" stroke="#f97316" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="32" cy="34" r="10" fill="none" stroke="#f97316" strokeWidth="5" />
+      <circle cx="46" cy="42" r="6" fill="#f97316" />
+    </svg>
+  );
+}
+
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: {
@@ -170,6 +254,99 @@ export function LandingPage() {
               </a>
             </motion.div>
           </motion.div>
+        </section>
+
+        <section className="relative mx-auto mb-16 max-w-5xl px-6">
+          <div className="mx-auto w-full max-w-4xl rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_40px_120px_-50px_rgba(15,23,42,0.75)]">
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 via-transparent to-white/0" />
+
+            <div className="relative grid gap-3 md:hidden">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="rounded-3xl border border-white/10 bg-zinc-950/90 p-4 text-center shadow-lg shadow-black/20">
+                  <div className="mx-auto inline-flex h-18 w-18 items-center justify-center rounded-3xl bg-zinc-900 p-3">
+                    <ModularIaCIcon className="h-full w-full" />
+                  </div>
+                  <p className="mt-4 text-sm font-semibold text-white">Modular IaC</p>
+                  <p className="mt-1 text-xs leading-snug text-zinc-400">Scalable infrastructure blocks</p>
+                </div>
+                <div className="rounded-3xl border border-white/10 bg-zinc-950/90 p-4 text-center shadow-lg shadow-black/20">
+                  <div className="mx-auto inline-flex h-18 w-18 items-center justify-center rounded-3xl bg-zinc-900 p-3">
+                    <SecurityComplianceIcon className="h-full w-full" />
+                  </div>
+                  <p className="mt-4 text-sm font-semibold text-white">Security & Compliance</p>
+                  <p className="mt-1 text-xs leading-snug text-zinc-400">Locked networks and governance</p>
+                </div>
+                <div className="rounded-3xl border border-white/10 bg-zinc-950/90 p-4 text-center shadow-lg shadow-black/20">
+                  <div className="mx-auto inline-flex h-18 w-18 items-center justify-center rounded-3xl bg-zinc-900 p-3">
+                    <CICDVelocityIcon className="h-full w-full" />
+                  </div>
+                  <p className="mt-4 text-sm font-semibold text-white">CI/CD & Velocity</p>
+                  <p className="mt-1 text-xs leading-snug text-zinc-400">Rapid feedback loops</p>
+                </div>
+                <div className="rounded-3xl border border-white/10 bg-zinc-950/90 p-4 text-center shadow-lg shadow-black/20">
+                  <div className="mx-auto inline-flex h-18 w-18 items-center justify-center rounded-3xl bg-zinc-900 p-3">
+                    <FractionalCTOIcon className="h-full w-full" />
+                  </div>
+                  <p className="mt-4 text-sm font-semibold text-white">Fractional CTO Strategy</p>
+                  <p className="mt-1 text-xs leading-snug text-zinc-400">Guided technical direction</p>
+                </div>
+                <div className="rounded-3xl border border-white/10 bg-zinc-950/90 p-4 text-center shadow-lg shadow-black/20 sm:col-span-2">
+                  <div className="mx-auto inline-flex h-18 w-18 items-center justify-center rounded-3xl bg-zinc-900 p-3">
+                    <FinOpsIcon className="h-full w-full" />
+                  </div>
+                  <p className="mt-4 text-sm font-semibold text-white">FinOps Optimization</p>
+                  <p className="mt-1 text-xs leading-snug text-zinc-400">Cost reduction that scales</p>
+                </div>
+              </div>
+
+              <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-full border border-accent/40 bg-zinc-950/80 p-3 shadow-[0_20px_80px_-30px_rgba(56,189,248,0.5)] sm:h-40 sm:w-40 sm:p-4">
+                <PlatformBoxLogoIcon className="h-full w-full" />
+              </div>
+            </div>
+
+            <div className="relative hidden h-[360px] md:block">
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 via-transparent to-white/0" />
+              <div className="pointer-events-none absolute left-6 top-8 w-32 text-xs uppercase tracking-[0.3em] text-zinc-400">
+                <div className="mb-3 font-semibold">Modular IaC</div>
+                <div className="text-sm leading-relaxed text-zinc-300">Scalable infrastructure blocks</div>
+              </div>
+              <div className="pointer-events-none absolute right-6 top-8 w-32 text-xs uppercase tracking-[0.3em] text-zinc-400 text-right">
+                <div className="mb-3 font-semibold">Security & Compliance</div>
+                <div className="text-sm leading-relaxed text-zinc-300">Locked networks and governance</div>
+              </div>
+              <div className="pointer-events-none absolute left-6 top-[50%] w-32 -translate-y-1/2 text-xs uppercase tracking-[0.3em] text-zinc-400">
+                <div className="mb-3 font-semibold">CI/CD & Velocity</div>
+                <div className="text-sm leading-relaxed text-zinc-300">Rapid feedback loops</div>
+              </div>
+              <div className="pointer-events-none absolute right-6 top-[50%] w-32 -translate-y-1/2 text-xs uppercase tracking-[0.3em] text-zinc-400 text-right">
+                <div className="mb-3 font-semibold">Fractional CTO Strategy</div>
+                <div className="text-sm leading-relaxed text-zinc-300">Guided technical direction</div>
+              </div>
+              <div className="pointer-events-none absolute left-6 bottom-8 w-32 text-xs uppercase tracking-[0.3em] text-zinc-400">
+                <div className="mb-3 font-semibold">FinOps Optimization</div>
+                <div className="text-sm leading-relaxed text-zinc-300">Cost reduction that scales</div>
+              </div>
+
+              <div className="absolute left-[5%] top-[20%] h-24 w-24 rounded-3xl border border-white/10 bg-zinc-950/90 p-4 shadow-lg shadow-black/20">
+                <ModularIaCIcon className="h-full w-full" />
+              </div>
+              <div className="absolute right-[5%] top-[16%] h-20 w-20 rounded-3xl border border-white/10 bg-zinc-950/90 p-3 shadow-lg shadow-black/20">
+                <SecurityComplianceIcon className="h-full w-full" />
+              </div>
+              <div className="absolute left-[5%] top-[54%] h-20 w-20 rounded-3xl border border-white/10 bg-zinc-950/90 p-3 shadow-lg shadow-black/20">
+                <CICDVelocityIcon className="h-full w-full" />
+              </div>
+              <div className="absolute right-[5%] top-[54%] h-20 w-20 rounded-3xl border border-white/10 bg-zinc-950/90 p-3 shadow-lg shadow-black/20">
+                <FractionalCTOIcon className="h-full w-full" />
+              </div>
+              <div className="absolute left-[18%] bottom-[10%] h-20 w-20 rounded-3xl border border-white/10 bg-zinc-950/90 p-3 shadow-lg shadow-black/20">
+                <FinOpsIcon className="h-full w-full" />
+              </div>
+              <div className="absolute inset-x-1/2 top-[29%] -translate-x-1/2 h-36 w-36 rounded-full border border-accent/40 bg-zinc-950/80 p-3 shadow-[0_20px_80px_-30px_rgba(56,189,248,0.5)]">
+                <PlatformBoxLogoIcon className="h-full w-full" />
+              </div>
+            </div>
+          </div>
         </section>
 
         <section className="border-y border-white/10 bg-zinc-950/80">
