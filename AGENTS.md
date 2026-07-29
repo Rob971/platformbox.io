@@ -51,6 +51,17 @@ Do not introduce competing frameworks (Pages Router, CSS-in-JS, styled-component
 
 ## Docs map (start here)
 
+### Project docs
+
+| Topic | Doc |
+| --- | --- |
+| Booking CTA (Planfy) | `docs/BOOKING.md` |
+| Custom domain / DNS | `docs/CUSTOM-DOMAIN.md` |
+| Deploy + git auth | `docs/DEPLOY.md` |
+| Docs index | `docs/README.md` |
+
+### Next.js bundled docs (`node_modules/next/dist/docs/`)
+
 | Task | Bundled doc |
 | --- | --- |
 | RSC vs client | `01-app/01-getting-started/05-server-and-client-components.md` |

@@ -29,6 +29,7 @@ Links open in a new tab (`target="_blank"` + `rel="noopener noreferrer"`).
 1. Update `BOOKING_URL` in `src/components/landing-page.tsx`
 2. Update this doc and the README booking section
 3. Run `npm run check`
-4. Merge to `main` (GitHub Pages redeploys automatically)
+4. Push to `main` (see [DEPLOY.md](./DEPLOY.md) if auth fails)
+5. Confirm GitHub Actions published `gh-pages`
 
 Do not leave booking CTAs as `#` placeholders.

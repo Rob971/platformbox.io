@@ -110,4 +110,6 @@ Official docs: [Managing a custom domain for GitHub Pages](https://docs.github.c
 ## Related
 
 - Booking CTA: [BOOKING.md](./BOOKING.md)
+- Deploy & git auth: [DEPLOY.md](./DEPLOY.md)
+- Docs index: [README.md](./README.md)
 - Project overview: [README.md](../README.md)

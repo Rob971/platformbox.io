@@ -47,6 +47,18 @@ Full DNS guide: **[docs/CUSTOM-DOMAIN.md](docs/CUSTOM-DOMAIN.md)**
 - Framer Motion
 - Lucide React
 
+## Project layout
+
+```text
+src/app/                 # App Router (Server Components: page, layout)
+src/components/          # Client islands (landing page + motion)
+public/CNAME             # www.platformbox.io for GitHub Pages
+docs/                    # Human docs (booking, domain, deploy)
+.cursor/rules/           # Enforced Cursor agent rules
+.github/workflows/       # CI + Pages publish
+scripts/enforce-agent-rules.mjs
+```
+
 ## Development
 
 ```bash
@@ -55,6 +67,25 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+## Deploy & git push
+
+Pushes to `main` rebuild and publish GitHub Pages automatically.
+
+```bash
+npm run check
+git push origin main
+```
+
+If you see `Invalid username or token` / password auth failed:
+
+```bash
+git remote set-url origin https://github.com/Rob971/platformbox.io.git
+gh auth setup-git
+git push origin main
+```
+
+Full guide: **[docs/DEPLOY.md](docs/DEPLOY.md)**.
 
 ## Quality gate
 
@@ -66,8 +97,10 @@ npm run check   # lint + enforce agent rules + build
 
 | Doc | Purpose |
 | --- | --- |
+| [docs/README.md](docs/README.md) | Docs index |
 | [docs/BOOKING.md](docs/BOOKING.md) | Planfy booking CTA |
 | [docs/CUSTOM-DOMAIN.md](docs/CUSTOM-DOMAIN.md) | Connect `platformbox.io` to GitHub Pages |
+| [docs/DEPLOY.md](docs/DEPLOY.md) | Build, Pages deploy, git auth |
 | [AGENTS.md](AGENTS.md) | Agent / contributor instructions |
 | [.cursor/rules/](.cursor/rules/) | Enforced Cursor project rules |
 
