@@ -26,6 +26,14 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "PlatformBox.io",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "PlatformBox.io — The 14-Day Enterprise Internal Developer Platform",
+      },
+    ],
   },
 };
 

@@ -23,7 +23,7 @@ Keep the approved marketing structure:
 1. Hero: brand, one H1, one supporting sentence, CTA pair
 2. Problem: one clear job
 3. Deliverables: 2x2 glass bento layout
-4. Economics: ROI section with distinct $20,000 USD / 14 Days card
+4. Economics: ROI section with distinct €20,000 EUR / 14 Days card
 5. Footer: copyright, email, LinkedIn
 
 ## UX rules
