@@ -35,6 +35,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "PlatformBox.io — The 14-Day Enterprise Internal Developer Platform",
+    description:
+      "A fixed-price €20,000 engineering engagement that delivers a production-ready Internal Developer Platform in 14 days.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
