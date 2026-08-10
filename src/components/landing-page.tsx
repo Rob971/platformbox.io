@@ -283,6 +283,15 @@ export function LandingPage() {
               })}
             </motion.div>
           </div>
+          <div className="mt-12 flex justify-center">
+            <Link
+              href="/showcase"
+              className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/20 px-5 text-sm font-medium text-white transition-colors hover:bg-white/5"
+            >
+              View the 14-Day Blueprint
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </section>
 
         <section className="border-t border-white/10">
