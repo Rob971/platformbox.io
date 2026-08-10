@@ -1,8 +1,7 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Boxes, Code2, GitBranch, Layers, Eye } from "lucide-react";
-import type { ReactNode } from "react";
 import { Header } from "../header";
 import { Footer } from "../footer";
 import { TimelineStepper } from "./timeline-stepper";
@@ -11,26 +10,8 @@ import { DeliverableCard } from "./deliverable-card";
 import { PipelineVisualizer } from "./pipeline-visualizer";
 import { EnvDashboard } from "./env-dashboard";
 import { K8sArchitecture } from "./k8s-architecture";
-
-const BOOKING_URL = "https://www.cal.eu/roberto-platformbox";
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
-};
-
-const stagger: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-function FadeIn({ children, className, delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
-  return (
-    <motion.div className={className} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} transition={{ delay }}>
-      {children}
-    </motion.div>
-  );
-}
+import { BOOKING_URL } from "@/lib/constants";
+import { fadeUp, stagger, FadeIn } from "@/lib/motion";
 
 const terraformModule = `module "vpc" {
   source = "terraform-aws-modules/vpc/aws"

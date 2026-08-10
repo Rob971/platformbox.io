@@ -1,16 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { motion, type Variants } from "framer-motion";
-import {
-  Boxes,
-  Check,
-  Code2,
-  GitBranch,
-  Layers,
-  ArrowRight,
-} from "lucide-react";
-import type { ReactNode } from "react";
+import { motion } from "framer-motion";
+import { Boxes, Check, Code2, GitBranch, Layers, ArrowRight } from "lucide-react";
 import {
   PlatformBoxLogoIcon,
   ModularIaCIcon,
@@ -21,47 +13,8 @@ import {
 } from "./icons";
 import { Header } from "./header";
 import { Footer } from "./footer";
-
-const BOOKING_URL = "https://www.cal.eu/roberto-platformbox";
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
-  },
-};
-
-const stagger: Variants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-function FadeIn({
-  children,
-  className,
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      className={className}
-      variants={fadeUp}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ delay }}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import { BOOKING_URL } from "@/lib/constants";
+import { fadeUp, stagger, FadeIn } from "@/lib/motion";
 
 const deliverables = [
   {

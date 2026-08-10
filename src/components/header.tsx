@@ -1,9 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-
-const BOOKING_URL = "https://www.cal.eu/roberto-platformbox";
+import { BOOKING_URL } from "@/lib/constants";
 
 interface HeaderProps {
   showHomeLink?: boolean;
