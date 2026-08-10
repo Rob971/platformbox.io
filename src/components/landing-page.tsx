@@ -22,7 +22,7 @@ import {
 import { Header } from "./header";
 import { Footer } from "./footer";
 
-const BOOKING_URL = "https://www.planfy.com/booking-widget/platformbox-io";
+const BOOKING_URL = "https://www.cal.eu/roberto-platformbox";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },

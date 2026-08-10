@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-const BOOKING_URL = "https://www.planfy.com/booking-widget/platformbox-io";
+const BOOKING_URL = "https://www.cal.eu/roberto-platformbox";
 
 interface HeaderProps {
   showHomeLink?: boolean;

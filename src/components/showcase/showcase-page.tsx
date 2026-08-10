@@ -12,7 +12,7 @@ import { PipelineVisualizer } from "./pipeline-visualizer";
 import { EnvDashboard } from "./env-dashboard";
 import { K8sArchitecture } from "./k8s-architecture";
 
-const BOOKING_URL = "https://www.planfy.com/booking-widget/platformbox-io";
+const BOOKING_URL = "https://www.cal.eu/roberto-platformbox";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
