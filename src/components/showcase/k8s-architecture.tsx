@@ -45,6 +45,7 @@ export function K8sArchitecture() {
                 className="transition-all duration-200 cursor-pointer"
                 onMouseEnter={() => setHoveredId(layer.id)}
                 onMouseLeave={() => setHoveredId(null)}
+                onClick={() => setHoveredId(hoveredId === layer.id ? null : layer.id)}
               />
               <text
                 x={layer.x + 6} y={layer.y + 14}

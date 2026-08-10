@@ -8,12 +8,10 @@ import {
   Code2,
   GitBranch,
   Layers,
-  Mail,
   ArrowRight,
 } from "lucide-react";
 import type { ReactNode } from "react";
 import {
-  LinkedInIcon,
   PlatformBoxLogoIcon,
   ModularIaCIcon,
   CICDVelocityIcon,
@@ -21,6 +19,8 @@ import {
   FractionalCTOIcon,
   FinOpsIcon,
 } from "./icons";
+import { Header } from "./header";
+import { Footer } from "./footer";
 
 const BOOKING_URL = "https://www.planfy.com/booking-widget/platformbox-io";
 
@@ -97,24 +97,7 @@ export function LandingPage() {
     <div className="relative flex min-h-screen flex-col overflow-x-hidden">
       <div className="pointer-events-none absolute inset-0 grid-glow" aria-hidden />
 
-      <header className="relative z-20 border-b border-white/10 bg-zinc-950/70 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-          <Link
-            href="/"
-            className="text-sm font-semibold tracking-tight text-white"
-          >
-            PlatformBox<span className="text-accent">.io</span>
-          </Link>
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden text-sm text-zinc-400 transition-colors hover:text-white sm:inline"
-          >
-            Book an Architecture Audit
-          </a>
-        </div>
-      </header>
+      <Header />
 
       <main className="relative z-10 flex-1">
         <section className="mx-auto flex max-w-5xl flex-col items-center px-6 pb-24 pt-20 text-center sm:pt-28 md:pb-32 md:pt-36">
@@ -358,35 +341,7 @@ export function LandingPage() {
         </section>
       </main>
 
-      <footer className="relative z-10 border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-6 py-10 sm:flex-row sm:items-center">
-          <div className="flex flex-col gap-1">
-            <p className="text-sm text-zinc-500">PlatformBox.io © 2026</p>
-            <p className="text-xs uppercase tracking-[0.2em] text-zinc-600">
-              build {process.env.NEXT_PUBLIC_COMMIT_SHA?.slice(0, 7) ?? "dev"}
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-5">
-            <a
-              href="mailto:roberto@platformbox.io"
-              className="inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
-            >
-              <Mail className="h-4 w-4" aria-hidden />
-              roberto@platformbox.io
-            </a>
-            <a
-              href="https://www.linkedin.com/in/robertocornano/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
-              aria-label="PlatformBox on LinkedIn"
-            >
-              <LinkedInIcon className="h-4 w-4" />
-              LinkedIn
-            </a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

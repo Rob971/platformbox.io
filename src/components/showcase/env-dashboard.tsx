@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GitBranch, Trash2, ExternalLink, CheckCircle, Loader2 } from "lucide-react";
+import { GitBranch, Trash2, ExternalLink, CheckCircle, Loader2, RotateCcw } from "lucide-react";
 
 interface Environment {
   id: string;
@@ -14,9 +14,9 @@ interface Environment {
 }
 
 const initialEnvs: Environment[] = [
-  { id: "1", pr: "#142", branch: "feat/payment-integration", status: "ready", createdAt: "2 min ago", url: "https://pr-142.preview.platformbox.io" },
-  { id: "2", pr: "#141", branch: "fix/auth-token-refresh", status: "building", createdAt: "just now", url: "https://pr-141.preview.platformbox.io" },
-  { id: "3", pr: "#140", branch: "feat/dark-mode", status: "ready", createdAt: "15 min ago", url: "https://pr-140.preview.platformbox.io" },
+  { id: "1", pr: "#142", branch: "feat/payment-integration", status: "ready", createdAt: "2m ago", url: "https://pr-142.preview.platformbox.io" },
+  { id: "2", pr: "#141", branch: "fix/auth-token-refresh", status: "building", createdAt: "8m ago", url: "https://pr-141.preview.platformbox.io" },
+  { id: "3", pr: "#140", branch: "feat/dark-mode", status: "ready", createdAt: "15m ago", url: "https://pr-140.preview.platformbox.io" },
 ];
 
 const statusConfig = {
@@ -87,6 +87,13 @@ export function EnvDashboard() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="rounded-lg border border-dashed border-white/10 bg-white/[0.02] p-8 text-center">
           <p className="text-sm text-zinc-500">All environments destroyed. Cost saved: €0.</p>
           <p className="text-xs text-zinc-600 mt-1">New PRs will auto-create preview environments.</p>
+          <button
+            onClick={() => setEnvs(initialEnvs)}
+            className="mt-4 inline-flex items-center gap-1.5 text-xs text-accent hover:text-accent-hover transition-colors"
+          >
+            <RotateCcw className="h-3 w-3" />
+            Reset demo
+          </button>
         </motion.div>
       )}
     </div>

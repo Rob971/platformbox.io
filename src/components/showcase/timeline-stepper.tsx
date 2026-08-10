@@ -62,19 +62,20 @@ export function TimelineStepper() {
                 <ChevronDown className={`hidden sm:block h-4 w-4 text-zinc-500 transition-transform mt-2 ${expanded === i ? "rotate-180" : ""}`} />
               </div>
 
-              <AnimatePresence>
+              <AnimatePresence mode="wait">
                 {expanded === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    className="overflow-hidden"
-                  >
-                    <div className="mt-3 ml-12 sm:ml-0 sm:mt-4 rounded-lg border border-white/10 bg-white/[0.03] p-4">
-                      <p className="text-xs text-zinc-300 leading-relaxed">{phase.detail}</p>
-                    </div>
-                  </motion.div>
+                  <div className="overflow-hidden">
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <div className="mt-3 ml-12 sm:ml-0 sm:mt-4 rounded-lg border border-white/10 bg-white/[0.03] p-4">
+                        <p className="text-xs text-zinc-300 leading-relaxed">{phase.detail}</p>
+                      </div>
+                    </motion.div>
+                  </div>
                 )}
               </AnimatePresence>
 

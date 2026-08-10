@@ -30,8 +30,9 @@ export function PipelineVisualizer() {
   const [selected, setSelected] = useState<number | null>(null);
 
   return (
-    <div className="w-full overflow-x-auto">
-      <div className="flex items-start min-w-[640px] py-4 px-2">
+    <div className="w-full">
+      {/* Desktop: horizontal flow */}
+      <div className="hidden sm:flex items-start min-w-[640px] py-4 px-2">
         {defaultStages.map((stage, i) => {
           const isLast = i === defaultStages.length - 1;
           const isSelected = selected === i;
@@ -59,6 +60,34 @@ export function PipelineVisualizer() {
                   </svg>
                 </div>
               )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Mobile: vertical stack */}
+      <div className="sm:hidden flex flex-col gap-0 py-2">
+        {defaultStages.map((stage, i) => {
+          const isLast = i === defaultStages.length - 1;
+          const isSelected = selected === i;
+          const colors = statusColors[stage.status];
+
+          return (
+            <div key={stage.name} className="flex items-start">
+              <div className="flex flex-col items-center shrink-0 w-8">
+                <button onClick={() => setSelected(isSelected ? null : i)} className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full ring-2 transition-all ${colors.ring} ${isSelected ? "bg-white/10" : "bg-zinc-900"}`}>
+                  <stage.icon className={`h-3.5 w-3.5 ${colors.text}`} />
+                  {stage.status === "running" && <motion.span animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1.5 }} className={`absolute inset-0 rounded-full ${colors.dot} opacity-20`} />}
+                </button>
+                {!isLast && <div className="w-px h-5 bg-white/10 my-1" />}
+              </div>
+              <button onClick={() => setSelected(isSelected ? null : i)} className="flex-1 text-left pl-3 pb-3">
+                <p className="text-xs font-medium text-white">{stage.name}</p>
+                <div className="flex items-center gap-1 mt-0.5">
+                  <span className={`h-1.5 w-1.5 rounded-full ${colors.dot}`} />
+                  <span className="text-[10px] uppercase tracking-[0.1em] text-zinc-500">{stage.status}</span>
+                </div>
+              </button>
             </div>
           );
         })}
