@@ -2,15 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Boxes, Check, Code2, GitBranch, Layers, ArrowRight } from "lucide-react";
-import {
-  PlatformBoxLogoIcon,
-  ModularIaCIcon,
-  CICDVelocityIcon,
-  SecurityComplianceIcon,
-  FractionalCTOIcon,
-  FinOpsIcon,
-} from "./icons";
+import { Boxes, Check, Code2, GitBranch, Layers, ArrowRight, Blocks, Repeat, ShieldCheck, Compass, TrendingDown } from "lucide-react";
+import { PlatformBoxLogoIcon } from "./icons";
 import { Header } from "./header";
 import { Footer } from "./footer";
 import { BOOKING_URL } from "@/lib/constants";
@@ -110,7 +103,7 @@ export function LandingPage() {
 
             <div className="relative rounded-3xl border border-white/10 bg-zinc-950/90 p-5 text-center shadow-lg shadow-black/20">
               <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-zinc-900 p-3">
-                <ModularIaCIcon className="h-full w-full" />
+                <Blocks className="h-full w-full text-accent" />
               </div>
               <p className="mt-4 text-sm font-semibold text-white">Modular IaC</p>
               <p className="mt-2 text-xs leading-relaxed text-zinc-400">Scalable infrastructure blocks</p>
@@ -118,7 +111,7 @@ export function LandingPage() {
 
             <div className="relative rounded-3xl border border-white/10 bg-zinc-950/90 p-5 text-center shadow-lg shadow-black/20">
               <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-zinc-900 p-3">
-                <SecurityComplianceIcon className="h-full w-full" />
+                <ShieldCheck className="h-full w-full text-accent" />
               </div>
               <p className="mt-4 text-sm font-semibold text-white">Security & Compliance</p>
               <p className="mt-2 text-xs leading-relaxed text-zinc-400">Locked networks and governance</p>
@@ -126,7 +119,7 @@ export function LandingPage() {
 
             <div className="relative rounded-3xl border border-white/10 bg-zinc-950/90 p-5 text-center shadow-lg shadow-black/20">
               <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-zinc-900 p-3">
-                <CICDVelocityIcon className="h-full w-full" />
+                <Repeat className="h-full w-full text-accent" />
               </div>
               <p className="mt-4 text-sm font-semibold text-white">CI/CD & Velocity</p>
               <p className="mt-2 text-xs leading-relaxed text-zinc-400">Rapid feedback loops</p>
@@ -134,7 +127,7 @@ export function LandingPage() {
 
             <div className="relative rounded-3xl border border-white/10 bg-zinc-950/90 p-5 text-center shadow-lg shadow-black/20">
               <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-zinc-900 p-3">
-                <FractionalCTOIcon className="h-full w-full" />
+                <Compass className="h-full w-full text-accent" />
               </div>
               <p className="mt-4 text-sm font-semibold text-white">Fractional CTO Strategy</p>
               <p className="mt-2 text-xs leading-relaxed text-zinc-400">Guided technical direction</p>
@@ -142,10 +135,10 @@ export function LandingPage() {
 
             <div className="relative rounded-3xl border border-white/10 bg-zinc-950/90 p-5 text-center shadow-lg shadow-black/20">
               <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-zinc-900 p-3">
-                <FinOpsIcon className="h-full w-full" />
+                <TrendingDown className="h-full w-full text-accent" />
               </div>
               <p className="mt-4 text-sm font-semibold text-white">FinOps Optimization</p>
-              <p className="mt-2 text-xs leading-relaxed text-zinc-400">Cost reduction that scales with every release.</p>
+              <p className="mt-2 text-xs leading-relaxed text-zinc-400">Cost reduction that scales with every release</p>
             </div>
 
             <div className="relative rounded-3xl border border-white/10 bg-zinc-950/90 p-5 text-center shadow-lg shadow-black/20">
@@ -153,7 +146,7 @@ export function LandingPage() {
                 <PlatformBoxLogoIcon className="h-full w-full" />
               </div>
               <p className="mt-4 text-sm font-semibold text-white">PlatformBox Core</p>
-              <p className="mt-2 text-xs leading-relaxed text-zinc-400">A connected platform suite for modern engineering teams.</p>
+              <p className="mt-2 text-xs leading-relaxed text-zinc-400">A connected platform suite for modern engineering teams</p>
             </div>
           </div>
         </section>
