@@ -154,7 +154,7 @@ export function LandingPage() {
         <section className="border-y border-white/10 bg-zinc-950/80">
           <div className="mx-auto grid max-w-6xl gap-10 px-6 py-20 md:grid-cols-2 md:gap-16 md:py-28">
             <FadeIn>
-              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
                 01 / The Bottleneck
               </p>
               <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
@@ -175,7 +175,7 @@ export function LandingPage() {
         <section id="solution" className="scroll-mt-20">
           <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
             <FadeIn className="mb-12 max-w-2xl">
-              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
                 02 / The 14-Day Solution
               </p>
               <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
@@ -226,7 +226,7 @@ export function LandingPage() {
         <section className="border-t border-white/10">
           <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
             <FadeIn className="mb-12 max-w-2xl">
-              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
                 03 / The Financial ROI
               </p>
               <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">

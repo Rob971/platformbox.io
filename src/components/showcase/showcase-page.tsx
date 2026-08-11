@@ -299,7 +299,7 @@ export function ShowcasePage() {
 
         <section id="timeline" className="mx-auto max-w-5xl px-6 pb-20">
           <FadeIn>
-            <h2 className="mb-8 text-center text-sm font-medium uppercase tracking-[0.15em] text-zinc-500">14-Day Delivery Timeline</h2>
+            <h2 className="mb-8 text-center text-sm font-medium uppercase tracking-[0.15em] text-zinc-400">14-Day Delivery Timeline</h2>
             <TimelineStepper />
           </FadeIn>
         </section>

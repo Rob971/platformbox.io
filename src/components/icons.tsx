@@ -16,8 +16,8 @@ export function PlatformBoxLogoIcon({ className }: { className?: string }) {
     <svg className={className} viewBox="0 0 120 120" aria-hidden>
       <defs>
         <linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#7c3aed" />
-          <stop offset="100%" stopColor="#0ea5e9" />
+          <stop offset="0%" stopColor="#3b82f6" />
+          <stop offset="100%" stopColor="#60a5fa" />
         </linearGradient>
       </defs>
       <g fill="none" stroke={`url(#${id})`} strokeWidth="6">
