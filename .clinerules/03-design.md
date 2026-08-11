@@ -28,7 +28,7 @@ Keep the approved marketing structure:
 
 ## UX rules
 
-- Primary CTA should link to the Planfy booking widget: https://www.planfy.com/booking-widget/platformbox-io
+- Primary CTA should link to the Cal.com booking: https://cal.eu/roberto-platformbox/45min
 - Secondary CTA should be outline or glass, used for navigation to the deliverables or blueprint section.
 - Use cards for deliverables and ROI; do not use hero cards.
 - Keep motion calm and subtle rather than playful or bouncy.

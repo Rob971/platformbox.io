@@ -85,4 +85,4 @@ Cause: expired/embedded token on the remote, or password auth. Fix with `gh auth
 3. `git push` (with working auth)
 4. Confirm Actions: CI green + `Publish gh-pages branch` success
 5. Spot-check https://www.platformbox.io (or the github.io fallback)
-6. Confirm booking CTAs still open https://www.planfy.com/booking-widget/platformbox-io
+6. Confirm booking CTAs still open https://cal.eu/roberto-platformbox/45min

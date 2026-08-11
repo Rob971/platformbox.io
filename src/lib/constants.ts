@@ -1,1 +1,1 @@
-export const BOOKING_URL = "https://www.cal.eu/roberto-platformbox";
+export const BOOKING_URL = "https://cal.eu/roberto-platformbox/45min";

@@ -11,11 +11,11 @@ Premium landing page for the **14-Day Enterprise Internal Developer Platform** â
 
 ## Booking CTA
 
-All **Book an Architecture Audit** buttons open the Planfy widget:
+All **Book an Architecture Audit** buttons open the 45-minute Cal.com call:
 
-**https://www.planfy.com/booking-widget/platformbox-io**
+**https://cal.eu/roberto-platformbox/45min**
 
-Defined once in `src/components/landing-page.tsx` as `BOOKING_URL` (nav, hero, and pricing card).
+Defined once in `src/lib/constants.ts` as `BOOKING_URL` (nav, hero, pricing card, and showcase CTA).
 
 See **[docs/BOOKING.md](docs/BOOKING.md)**.
 
@@ -98,7 +98,7 @@ npm run check   # lint + enforce agent rules + build
 | Doc | Purpose |
 | --- | --- |
 | [docs/README.md](docs/README.md) | Docs index |
-| [docs/BOOKING.md](docs/BOOKING.md) | Planfy booking CTA |
+| [docs/BOOKING.md](docs/BOOKING.md) | Cal.com booking CTA |
 | [docs/CUSTOM-DOMAIN.md](docs/CUSTOM-DOMAIN.md) | Connect `platformbox.io` to GitHub Pages |
 | [docs/DEPLOY.md](docs/DEPLOY.md) | Build, Pages deploy, git auth |
 | [AGENTS.md](AGENTS.md) | Agent / contributor instructions |

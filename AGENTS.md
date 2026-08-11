@@ -11,9 +11,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
 PlatformBox.io is a premium B2B marketing site for a fixed-price **€20,000 / 14-day** Enterprise Internal Developer Platform engagement aimed at Fractional CTOs and post-Series A engineering leaders.
 
 **Booking CTA (all Architecture Audit buttons):**  
-https://www.planfy.com/booking-widget/platformbox-io  
+https://cal.eu/roberto-platformbox/45min  
 
-Canonical constant: `BOOKING_URL` in `src/components/landing-page.tsx`. See `docs/BOOKING.md`.
+Canonical constant: `BOOKING_URL` in `src/lib/constants.ts`. See `docs/BOOKING.md`.
 
 ## Stack (locked)
 
@@ -55,7 +55,7 @@ Do not introduce competing frameworks (Pages Router, CSS-in-JS, styled-component
 
 | Topic | Doc |
 | --- | --- |
-| Booking CTA (Planfy) | `docs/BOOKING.md` |
+| Booking CTA (Cal.com) | `docs/BOOKING.md` |
 | Custom domain / DNS | `docs/CUSTOM-DOMAIN.md` |
 | Deploy + git auth | `docs/DEPLOY.md` |
 | Docs index | `docs/README.md` |
