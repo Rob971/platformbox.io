@@ -82,73 +82,61 @@ export function LandingPage() {
                 href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-accent px-6 text-sm font-medium text-white transition-colors hover:bg-accent-hover sm:w-auto"
+                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-accent px-6 text-sm font-medium text-white transition-colors hover:bg-accent-hover sm:w-auto"
               >
                 Book an Architecture Audit
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </a>
               <Link
                 href="/#solution"
-                className="inline-flex h-12 w-full items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] px-6 text-sm font-medium text-zinc-200 transition-colors hover:border-white/20 hover:bg-white/[0.06] sm:w-auto"
+                className="inline-flex h-11 w-full items-center justify-center rounded-lg border border-white/20 px-6 text-sm font-medium text-zinc-200 transition-colors hover:border-white/30 sm:w-auto"
               >
-                View the 14-Day Blueprint
+                See the Deliverables
               </Link>
             </motion.div>
           </motion.div>
         </section>
 
-        <section className="relative mx-auto mb-16 max-w-5xl px-6">
-          <div className="relative mx-auto grid gap-4 overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_40px_120px_-50px_rgba(15,23,42,0.75)] sm:grid-cols-2">
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 via-transparent to-white/0" />
-
-            <div className="relative rounded-3xl border border-white/10 bg-zinc-950/90 p-5 text-center shadow-lg shadow-black/20">
-              <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-zinc-900 p-3">
-                <Blocks className="h-full w-full text-accent" />
-              </div>
-              <p className="mt-4 text-sm font-semibold text-white">Modular IaC</p>
-              <p className="mt-2 text-xs leading-relaxed text-zinc-400">Scalable infrastructure blocks</p>
-            </div>
-
-            <div className="relative rounded-3xl border border-white/10 bg-zinc-950/90 p-5 text-center shadow-lg shadow-black/20">
-              <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-zinc-900 p-3">
-                <ShieldCheck className="h-full w-full text-accent" />
-              </div>
-              <p className="mt-4 text-sm font-semibold text-white">Security & Compliance</p>
-              <p className="mt-2 text-xs leading-relaxed text-zinc-400">Locked networks and governance</p>
-            </div>
-
-            <div className="relative rounded-3xl border border-white/10 bg-zinc-950/90 p-5 text-center shadow-lg shadow-black/20">
-              <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-zinc-900 p-3">
-                <Repeat className="h-full w-full text-accent" />
-              </div>
-              <p className="mt-4 text-sm font-semibold text-white">CI/CD & Velocity</p>
-              <p className="mt-2 text-xs leading-relaxed text-zinc-400">Rapid feedback loops</p>
-            </div>
-
-            <div className="relative rounded-3xl border border-white/10 bg-zinc-950/90 p-5 text-center shadow-lg shadow-black/20">
-              <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-zinc-900 p-3">
-                <Compass className="h-full w-full text-accent" />
-              </div>
-              <p className="mt-4 text-sm font-semibold text-white">Fractional CTO Strategy</p>
-              <p className="mt-2 text-xs leading-relaxed text-zinc-400">Guided technical direction</p>
-            </div>
-
-            <div className="relative rounded-3xl border border-white/10 bg-zinc-950/90 p-5 text-center shadow-lg shadow-black/20">
-              <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-zinc-900 p-3">
-                <TrendingDown className="h-full w-full text-accent" />
-              </div>
-              <p className="mt-4 text-sm font-semibold text-white">FinOps Optimization</p>
-              <p className="mt-2 text-xs leading-relaxed text-zinc-400">Cost reduction that scales with every release</p>
-            </div>
-
-            <div className="relative rounded-3xl border border-white/10 bg-zinc-950/90 p-5 text-center shadow-lg shadow-black/20">
-              <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-zinc-900 p-3">
-                <PlatformBoxLogoIcon className="h-full w-full" />
-              </div>
-              <p className="mt-4 text-sm font-semibold text-white">PlatformBox Core</p>
-              <p className="mt-2 text-xs leading-relaxed text-zinc-400">A connected platform suite for modern engineering teams</p>
-            </div>
-          </div>
+        <section className="mx-auto max-w-5xl px-6 pb-20 pt-16 sm:pt-20">
+          <FadeIn className="mb-12 max-w-2xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              Why PlatformBox
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-zinc-400">
+              A connected platform suite delivered in 14 days — no hiring, no tooling sprawl, no guesswork.
+            </p>
+          </FadeIn>
+          <motion.div
+            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+          >
+            {[
+              { icon: Blocks, title: "Modular IaC", desc: "Scalable infrastructure blocks" },
+              { icon: ShieldCheck, title: "Security & Compliance", desc: "Locked networks and governance" },
+              { icon: Repeat, title: "CI/CD & Velocity", desc: "Rapid feedback loops" },
+              { icon: Compass, title: "Fractional CTO Strategy", desc: "Guided technical direction" },
+              { icon: TrendingDown, title: "FinOps Optimization", desc: "Cost reduction that scales" },
+              { icon: PlatformBoxLogoIcon, title: "PlatformBox Core", desc: "A connected platform suite", isLogo: true },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.title}
+                  variants={fadeUp}
+                  className="group rounded-xl border border-white/10 bg-white/[0.03] p-6 transition-colors hover:border-white/20"
+                >
+                  <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${item.isLogo ? "bg-zinc-900" : "bg-accent/10"} mb-4`}>
+                    <Icon className={item.isLogo ? "h-6 w-6" : "h-5 w-5 text-accent"} />
+                  </div>
+                  <p className="text-sm font-semibold text-white">{item.title}</p>
+                  <p className="mt-1 text-xs leading-relaxed text-zinc-400">{item.desc}</p>
+                </motion.div>
+              );
+            })}
+          </motion.div>
         </section>
 
         <section className="border-y border-white/10 bg-zinc-950/80">
@@ -275,7 +263,7 @@ export function LandingPage() {
                     href={BOOKING_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-200"
+                    className="mt-8 inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-200"
                   >
                     Book an Architecture Audit
                     <ArrowRight className="h-4 w-4" aria-hidden />

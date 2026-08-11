@@ -289,9 +289,9 @@ export function ShowcasePage() {
           <motion.div initial="hidden" animate="visible" variants={stagger} className="flex flex-col items-center">
             <motion.p variants={fadeUp} className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-accent">The 14-Day Blueprint</motion.p>
             <motion.h1 variants={fadeUp} className="max-w-3xl text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl md:leading-[1.1]">See exactly what your team receives</motion.h1>
-            <motion.p variants={fadeUp} className="mt-4 max-w-2xl text-base text-zinc-400 leading-relaxed sm:text-lg">A visual walkthrough of the four deliverables that ship in 14 days — from modular Terraform to production Kubernetes.</motion.p>
+            <motion.p variants={fadeUp} className="mt-4 max-w-2xl text-base text-zinc-400 leading-relaxed sm:text-lg">A visual walkthrough of the enterprise platform that ships in 14 days — from modular Terraform to production Kubernetes.</motion.p>
             <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <a href="#deliverables" className="inline-flex h-11 items-center gap-2 rounded-lg bg-white px-5 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-200"><Eye className="h-4 w-4" />Explore Deliverables</a>
+              <a href="#deliverables" className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-sm font-medium text-white transition-colors hover:bg-accent-hover"><Eye className="h-4 w-4" />Explore Deliverables</a>
               <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/20 px-5 text-sm font-medium text-white transition-colors hover:bg-white/5">Book an Architecture Audit<ArrowRight className="h-4 w-4" /></a>
             </motion.div>
           </motion.div>
@@ -299,14 +299,14 @@ export function ShowcasePage() {
 
         <section id="timeline" className="mx-auto max-w-5xl px-6 pb-20">
           <FadeIn>
-            <h2 className="mb-8 text-center text-sm font-medium uppercase tracking-[0.15em] text-zinc-400">14-Day Delivery Timeline</h2>
+            <h2 className="mb-8 text-center text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">01 / The Blueprint</h2>
             <TimelineStepper />
           </FadeIn>
         </section>
 
-        <section id="deliverables" className="mx-auto max-w-5xl px-6 pb-20">
+        <section id="deliverables" className="border-t border-white/10 mx-auto max-w-5xl px-6 pb-20 pt-20">
           <FadeIn className="mb-10 text-center">
-            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">The Four Deliverables</h2>
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">02 / The Four Deliverables</p>
             <p className="mt-3 text-sm text-zinc-400">Click any card to view sample code, config, or interactive demos.</p>
           </FadeIn>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -317,9 +317,9 @@ export function ShowcasePage() {
           </div>
         </section>
 
-        <section id="pipeline" className="mx-auto max-w-5xl px-6 pb-20">
+        <section id="pipeline" className="border-t border-white/10 mx-auto max-w-5xl px-6 pb-20 pt-20">
           <FadeIn className="mb-8 text-center">
-            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">The CI/CD Pipeline</h2>
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">03 / The CI/CD Pipeline</p>
             <p className="mt-3 text-sm text-zinc-400">From commit to production — click any stage for details.</p>
           </FadeIn>
           <FadeIn>
@@ -329,9 +329,9 @@ export function ShowcasePage() {
           </FadeIn>
         </section>
 
-        <section id="platform" className="mx-auto max-w-5xl px-6 pb-20">
+        <section id="platform" className="border-t border-white/10 mx-auto max-w-5xl px-6 pb-20 pt-20">
           <FadeIn className="mb-10 text-center">
-            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">Platform Capabilities</h2>
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">04 / Platform Capabilities</p>
             <p className="mt-3 text-sm text-zinc-400">Beyond the core platform — observability, developer portal, data, and security built in from day one.</p>
           </FadeIn>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -343,9 +343,9 @@ export function ShowcasePage() {
         </section>
 
 
-        <section id="roi" className="mx-auto max-w-5xl px-6 pb-24">
+        <section id="roi" className="border-t border-white/10 mx-auto max-w-5xl px-6 pb-24 pt-20">
           <FadeIn className="mb-8 text-center">
-            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">Before PlatformBox → After</h2>
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">05 / Before → After</p>
             <p className="mt-3 text-sm text-zinc-400">What changes when you stop doing platform engineering yourself.</p>
           </FadeIn>
           <div className="grid gap-4 lg:grid-cols-2">
@@ -367,7 +367,7 @@ export function ShowcasePage() {
           </div>
           <FadeIn delay={0.3}>
             <div className="mt-6 flex justify-center">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-200">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-accent px-6 text-sm font-medium text-white transition-colors hover:bg-accent-hover">
                 Book an Architecture Audit
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </a>
