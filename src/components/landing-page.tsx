@@ -34,7 +34,7 @@ const deliverables = [
 
 const economics = [
   "Avoided Headcount: Bypass the €120k+ salary and 3-month hiring cycle of a dedicated Platform Engineer.",
-  "Reclaimed Payroll: Stop losing $200k/year in engineering value to manual deployment friction.",
+  "Reclaimed Payroll: Stop losing €200k/year in engineering value to manual deployment friction.",
   "Cloud Savings: Ephemeral environments destroy themselves upon merge, eliminating idle AWS waste.",
 ] as const;
 

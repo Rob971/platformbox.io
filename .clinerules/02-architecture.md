@@ -2,7 +2,7 @@
 
 ## Project context
 
-PlatformBox.io is a premium B2B marketing site for a fixed-price $20,000 / 14-day Enterprise Internal Developer Platform engagement for Fractional CTOs and post-Series A engineering leaders.
+PlatformBox.io is a premium B2B marketing site for a fixed-price €20,000 / 14-day Enterprise Internal Developer Platform engagement for Fractional CTOs and post-Series A engineering leaders.
 
 ## Stack
 
