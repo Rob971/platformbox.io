@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Boxes, Code2, GitBranch, Layers, Eye } from "lucide-react";
+import { ArrowRight, Boxes, Code2, GitBranch, Layers, Eye, Gauge, LayoutDashboard, Database, KeyRound } from "lucide-react";
 import { Header } from "../header";
 import { Footer } from "../footer";
 import { TimelineStepper } from "./timeline-stepper";
@@ -10,6 +10,10 @@ import { DeliverableCard } from "./deliverable-card";
 import { PipelineVisualizer } from "./pipeline-visualizer";
 import { EnvDashboard } from "./env-dashboard";
 import { K8sArchitecture } from "./k8s-architecture";
+import { ObservabilityDashboard } from "./observability-dashboard";
+import { BackstagePortal } from "./backstage-portal";
+import { DatabaseProvisioning } from "./database-provisioning";
+import { SecretManagement } from "./secret-management";
 import { BOOKING_URL } from "@/lib/constants";
 import { fadeUp, stagger, FadeIn } from "@/lib/motion";
 
@@ -128,6 +132,143 @@ spec:
           type: Utilization
           averageUtilization: 70`;
 
+
+const otelCollectorConfig = `receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+processors:
+  batch:
+    timeout: 5s
+    send_batch_size: 512
+  memory_limiter:
+    limit_mib: 512
+    spike_limit_mib: 128
+
+exporters:
+  prometheus:
+    endpoint: "0.0.0.0:9464"
+  loki:
+    endpoint: "http://loki:3100/loki/api/v1/push"
+  otlp/tempo:
+    endpoint: "http://tempo:4317"
+    tls:
+      insecure: true
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [otlp/tempo]
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [prometheus]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [loki]`;
+
+const backstageCatalog = `apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: api-gateway
+  description: Edge API gateway for all services
+  annotations:
+    github.com/project-slug: acme/api-gateway
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - golang
+    - grpc
+    - platform
+  links:
+    - url: https://grafana.acme.dev/d/api-gateway
+      title: Dashboard
+      icon: dashboard
+spec:
+  type: service
+  lifecycle: production
+  owner: platform-team
+  system: api-platform
+  providesApis:
+    - api-gateway-grpc`;
+
+const terraformRDS = `module "db" {
+  source  = "terraform-aws-modules/rds/aws"
+  version = "6.5.0"
+
+  identifier = "\${var.service}-\${var.environment}"
+
+  engine               = "postgres"
+  engine_version       = "16.3"
+  instance_class       = "db.t4g.medium"
+  allocated_storage    = 100
+  storage_encrypted    = true
+
+  db_name  = var.service
+  username = var.service
+  manage_master_user_password = true
+
+  vpc_security_group_ids = [module.sg.id]
+  db_subnet_group_name   = module.vpc.db_subnet_group
+  publicly_accessible    = false
+
+  backup_retention_period = 14
+  deletion_protection     = true
+  skip_final_snapshot     = false
+
+  tags = {
+    Service     = var.service
+    Environment = var.environment
+    ManagedBy   = "platformbox"
+  }
+}`;
+
+const externalSecrets = `apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: api-gateway-secrets
+spec:
+  refreshInterval: "1h"
+  secretStoreRef:
+    name: aws-secrets-manager
+    kind: ClusterSecretStore
+  target:
+    name: api-gateway-secrets
+    creationPolicy: Owner
+  data:
+    - secretKey: DB_PASSWORD
+      remoteRef:
+        key: prod/api-gateway/db-password
+        property: password
+    - secretKey: API_KEY
+      remoteRef:
+        key: prod/api-gateway/api-key
+---
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: api-gateway-secrets
+spec:
+  provider: aws
+  parameters:
+    objects: |
+      - objectName: "prod/api-gateway/db-password"
+        objectType: "secretsmanager"
+      - objectName: "prod/api-gateway/api-key"
+        objectType: "secretsmanager"
+  secretObjects:
+    - secretName: db-credentials
+      type: Opaque
+      data:
+        - key: password
+          objectName: db-password`;
+
 const beforeAfter = [
   { before: "3 weeks to ship a new service", after: "1 click — under 5 minutes" },
   { before: "€120K+ for a Platform Engineer hire", after: "€20K fixed, delivered in 14 days" },
@@ -187,6 +328,20 @@ export function ShowcasePage() {
             </div>
           </FadeIn>
         </section>
+
+        <section id="platform" className="mx-auto max-w-5xl px-6 pb-20">
+          <FadeIn className="mb-10 text-center">
+            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">Platform Capabilities</h2>
+            <p className="mt-3 text-sm text-zinc-400">Beyond the core platform — observability, developer portal, data, and security built in from day one.</p>
+          </FadeIn>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <DeliverableCard icon={Gauge} title="Observability Stack" text="OpenTelemetry auto-instrumentation with Prometheus, Grafana, and Loki — every service ships with dashboards and alerts." code={otelCollectorConfig} codeLanguage="OpenTelemetry"><ObservabilityDashboard /></DeliverableCard>
+            <DeliverableCard icon={LayoutDashboard} title="Developer Portal" text="Backstage-powered service catalog and software scaffolder so teams discover, create, and own services autonomously." code={backstageCatalog} codeLanguage="catalog-info.yaml"><BackstagePortal /></DeliverableCard>
+            <DeliverableCard icon={Database} title="Self-Service Databases" text="Declare a database in your service config and get a production-ready, encrypted RDS instance with automated backups — no ticket required." code={terraformRDS} codeLanguage="Terraform"><DatabaseProvisioning /></DeliverableCard>
+            <DeliverableCard icon={KeyRound} title="Secret Management" text="Vault or AWS Secrets Manager integrated with CSI driver — credentials auto-rotate, never touch etcd, and mount as files without code changes." code={externalSecrets} codeLanguage="Kubernetes"><SecretManagement /></DeliverableCard>
+          </div>
+        </section>
+
 
         <section id="roi" className="mx-auto max-w-5xl px-6 pb-24">
           <FadeIn className="mb-8 text-center">

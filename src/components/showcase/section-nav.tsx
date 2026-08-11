@@ -7,6 +7,7 @@ const sections = [
   { id: "timeline", label: "Timeline" },
   { id: "deliverables", label: "Deliverables" },
   { id: "pipeline", label: "Pipeline" },
+  { id: "platform", label: "Platform" },
   { id: "roi", label: "Results" },
 ];
 
