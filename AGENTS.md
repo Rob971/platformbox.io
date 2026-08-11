@@ -11,7 +11,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 PlatformBox.io is a premium B2B marketing site for a fixed-price **€20,000 / 14-day** Enterprise Internal Developer Platform engagement aimed at Fractional CTOs and post-Series A engineering leaders.
 
 **Booking CTA (all Architecture Audit buttons):**  
-https://cal.eu/roberto-platformbox/45min  
+https://cal.eu/roberto-platformbox/architecture-audit  
 
 Canonical constant: `BOOKING_URL` in `src/lib/constants.ts`. See `docs/BOOKING.md`.
 

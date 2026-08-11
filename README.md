@@ -13,7 +13,7 @@ Premium landing page for the **14-Day Enterprise Internal Developer Platform** â
 
 All **Book an Architecture Audit** buttons open the 45-minute Cal.com call:
 
-**https://cal.eu/roberto-platformbox/45min**
+**https://cal.eu/roberto-platformbox/architecture-audit**
 
 Defined once in `src/lib/constants.ts` as `BOOKING_URL` (nav, hero, pricing card, and showcase CTA).
 

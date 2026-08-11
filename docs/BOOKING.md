@@ -5,7 +5,7 @@ Primary conversion action on the landing page: **Book an Architecture Audit**.
 ## URL
 
 ```text
-https://cal.eu/roberto-platformbox/45min
+https://cal.eu/roberto-platformbox/architecture-audit
 ```
 
 ## Where it is used
@@ -20,7 +20,7 @@ https://cal.eu/roberto-platformbox/45min
 Source of truth in code:
 
 ```ts
-const BOOKING_URL = "https://cal.eu/roberto-platformbox/45min";
+const BOOKING_URL = "https://cal.eu/roberto-platformbox/architecture-audit";
 ```
 
 Links open in a new tab (`target="_blank"` + `rel="noopener noreferrer"`).
