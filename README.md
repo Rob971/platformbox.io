@@ -50,13 +50,16 @@ Full DNS guide: **[docs/CUSTOM-DOMAIN.md](docs/CUSTOM-DOMAIN.md)**
 ## Project layout
 
 ```text
-src/app/                 # App Router (Server Components: page, layout)
-src/components/          # Client islands (landing page + motion)
-public/CNAME             # www.platformbox.io for GitHub Pages
-docs/                    # Human docs (booking, domain, deploy)
+src/app/                 # App Router pages (all Server Components)
+src/app/showcase/        # Blueprint / portfolio page
+src/components/          # Client islands (landing, header, footer, icons)
+src/components/showcase/ # Showcase page subcomponents (cards, diagrams)
+src/lib/                 # Constants, motion utilities, showcase data
+public/                  # Static assets (CNAME, favicon)
+docs/                    # Human-readable docs (booking, domain, deploy)
 .clinerules/             # Modular project instructions for agents
 .github/workflows/       # CI + Pages publish
-scripts/enforce-agent-rules.mjs
+scripts/                 # Enforcement script
 ```
 
 ## Development

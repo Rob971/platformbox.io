@@ -21,10 +21,11 @@
 Keep the approved marketing structure:
 
 1. Hero: brand, one H1, one supporting sentence, CTA pair
-2. Problem: one clear job
-3. Deliverables: 2x2 glass bento layout
-4. Economics: ROI section with distinct €20,000 EUR / 14 Days card
-5. Footer: copyright, email, LinkedIn
+2. Why PlatformBox: 6-feature glass bento grid with custom icons
+3. Problem: "01 / The Bottleneck" — one clear job
+4. Deliverables: "02 / The 14-Day Solution" — 2×2 glass bento layout
+5. Economics: "03 / The Financial ROI" section with distinct €20,000 EUR / 14 Days card
+6. Footer: copyright, email, LinkedIn
 
 ## UX rules
 
@@ -33,3 +34,4 @@ Keep the approved marketing structure:
 - Use cards for deliverables and ROI; do not use hero cards.
 - Keep motion calm and subtle rather than playful or bouncy.
 - Do not leave booking CTAs as placeholder anchors.
+- All icons use a unified color system: Lucide icons via `text-accent`, custom SVG icons via `currentColor` + consistent sizing.

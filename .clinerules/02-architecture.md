@@ -10,7 +10,7 @@ PlatformBox.io is a premium B2B marketing site for a fixed-price €20,000 / 14-
 - UI: React 19 + TypeScript
 - Styling: Tailwind CSS v4 via @import "tailwindcss" and @theme inline
 - Motion: Framer Motion
-- Icons: Lucide React
+- Icons: Lucide React + custom SVG icons
 - Fonts: next/font (Geist)
 
 ## App structure
@@ -25,7 +25,7 @@ PlatformBox.io is a premium B2B marketing site for a fixed-price €20,000 / 14-
 - Use the App Router only.
 - Keep page.tsx and layout.tsx as Server Components by default.
 - Treat params and searchParams as async promises and await them.
-- Use proxy.ts (or a root proxy.ts) for request interception instead of middleware.ts.
+- Use proxy.ts (or a root proxy.ts) for request interception instead of middleware.ts when route guards or dynamic redirects are needed.
 - Use Route Handlers for HTTP endpoints when needed and prefer Server Actions for mutations/forms when introduced.
 - For unfamiliar Next.js APIs, consult the bundled docs in node_modules/next/dist/docs/ before relying on memory.
 

@@ -23,7 +23,7 @@ Canonical constant: `BOOKING_URL` in `src/lib/constants.ts`. See `docs/BOOKING.m
 | UI | React 19 + TypeScript |
 | Styling | Tailwind CSS v4 (`@import "tailwindcss"`, `@theme inline`) |
 | Motion | Framer Motion |
-| Icons | Lucide React |
+| Icons | Lucide React + custom SVG icons (`src/components/icons.tsx`) |
 | Fonts | `next/font` (Geist) |
 
 Do not introduce competing frameworks (Pages Router, CSS-in-JS, styled-components, Material UI, etc.) unless explicitly requested.
@@ -81,5 +81,5 @@ Do not introduce competing frameworks (Pages Router, CSS-in-JS, styled-component
 - Import alias: `@/*`.
 - Use `next/link`, `next/image`, and `next/font` — never raw `<img>` for local/remote optimized assets or `<a>` for internal routes.
 - `params` and `searchParams` are **async** (`Promise<...>`) — always `await` them.
-- Request interception uses `proxy.ts`, not deprecated `middleware.ts`.
+- Request interception (when needed) uses `proxy.ts`, not deprecated `middleware.ts`.
 - Design tokens live in `src/app/globals.css` via CSS variables + `@theme inline`.
