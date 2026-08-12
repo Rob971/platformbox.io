@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BrandLogo } from "./icons";
+import { PlatformBoxLogoIcon } from "./icons";
 import { BOOKING_URL } from "@/lib/constants";
 
 interface HeaderProps {
@@ -16,7 +16,7 @@ export function Header({ showHomeLink = false }: HeaderProps) {
           href="/"
           className="flex items-center gap-2.5 text-sm font-semibold tracking-tight text-white"
         >
-          <BrandLogo className="h-7 w-7" />
+          <PlatformBoxLogoIcon className="h-7 w-7" />
           PlatformBox<span className="text-accent">.io</span>
         </Link>
         <div className="flex items-center gap-4">

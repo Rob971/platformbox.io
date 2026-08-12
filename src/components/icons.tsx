@@ -13,27 +13,6 @@ export function LinkedInIcon({ className }: { className?: string }) {
 export function PlatformBoxLogoIcon({ className }: { className?: string }) {
   const id = useId();
   return (
-    <svg className={className} viewBox="0 0 120 120" aria-hidden>
-      <defs>
-        <linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#3b82f6" />
-          <stop offset="100%" stopColor="#60a5fa" />
-        </linearGradient>
-      </defs>
-      <g fill="none" stroke={`url(#${id})`} strokeWidth="6">
-        <polygon points="60 12 96 30 96 72 60 90 24 72 24 30" />
-        <polyline points="37 48 60 34 83 48" />
-        <polyline points="60 34 60 76" />
-        <path d="M60 76l19-11" strokeLinecap="round" />
-      </g>
-    </svg>
-  );
-}
-
-/** Full brand mark — dark background, for hero / standalone use. */
-export function BrandLogo({ className }: { className?: string }) {
-  const id = useId();
-  return (
     <svg className={className} viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden>
       <rect width="512" height="512" rx="112" fill="#09090b" />
       <defs>
