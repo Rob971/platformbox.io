@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Boxes, Code2, GitBranch, Layers, Eye, Gauge, LayoutDashboard, Database, KeyRound } from "lucide-react";
+import { ArrowRight, Boxes, Eye, Gauge, LayoutDashboard, Database, KeyRound } from "lucide-react";
 import { Header } from "../header";
 import { Footer } from "../footer";
 import { TimelineStepper } from "./timeline-stepper";
@@ -16,6 +16,7 @@ import { DatabaseProvisioning } from "./database-provisioning";
 import { SecretManagement } from "./secret-management";
 import { BOOKING_URL } from "@/lib/constants";
 import { fadeUp, stagger, FadeIn } from "@/lib/motion";
+import { InfrastructureIcon, PipelineIcon, EphemeralIcon } from "../icons";
 
 const terraformModule = `module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
@@ -310,9 +311,9 @@ export function ShowcasePage() {
             <p className="mt-3 text-sm text-zinc-400">Click any card to view sample code, config, or interactive demos.</p>
           </FadeIn>
           <div className="grid gap-4 sm:grid-cols-2">
-            <DeliverableCard icon={Code2} title="Infrastructure as Code" text="Fully modular Terraform templates for self-serve provisioning." code={terraformModule} codeLanguage="Terraform" />
-            <DeliverableCard icon={GitBranch} title="DevSecOps CI/CD" text="Standardized GitLab pipelines with automated testing and security scanning." code={gitlabCI} codeLanguage=".gitlab-ci.yml" />
-            <DeliverableCard icon={Layers} title="Ephemeral Environments" text="Auto-generated preview environments for every Pull Request to eliminate staging bottlenecks."><EnvDashboard /></DeliverableCard>
+            <DeliverableCard icon={InfrastructureIcon} title="Infrastructure as Code" text="Fully modular Terraform templates for self-serve provisioning." code={terraformModule} codeLanguage="Terraform" />
+            <DeliverableCard icon={PipelineIcon} title="DevSecOps CI/CD" text="Standardized GitLab pipelines with automated testing and security scanning." code={gitlabCI} codeLanguage=".gitlab-ci.yml" />
+            <DeliverableCard icon={EphemeralIcon} title="Ephemeral Environments" text="Auto-generated preview environments for every Pull Request to eliminate staging bottlenecks."><EnvDashboard /></DeliverableCard>
             <DeliverableCard icon={Boxes} title="Production Kubernetes" text="Highly available EKS clusters managed for you with HPA, ingress, and monitoring." code={k8sManifest} codeLanguage="Kubernetes"><K8sArchitecture /></DeliverableCard>
           </div>
         </section>

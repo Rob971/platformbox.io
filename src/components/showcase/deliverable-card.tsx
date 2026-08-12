@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Code2, ChevronDown, type LucideIcon } from "lucide-react";
+import { Code2, ChevronDown } from "lucide-react";
 import type { ReactNode } from "react";
 import { CodeBlock } from "./code-block";
 
 interface DeliverableCardProps {
-  icon: LucideIcon;
+  icon: React.ComponentType<{ className?: string }>;
   title: string;
   text: string;
   code?: string;

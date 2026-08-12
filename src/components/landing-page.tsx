@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Boxes, Check, Code2, GitBranch, Layers, ArrowRight, Blocks, Repeat, ShieldCheck, Compass, TrendingDown } from "lucide-react";
-import { PlatformBoxLogoIcon } from "./icons";
+import { Boxes, Check, ArrowRight, Blocks, Repeat, ShieldCheck, Compass, TrendingDown } from "lucide-react";
+import { PlatformBoxLogoIcon, InfrastructureIcon, PipelineIcon, EphemeralIcon, ROIIcon } from "./icons";
 import { Header } from "./header";
 import { Footer } from "./footer";
 import { BOOKING_URL } from "@/lib/constants";
@@ -11,17 +11,17 @@ import { fadeUp, stagger, FadeIn } from "@/lib/motion";
 
 const deliverables = [
   {
-    icon: Code2,
+    icon: InfrastructureIcon,
     title: "Infrastructure as Code",
     text: "Fully modular Terraform templates for self-serve provisioning.",
   },
   {
-    icon: GitBranch,
+    icon: PipelineIcon,
     title: "DevSecOps CI/CD",
     text: "Standardized GitLab pipelines with automated testing.",
   },
   {
-    icon: Layers,
+    icon: EphemeralIcon,
     title: "Ephemeral Environments",
     text: "Auto-generated preview environments for every Pull Request to eliminate staging bottlenecks.",
   },
@@ -245,9 +245,12 @@ export function LandingPage() {
                     aria-hidden
                   />
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
-                      Fixed Project Fee
-                    </p>
+                    <div className="mb-3 flex items-center gap-2">
+                      <ROIIcon className="h-5 w-5 text-accent" />
+                      <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
+                        Fixed Project Fee
+                      </p>
+                    </div>
                     <p className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
                       €20,000
                       <span className="ml-2 text-lg font-medium text-zinc-400">
