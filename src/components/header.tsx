@@ -28,12 +28,6 @@ export function Header({ showHomeLink = false }: HeaderProps) {
               Home
             </Link>
           )}
-          <Link
-            href="/portal"
-            className="hidden text-sm text-zinc-400 transition-colors hover:text-white sm:inline"
-          >
-            Portal
-          </Link>
           <a
             href={BOOKING_URL}
             target="_blank"
