@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PlatformBox Logo</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 300px; height: 300px; overflow: hidden; background: #09090b; }
+.container {
+  width: 300px; height: 300px;
+  display: flex; align-items: center; justify-content: center;
+}
+svg { display: block; }
+</style>
+</head>
+<body>
+<div class="container">
+<svg width="220" height="220" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="112" fill="#09090b"/>
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#3b82f6"/>
+      <stop offset="100%" stopColor="#60a5fa"/>
+    </linearGradient>
+  </defs>
+  <path d="M 208,128 H 128 V 384 H 208" fill="none" stroke="#ffffff" stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 304,128 H 384 V 384 H 304" fill="none" stroke="url(#g)" stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+</body>
+</html>
