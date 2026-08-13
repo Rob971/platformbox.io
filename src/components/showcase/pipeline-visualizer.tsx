@@ -75,7 +75,7 @@ export function PipelineVisualizer() {
           return (
             <div key={stage.name} className="flex items-start">
               <div className="flex flex-col items-center shrink-0 w-8">
-                <button onClick={() => setSelected(isSelected ? null : i)} className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full ring-2 transition-all ${colors.ring} ${isSelected ? "bg-white/10" : "bg-zinc-900"}`}>
+                <button onClick={() => setSelected(isSelected ? null : i)} aria-label={`${stage.name}: ${stage.status}`} className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full ring-2 transition-all ${colors.ring} ${isSelected ? "bg-white/10" : "bg-zinc-900"}`}>
                   <stage.icon className={`h-3.5 w-3.5 ${colors.text}`} />
                   {stage.status === "running" && <motion.span animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1.5 }} className={`absolute inset-0 rounded-full ${colors.dot} opacity-20`} />}
                 </button>

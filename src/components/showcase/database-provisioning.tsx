@@ -71,6 +71,7 @@ export function DatabaseProvisioning() {
               <div className="flex flex-col items-center shrink-0 w-8">
                 <button
                   onClick={() => setActiveStep(isActive ? null : step.id)}
+                  aria-label={`${step.label}${isActive ? " (selected)" : ""}`}
                   className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full ring-2 transition-all ${
                     isActive ? "ring-accent/50 bg-accent/10" : "ring-white/10 bg-zinc-900"
                   }`}
