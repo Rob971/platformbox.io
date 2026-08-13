@@ -20,12 +20,19 @@ export function Header({ showHomeLink = false }: HeaderProps) {
           PlatformBox<span className="text-accent">.io</span>
         </Link>
         <div className="flex items-center gap-4">
-          {showHomeLink && (
+          {showHomeLink ? (
             <Link
               href="/"
               className="hidden text-sm text-zinc-400 transition-colors hover:text-white sm:inline"
             >
               Home
+            </Link>
+          ) : (
+            <Link
+              href="/showcase"
+              className="hidden text-sm text-zinc-400 transition-colors hover:text-white sm:inline"
+            >
+              Blueprint
             </Link>
           )}
           <a

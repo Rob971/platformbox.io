@@ -6,6 +6,15 @@
 - Keep the experience strictly dark-mode oriented.
 - Preserve the existing design tokens in src/app/globals.css.
 
+## Brand identity (immutable)
+
+The PlatformBox logo mark is **two vertical bars**:
+
+- **Left bar: white** (`#ffffff`)
+- **Right bar: blue accent gradient** (`#3b82f6` → `#60a5fa`)
+
+This is permanent and must never change. Do not recolor, reorder, or unify the two bars. The source of truth is `PlatformBoxLogoIcon` in `src/components/icons.tsx`, mirrored in `public/brand-logo.html` and `public/brand-cover.html`.
+
 ## Required design tokens
 
 - --background

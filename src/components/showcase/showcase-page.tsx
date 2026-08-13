@@ -289,7 +289,7 @@ export function ShowcasePage() {
         <section className="mx-auto max-w-5xl px-6 pb-16 pt-16 text-center sm:pt-24 md:pt-28">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="flex flex-col items-center">
             <motion.p variants={fadeUp} className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-accent">The 14-Day Blueprint</motion.p>
-            <motion.h1 variants={fadeUp} className="max-w-3xl text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl md:leading-[1.1]">See exactly what your team receives</motion.h1>
+            <motion.h1 variants={fadeUp} className="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl md:leading-[1.08]">See exactly what your team receives</motion.h1>
             <motion.p variants={fadeUp} className="mt-4 max-w-2xl text-base text-zinc-400 leading-relaxed sm:text-lg">A visual walkthrough of the enterprise platform that ships in 14 days — from modular Terraform to production Kubernetes.</motion.p>
             <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <a href="#deliverables" className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-sm font-medium text-white transition-colors hover:bg-accent-hover"><Eye className="h-4 w-4" />Explore Deliverables</a>
@@ -299,8 +299,12 @@ export function ShowcasePage() {
         </section>
 
         <section id="timeline" className="mx-auto max-w-5xl px-6 pb-20">
+          <FadeIn className="mb-8 text-center">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">01 / The Timeline</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">Your 14-Day Journey</h2>
+            <p className="mt-3 text-sm text-zinc-400">Six phases, one fixed-price engagement — click any phase for details.</p>
+          </FadeIn>
           <FadeIn>
-            <h2 className="mb-8 text-center text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">01 / The Blueprint</h2>
             <TimelineStepper />
           </FadeIn>
         </section>
@@ -308,6 +312,7 @@ export function ShowcasePage() {
         <section id="deliverables" className="border-t border-white/10 mx-auto max-w-5xl px-6 pb-20 pt-20">
           <FadeIn className="mb-10 text-center">
             <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">02 / The Four Deliverables</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">What Your Team Receives</h2>
             <p className="mt-3 text-sm text-zinc-400">Click any card to view sample code, config, or interactive demos.</p>
           </FadeIn>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -321,7 +326,8 @@ export function ShowcasePage() {
         <section id="pipeline" className="border-t border-white/10 mx-auto max-w-5xl px-6 pb-20 pt-20">
           <FadeIn className="mb-8 text-center">
             <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">03 / The CI/CD Pipeline</p>
-            <p className="mt-3 text-sm text-zinc-400">From commit to production — click any stage for details.</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">From Commit to Production</h2>
+            <p className="mt-3 text-sm text-zinc-400">Six automated stages — click any stage for details.</p>
           </FadeIn>
           <FadeIn>
             <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
@@ -333,6 +339,7 @@ export function ShowcasePage() {
         <section id="platform" className="border-t border-white/10 mx-auto max-w-5xl px-6 pb-20 pt-20">
           <FadeIn className="mb-10 text-center">
             <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">04 / Platform Capabilities</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">Built In From Day One</h2>
             <p className="mt-3 text-sm text-zinc-400">Included in the 14-day engagement — observability, developer portal, data, and security built in from day one.</p>
           </FadeIn>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -347,6 +354,7 @@ export function ShowcasePage() {
         <section id="roi" className="border-t border-white/10 mx-auto max-w-5xl px-6 pb-24 pt-20">
           <FadeIn className="mb-8 text-center">
             <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">05 / Before → After</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">The Transformation</h2>
             <p className="mt-3 text-sm text-zinc-400">What changes when you stop doing platform engineering yourself.</p>
           </FadeIn>
           <div className="grid gap-4 lg:grid-cols-2">

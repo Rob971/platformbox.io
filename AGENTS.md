@@ -10,6 +10,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 PlatformBox.io is a premium B2B marketing site for a fixed-price **€20,000 / 14-day** Enterprise Internal Developer Platform engagement aimed at Fractional CTOs and post-Series A engineering leaders.
 
+**Logo (immutable):** two vertical bars — left **white**, right **blue gradient** (`#3b82f6` → `#60a5fa`). Never change, recolor, or unify. See `.clinerules/03-design.md`.
+
 **Booking CTA (all Architecture Audit buttons):**  
 https://cal.eu/roberto-platformbox/architecture-audit  
 
