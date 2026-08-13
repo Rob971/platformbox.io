@@ -292,7 +292,7 @@ export function ShowcasePage() {
             <motion.h1 variants={fadeUp} className="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl md:leading-[1.08]">See exactly what your team receives</motion.h1>
             <motion.p variants={fadeUp} className="mt-4 max-w-2xl text-base text-zinc-400 leading-relaxed sm:text-lg">A visual walkthrough of the enterprise platform that ships in 14 days — from modular Terraform to production Kubernetes.</motion.p>
             <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <a href="#deliverables" className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-sm font-medium text-white transition-colors hover:bg-accent-hover"><Eye className="h-4 w-4" />Explore Deliverables</a>
+              <a href="#deliverables" className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent-strong px-5 text-sm font-medium text-white transition-colors hover:bg-accent"><Eye className="h-4 w-4" />Explore Deliverables</a>
               <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/20 px-5 text-sm font-medium text-white transition-colors hover:bg-white/5">Book an Architecture Audit<ArrowRight className="h-4 w-4" /></a>
             </motion.div>
           </motion.div>
@@ -376,7 +376,7 @@ export function ShowcasePage() {
           </div>
           <FadeIn delay={0.3}>
             <div className="mt-6 flex justify-center">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-accent px-6 text-sm font-medium text-white transition-colors hover:bg-accent-hover">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-accent-strong px-6 text-sm font-medium text-white transition-colors hover:bg-accent">
                 Book an Architecture Audit
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </a>

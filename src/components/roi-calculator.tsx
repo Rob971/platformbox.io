@@ -34,7 +34,7 @@ export function RoiCalculator() {
         <div className="space-y-5">
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-xs font-medium text-zinc-400">
+              <label htmlFor="roi-engineers" className="text-xs font-medium text-zinc-400">
                 Senior Engineers
               </label>
               <span className="text-sm font-semibold text-white tabular-nums">
@@ -42,6 +42,7 @@ export function RoiCalculator() {
               </span>
             </div>
             <input
+              id="roi-engineers"
               type="range"
               min={3}
               max={15}
@@ -53,7 +54,7 @@ export function RoiCalculator() {
 
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-xs font-medium text-zinc-400">
+              <label htmlFor="roi-aws-waste" className="text-xs font-medium text-zinc-400">
                 Monthly AWS Waste
               </label>
               <span className="text-sm font-semibold text-white tabular-nums">
@@ -61,6 +62,7 @@ export function RoiCalculator() {
               </span>
             </div>
             <input
+              id="roi-aws-waste"
               type="range"
               min={500}
               max={5000}

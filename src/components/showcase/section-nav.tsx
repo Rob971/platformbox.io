@@ -72,7 +72,7 @@ export function SectionNav() {
           key={id}
           onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })}
           className={`rounded-full px-3 py-1.5 text-[11px] font-medium transition-colors whitespace-nowrap ${
-            active === id ? "bg-accent text-white" : "text-zinc-400 hover:text-white"
+            active === id ? "bg-accent-strong text-white" : "text-zinc-400 hover:text-white"
           }`}
         >
           {label}
