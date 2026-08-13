@@ -36,6 +36,7 @@ const economics = [
   "Avoided Headcount: Bypass the €120,000 annual salary plus a 3-month hiring cycle of a dedicated Platform Engineer.",
   "Reclaimed Payroll: Stop losing €200,000/year in engineering value to manual deployment friction.",
   "Cloud Savings: Ephemeral environments destroy themselves upon merge, eliminating idle AWS waste.",
+  "You Own Everything: Complete documentation, ADRs, and runbooks stay yours. Optional ongoing platform advisory keeps it evolving after Day 14.",
 ] as const;
 
 export function LandingPage() {
@@ -259,6 +260,9 @@ export function LandingPage() {
                     </p>
                     <p className="mt-4 text-sm leading-relaxed text-zinc-300">
                       Fixed project fee, delivered in 14 working days.
+                    </p>
+                    <p className="mt-2 text-xs leading-relaxed text-zinc-500">
+                      You own everything at handover — optional ongoing advisory available.
                     </p>
                   </div>
                   <a
