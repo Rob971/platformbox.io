@@ -18,7 +18,7 @@ const phases: Phase[] = [
   { day: "Day 6–8", title: "DevSecOps CI/CD", description: "Standardized GitLab pipelines with SAST, tests, and deploy.", icon: Clock, detail: "Complete GitLab CI/CD pipeline with static analysis, unit/integration tests, image scanning, automated deployments, and manual approval gates for production." },
   { day: "Day 9–11", title: "Production Kubernetes", description: "Highly available EKS with ingress, HPA, and monitoring.", icon: CheckCircle, detail: "Production-grade EKS clusters with managed node groups, cluster autoscaler, AWS Load Balancer Controller, HPA, Prometheus + Grafana monitoring, and centralized logging." },
   { day: "Day 12–13", title: "Ephemeral Environments", description: "Auto-generated preview environments for every Pull Request.", icon: Clock, detail: "Ephemeral environments that spin up automatically for each PR, let teams test in production-like conditions, then auto-destroy on merge." },
-  { day: "Day 14", title: "Handover & Documentation", description: "Full knowledge transfer, runbooks, and Fractional CTO support.", icon: CheckCircle, detail: "Comprehensive documentation, ADRs, operational runbooks, and a live handover session. Optional ongoing Fractional CTO support." },
+  { day: "Day 14", title: "Handover & Documentation", description: "Full knowledge transfer, runbooks, and ongoing platform advisory.", icon: CheckCircle, detail: "Comprehensive documentation, ADRs, operational runbooks, and a live handover session. Optional ongoing platform advisory included." },
 ];
 
 export function TimelineStepper() {

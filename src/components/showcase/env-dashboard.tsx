@@ -85,7 +85,7 @@ export function EnvDashboard() {
       </AnimatePresence>
       {envs.length === 0 && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="rounded-lg border border-dashed border-white/10 bg-white/[0.02] p-8 text-center">
-          <p className="text-sm text-zinc-500">All environments destroyed. Cost saved: €0.</p>
+          <p className="text-sm text-zinc-500">All environments destroyed — idle costs eliminated.</p>
           <p className="text-xs text-zinc-600 mt-1">New PRs will auto-create preview environments.</p>
           <button
             onClick={() => setEnvs(initialEnvs)}

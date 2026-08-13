@@ -33,8 +33,8 @@ const deliverables = [
 ] as const;
 
 const economics = [
-  "Avoided Headcount: Bypass the €120k+ salary and 3-month hiring cycle of a dedicated Platform Engineer.",
-  "Reclaimed Payroll: Stop losing €200k/year in engineering value to manual deployment friction.",
+  "Avoided Headcount: Bypass the €120,000 annual salary plus a 3-month hiring cycle of a dedicated Platform Engineer.",
+  "Reclaimed Payroll: Stop losing €200,000/year in engineering value to manual deployment friction.",
   "Cloud Savings: Ephemeral environments destroy themselves upon merge, eliminating idle AWS waste.",
 ] as const;
 
@@ -99,6 +99,9 @@ export function LandingPage() {
 
         <section className="mx-auto max-w-5xl px-6 pb-20 pt-16 sm:pt-20">
           <FadeIn className="mb-12 max-w-2xl">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
+              00 / Why PlatformBox
+            </p>
             <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
               Why PlatformBox
             </h2>
@@ -114,10 +117,10 @@ export function LandingPage() {
             viewport={{ once: true, margin: "-60px" }}
           >
             {[
-              { icon: Blocks, title: "Modular IaC", desc: "Scalable infrastructure blocks" },
+              { icon: Blocks, title: "Production-Grade IaC", desc: "Scalable infrastructure blocks" },
               { icon: ShieldCheck, title: "Security & Compliance", desc: "Locked networks and governance" },
-              { icon: Repeat, title: "CI/CD & Velocity", desc: "Rapid feedback loops" },
-              { icon: Compass, title: "Fractional CTO Strategy", desc: "Guided technical direction" },
+              { icon: Repeat, title: "Automated Workflows", desc: "Rapid feedback loops" },
+              { icon: Compass, title: "Platform Strategy", desc: "Guided technical direction" },
               { icon: TrendingDown, title: "FinOps Optimization", desc: "Cost reduction that scales" },
               { icon: PlatformBoxLogoIcon, title: "PlatformBox Core", desc: "A connected platform suite", isLogo: true },
             ].map((item) => {
@@ -152,7 +155,7 @@ export function LandingPage() {
             <FadeIn delay={0.1}>
               <p className="text-base leading-relaxed text-zinc-400 sm:text-lg">
                 Scaling your engineering team post-Series A usually breaks
-                deployments. Senior developers spend 30% of their time managing
+                deployments. Senior developers can spend up to 30% of their time managing
                 AWS and CI/CD pipelines instead of shipping features, and new
                 hires take weeks to safely deploy code.
               </p>
@@ -253,13 +256,9 @@ export function LandingPage() {
                     </div>
                     <p className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
                       €20,000
-                      <span className="ml-2 text-lg font-medium text-zinc-400">
-                        EUR
-                      </span>
                     </p>
                     <p className="mt-4 text-sm leading-relaxed text-zinc-300">
-                      The Investment: €20,000 EUR (Fixed Project Fee) |
-                      Timeline: 14 Days.
+                      Fixed project fee, delivered in 14 working days.
                     </p>
                   </div>
                   <a

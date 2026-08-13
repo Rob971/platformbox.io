@@ -17,7 +17,7 @@ const siteUrl = "https://www.platformbox.io";
 export const metadata: Metadata = {
   title: "PlatformBox.io — The 14-Day Enterprise Internal Developer Platform",
   description:
-    "We give your engineers a self-serve Golden Path to deploy code instantly without needing to hire a full-time Platform Engineering team.",
+    "We give your engineers a self-serve Golden Path to deploy code instantly without needing to hire a full-time Platform Engineering team. Built for Fractional CTOs and post-Series A engineering leaders.",
   metadataBase: new URL(siteUrl),
   openGraph: {
     title: "PlatformBox.io — The 14-Day Enterprise Internal Developer Platform",
