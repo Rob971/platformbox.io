@@ -41,10 +41,10 @@ export function SectionNav() {
         <button
           key={id}
           onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })}
-          className="group flex items-center gap-2"
+          className="group relative flex h-2.5 w-2.5 items-center justify-center"
           aria-label={`Scroll to ${label}`}
         >
-          <span className="text-xs text-zinc-600 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+          <span className="absolute right-full top-1/2 mr-2 -translate-y-1/2 text-xs text-zinc-600 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
             {label}
           </span>
           <span className="relative flex h-2.5 w-2.5 items-center justify-center">

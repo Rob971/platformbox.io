@@ -59,7 +59,13 @@ export function TimelineStepper() {
                   <p className="mt-0.5 text-xs text-zinc-400 leading-relaxed hidden sm:block">{phase.description}</p>
                 </div>
 
-                <ChevronDown className={`hidden sm:block h-4 w-4 text-zinc-500 transition-transform mt-2 ${expanded === i ? "rotate-180" : ""}`} />
+                <button
+                  onClick={() => setExpanded(expanded === i ? null : i)}
+                  className="hidden sm:flex h-4 w-4 items-center justify-center mt-2"
+                  aria-label={`${expanded === i ? "Collapse" : "Expand"} ${phase.title}`}
+                >
+                  <ChevronDown className={`h-4 w-4 text-zinc-500 transition-transform ${expanded === i ? "rotate-180" : ""}`} />
+                </button>
               </div>
 
               <AnimatePresence mode="wait">
