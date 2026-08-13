@@ -8,6 +8,7 @@ import { Header } from "./header";
 import { Footer } from "./footer";
 import { BOOKING_URL } from "@/lib/constants";
 import { fadeUp, stagger, FadeIn } from "@/lib/motion";
+import { RoiCalculator } from "./roi-calculator";
 
 const deliverables = [
   {
@@ -276,6 +277,10 @@ export function LandingPage() {
                   </a>
                 </div>
               </FadeIn>
+            </div>
+
+            <div className="mt-10">
+              <RoiCalculator />
             </div>
           </div>
         </section>
