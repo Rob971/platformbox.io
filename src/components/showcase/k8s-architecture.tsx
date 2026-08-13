@@ -43,9 +43,20 @@ export function K8sArchitecture() {
                 stroke={isHovered ? "#60a5fa" : layer.borderColor}
                 strokeWidth={isHovered ? 2 : 1}
                 className="transition-all duration-200 cursor-pointer"
+                tabIndex={0}
+                role="button"
+                aria-label={`${layer.label} — ${layer.description}`}
                 onMouseEnter={() => setHoveredId(layer.id)}
                 onMouseLeave={() => setHoveredId(null)}
+                onFocus={() => setHoveredId(layer.id)}
+                onBlur={() => setHoveredId(null)}
                 onClick={() => setHoveredId(hoveredId === layer.id ? null : layer.id)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setHoveredId(hoveredId === layer.id ? null : layer.id);
+                  }
+                }}
               />
               <text
                 x={layer.x + 6} y={layer.y + 14}

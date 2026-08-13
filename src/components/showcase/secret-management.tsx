@@ -68,9 +68,20 @@ export function SecretManagement() {
                 stroke={isHovered ? "rgba(59,130,246,0.45)" : "rgba(255,255,255,0.1)"}
                 strokeWidth={isHovered ? 1.5 : 1}
                 className="transition-all duration-200 cursor-pointer"
+                tabIndex={0}
+                role="button"
+                aria-label={`${node.label} — ${node.description}`}
                 onMouseEnter={() => setHoveredId(node.id)}
                 onMouseLeave={() => setHoveredId(null)}
+                onFocus={() => setHoveredId(node.id)}
+                onBlur={() => setHoveredId(null)}
                 onClick={() => setHoveredId(hoveredId === node.id ? null : node.id)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setHoveredId(hoveredId === node.id ? null : node.id);
+                  }
+                }}
               />
               <text
                 x={node.x + 44} y={node.y + 16}

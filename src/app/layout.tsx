@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   description:
     "We give your engineers a self-serve Golden Path to deploy code instantly without needing to hire a full-time Platform Engineering team. Built for Fractional CTOs and post-Series A engineering leaders.",
   metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "PlatformBox.io — The 14-Day Enterprise Internal Developer Platform",
     description:
@@ -55,6 +58,42 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-50 font-sans">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": `${siteUrl}/#organization`,
+                  name: "PlatformBox.io",
+                  url: siteUrl,
+                  logo: `${siteUrl}/favicon.ico`,
+                  description:
+                    "A fixed-price €20,000 engineering engagement that delivers a production-ready Internal Developer Platform in 14 working days.",
+                  sameAs: [
+                    "https://www.linkedin.com/in/robertocornano/",
+                  ],
+                },
+                {
+                  "@type": "Service",
+                  "@id": `${siteUrl}/#service`,
+                  name: "14-Day Enterprise Internal Developer Platform",
+                  description:
+                    "We give your engineers a self-serve Golden Path to deploy code instantly without needing to hire a full-time Platform Engineering team.",
+                  provider: { "@id": `${siteUrl}/#organization` },
+                  areaServed: "Worldwide",
+                  offers: {
+                    "@type": "Offer",
+                    price: "20000",
+                    priceCurrency: "EUR",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
         {children}
       </body>
     </html>

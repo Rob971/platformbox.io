@@ -54,9 +54,20 @@ export function ObservabilityDashboard() {
                 stroke={isHovered ? "rgba(59,130,246,0.5)" : "rgba(255,255,255,0.12)"}
                 strokeWidth={isHovered ? 1.5 : 1}
                 className="transition-all duration-200 cursor-pointer"
+                tabIndex={0}
+                role="button"
+                aria-label={`${node.label} — ${node.description}`}
                 onMouseEnter={() => setHoveredId(node.id)}
                 onMouseLeave={() => setHoveredId(null)}
+                onFocus={() => setHoveredId(node.id)}
+                onBlur={() => setHoveredId(null)}
                 onClick={() => setHoveredId(hoveredId === node.id ? null : node.id)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setHoveredId(hoveredId === node.id ? null : node.id);
+                  }
+                }}
               />
               <foreignObject x={node.x + 6} y={node.y + 6} width={14} height={14}>
                 <Icon className="h-3.5 w-3.5 text-accent" strokeWidth={2} />
