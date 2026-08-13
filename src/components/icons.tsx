@@ -21,7 +21,7 @@ export function PlatformBoxLogoIcon({ className }: { className?: string }) {
           <stop offset="100%" stopColor="#60a5fa" />
         </linearGradient>
       </defs>
-      <path d="M 208,128 H 128 V 384 H 208" fill="none" stroke="#ffffff" strokeWidth={48} strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M 208,128 H 128 V 384 H 208" fill="none" stroke={`url(#${id})`} strokeWidth={48} strokeLinecap="round" strokeLinejoin="round" />
       <path d="M 304,128 H 384 V 384 H 304" fill="none" stroke={`url(#${id})`} strokeWidth={48} strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
