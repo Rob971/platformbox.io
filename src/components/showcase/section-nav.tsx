@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const sections = [
+  { id: "blueprint", label: "Blueprint" },
   { id: "timeline", label: "Timeline" },
   { id: "deliverables", label: "Deliverables" },
   { id: "pipeline", label: "Pipeline" },

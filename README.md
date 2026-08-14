@@ -15,7 +15,7 @@ All **Book Your Platform Assessment** buttons open the Cal.com call:
 
 **https://cal.com/roberto-platformbox/platform-assessment**
 
-Defined once in `src/lib/constants.ts` as `BOOKING_URL` and `BOOKING_LABEL` (nav, hero, pricing cards, and showcase CTA).
+Defined once in `src/lib/constants.ts` as `BOOKING_URL` and `BOOKING_LABEL` (nav, hero, pricing, assessment, final CTA, showcase, and architecture CTAs).
 
 See **[docs/BOOKING.md](docs/BOOKING.md)**.
 

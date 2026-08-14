@@ -3,11 +3,11 @@
 import { Check } from "lucide-react";
 import { FadeIn } from "@/lib/motion";
 import { BookingCta } from "@/components/booking-cta";
-import { offers, assessment, care, pricingNote, pricing } from "@/lib/content";
+import { offers, assessment, care, pricingNote, pricing, whichPackage } from "@/lib/content";
 
 export function PricingSection() {
   return (
-    <section className="border-t border-white/10">
+    <section id="pricing" className="border-t border-white/10">
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
         <FadeIn className="mb-12 max-w-2xl">
           <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
@@ -110,6 +110,24 @@ export function PricingSection() {
               </div>
             </div>
           </FadeIn>
+        </div>
+
+        <div className="mt-12 border-t border-white/10 pt-10">
+          <FadeIn className="mb-6">
+            <h3 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
+              {whichPackage.headline}
+            </h3>
+          </FadeIn>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {whichPackage.items.map((item) => (
+              <FadeIn key={item.title}>
+                <div className="h-full rounded-xl border border-white/10 bg-white/[0.03] p-5">
+                  <p className="text-sm font-semibold text-accent-hover">{item.title}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-400">{item.text}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </div>
     </section>

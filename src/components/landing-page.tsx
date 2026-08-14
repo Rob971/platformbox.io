@@ -5,11 +5,16 @@ import { ProblemSection } from "@/components/sections/problem-section";
 import { OutcomeSection } from "@/components/sections/outcome-section";
 import { BeforeAfterSection } from "@/components/sections/before-after-section";
 import { DeliverySection } from "@/components/sections/delivery-section";
-import { TechnologySection } from "@/components/sections/technology-section";
+import { Day14Section } from "@/components/sections/day14-section";
+import { WhyDifferentSection } from "@/components/sections/why-different-section";
 import { PricingSection } from "@/components/sections/pricing-section";
+import { AssessmentSection } from "@/components/sections/assessment-section";
+import { ScopeAssumptionsSection } from "@/components/sections/scope-assumptions-section";
+import { OwnershipSection } from "@/components/sections/ownership-section";
+import { TechnologySection } from "@/components/sections/technology-section";
+import { ReferenceArchitectureSection } from "@/components/sections/reference-architecture-section";
 import { RoiSection } from "@/components/sections/roi-section";
 import { FitSection } from "@/components/sections/fit-section";
-import { CaseStudySection } from "@/components/sections/case-study-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 
@@ -26,11 +31,16 @@ export function LandingPage() {
         <OutcomeSection />
         <BeforeAfterSection />
         <DeliverySection />
-        <TechnologySection />
+        <Day14Section />
+        <WhyDifferentSection />
         <PricingSection />
+        <AssessmentSection />
+        <ScopeAssumptionsSection />
+        <OwnershipSection />
+        <TechnologySection />
+        <ReferenceArchitectureSection />
         <RoiSection />
         <FitSection />
-        <CaseStudySection />
         <FaqSection />
         <FinalCtaSection />
       </main>
@@ -39,3 +49,4 @@ export function LandingPage() {
     </div>
   );
 }
+

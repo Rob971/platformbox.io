@@ -6,7 +6,7 @@ import { roi } from "@/lib/content";
 
 export function RoiSection() {
   return (
-    <section className="border-t border-white/10">
+    <section id="roi" className="border-t border-white/10">
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
         <FadeIn className="mb-12 max-w-2xl">
           <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">

@@ -16,6 +16,7 @@ import { DatabaseProvisioning } from "./database-provisioning";
 import { SecretManagement } from "./secret-management";
 import { BOOKING_URL, BOOKING_LABEL } from "@/lib/constants";
 import { fadeUp, stagger, FadeIn } from "@/lib/motion";
+import { blueprint } from "@/lib/content";
 import { InfrastructureIcon, PipelineIcon, EphemeralIcon } from "../icons";
 
 const terraformModule = `module "vpc" {
@@ -296,6 +297,32 @@ export function ShowcasePage() {
               <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/20 px-5 text-sm font-medium text-white transition-colors hover:bg-white/5">{BOOKING_LABEL}<ArrowRight className="h-4 w-4" /></a>
             </motion.div>
           </motion.div>
+        </section>
+
+        <section id="blueprint" className="mx-auto max-w-5xl px-6 pb-20 pt-20">
+          <FadeIn className="mb-10 text-center">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">{blueprint.eyebrow}</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">{blueprint.headline}</h2>
+            <p className="mt-3 text-sm text-zinc-400">{blueprint.sub}</p>
+          </FadeIn>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {blueprint.phases.map((phase, i) => (
+              <FadeIn key={phase.title} delay={i * 0.03}>
+                <div className="h-full rounded-xl border border-white/10 bg-white/[0.03] p-5">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.15em] text-accent">
+                    Phase {i + 1}
+                  </p>
+                  <p className="mt-2 text-sm font-semibold text-white">{phase.title}</p>
+                  <p className="mt-1.5 text-xs leading-relaxed text-zinc-400">{phase.text}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+          <FadeIn delay={0.2}>
+            <p className="mt-6 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 text-center text-xs leading-relaxed text-zinc-400 sm:text-sm">
+              {blueprint.disclaimer}
+            </p>
+          </FadeIn>
         </section>
 
         <section id="timeline" className="mx-auto max-w-5xl px-6 pb-20">

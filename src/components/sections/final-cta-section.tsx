@@ -6,7 +6,7 @@ import { finalCta } from "@/lib/content";
 
 export function FinalCtaSection() {
   return (
-    <section className="border-t border-white/10">
+    <section id="book" className="border-t border-white/10">
       <div className="mx-auto max-w-5xl px-6 py-24 text-center">
         <FadeIn>
           <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">

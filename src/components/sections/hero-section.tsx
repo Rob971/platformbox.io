@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeUp, stagger } from "@/lib/motion";
 import { BookingCta } from "@/components/booking-cta";
+import { BOOKING_NOTE } from "@/lib/constants";
 import { hero } from "@/lib/content";
 
 export function HeroSection() {
@@ -42,9 +43,15 @@ export function HeroSection() {
             href="/showcase"
             className="inline-flex h-11 w-full items-center justify-center rounded-lg border border-white/20 px-6 text-sm font-medium text-zinc-200 transition-colors hover:border-white/30 sm:w-auto"
           >
-            See what gets delivered
+            See the 14-Day Blueprint
           </Link>
         </motion.div>
+        <motion.p
+          variants={fadeUp}
+          className="mt-4 max-w-md text-sm text-zinc-500"
+        >
+          {BOOKING_NOTE}
+        </motion.p>
       </motion.div>
     </section>
   );

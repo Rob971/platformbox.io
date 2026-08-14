@@ -6,7 +6,7 @@ import { faqs, faqSection } from "@/lib/content";
 
 export function FaqSection() {
   return (
-    <section className="border-t border-white/10">
+    <section id="faq" className="border-t border-white/10">
       <div className="mx-auto max-w-3xl px-6 py-20 md:py-28">
         <FadeIn className="mb-12 max-w-2xl">
           <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">

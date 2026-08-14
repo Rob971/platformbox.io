@@ -29,16 +29,22 @@ This is permanent and must never change. Do not recolor, reorder, or unify the t
 
 Keep the approved marketing structure:
 
-1. Hero: brand, one H1 ("Your developer platform. Live in 14 days."), one supporting sentence, CTA pair (Book Your Platform Assessment + See what gets delivered)
+1. Hero: brand, one H1 ("Your developer platform. Live in 14 days."), one supporting sentence, CTA pair (Book Your Platform Assessment + See the 14-Day Blueprint), plus a 30-minute qualification note.
 2. Problem: "Your engineering team is becoming your platform team."
 3. Outcome: golden path flow (Developer → Preview → Security → Production)
-4. Before/After: the shorter path contrast
+4. Before/After: the shorter path contrast (outcome-oriented)
 5. 14-Day Delivery: week-by-week breakdown (Week 1 / Week 2)
-6. Technology: provider-neutral stack (AWS/EKS optimized, GitHub/GitLab supported)
-7. Pricing: Launch €20k / Scale €39k (Recommended) / Enterprise €60k+ / Assessment €2.5k / Care €2–4k/mo
-8. ROI: transparent, editable calculator (no unsupported savings claims)
-9. Fit: strong fit / probably not a fit
-10. FAQ + footer: copyright, email, LinkedIn
+6. Day 14: "What is actually working on Day 14?" — journey + concrete capabilities
+7. Why not build it internally: build-internally vs PlatformBox comparison table
+8. Pricing: Launch €20k / Scale €39k (Recommended) / Enterprise €60k+ / Assessment €2.5k / Care €2–4k/mo, plus a "Which package is right for me?" guide
+9. Assessment: standalone risk-reduction section ("Before we promise 14 days…")
+10. Scope & assumptions: honest prerequisites for the 14-day promise
+11. Ownership: "You own the platform." + no platform lock-in
+12. Technology: role-based stack (Terraform, Kubernetes/EKS, GitHub/GitLab, GitOps/CI-CD, PlatformBox)
+13. Reference architecture: simple diagram + link to /architecture
+14. ROI: transparent, editable calculator (no unsupported savings claims)
+15. Fit: strong fit / probably not a fit
+16. FAQ + footer: copyright, email, LinkedIn
 
 ## UX rules
 

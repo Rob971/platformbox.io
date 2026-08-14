@@ -6,7 +6,7 @@ import { problem } from "@/lib/content";
 
 export function ProblemSection() {
   return (
-    <section className="mx-auto max-w-6xl px-6 pb-20 pt-16 sm:pt-20">
+    <section id="problem" className="mx-auto max-w-6xl px-6 pb-20 pt-16 sm:pt-20">
       <FadeIn className="mb-12 max-w-2xl">
         <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
           {problem.eyebrow}
