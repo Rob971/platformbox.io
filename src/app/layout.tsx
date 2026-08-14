@@ -22,6 +22,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     title: "PlatformBox.io — The 14-Day Enterprise Internal Developer Platform",
     description:
