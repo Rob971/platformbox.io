@@ -1,5 +1,6 @@
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { PageNav } from "@/components/page-nav";
 import { HeroSection } from "@/components/sections/hero-section";
 import { ProblemSection } from "@/components/sections/problem-section";
 import { OutcomeSection } from "@/components/sections/outcome-section";
@@ -18,12 +19,24 @@ import { FitSection } from "@/components/sections/fit-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 
+const pageSections = [
+  { id: "outcome", label: "Path" },
+  { id: "day-14", label: "Day 14" },
+  { id: "why-not-build", label: "Why us" },
+  { id: "pricing", label: "Pricing" },
+  { id: "assessment", label: "Assessment" },
+  { id: "ownership", label: "Ownership" },
+  { id: "technology", label: "Stack" },
+  { id: "faq", label: "FAQ" },
+];
+
 export function LandingPage() {
   return (
     <div className="relative flex min-h-screen flex-col overflow-x-hidden">
       <div className="pointer-events-none absolute inset-0 grid-glow" aria-hidden />
 
       <Header />
+      <PageNav sections={pageSections} />
 
       <main className="relative z-10 flex-1">
         <HeroSection />

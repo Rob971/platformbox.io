@@ -5,7 +5,7 @@ import { ArrowRight, Boxes, Eye, Gauge, LayoutDashboard, Database, KeyRound } fr
 import { Header } from "../header";
 import { Footer } from "../footer";
 import { TimelineStepper } from "./timeline-stepper";
-import { SectionNav } from "./section-nav";
+import { PageNav } from "../page-nav";
 import { DeliverableCard } from "./deliverable-card";
 import { PipelineVisualizer } from "./pipeline-visualizer";
 import { EnvDashboard } from "./env-dashboard";
@@ -277,12 +277,21 @@ const beforeAfter = [
   { before: "Idle staging environments burning cloud budget", after: "Auto-destroy on merge — €0 waste" },
 ];
 
+const pageSections = [
+  { id: "blueprint", label: "Blueprint" },
+  { id: "timeline", label: "Timeline" },
+  { id: "deliverables", label: "Deliverables" },
+  { id: "pipeline", label: "Pipeline" },
+  { id: "platform", label: "Platform" },
+  { id: "roi", label: "Results" },
+];
+
 export function ShowcasePage() {
   return (
     <div className="relative flex min-h-screen flex-col overflow-x-hidden">
       <div className="pointer-events-none absolute inset-0 grid-glow" aria-hidden />
 
-      <SectionNav />
+      <PageNav sections={pageSections} />
 
       <Header showHomeLink />
 

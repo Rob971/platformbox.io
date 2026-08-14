@@ -16,6 +16,7 @@ import {
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { BookingCta } from "@/components/booking-cta";
+import { PageNav } from "@/components/page-nav";
 import { technicalReference, architecture, finalCta } from "@/lib/content";
 
 const sectionIcons = [
@@ -30,15 +31,23 @@ const sectionIcons = [
   Boxes,
 ];
 
+const pageSections = [
+  { id: "overview", label: "Overview" },
+  { id: "path", label: "Path" },
+  { id: "components", label: "Components" },
+  { id: "book", label: "Book" },
+];
+
 export function ArchitecturePage() {
   return (
     <div className="relative flex min-h-screen flex-col overflow-x-hidden">
       <div className="pointer-events-none absolute inset-0 grid-glow" aria-hidden />
 
       <Header showHomeLink />
+      <PageNav sections={pageSections} />
 
       <main className="relative z-10 flex-1">
-        <section className="mx-auto max-w-5xl px-6 pb-16 pt-16 text-center sm:pt-24 md:pt-28">
+        <section id="overview" className="mx-auto max-w-5xl px-6 pb-16 pt-16 text-center sm:pt-24 md:pt-28">
           <p className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-accent">
             {technicalReference.eyebrow}
           </p>
@@ -60,7 +69,7 @@ export function ArchitecturePage() {
           </div>
         </section>
 
-        <section className="border-t border-white/10">
+        <section id="path" className="border-t border-white/10">
           <div className="mx-auto max-w-3xl px-6 py-16">
             <h2 className="mb-8 text-center text-2xl font-semibold tracking-tight text-white sm:text-3xl">
               The path from developer to production
@@ -88,7 +97,7 @@ export function ArchitecturePage() {
           </div>
         </section>
 
-        <section className="border-t border-white/10">
+        <section id="components" className="border-t border-white/10">
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
             <div className="mb-10 max-w-2xl">
               <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
@@ -121,7 +130,7 @@ export function ArchitecturePage() {
           </div>
         </section>
 
-        <section className="border-t border-white/10">
+        <section id="book" className="border-t border-white/10">
           <div className="mx-auto max-w-5xl px-6 py-24 text-center">
             <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
               {finalCta.headline}
