@@ -28,14 +28,11 @@ const statusConfig = {
 
 export function EnvDashboard() {
   const [envs, setEnvs] = useState<Environment[]>(initialEnvs);
-  const [destroyingId, setDestroyingId] = useState<string | null>(null);
 
   const handleDestroy = (id: string) => {
-    setDestroyingId(id);
     setEnvs((prev) => prev.map((env) => (env.id === id ? { ...env, status: "destroying" as const } : env)));
     setTimeout(() => {
       setEnvs((prev) => prev.filter((env) => env.id !== id));
-      setDestroyingId(null);
     }, 2000);
   };
 

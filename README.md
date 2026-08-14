@@ -50,17 +50,19 @@ Full DNS guide: **[docs/CUSTOM-DOMAIN.md](docs/CUSTOM-DOMAIN.md)**
 ## Project layout
 
 ```text
-src/app/                 # App Router pages (all Server Components)
-src/app/showcase/        # Blueprint / portfolio page
-src/components/          # Header, footer, icons, booking CTA
-src/components/sections/ # Homepage sections (hero, problem, pricing, FAQ, ...)
-src/components/showcase/ # Showcase page subcomponents (cards, diagrams)
-src/lib/                 # Constants, motion utilities, marketing content
-public/                  # Static assets (CNAME, favicon)
-docs/                    # Human-readable docs (booking, domain, deploy)
-.clinerules/             # Modular project instructions for agents
-.github/workflows/       # CI + Pages publish
-scripts/                 # Enforcement script
+src/app/                   # App Router pages (all Server Components)
+src/app/showcase/          # Blueprint / portfolio page
+src/app/architecture/      # Technical reference architecture page
+src/components/            # Header, footer, icons, booking CTA, page nav
+src/components/sections/   # Homepage sections (hero, problem, pricing, FAQ, ...)
+src/components/showcase/   # Showcase page subcomponents (cards, diagrams)
+src/components/architecture/ # Architecture page content
+src/lib/                   # Constants, motion utilities, marketing content
+public/                    # Static assets (CNAME, favicon)
+docs/                      # Human-readable docs (booking, domain, deploy)
+.clinerules/               # Modular project instructions for agents
+.github/workflows/         # CI + Pages publish
+scripts/                   # Enforcement script
 ```
 
 ## Development
