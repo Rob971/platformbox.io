@@ -14,7 +14,7 @@ import { ObservabilityDashboard } from "./observability-dashboard";
 import { BackstagePortal } from "./backstage-portal";
 import { DatabaseProvisioning } from "./database-provisioning";
 import { SecretManagement } from "./secret-management";
-import { BOOKING_URL } from "@/lib/constants";
+import { BOOKING_URL, BOOKING_LABEL } from "@/lib/constants";
 import { fadeUp, stagger, FadeIn } from "@/lib/motion";
 import { InfrastructureIcon, PipelineIcon, EphemeralIcon } from "../icons";
 
@@ -272,7 +272,7 @@ spec:
 
 const beforeAfter = [
   { before: "3 weeks to ship a new service", after: "1 click — under 5 minutes" },
-  { before: "€120K+ for a Platform Engineer hire", after: "€20K fixed, delivered in 14 days" },
+  { before: "Every deployment needs DevOps help", after: "A self-service golden path" },
   { before: "Idle staging environments burning cloud budget", after: "Auto-destroy on merge — €0 waste" },
 ];
 
@@ -290,10 +290,10 @@ export function ShowcasePage() {
           <motion.div initial="hidden" animate="visible" variants={stagger} className="flex flex-col items-center">
             <motion.p variants={fadeUp} className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-accent">The 14-Day Blueprint</motion.p>
             <motion.h1 variants={fadeUp} className="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl md:leading-[1.08]">See exactly what your team receives</motion.h1>
-            <motion.p variants={fadeUp} className="mt-4 max-w-2xl text-base text-zinc-400 leading-relaxed sm:text-lg">A visual walkthrough of the enterprise platform that ships in 14 days — from modular Terraform to production Kubernetes.</motion.p>
+            <motion.p variants={fadeUp} className="mt-4 max-w-2xl text-base text-zinc-400 leading-relaxed sm:text-lg">A visual walkthrough of the platform that ships in 14 working days — from modular Terraform to production Kubernetes.</motion.p>
             <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <a href="#deliverables" className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent-strong px-5 text-sm font-medium text-white transition-colors hover:bg-accent"><Eye className="h-4 w-4" />Explore Deliverables</a>
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/20 px-5 text-sm font-medium text-white transition-colors hover:bg-white/5">Book an Architecture Audit<ArrowRight className="h-4 w-4" /></a>
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/20 px-5 text-sm font-medium text-white transition-colors hover:bg-white/5">{BOOKING_LABEL}<ArrowRight className="h-4 w-4" /></a>
             </motion.div>
           </motion.div>
         </section>
@@ -302,7 +302,7 @@ export function ShowcasePage() {
           <FadeIn className="mb-8 text-center">
             <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">01 / The Timeline</p>
             <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">Your 14-Day Journey</h2>
-            <p className="mt-3 text-sm text-zinc-400">Six phases, one fixed-price engagement — click any phase for details.</p>
+            <p className="mt-3 text-sm text-zinc-400">Two weeks, one fixed-price engagement — from foundation to a working path to production.</p>
           </FadeIn>
           <FadeIn>
             <TimelineStepper />
@@ -317,7 +317,7 @@ export function ShowcasePage() {
           </FadeIn>
           <div className="grid gap-4 sm:grid-cols-2">
             <DeliverableCard icon={InfrastructureIcon} title="Infrastructure as Code" text="Fully modular Terraform templates for self-serve provisioning." code={terraformModule} codeLanguage="Terraform" />
-            <DeliverableCard icon={PipelineIcon} title="DevSecOps CI/CD" text="Standardized GitLab pipelines with automated testing and security scanning." code={gitlabCI} codeLanguage=".gitlab-ci.yml" />
+            <DeliverableCard icon={PipelineIcon} title="DevSecOps CI/CD" text="Standardized CI/CD pipelines (GitHub or GitLab) with automated testing and security scanning." code={gitlabCI} codeLanguage="GitLab CI (sample — GitHub Actions available)" />
             <DeliverableCard icon={EphemeralIcon} title="Ephemeral Environments" text="Auto-generated preview environments for every Pull Request to eliminate staging bottlenecks."><EnvDashboard /></DeliverableCard>
             <DeliverableCard icon={Boxes} title="Production Kubernetes" text="Highly available EKS clusters managed for you with HPA, ingress, and monitoring." code={k8sManifest} codeLanguage="Kubernetes"><K8sArchitecture /></DeliverableCard>
           </div>
@@ -344,7 +344,7 @@ export function ShowcasePage() {
           </FadeIn>
           <div className="grid gap-4 sm:grid-cols-2">
             <DeliverableCard icon={Gauge} title="Observability Stack" text="OpenTelemetry auto-instrumentation with Prometheus, Grafana, and Loki — every service ships with dashboards and alerts." code={otelCollectorConfig} codeLanguage="OpenTelemetry"><ObservabilityDashboard /></DeliverableCard>
-            <DeliverableCard icon={LayoutDashboard} title="Developer Portal" text="Backstage-powered service catalog and software scaffolder so teams discover, create, and own services autonomously." code={backstageCatalog} codeLanguage="catalog-info.yaml"><BackstagePortal /></DeliverableCard>
+            <DeliverableCard icon={LayoutDashboard} title="Developer Portal" text="Optional developer portal — a Backstage-ready service catalog and software scaffolder so teams discover, create, and own services autonomously." code={backstageCatalog} codeLanguage="catalog-info.yaml"><BackstagePortal /></DeliverableCard>
             <DeliverableCard icon={Database} title="Self-Service Databases" text="Declare a database in your service config and get a production-ready, encrypted RDS instance with automated backups — no ticket required." code={terraformRDS} codeLanguage="Terraform"><DatabaseProvisioning /></DeliverableCard>
             <DeliverableCard icon={KeyRound} title="Secret Management" text="Vault or AWS Secrets Manager integrated with CSI driver — credentials auto-rotate, never touch etcd, and mount as files without code changes." code={externalSecrets} codeLanguage="Kubernetes"><SecretManagement /></DeliverableCard>
           </div>
@@ -377,7 +377,7 @@ export function ShowcasePage() {
           <FadeIn delay={0.3}>
             <div className="mt-6 flex justify-center">
               <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-accent-strong px-6 text-sm font-medium text-white transition-colors hover:bg-accent">
-                Book an Architecture Audit
+                {BOOKING_LABEL}
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </a>
             </div>

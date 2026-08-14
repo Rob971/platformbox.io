@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 const siteUrl = "https://www.platformbox.io";
 
 export const metadata: Metadata = {
-  title: "PlatformBox.io — The 14-Day Enterprise Internal Developer Platform",
+  title: "PlatformBox.io — Your Developer Platform. Live in 14 Days.",
   description:
-    "We give your engineers a self-serve Golden Path to deploy code instantly without needing to hire a full-time Platform Engineering team. Built for Fractional CTOs and post-Series A engineering leaders.",
+    "A fixed-price engagement that delivers a production-ready developer platform in 14 working days — a standardized, self-service path from Git to production, built on your existing AWS and Kubernetes stack.",
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: "/",
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "PlatformBox.io — The 14-Day Enterprise Internal Developer Platform",
+    title: "PlatformBox.io — Your Developer Platform. Live in 14 Days.",
     description:
-      "A fixed-price €20,000 engineering engagement that delivers a production-ready Internal Developer Platform in 14 days.",
+      "Give your engineering teams a standardized, self-service path from Git to production. Fixed-price, live in 14 working days.",
     url: siteUrl,
     siteName: "PlatformBox.io",
     type: "website",
@@ -38,15 +38,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PlatformBox.io — The 14-Day Enterprise Internal Developer Platform",
+        alt: "PlatformBox.io — Your Developer Platform. Live in 14 Days.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PlatformBox.io — The 14-Day Enterprise Internal Developer Platform",
+    title: "PlatformBox.io — Your Developer Platform. Live in 14 Days.",
     description:
-      "A fixed-price €20,000 engineering engagement that delivers a production-ready Internal Developer Platform in 14 days.",
+      "A fixed-price engagement that delivers a production-ready developer platform in 14 working days.",
     images: ["/og-image.png"],
   },
 };
@@ -75,7 +75,7 @@ export default function RootLayout({
                   url: siteUrl,
                   logo: `${siteUrl}/favicon.ico`,
                   description:
-                    "A fixed-price €20,000 engineering engagement that delivers a production-ready Internal Developer Platform in 14 working days.",
+                    "A fixed-price engagement that delivers a production-ready developer platform in 14 working days.",
                   sameAs: [
                     "https://www.linkedin.com/in/robertocornano/",
                   ],
@@ -83,16 +83,31 @@ export default function RootLayout({
                 {
                   "@type": "Service",
                   "@id": `${siteUrl}/#service`,
-                  name: "14-Day Enterprise Internal Developer Platform",
+                  name: "PlatformBox Launch",
                   description:
-                    "We give your engineers a self-serve Golden Path to deploy code instantly without needing to hire a full-time Platform Engineering team.",
+                    "A production-ready developer platform delivered in 14 working days — a standardized, self-service path from Git to production on your existing AWS and Kubernetes stack.",
                   provider: { "@id": `${siteUrl}/#organization` },
                   areaServed: "Worldwide",
-                  offers: {
-                    "@type": "Offer",
-                    price: "20000",
-                    priceCurrency: "EUR",
-                  },
+                  offers: [
+                    {
+                      "@type": "Offer",
+                      name: "PlatformBox Launch",
+                      price: "20000",
+                      priceCurrency: "EUR",
+                    },
+                    {
+                      "@type": "Offer",
+                      name: "PlatformBox Scale",
+                      price: "39000",
+                      priceCurrency: "EUR",
+                    },
+                    {
+                      "@type": "Offer",
+                      name: "PlatformBox Enterprise",
+                      price: "60000",
+                      priceCurrency: "EUR",
+                    },
+                  ],
                 },
               ],
             }),

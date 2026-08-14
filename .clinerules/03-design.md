@@ -29,17 +29,21 @@ This is permanent and must never change. Do not recolor, reorder, or unify the t
 
 Keep the approved marketing structure:
 
-1. Hero: brand, one H1, one supporting sentence, CTA pair
-2. Why PlatformBox: 6-feature glass bento grid with custom icons
-3. Problem: "01 / The Bottleneck" — one clear job
-4. Deliverables: "02 / The 14-Day Solution" — 2×2 glass bento layout
-5. Economics: "03 / The Financial ROI" section with distinct €20,000 EUR / 14 Days card
-6. Footer: copyright, email, LinkedIn
+1. Hero: brand, one H1 ("Your developer platform. Live in 14 days."), one supporting sentence, CTA pair (Book Your Platform Assessment + See what gets delivered)
+2. Problem: "Your engineering team is becoming your platform team."
+3. Outcome: golden path flow (Developer → Preview → Security → Production)
+4. Before/After: the shorter path contrast
+5. 14-Day Delivery: week-by-week breakdown (Week 1 / Week 2)
+6. Technology: provider-neutral stack (AWS/EKS optimized, GitHub/GitLab supported)
+7. Pricing: Launch €20k / Scale €39k (Recommended) / Enterprise €60k+ / Assessment €2.5k / Care €2–4k/mo
+8. ROI: transparent, editable calculator (no unsupported savings claims)
+9. Fit: strong fit / probably not a fit
+10. FAQ + footer: copyright, email, LinkedIn
 
 ## UX rules
 
-- Primary CTA should link to the Cal.com booking: https://cal.eu/roberto-platformbox/architecture-audit
-- Secondary CTA should be outline or glass, used for navigation to the deliverables or blueprint section.
+- Primary CTA ("Book Your Platform Assessment") should link to the Cal.com booking: https://cal.com/roberto-platformbox/platform-assessment
+- Secondary CTA should be outline or glass, used for navigation to the deliverables or blueprint (/showcase) section.
 - Use cards for deliverables and ROI; do not use hero cards.
 - Keep motion calm and subtle rather than playful or bouncy.
 - Do not leave booking CTAs as placeholder anchors.

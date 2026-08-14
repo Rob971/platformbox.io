@@ -2,7 +2,7 @@
 
 | Doc | Purpose |
 | --- | --- |
-| [BOOKING.md](./BOOKING.md) | Cal.com **Book an Architecture Audit** CTA |
+| [BOOKING.md](./BOOKING.md) | Cal.com **Book Your Platform Assessment** CTA |
 | [CUSTOM-DOMAIN.md](./CUSTOM-DOMAIN.md) | Point `platformbox.io` / `www` at GitHub Pages |
 | [DEPLOY.md](./DEPLOY.md) | Build, push, Pages deploy, and git auth |
 

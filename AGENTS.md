@@ -8,14 +8,14 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 ## Product
 
-PlatformBox.io is a premium B2B marketing site for a fixed-price **€20,000 / 14-day** Enterprise Internal Developer Platform engagement aimed at Fractional CTOs and post-Series A engineering leaders.
+PlatformBox.io is a premium B2B marketing site for **PlatformBox Launch** — a production-ready developer platform delivered in **14 working days** at a fixed price, aimed at post-Series A engineering leaders and Fractional CTOs. Pricing tiers: **Launch €20,000 / Scale €39,000 (recommended) / Enterprise €60,000+**.
 
 **Logo (immutable):** two vertical bars — left **white**, right **blue gradient** (`#3b82f6` → `#60a5fa`). Never change, recolor, or unify. See `.clinerules/03-design.md`.
 
-**Booking CTA (all Architecture Audit buttons):**  
-https://cal.eu/roberto-platformbox/architecture-audit  
+**Booking CTA (all "Book Your Platform Assessment" buttons):**  
+https://cal.com/roberto-platformbox/platform-assessment  
 
-Canonical constant: `BOOKING_URL` in `src/lib/constants.ts`. See `docs/BOOKING.md`.
+Canonical constants: `BOOKING_URL` and `BOOKING_LABEL` in `src/lib/constants.ts`. See `docs/BOOKING.md`.
 
 ## Stack (locked)
 

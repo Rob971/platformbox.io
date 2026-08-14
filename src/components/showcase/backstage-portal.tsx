@@ -83,7 +83,7 @@ export function BackstagePortal() {
           <motion.div key="scaffolder" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.2 }} className="space-y-3">
             <p className="text-xs text-zinc-400 px-1">Choose a template to scaffold a new service — infrastructure, CI/CD, and docs generated automatically.</p>
             {[
-              { name: "Backend Service (Go)", desc: "REST API with gRPC, Terraform module, and GitLab CI" },
+              { name: "Backend Service (Go)", desc: "REST API with gRPC, Terraform module, and CI/CD" },
               { name: "Frontend App (Next.js)", desc: "SSR app with Vercel-style deployment pipeline" },
               { name: "Data Pipeline", desc: "Kafka consumer with schema registry and dead-letter queue" },
             ].map((tpl) => (

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { PlatformBoxLogoIcon } from "./icons";
-import { BOOKING_URL } from "@/lib/constants";
+import { BOOKING_URL, BOOKING_LABEL } from "@/lib/constants";
 
 interface HeaderProps {
   showHomeLink?: boolean;
@@ -41,7 +41,7 @@ export function Header({ showHomeLink = false }: HeaderProps) {
             rel="noopener noreferrer"
             className="hidden text-sm text-zinc-400 transition-colors hover:text-white sm:inline"
           >
-            Book an Architecture Audit
+            {BOOKING_LABEL}
           </a>
         </div>
       </div>

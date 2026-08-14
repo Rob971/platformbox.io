@@ -12,7 +12,7 @@ interface Stage {
 }
 
 const defaultStages: Stage[] = [
-  { name: "Commit", icon: GitCommit, status: "success", description: "Push to GitLab triggers the pipeline automatically." },
+  { name: "Commit", icon: GitCommit, status: "success", description: "Push to your repo (GitHub or GitLab) triggers the pipeline automatically." },
   { name: "SAST Scan", icon: Shield, status: "success", description: "Static Application Security Testing scans for vulnerabilities." },
   { name: "Build", icon: Hammer, status: "success", description: "Container images are built and pushed to ECR." },
   { name: "Test", icon: FlaskConical, status: "running", description: "Unit, integration, and image scan tests execute." },

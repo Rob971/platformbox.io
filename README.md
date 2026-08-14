@@ -1,6 +1,6 @@
 # PlatformBox.io
 
-Premium landing page for the **14-Day Enterprise Internal Developer Platform** — a fixed-price **€20,000 EUR** engineering engagement for Fractional CTOs and post-Series A teams.
+Premium landing page for **PlatformBox Launch** — a production-ready developer platform delivered in **14 working days** at a fixed price.
 
 ## Live URLs
 
@@ -11,11 +11,11 @@ Premium landing page for the **14-Day Enterprise Internal Developer Platform** �
 
 ## Booking CTA
 
-All **Book an Architecture Audit** buttons open the 45-minute Cal.com call:
+All **Book Your Platform Assessment** buttons open the Cal.com call:
 
-**https://cal.eu/roberto-platformbox/architecture-audit**
+**https://cal.com/roberto-platformbox/platform-assessment**
 
-Defined once in `src/lib/constants.ts` as `BOOKING_URL` (nav, hero, pricing card, and showcase CTA).
+Defined once in `src/lib/constants.ts` as `BOOKING_URL` and `BOOKING_LABEL` (nav, hero, pricing cards, and showcase CTA).
 
 See **[docs/BOOKING.md](docs/BOOKING.md)**.
 
@@ -52,9 +52,10 @@ Full DNS guide: **[docs/CUSTOM-DOMAIN.md](docs/CUSTOM-DOMAIN.md)**
 ```text
 src/app/                 # App Router pages (all Server Components)
 src/app/showcase/        # Blueprint / portfolio page
-src/components/          # Client islands (landing, header, footer, icons)
+src/components/          # Header, footer, icons, booking CTA
+src/components/sections/ # Homepage sections (hero, problem, pricing, FAQ, ...)
 src/components/showcase/ # Showcase page subcomponents (cards, diagrams)
-src/lib/                 # Constants, motion utilities, showcase data
+src/lib/                 # Constants, motion utilities, marketing content
 public/                  # Static assets (CNAME, favicon)
 docs/                    # Human-readable docs (booking, domain, deploy)
 .clinerules/             # Modular project instructions for agents
