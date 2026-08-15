@@ -10,12 +10,16 @@
 
 The PlatformBox logo mark is **two vertical bars**:
 
-- **Left bar: white** (`#ffffff`)
-- **Right bar: blue accent gradient** (`#3b82f6` → `#60a5fa`)
+- **Left (opening) bar: white** (`#ffffff`)
+- **Right (closing) bar: blue** (`#3b82f6` — the site accent, same as `--accent` / `text-accent`)
 
-This is permanent and must never change. Do not recolor, reorder, or unify the two bars. The source of truth is `PlatformBoxLogoIcon` in `src/components/icons.tsx`, mirrored in `public/brand-logo.html` and `public/brand-cover.html`.
+This is permanent and must never change. Do not recolor, reorder, or unify the two bars. Any asset (PNG, SVG, ICO, HTML) that shows the logo with a different color scheme or a missing bar must be deleted and regenerated correctly.
 
-The LinkedIn company banner (4200×700) is generated from `scripts/linkedin-cover.svg` → `public/linkedin-cover.png` via `scripts/generate-linkedin-cover.mjs`. Keep the single-message layout: bold headline, one supporting line, a technology stack row, and the small logo mark.
+The source of truth is `PlatformBoxLogoIcon` in `src/components/icons.tsx`, mirrored in `public/brand-logo.html` and `public/brand-cover.html`.
+
+**Important for SVG→PNG rendering:** the `sharp`/`librsvg` pipeline used by the generator scripts **cannot render gradient strokes** (`stroke="url(#gradient)") — they render black or invisible. Always use a solid `stroke="#3b82f6"` for the right bar in any SVG intended for sharp-based PNG generation. Browser-rendered assets (`.html` mirrors) may use the gradient, but sharp-rendered SVGs (in `scripts/`) must use the solid accent.
+
+The LinkedIn company banner (4200×700) is generated from `scripts/linkedin-cover.svg` → `public/linkedin-cover.png` via `scripts/generate-linkedin-cover.mjs`. Keep the single-message layout: bold headline, one supporting differentiation line, and the small logo mark.
 
 ## Required design tokens
 

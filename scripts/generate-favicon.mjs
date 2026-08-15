@@ -27,7 +27,7 @@ function icoEntry(width, height, offset, size) {
 }
 
 async function main() {
-  const source = readFileSync(path.join(root, "public/platformbox.io-0.png"));
+  const source = readFileSync(path.join(root, "public/brand-logo.png"));
   const sizes = [16, 32, 48];
   const pngBuffers = [];
   let offset = 6 + sizes.length * 16;
