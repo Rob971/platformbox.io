@@ -15,6 +15,8 @@ The PlatformBox logo mark is **two vertical bars**:
 
 This is permanent and must never change. Do not recolor, reorder, or unify the two bars. The source of truth is `PlatformBoxLogoIcon` in `src/components/icons.tsx`, mirrored in `public/brand-logo.html` and `public/brand-cover.html`.
 
+The LinkedIn company banner (4200×700) is generated from `scripts/linkedin-cover.svg` → `public/linkedin-cover.png` via `scripts/generate-linkedin-cover.mjs`. Keep the single-message layout: bold headline, one supporting line, a technology stack row, and the small logo mark.
+
 ## Required design tokens
 
 - --background
