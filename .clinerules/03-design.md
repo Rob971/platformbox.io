@@ -21,6 +21,36 @@ The source of truth is `PlatformBoxLogoIcon` in `src/components/icons.tsx`, mirr
 
 The LinkedIn company banner (4200×700) is generated from `scripts/linkedin-cover.svg` → `public/linkedin-cover.png` via `scripts/generate-linkedin-cover.mjs`. Keep the single-message layout: bold headline, one supporting differentiation line, and the small logo mark.
 
+## LinkedIn image specifications
+
+When generating any image for LinkedIn, follow LinkedIn's official specs
+(https://www.linkedin.com/help/linkedin/answer/a563309):
+
+### Global
+- Format: **PNG or JPEG** only.
+- Maximum file size: **3MB**.
+
+### Page images
+| Image | Minimum | Recommended |
+| --- | --- | --- |
+| Page Cover | 4200×700 | 4200×700 |
+| Page Logo | 268×268 | 400×400 |
+| Life Main (Career Pages) | 1128×376 | 1128×376 |
+| Life Custom modules | 502×282 | 502×282 |
+| Life Company photos | 264×176 | 900×600 |
+| Post link preview | 1.91:1 (1200×627), min 200px wide | — |
+
+### Display safety
+- Center important content — the cover may be trimmed horizontally or vertically on other screens.
+- Keep key details away from the edges, especially the lower corners (the page logo/avatar overlays the banner).
+- Use limited text on the cover; prefer high-resolution JPEG for photos (PNG is fine for flat/graphic designs).
+- The logo must display correctly on both light and dark backgrounds.
+
+### Brand constraints (must hold for every LinkedIn asset)
+- Two-bar logo: left bar white `#ffffff`, right bar blue `#3b82f6`.
+- sharp-rendered SVGs must use solid `stroke="#3b82f6"` — gradient strokes render broken.
+- Cover = single-message layout (headline + one supporting differentiation line + small logo).
+
 ## Required design tokens
 
 - --background
