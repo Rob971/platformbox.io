@@ -147,6 +147,16 @@ function DiagramCard({ title, code }: { title: string; code: string }) {
         const { svg } = await mermaid.render(id, code);
         if (!cancelled && svgRef.current) {
           svgRef.current.innerHTML = svg;
+          // Mermaid's dark theme sets edge-label text to #cccccc on a
+          // #585858 background - 4.43:1, just under the 4.5:1 WCAG AA
+          // threshold (caught by a live Lighthouse audit). Force a lighter
+          // label color rather than relying on mermaid's own contrast.
+          const svgEl = svgRef.current.querySelector("svg");
+          if (svgEl) {
+            const style = document.createElementNS("http://www.w3.org/2000/svg", "style");
+            style.textContent = ".edgeLabel, .edgeLabel p, .edgeLabel span { color: #f5f5f5 !important; }";
+            svgEl.prepend(style);
+          }
         }
       } catch {
         if (!cancelled) setRenderError(true);

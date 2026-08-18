@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { preconnect } from "react-dom";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -41,6 +42,10 @@ const pageSections = [
 ];
 
 export function ArchitecturePage() {
+  // Scoped to this route only - the live-diagrams fetch to GitLab's API is
+  // the only thing on the site that needs it.
+  preconnect("https://gitlab.com", { crossOrigin: "anonymous" });
+
   return (
     <div className="relative flex min-h-screen flex-col overflow-x-hidden">
       <div className="pointer-events-none absolute inset-0 grid-glow" aria-hidden />
