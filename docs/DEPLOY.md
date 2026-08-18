@@ -2,24 +2,35 @@
 
 ## Hosting
 
-The site is a **Next.js static export** published to **GitHub Pages**.
+The site runs on **Vercel** (real Next.js server, not a static export) —
+confirmed 2026-08-18 via live DNS (`www.platformbox.io` CNAMEs to
+`cname.vercel-dns.com`) and this repo's `.vercel/project.json` link file.
+Vercel auto-deploys on every push to `main` via its own GitHub integration;
+no GitHub Actions workflow is involved in deployment.
 
 | Item | Value |
 | --- | --- |
 | Canonical domain | `https://www.platformbox.io` |
-| Pages fallback | `https://rob971.github.io/platformbox.io/` |
-| Publish branch | `gh-pages` (classic Pages source) |
-| Custom domain file | `public/CNAME` → `www.platformbox.io` |
+| Host | Vercel (auto-deploy from `main`) |
 
-Workflows on every push to `main`:
+This project was originally set up for GitHub Pages (see git history and
+[CUSTOM-DOMAIN.md](./CUSTOM-DOMAIN.md), which documents that now-superseded
+setup) and later migrated to Vercel. `next.config.ts`'s `headers()` block
+(CSP, HSTS, etc.) only works because the site runs on Vercel's server
+runtime — do not add `output: "export"` back, it would silently disable
+every security header in production.
+
+`.github/workflows/deploy-pages.yml` and `publish-gh-pages.yml` are stale
+leftovers from the GitHub Pages era and fail on every push (`next build`
+doesn't produce `out/` without static export, which would break `headers()`
+if added back). They should be deleted — not done here yet, ask Claude or
+delete manually: `rm .github/workflows/deploy-pages.yml .github/workflows/publish-gh-pages.yml`.
+
+Workflows that do still matter:
 
 | Workflow | Role |
 | --- | --- |
-| `.github/workflows/ci.yml` | `enforce` + `lint` + `build` |
-| `.github/workflows/publish-gh-pages.yml` | Builds `out/` and force-publishes `gh-pages` |
-| `.github/workflows/deploy-pages.yml` | Actions-based Pages deploy (needs Pages → GitHub Actions enabled) |
-
-Domain DNS steps: [CUSTOM-DOMAIN.md](./CUSTOM-DOMAIN.md).
+| `.github/workflows/ci.yml` | `enforce` + `lint` + `build` on every push |
 
 ## Local commands
 
@@ -27,13 +38,13 @@ Domain DNS steps: [CUSTOM-DOMAIN.md](./CUSTOM-DOMAIN.md).
 npm install
 npm run dev          # http://localhost:3000
 npm run check        # lint + enforce + build
-npm run build        # writes static site to out/
+npm run build        # standard Next.js server build (.next/) - not a static export
 ```
 
-Preview the static build:
+Preview the production build locally:
 
 ```bash
-npx serve out
+npm run start
 ```
 
 ## Push to GitHub (auth)
@@ -83,6 +94,7 @@ Cause: expired/embedded token on the remote, or password auth. Fix with `gh auth
 1. `npm run check`
 2. Commit on a feature branch (or directly on `main` if intentional)
 3. `git push` (with working auth)
-4. Confirm Actions: CI green + `Publish gh-pages branch` success
+4. Confirm `ci.yml` is green, and check the Vercel deployment (dashboard
+   or the PR/commit status check) succeeds
 5. Spot-check https://www.platformbox.io (or the github.io fallback)
 6. Confirm booking CTAs still open https://cal.com/roberto-platformbox/platform-assessment

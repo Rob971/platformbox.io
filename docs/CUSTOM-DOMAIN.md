@@ -1,4 +1,13 @@
-# Connect platformbox.io to GitHub Pages
+# Connect platformbox.io to GitHub Pages (superseded — historical record)
+
+> **This doc is out of date.** As of 2026-08-18, `www.platformbox.io`
+> actually CNAMEs to `cname.vercel-dns.com` and the site runs on Vercel
+> (auto-deploy on push to `main` via Vercel's GitHub integration) — see
+> [DEPLOY.md](./DEPLOY.md). The GitHub Pages setup below was evidently
+> completed at some point and then replaced by a further migration to
+> Vercel that was never documented. Kept here as a historical record of
+> the DNS records used for the GitHub Pages era, in case that's ever
+> useful context — not as current instructions.
 
 Your site is published from this repo. Point DNS away from Framer (current host) to GitHub Pages, then attach the domain in repo settings.
 
