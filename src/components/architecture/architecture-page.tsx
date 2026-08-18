@@ -35,7 +35,26 @@ const pageSections = [
   { id: "overview", label: "Overview" },
   { id: "path", label: "Path" },
   { id: "components", label: "Components" },
+  { id: "diagrams", label: "Diagrams" },
   { id: "book", label: "Book" },
+];
+
+const evidenceDiagrams = [
+  {
+    file: "golden-path.svg",
+    title: "Golden Path — Developer Flow",
+    alt: "Diagram of the developer flow from git push through CI validation, Terraform apply, and AWS infrastructure — verified today — continuing into the planned application build, registry, GitOps, and deployment path.",
+  },
+  {
+    file: "platform-infrastructure.svg",
+    title: "Platform Infrastructure",
+    alt: "Layered diagram of the network, compute, CI/CD, security, observability, and infrastructure-as-code layers, marking which resources are verified and applied in AWS versus planned.",
+  },
+  {
+    file: "security-auth-flow.svg",
+    title: "Security & Auth Flow",
+    alt: "Diagram of human SSO access, on-demand EKS cluster access, and planned CI/workload authentication, showing which credential paths are verified versus designed but not yet wired up.",
+  },
 ];
 
 export function ArchitecturePage() {
@@ -126,6 +145,40 @@ export function ArchitecturePage() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        <section id="diagrams" className="border-t border-white/10">
+          <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+            <div className="mb-10 max-w-2xl">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-accent">
+                Verified vs. planned
+              </p>
+              <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                What&apos;s actually built today.
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-400 sm:text-base">
+                Drawn from applied Terraform state, not the roadmap. Solid green marks
+                what&apos;s built and checked today; dashed blue is verified but
+                on-demand; dashed grey is target state we haven&apos;t built yet. Every
+                verified claim traces to a decision record in the reference
+                implementation.
+              </p>
+            </div>
+            <div className="space-y-8">
+              {evidenceDiagrams.map((diagram) => (
+                <div key={diagram.file} className="rounded-xl border border-white/10 p-2 sm:p-4">
+                  <p className="mb-2 px-2 text-sm font-semibold text-white sm:px-3">{diagram.title}</p>
+                  {/* eslint-disable-next-line @next/next/no-img-element -- static-exported SVG, no next/image optimization needed */}
+                  <img
+                    src={`/architecture/${diagram.file}`}
+                    alt={diagram.alt}
+                    className="w-full rounded-lg"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </section>
