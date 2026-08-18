@@ -17,6 +17,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { BookingCta } from "@/components/booking-cta";
 import { PageNav } from "@/components/page-nav";
+import { LiveArchitectureDiagrams } from "@/components/architecture/live-diagrams";
 import { technicalReference, architecture, finalCta } from "@/lib/content";
 
 const sectionIcons = [
@@ -37,24 +38,6 @@ const pageSections = [
   { id: "components", label: "Components" },
   { id: "diagrams", label: "Diagrams" },
   { id: "book", label: "Book" },
-];
-
-const evidenceDiagrams = [
-  {
-    file: "golden-path.svg",
-    title: "Golden Path — Developer Flow",
-    alt: "Diagram of the developer flow from git push through CI validation, Terraform apply, and AWS infrastructure — verified today — continuing into the planned application build, registry, GitOps, and deployment path.",
-  },
-  {
-    file: "platform-infrastructure.svg",
-    title: "Platform Infrastructure",
-    alt: "Layered diagram of the network, compute, CI/CD, security, observability, and infrastructure-as-code layers, marking which resources are verified and applied in AWS versus planned.",
-  },
-  {
-    file: "security-auth-flow.svg",
-    title: "Security & Auth Flow",
-    alt: "Diagram of human SSO access, on-demand EKS cluster access, and planned CI/workload authentication, showing which credential paths are verified versus designed but not yet wired up.",
-  },
 ];
 
 export function ArchitecturePage() {
@@ -163,23 +146,10 @@ export function ArchitecturePage() {
                 what&apos;s built and checked today; dashed blue is verified but
                 on-demand; dashed grey is target state we haven&apos;t built yet. Every
                 verified claim traces to a decision record in the reference
-                implementation.
+                implementation — fetched live from it, not a snapshot.
               </p>
             </div>
-            <div className="space-y-8">
-              {evidenceDiagrams.map((diagram) => (
-                <div key={diagram.file} className="rounded-xl border border-white/10 p-2 sm:p-4">
-                  <p className="mb-2 px-2 text-sm font-semibold text-white sm:px-3">{diagram.title}</p>
-                  {/* eslint-disable-next-line @next/next/no-img-element -- static-exported SVG, no next/image optimization needed */}
-                  <img
-                    src={`/architecture/${diagram.file}`}
-                    alt={diagram.alt}
-                    className="w-full rounded-lg"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
+            <LiveArchitectureDiagrams />
           </div>
         </section>
 
