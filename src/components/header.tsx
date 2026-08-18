@@ -26,6 +26,7 @@ export function Header({ showHomeLink = false }: HeaderProps) {
         <Link
           href="/"
           onClick={close}
+          prefetch={false}
           className="flex shrink-0 items-center gap-2.5 text-sm font-semibold tracking-tight text-white"
         >
           <PlatformBoxLogoIcon className="h-7 w-7" />
@@ -37,6 +38,7 @@ export function Header({ showHomeLink = false }: HeaderProps) {
           {showHomeLink ? (
             <Link
               href="/"
+              prefetch={false}
               className="rounded-lg px-3 py-2 text-sm text-zinc-400 transition-colors hover:text-white"
             >
               Home
@@ -67,6 +69,7 @@ export function Header({ showHomeLink = false }: HeaderProps) {
             <Link
               key={link.href}
               href={link.href}
+              prefetch={false}
               className="rounded-lg px-3 py-2 text-sm text-zinc-400 transition-colors hover:text-white"
             >
               {link.label}
@@ -103,6 +106,7 @@ export function Header({ showHomeLink = false }: HeaderProps) {
               <Link
                 href="/"
                 onClick={close}
+                prefetch={false}
                 className="rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-300 transition-colors hover:bg-white/[0.05] hover:text-white"
               >
                 Home
@@ -138,6 +142,7 @@ export function Header({ showHomeLink = false }: HeaderProps) {
                 key={link.href}
                 href={link.href}
                 onClick={close}
+                prefetch={false}
                 className="rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-300 transition-colors hover:bg-white/[0.05] hover:text-white"
               >
                 {link.label}

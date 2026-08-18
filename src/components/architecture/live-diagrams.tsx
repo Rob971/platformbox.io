@@ -34,6 +34,18 @@ function extractMermaidBlocks(markdown: string): string[] {
   return blocks;
 }
 
+// Serializes mermaid renders across every DiagramCard and yields to the
+// main thread between each one. Mermaid's layout pass is synchronous once
+// it starts, so three renders firing in the same tick collapse into one
+// long task (measured at 574ms in a Lighthouse run); queuing them with a
+// setTimeout yield between each keeps every task under the 50ms long-task
+// threshold instead.
+let renderQueue: Promise<void> = Promise.resolve();
+function queueRender(work: () => Promise<void>): Promise<void> {
+  renderQueue = renderQueue.then(() => new Promise<void>((resolve) => setTimeout(resolve, 0)).then(work));
+  return renderQueue;
+}
+
 export function LiveArchitectureDiagrams() {
   const [blocks, setBlocks] = useState<string[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -97,19 +109,44 @@ export function LiveArchitectureDiagrams() {
 }
 
 function DiagramCard({ title, code }: { title: string; code: string }) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<HTMLDivElement>(null);
   const [renderError, setRenderError] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  // Mermaid's client bundle and layout pass are heavy. Most visitors never
+  // scroll this far during initial page load, so only pay that cost once
+  // the card is actually about to enter the viewport (rootMargin starts it
+  // slightly early so it's ready by the time it's fully visible).
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px 0px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
+    if (!visible) return;
     let cancelled = false;
 
-    import("mermaid").then(async ({ default: mermaid }) => {
+    queueRender(async () => {
+      const { default: mermaid } = await import("mermaid");
       try {
         mermaid.initialize({ startOnLoad: false, theme: "dark", securityLevel: "strict" });
         const id = `arch-diagram-${Math.random().toString(36).slice(2)}`;
         const { svg } = await mermaid.render(id, code);
-        if (!cancelled && containerRef.current) {
-          containerRef.current.innerHTML = svg;
+        if (!cancelled && svgRef.current) {
+          svgRef.current.innerHTML = svg;
         }
       } catch {
         if (!cancelled) setRenderError(true);
@@ -119,15 +156,15 @@ function DiagramCard({ title, code }: { title: string; code: string }) {
     return () => {
       cancelled = true;
     };
-  }, [code]);
+  }, [visible, code]);
 
   return (
-    <div className="rounded-xl border border-white/10 p-2 sm:p-4">
+    <div ref={wrapperRef} className="rounded-xl border border-white/10 p-2 sm:p-4">
       <p className="mb-2 px-2 text-sm font-semibold text-white sm:px-3">{title}</p>
       {renderError ? (
         <p className="px-2 py-8 text-center text-sm text-zinc-500 sm:px-3">Couldn&apos;t render this diagram.</p>
       ) : (
-        <div ref={containerRef} className="[&_svg]:h-auto [&_svg]:w-full" />
+        <div ref={svgRef} className="[&_svg]:h-auto [&_svg]:w-full" />
       )}
     </div>
   );

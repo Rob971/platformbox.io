@@ -63,6 +63,7 @@ export function ArchitecturePage() {
             <BookingCta />
             <Link
               href="/showcase"
+              prefetch={false}
               className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/20 px-5 text-sm font-medium text-white transition-colors hover:bg-white/5"
             >
               See the 14-Day Blueprint
