@@ -360,7 +360,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Do you support GitHub?",
-    a: "Yes. Our reference implementation currently targets GitLab CI, but PlatformBox is designed to work with GitHub Actions too. We scope the exact toolchain during the Platform Assessment.",
+    a: "PlatformBox is source-control and CI-provider agnostic. The public reference implementation is GitLab-first because it demonstrates the complete DevSecOps golden path in one place. GitHub Actions support can be delivered where that is the customer’s stack.",
   },
   {
     q: "Who owns everything?",
