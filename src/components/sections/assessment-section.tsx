@@ -32,7 +32,7 @@ export function AssessmentSection() {
               </p>
               <p className="mt-3 text-sm leading-relaxed text-zinc-400">
                 The Assessment is a risk-control step, not a sales ritual. It tells you — before you
-                commit — whether the 14-day model fits your environment, and what a realistic scope
+                commit — whether the 14-working-day model fits your environment, and what a realistic scope
                 looks like.
               </p>
               <p className="mt-6 rounded-lg border border-accent/30 bg-accent/10 px-4 py-3 text-sm font-semibold text-accent-hover">

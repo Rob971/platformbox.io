@@ -24,7 +24,7 @@
 
   <!-- Headline -->
   <text x="2100" y="330" text-anchor="middle" fill="#fafafa" font-family="Geist, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="150" font-weight="700" letter-spacing="-2">A SHORTER PATH TO PRODUCTION</text>
-  <text x="2100" y="495" text-anchor="middle" fill="#fafafa" font-family="Geist, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="150" font-weight="700" letter-spacing="-2">LIVE IN <tspan fill="#60a5fa">14 DAYS.</tspan></text>
+  <text x="2100" y="495" text-anchor="middle" fill="#fafafa" font-family="Geist, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="150" font-weight="700" letter-spacing="-2">LIVE IN <tspan fill="#60a5fa">14 WORKING DAYS.</tspan></text>
 
   <!-- Supporting line (differentiation, not technology) -->
   <text x="2100" y="600" text-anchor="middle" fill="#a1a1aa" font-family="Geist, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="46" font-weight="500">Standardized golden paths · Fixed‑price · No lock‑in</text>

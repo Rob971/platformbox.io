@@ -1,10 +1,12 @@
-// Single source of truth for marketing copy, offers, and the 14-day delivery.
+// Single source of truth for marketing copy, offers, and the 14-working-day delivery.
 // Provider names and pricing live here only, so the site stays provider-neutral
 // (AWS/EKS are the reference implementation, not the only option).
 
+import { IDP_REPO_URL } from "@/lib/constants";
+
 export const hero = {
   eyebrow: "PlatformBox Launch · 14 working days",
-  headline: "Your developer platform. Live in 14 days.",
+  headline: "Your developer platform. Live in 14 working days.",
   sub: "Give your engineering teams a standardized, self-service path from Git to production — without spending months building an internal platform.",
 } as const;
 
@@ -59,20 +61,25 @@ export const beforeAfter = {
 export const delivery = {
   eyebrow: "04 / The 14-Day Delivery",
   headline: "Exactly what gets delivered.",
-  sub: "Day 14 means a working developer path to production — not a consulting kickoff.",
+  sub: "Fourteen working days — about three calendar weeks — from kickoff to a working developer path to production.",
   weeks: [
     {
-      label: "Week 1",
+      label: "Week 1 — Foundation (Days 1–5)",
       phases: [
         { day: "Days 1–2", title: "Architecture & foundation", description: "Current-state review, target architecture, and the AWS/EKS foundation." },
-        { day: "Days 3–4", title: "Infrastructure & IAM", description: "Terraform modules, networking, RBAC, secrets, and environments." },
-        { day: "Days 5–7", title: "CI/CD & environments", description: "Standard pipelines, preview environments, and the production deployment workflow." },
+        { day: "Days 3–5", title: "Infrastructure & IAM", description: "Terraform modules, networking, RBAC, secrets, and environments." },
       ],
     },
     {
-      label: "Week 2",
+      label: "Week 2 — Delivery path (Days 6–10)",
       phases: [
+        { day: "Days 6–7", title: "CI/CD & environments", description: "Standard pipelines, preview environments, and the production deployment workflow." },
         { day: "Days 8–10", title: "Golden paths & preview", description: "Service template, repository bootstrap, and preview environments." },
+      ],
+    },
+    {
+      label: "Week 3 — Production readiness (Days 11–14)",
+      phases: [
         { day: "Days 11–12", title: "Security & observability", description: "Security controls, an observability baseline, and cost controls." },
         { day: "Days 13–14", title: "Validation & handover", description: "End-to-end validation, documentation, training, and a phase-2 backlog." },
       ],
@@ -171,7 +178,7 @@ export const assessment = {
     "Platform maturity & bottleneck analysis",
     "Target architecture",
     "Technical risks",
-    "14-day implementation plan",
+    "14-working-day implementation plan",
     "Fixed-price proposal",
   ],
 } as const;
@@ -211,7 +218,7 @@ export const fit = {
     "Fewer than ~50 engineers",
     "Already have a mature, large platform team",
     "Require a fully bespoke multi-cloud architecture",
-    "Can't commit to a clearly defined 14-day scope",
+    "Can't commit to a clearly defined 14-working-day scope",
   ],
 } as const;
 
@@ -257,15 +264,15 @@ export const whyDifferent = {
 
 export const assessmentSection = {
   eyebrow: "08 / Risk Reduction",
-  headline: "Before we promise 14 days, we assess your environment.",
-  sub: "PlatformBox does not start with a blind fixed-price promise. We first assess your architecture, delivery workflow, and platform constraints so the 14-day scope is realistic.",
+  headline: "Before we promise 14 working days, we assess your environment.",
+  sub: "PlatformBox does not start with a blind fixed-price promise. We first assess your architecture, delivery workflow, and platform constraints so the 14-working-day scope is realistic.",
   outputs: [
     "Current-state map",
     "Bottleneck analysis",
     "Platform maturity assessment",
     "Target architecture",
     "Risks and dependencies",
-    "14-day implementation scope",
+    "14-working-day implementation scope",
     "Fixed-price recommendation",
   ],
   credit: "€2,500 — fully credited toward PlatformBox Launch if you proceed.",
@@ -273,8 +280,8 @@ export const assessmentSection = {
 
 export const scopeAssumptions = {
   eyebrow: "09 / Scope & Assumptions",
-  headline: "What makes the 14-day promise credible.",
-  sub: "The 14-day delivery assumes a defined reference architecture and customer readiness. These assumptions are agreed during the Platform Assessment, before work begins.",
+  headline: "What makes the 14-working-day promise credible.",
+  sub: "The 14-working-day delivery assumes a defined reference architecture and customer readiness. These assumptions are agreed during the Platform Assessment, before work begins.",
   items: [
     "AWS access is available",
     "Required repositories and accounts are accessible",
@@ -332,7 +339,7 @@ export const whichPackage = {
     { title: "Choose Launch if", text: "You need your first standardized developer path." },
     { title: "Choose Scale if", text: "Multiple teams need standardized workflows and platform governance." },
     { title: "Choose Enterprise if", text: "You have complex AWS, networking, compliance, or multi-account requirements." },
-    { title: "Start with Assessment if", text: "You are unsure whether your environment can realistically fit the 14-day model." },
+    { title: "Start with Assessment if", text: "You are unsure whether your environment can realistically fit the 14-working-day model." },
   ],
 } as const;
 
@@ -344,7 +351,7 @@ export const faqs: Faq[] = [
     a: "You can — and some teams should. PlatformBox is for teams that would otherwise spend months redirecting senior engineers into platform work. We deliver a working developer path to production in 14 working days using a proven reference architecture, then hand it to your team to own and operate. You get the result without the months of internal engineering, the unresolved architecture decisions, and the adoption delay.",
   },
   {
-    q: "What exactly is delivered in 14 days?",
+    q: "What exactly is delivered in 14 working days?",
     a: "A working developer path to production: an AWS/EKS foundation, Terraform modules, CI/CD, one production-ready golden path, preview environments, baseline security, documentation, and a live handover. On day 14, a developer can create a service from the standard template, deploy it to a preview environment, pass automated security checks, and promote it to production.",
   },
   {
@@ -369,11 +376,11 @@ export const faqs: Faq[] = [
   },
   {
     q: "What if our environment is more complex than your standard architecture?",
-    a: "That's what the Platform Assessment is for. If your environment doesn't fit the 14-day scope, we'll tell you before you commit — and propose a scoped Enterprise engagement instead.",
+    a: "That's what the Platform Assessment is for. If your environment doesn't fit the 14-working-day scope, we'll tell you before you commit — and propose a scoped Enterprise engagement instead.",
   },
   {
-    q: "What if the 14-day scope turns out not to be realistic?",
-    a: "The Platform Assessment exists precisely to prevent this. We only commit to a fixed-price 14-day scope after mapping your current state. If the assessment shows the scope isn't realistic, we tell you before any implementation begins — and agree a realistic scope or a different package.",
+    q: "What if the 14-working-day scope turns out not to be realistic?",
+    a: "The Platform Assessment exists precisely to prevent this. We only commit to a fixed-price 14-working-day scope after mapping your current state. If the assessment shows the scope isn't realistic, we tell you before any implementation begins — and agree a realistic scope or a different package.",
   },
   {
     q: "Do you provide ongoing support?",
@@ -391,10 +398,10 @@ export const faqs: Faq[] = [
 
 export const blueprint = {
   eyebrow: "The 14-Day Blueprint",
-  headline: "How the 14 days work.",
+  headline: "How the 14 working days work.",
   sub: "Nine phases, one fixed-price engagement — from discovery to a handed-over platform.",
   phases: [
-    { title: "Discovery and architecture", text: "Map the current state, agree the target architecture, and lock the 14-day scope." },
+    { title: "Discovery and architecture", text: "Map the current state, agree the target architecture, and lock the 14-working-day scope." },
     { title: "Infrastructure foundation", text: "Stand up the AWS/EKS foundation, networking, and baseline IAM." },
     { title: "CI/CD", text: "Standard pipelines, registries, and the commit-to-production workflow." },
     { title: "Environments", text: "Preview and production environments with automated provisioning." },
@@ -425,9 +432,42 @@ export const technicalReference = {
   ],
 } as const;
 
+export const evidence = {
+  eyebrow: "Proof, not promises",
+  headline: "Verify it yourself.",
+  sub: "Everything below links to the actual reference implementation — Terraform modules, decision records, and live evidence — not a marketing snapshot. The diagrams above are fetched live from that repository.",
+  links: [
+    {
+      label: "The repository",
+      description: "The full reference implementation — Terraform, CI/CD, and documentation. Public and inspectable.",
+      href: IDP_REPO_URL,
+    },
+    {
+      label: "Live evidence",
+      description: "Real terraform plan output, GuardDuty findings, and a published-pricing cost breakdown against the live account.",
+      href: `${IDP_REPO_URL}/-/tree/main/docs/evidence`,
+    },
+    {
+      label: "Decision records",
+      description: "Eight ADRs explaining each architecture choice — and what was rejected.",
+      href: `${IDP_REPO_URL}/-/tree/main/docs/decisions`,
+    },
+    {
+      label: "Architecture source",
+      description: "The single source of truth for the diagrams above — fetched live from this file.",
+      href: `${IDP_REPO_URL}/-/blob/main/docs/architecture/architecture.md`,
+    },
+    {
+      label: "Terraform modules",
+      description: "Network, security, EKS, ECR, and IAM — versioned, reviewed, and reproducible.",
+      href: `${IDP_REPO_URL}/-/tree/main/terraform`,
+    },
+  ],
+} as const;
+
 export const finalCta = {
   headline: "Book your Platform Assessment.",
-  sub: "30 minutes to determine whether your environment is a fit for the 14-day PlatformBox Launch.",
+  sub: "30 minutes to determine whether your environment is a fit for the 14-working-day PlatformBox Launch.",
 } as const;
 
 export const pricing = {

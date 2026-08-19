@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   ArrowRight,
   ArrowDown,
+  ArrowUpRight,
   Boxes,
   GitBranch,
   GitMerge,
@@ -19,7 +20,7 @@ import { Footer } from "@/components/footer";
 import { BookingCta } from "@/components/booking-cta";
 import { PageNav } from "@/components/page-nav";
 import { LiveArchitectureDiagrams } from "@/components/architecture/live-diagrams";
-import { technicalReference, architecture, finalCta } from "@/lib/content";
+import { technicalReference, architecture, finalCta, evidence } from "@/lib/content";
 
 const sectionIcons = [
   Layers,
@@ -33,11 +34,20 @@ const sectionIcons = [
   Boxes,
 ];
 
+const evidenceIcons = [
+  GitBranch,
+  ShieldCheck,
+  GitMerge,
+  Layers,
+  Boxes,
+];
+
 const pageSections = [
   { id: "overview", label: "Overview" },
   { id: "path", label: "Path" },
   { id: "components", label: "Components" },
   { id: "diagrams", label: "Diagrams" },
+  { id: "verify", label: "Verify" },
   { id: "book", label: "Book" },
 ];
 
@@ -156,6 +166,48 @@ export function ArchitecturePage() {
               </p>
             </div>
             <LiveArchitectureDiagrams />
+          </div>
+        </section>
+
+        <section id="verify" className="border-t border-white/10">
+          <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+            <div className="mb-10 max-w-2xl">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-accent">
+                {evidence.eyebrow}
+              </p>
+              <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                {evidence.headline}
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-400 sm:text-base">
+                {evidence.sub}
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {evidence.links.map((link, i) => {
+                const Icon = evidenceIcons[i];
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group rounded-xl border border-white/10 bg-white/[0.03] p-6 transition-colors hover:border-accent/40 hover:bg-white/[0.05]"
+                  >
+                    <div className="mb-3 flex items-center justify-between">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-zinc-950 text-accent">
+                        <Icon className="h-5 w-5" strokeWidth={1.75} />
+                      </div>
+                      <ArrowUpRight
+                        className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-accent"
+                        aria-hidden
+                      />
+                    </div>
+                    <p className="text-sm font-semibold text-white">{link.label}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-zinc-400">{link.description}</p>
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </section>
 

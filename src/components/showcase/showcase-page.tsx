@@ -376,7 +376,7 @@ export function ShowcasePage() {
           <FadeIn className="mb-10 text-center">
             <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">04 / Platform Capabilities</p>
             <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">Built In From Day One</h2>
-            <p className="mt-3 text-sm text-zinc-400">Included in the 14-day engagement — observability, developer portal, data, and security built in from day one.</p>
+            <p className="mt-3 text-sm text-zinc-400">Included in the 14-working-day engagement — observability, developer portal, data, and security built in from day one.</p>
           </FadeIn>
           <div className="grid gap-4 sm:grid-cols-2">
             <DeliverableCard icon={Gauge} title="Observability Stack" text="OpenTelemetry auto-instrumentation with Prometheus, Grafana, and Loki — every service ships with dashboards and alerts." code={otelCollectorConfig} codeLanguage="OpenTelemetry"><ObservabilityDashboard /></DeliverableCard>

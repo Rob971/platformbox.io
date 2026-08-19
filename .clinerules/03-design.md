@@ -65,16 +65,16 @@ When generating any image for LinkedIn, follow LinkedIn's official specs
 
 Keep the approved marketing structure:
 
-1. Hero: brand, one H1 ("Your developer platform. Live in 14 days."), one supporting sentence, CTA pair (Book Your Platform Assessment + See the 14-Day Blueprint), plus a 30-minute qualification note.
+1. Hero: brand, one H1 ("Your developer platform. Live in 14 working days."), one supporting sentence, CTA pair (Book Your Platform Assessment + See the 14-Day Blueprint), plus a 30-minute qualification note.
 2. Problem: "Your engineering team is becoming your platform team."
 3. Outcome: golden path flow (Developer → Preview → Security → Production)
 4. Before/After: the shorter path contrast (outcome-oriented)
-5. 14-Day Delivery: week-by-week breakdown (Week 1 / Week 2)
+5. 14-Day Delivery: week-by-week breakdown (Week 1 / Week 2 / Week 3)
 6. Day 14: "What is actually working on Day 14?" — journey + concrete capabilities
 7. Why not build it internally: build-internally vs PlatformBox comparison table
 8. Pricing: Launch €20k / Scale €39k (Recommended) / Enterprise €60k+ / Assessment €2.5k / Care €2–4k/mo, plus a "Which package is right for me?" guide
-9. Assessment: standalone risk-reduction section ("Before we promise 14 days…")
-10. Scope & assumptions: honest prerequisites for the 14-day promise
+9. Assessment: standalone risk-reduction section ("Before we promise 14 working days…")
+10. Scope & assumptions: honest prerequisites for the 14-working-day promise
 11. Ownership: "You own the platform." + no platform lock-in
 12. Technology: role-based stack (Terraform, Kubernetes/EKS, GitHub/GitLab, GitOps/CI-CD, PlatformBox)
 13. Reference architecture: simple diagram + link to /architecture

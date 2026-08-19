@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { IDP_REPO_URL } from "@/lib/constants";
 
 /**
  * Fetches the single source of truth for these diagrams (platformbox-idp's
@@ -16,8 +17,7 @@ import { useEffect, useRef, useState } from "react";
 const SOURCE_URL =
   "https://gitlab.com/api/v4/projects/platform-box-group%2Fplatformbox-idp/repository/files/docs%2Farchitecture%2Farchitecture.md/raw?ref=main";
 
-const SOURCE_HUMAN_URL =
-  "https://gitlab.com/platform-box-group/platformbox-idp/-/blob/main/docs/architecture/architecture.md";
+const SOURCE_HUMAN_URL = `${IDP_REPO_URL}/-/blob/main/docs/architecture/architecture.md`;
 
 // Fixed order matching the source document's ### 3.1 / 3.2 / 3.3 headings.
 // Only the diagram *content* is fetched live - these labels are local UI
