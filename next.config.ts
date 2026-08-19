@@ -1,9 +1,8 @@
 import type { NextConfig } from "next";
 
 /**
- * Static marketing site for GitHub Pages + custom domain (platformbox.io).
- * No basePath: custom domains serve from `/`. Using `/platformbox.io` would
- * break assets on www.platformbox.io.
+ * PlatformBox.io marketing site — deployed on Vercel with custom domain
+ * (www.platformbox.io). No basePath: custom domains serve from `/`.
  */
 const nextConfig: NextConfig = {
   trailingSlash: true,

@@ -13,24 +13,9 @@ no GitHub Actions workflow is involved in deployment.
 | Canonical domain | `https://www.platformbox.io` |
 | Host | Vercel (auto-deploy from `main`) |
 
-This project was originally set up for GitHub Pages (see git history and
-[CUSTOM-DOMAIN.md](./CUSTOM-DOMAIN.md), which documents that now-superseded
-setup) and later migrated to Vercel. `next.config.ts`'s `headers()` block
-(CSP, HSTS, etc.) only works because the site runs on Vercel's server
-runtime — do not add `output: "export"` back, it would silently disable
-every security header in production.
-
-`.github/workflows/deploy-pages.yml` and `publish-gh-pages.yml` are stale
-leftovers from the GitHub Pages era and fail on every push (`next build`
-doesn't produce `out/` without static export, which would break `headers()`
-if added back). They should be deleted — not done here yet, ask Claude or
-delete manually: `rm .github/workflows/deploy-pages.yml .github/workflows/publish-gh-pages.yml`.
-
-Workflows that do still matter:
-
-| Workflow | Role |
-| --- | --- |
-| `.github/workflows/ci.yml` | `enforce` + `lint` + `build` on every push |
+`next.config.ts`'s `headers()` block (CSP, HSTS, etc.) only works because
+the site runs on Vercel's server runtime — do not add `output: "export"`,
+it would silently disable every security header in production.
 
 ## Local commands
 
@@ -96,5 +81,5 @@ Cause: expired/embedded token on the remote, or password auth. Fix with `gh auth
 3. `git push` (with working auth)
 4. Confirm `ci.yml` is green, and check the Vercel deployment (dashboard
    or the PR/commit status check) succeeds
-5. Spot-check https://www.platformbox.io (or the github.io fallback)
+5. Spot-check https://www.platformbox.io
 6. Confirm booking CTAs still open https://cal.com/roberto-platformbox/platform-assessment

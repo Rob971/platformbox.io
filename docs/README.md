@@ -3,8 +3,7 @@
 | Doc | Purpose |
 | --- | --- |
 | [BOOKING.md](./BOOKING.md) | Cal.com **Book Your Platform Assessment** CTA |
-| [CUSTOM-DOMAIN.md](./CUSTOM-DOMAIN.md) | Point `platformbox.io` / `www` at GitHub Pages |
-| [DEPLOY.md](./DEPLOY.md) | Build, push, Pages deploy, and git auth |
+| [DEPLOY.md](./DEPLOY.md) | Build, push, Vercel deploy, and git auth |
 | [CONTRACT-TEMPLATE.md](./CONTRACT-TEMPLATE.md) | Delivery terms: working-day definition, clock start, acceptance — draft |
 
 The `/architecture` page's diagrams are fetched live from

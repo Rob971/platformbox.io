@@ -58,6 +58,6 @@ Do not add a long qualification questionnaire.
 2. Update this doc and the README booking section
 3. Run `npm run check`
 4. Push to `main` (see [DEPLOY.md](./DEPLOY.md) if auth fails)
-5. Confirm GitHub Actions published `gh-pages`
+5. Confirm Vercel deployment succeeded
 
 Do not leave booking CTAs as `#` placeholders.
