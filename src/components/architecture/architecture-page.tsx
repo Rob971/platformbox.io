@@ -149,7 +149,7 @@ export function ArchitecturePage() {
         </section>
 
         <section id="diagrams" className="border-t border-white/10">
-          <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+          <div className="mx-auto max-w-none px-6 py-16 md:py-24">
             <div className="mb-10 max-w-2xl">
               <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-accent">
                 Verified vs. planned

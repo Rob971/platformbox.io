@@ -147,14 +147,20 @@ function DiagramCard({ title, code }: { title: string; code: string }) {
         const { svg } = await mermaid.render(id, code);
         if (!cancelled && svgRef.current) {
           svgRef.current.innerHTML = svg;
-          // Mermaid's dark theme sets edge-label text to #cccccc on a
-          // #585858 background - 4.43:1, just under the 4.5:1 WCAG AA
-          // threshold (caught by a live Lighthouse audit). Force a lighter
-          // label color rather than relying on mermaid's own contrast.
+          // Mermaid's dark theme renders node text at ~12px and edge
+          // labels at ~10px — illegible on complex architecture diagrams.
+          // Edge-label color is #cccccc on #585858 (4.43:1, just under
+          // WCAG AA — caught in a live Lighthouse audit). Inject both
+          // contrast and readability fixes.
           const svgEl = svgRef.current.querySelector("svg");
           if (svgEl) {
             const style = document.createElementNS("http://www.w3.org/2000/svg", "style");
-            style.textContent = ".edgeLabel, .edgeLabel p, .edgeLabel span { color: #f5f5f5 !important; }";
+            style.textContent = [
+              ".edgeLabel, .edgeLabel p, .edgeLabel span { color: #f5f5f5 !important; font-size: 13px !important; }",
+              ".label, .nodeLabel, .node text, text.label { font-size: 14px !important; }",
+              ".nodeLabel { font-size: 15px !important; font-weight: 600 !important; }",
+              ".edgeLabel foreignObject { overflow: visible !important; }",
+            ].join("\n");
             svgEl.prepend(style);
           }
         }
@@ -174,7 +180,7 @@ function DiagramCard({ title, code }: { title: string; code: string }) {
       {renderError ? (
         <p className="px-2 py-8 text-center text-sm text-zinc-500 sm:px-3">Couldn&apos;t render this diagram.</p>
       ) : (
-        <div ref={svgRef} className="[&_svg]:h-auto [&_svg]:w-full" />
+        <div ref={svgRef} className="overflow-x-auto [&_svg]:h-auto [&_svg]:w-auto [&_svg]:max-w-none" />
       )}
     </div>
   );
