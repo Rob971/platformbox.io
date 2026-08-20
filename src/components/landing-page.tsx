@@ -14,6 +14,7 @@ import { ScopeAssumptionsSection } from "@/components/sections/scope-assumptions
 import { OwnershipSection } from "@/components/sections/ownership-section";
 import { TechnologySection } from "@/components/sections/technology-section";
 import { ReferenceArchitectureSection } from "@/components/sections/reference-architecture-section";
+import { EvidenceSection } from "@/components/sections/evidence-section";
 import { RoiSection } from "@/components/sections/roi-section";
 import { FitSection } from "@/components/sections/fit-section";
 import { FaqSection } from "@/components/sections/faq-section";
@@ -27,6 +28,7 @@ const pageSections = [
   { id: "assessment", label: "Assessment" },
   { id: "ownership", label: "Ownership" },
   { id: "technology", label: "Stack" },
+  { id: "evidence", label: "Proof" },
   { id: "faq", label: "FAQ" },
 ];
 
@@ -52,6 +54,7 @@ export function LandingPage() {
         <OwnershipSection />
         <TechnologySection />
         <ReferenceArchitectureSection />
+        <EvidenceSection />
         <RoiSection />
         <FitSection />
         <FaqSection />

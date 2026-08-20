@@ -465,6 +465,47 @@ export const evidence = {
   ],
 } as const;
 
+export const landingEvidence = {
+  eyebrow: "Verified, not claimed",
+  headline: "Every claim links to real, live evidence.",
+  sub: "The reference implementation is public and inspectable. The decision records are published. The Terraform state output is real — not a marketing snapshot.",
+  cards: [
+    {
+      label: "The repository",
+      description: "Full reference implementation — Terraform, CI/CD, and documentation. Public and inspectable.",
+      href: IDP_REPO_URL,
+    },
+    {
+      label: "Decision records",
+      description: "Every architecture choice explained — and what was rejected — in published ADRs.",
+      href: `${IDP_REPO_URL}/-/tree/main/docs/decisions`,
+    },
+    {
+      label: "Live evidence",
+      description: "Real Terraform plan output, GuardDuty findings, and cost breakdown against the live account.",
+      href: `${IDP_REPO_URL}/-/tree/main/docs/evidence`,
+    },
+    {
+      label: "Terraform modules",
+      description: "Network, security, EKS, ECR, and IAM — versioned, reviewed, and reproducible.",
+      href: `${IDP_REPO_URL}/-/tree/main/terraform`,
+    },
+    {
+      label: "Architecture source",
+      description: "Single source of truth for the live diagrams — fetched directly from this file.",
+      href: `${IDP_REPO_URL}/-/blob/main/docs/architecture/architecture.md`,
+    },
+  ],
+  stats: [
+    { value: "8", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
+    { value: "14", label: "Terraform modules", href: `${IDP_REPO_URL}/-/tree/main/terraform` },
+    { value: "21", label: "Security controls verified", href: `${IDP_REPO_URL}/-/tree/main/docs/evidence` },
+    { value: "1", label: "Public reference implementation", href: IDP_REPO_URL },
+  ],
+  ctaLabel: "View the full reference architecture",
+  ctaHref: "/architecture",
+} as const;
+
 export const finalCta = {
   headline: "Book your Platform Assessment.",
   sub: "30 minutes to determine whether your environment is a fit for the 14-working-day PlatformBox Launch.",
