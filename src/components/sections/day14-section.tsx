@@ -67,6 +67,7 @@ export function Day14Section() {
               <div className="mt-8 border-t border-white/10 pt-6">
                 <Link
                   href="/showcase"
+                  prefetch={false}
                   className="inline-flex items-center gap-2 text-sm font-medium text-accent-hover transition-colors hover:text-white"
                 >
                   See the full 14-Day Blueprint

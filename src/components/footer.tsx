@@ -38,6 +38,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/"
+                  prefetch={false}
                   className="text-sm text-zinc-400 transition-colors hover:text-white"
                 >
                   Home
@@ -46,6 +47,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/showcase"
+                  prefetch={false}
                   className="text-sm text-zinc-400 transition-colors hover:text-white"
                 >
                   14-Day Blueprint
@@ -54,6 +56,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/architecture"
+                  prefetch={false}
                   className="text-sm text-zinc-400 transition-colors hover:text-white"
                 >
                   Reference Architecture

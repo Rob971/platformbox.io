@@ -41,6 +41,7 @@ export function HeroSection() {
           <BookingCta className="w-full sm:w-auto" />
           <Link
             href="/showcase"
+            prefetch={false}
             className="inline-flex h-11 w-full items-center justify-center rounded-lg border border-white/20 px-6 text-sm font-medium text-zinc-200 transition-colors hover:border-white/30 sm:w-auto"
           >
             See the 14-Day Blueprint
