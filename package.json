@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "enforce": "node scripts/enforce-agent-rules.mjs",
-    "check": "npm run lint && npm run enforce && npm run build"
+    "check": "npm run lint && npm run enforce && npm run build",
+    "generate-diagrams": "node scripts/generate-architecture-diagrams.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.42.2",
@@ -25,6 +26,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.12",
+    "jsdom": "^30.0.1",
+    "puppeteer": "^25.8.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
