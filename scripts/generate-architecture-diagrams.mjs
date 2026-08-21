@@ -107,7 +107,16 @@ async function main() {
     const vbMatch = svg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/);
     const w = vbMatch ? vbMatch[1] : "3108";
     const h = vbMatch ? vbMatch[2] : "587";
-    const outSvg = svg.replace('width="100%"', 'width="' + w + '" height="' + h + '"');
+    let outSvg = svg.replace('width="100%"', 'width="' + w + '" height="' + h + '"');
+
+    // Fix HTML void elements inside foreignObjects that break XML parsing.
+    // Mermaid emits <br> (HTML-style) but .svg files are parsed as XML, which
+    // treats <br> as an opening tag requiring </br>. Replace with <br/>.
+    // Covers: <br>, <br />, <br clear=...> → <br/>
+    outSvg = outSvg.replace(/<br(\s[^>]*)?>/g, "<br/>");
+    // Also cover any other potential bare HTML void elements
+    outSvg = outSvg.replace(/<hr(\s[^>]*)?>/g, "<hr/>");
+    outSvg = outSvg.replace(/<img(\s[^>]*?)>/gi, "<img$1/>");
 
     const outPath = path.join(outDir, title.file + ".svg");
     writeFileSync(outPath, outSvg, "utf8");
