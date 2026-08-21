@@ -83,9 +83,16 @@ async function main() {
     const styleInject = "\n  " + "<style>" + SVG_FIXES.join("\n    ") + "</style>";
     const fixedSvg = svg.replace("</style>", "</style>" + styleInject);
 
+    // Replace width="100%" with explicit px dimensions from the viewBox
+    // so browsers can determine intrinsic size when used as <img>.
+    const vbMatch = fixedSvg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/);
+    const w = vbMatch ? vbMatch[1] : "3108";
+    const h = vbMatch ? vbMatch[2] : "587";
+    const outSvg = fixedSvg.replace('width="100%"', 'width="' + w + '" height="' + h + '"');
+
     const outPath = path.join(outDir, title.file + ".svg");
-    writeFileSync(outPath, fixedSvg, "utf8");
-    const sizeKB = (Buffer.byteLength(fixedSvg, "utf8") / 1024).toFixed(1);
+    writeFileSync(outPath, outSvg, "utf8");
+    const sizeKB = (Buffer.byteLength(outSvg, "utf8") / 1024).toFixed(1);
     console.log("  " + title.file + ".svg (" + sizeKB + " KB) — " + title.label);
   }
 
