@@ -83,8 +83,7 @@ async function main() {
     const styleInject = "\n  " + "<style>" + SVG_FIXES.join("\n    ") + "</style>";
     const fixedSvg = svg.replace("</style>", "</style>" + styleInject);
 
-    // Replace width="100%" with explicit px dimensions from the viewBox
-    // so browsers can determine intrinsic size when used as <img>.
+    // Replace width="100%" with explicit px dimensions from the viewBox.
     const vbMatch = fixedSvg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/);
     const w = vbMatch ? vbMatch[1] : "3108";
     const h = vbMatch ? vbMatch[2] : "587";
@@ -93,7 +92,36 @@ async function main() {
     const outPath = path.join(outDir, title.file + ".svg");
     writeFileSync(outPath, outSvg, "utf8");
     const sizeKB = (Buffer.byteLength(outSvg, "utf8") / 1024).toFixed(1);
-    console.log("  " + title.file + ".svg (" + sizeKB + " KB) — " + title.label);
+    console.log("  " + title.file + ".svg (" + sizeKB + " KB)");
+
+    // Render to PNG by loading the SVG in the page, taking a
+    // full-page screenshot, then optimizing with sharp.
+    const svgHtml =
+      "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><style>body{margin:0;background:#1f2020;}</style></head><body style=\"width:max-content;min-width:100%\">" +
+      outSvg +
+      "</body></html>";
+    await page.setContent(svgHtml, { waitUntil: "load", timeout: 30000 });
+    await page.waitForSelector("svg", { timeout: 10000 });
+
+    const dims = await page.$eval("svg", (el) => ({
+      width: Math.ceil(el.getBoundingClientRect().width),
+      height: Math.ceil(el.getBoundingClientRect().height),
+    }));
+    await page.setViewport({ width: Math.min(dims.width, 2800), height: dims.height + 20 });
+
+    const rawPng = await page.screenshot({ type: "png", fullPage: true });
+
+    // Optimize with sharp — resize to display width (~1400px).
+    const sharp = (await import("sharp")).default;
+    const pngOut = await sharp(rawPng)
+      .resize({ width: 1400, withoutEnlargement: true })
+      .png({ compressionLevel: 9 })
+      .toBuffer();
+
+    const pngPath = path.join(outDir, title.file + ".png");
+    writeFileSync(pngPath, pngOut);
+    const pngKB = (pngOut.length / 1024).toFixed(1);
+    console.log("  " + title.file + ".png (" + pngKB + " KB) — " + title.label);
   }
 
   await browser.close();
