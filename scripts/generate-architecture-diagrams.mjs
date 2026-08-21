@@ -23,12 +23,7 @@ function extractMermaidBlocks(markdown) {
   return blocks;
 }
 
-const SVG_FIXES = [
-  ".edgeLabel, .edgeLabel p, .edgeLabel span { color: #f5f5f5 !important; font-size: 13px !important; }",
-  ".label, .nodeLabel, .node text, text.label { font-size: 14px !important; }",
-  ".nodeLabel { font-size: 15px !important; font-weight: 600 !important; }",
-  ".edgeLabel foreignObject { overflow: visible !important; }",
-];
+
 
 async function main() {
   console.log("Step 1/3: Fetching architecture.md...");
@@ -52,7 +47,37 @@ async function main() {
   await page.setContent("<html><body></body></html>");
   await page.addScriptTag({ content: mermaidSrc });
   await page.evaluate(() => {
-    mermaid.initialize({ startOnLoad: false, theme: "dark", securityLevel: "strict" });
+    mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: "strict",
+      theme: "base",
+      themeVariables: {
+        fontFamily: '"Geist", "Geist Fallback", sans-serif',
+        primaryColor: "rgba(59,130,246,0.12)",
+        primaryTextColor: "#93c5fd",
+        primaryBorderColor: "rgba(59,130,246,0.4)",
+        secondaryColor: "rgba(255,255,255,0.04)",
+        secondaryTextColor: "#a1a1aa",
+        secondaryBorderColor: "rgba(255,255,255,0.1)",
+        tertiaryColor: "rgba(34,197,94,0.1)",
+        tertiaryTextColor: "#86efac",
+        tertiaryBorderColor: "rgba(34,197,94,0.3)",
+        lineColor: "rgba(255,255,255,0.15)",
+        background: "#09090b",
+        mainBkg: "#09090b",
+        nodeBorder: "rgba(255,255,255,0.12)",
+        clusterBkg: "rgba(255,255,255,0.03)",
+        clusterBorder: "rgba(255,255,255,0.08)",
+        titleColor: "#f5f5f5",
+        edgeLabelBackground: "transparent",
+      },
+      themeCSS: [
+        ".node .nodeLabel { font-family: Geist, 'Geist Fallback', sans-serif !important; }",
+        ".label text, .nodeLabel text, text.label { font-family: Geist, 'Geist Fallback', sans-serif !important; }",
+        ".edgeLabel, .edgeLabel p, .edgeLabel span { font-family: Geist, 'Geist Fallback', sans-serif !important; color: #a1a1aa !important; font-size: 13px !important; }",
+        ".edgeLabel foreignObject { overflow: visible !important; }",
+      ].join("\n"),
+    });
   });
 
   const outDir = path.join(root, "public", "diagrams");
@@ -62,8 +87,6 @@ async function main() {
     const code = blocks[i];
     const title = DIAGRAM_TITLES[i];
     if (!title) continue;
-
-    const safeCode = JSON.stringify(code);
 
     const svg = await page.evaluate((code) => {
       const container = document.createElement("div");
@@ -80,14 +103,11 @@ async function main() {
 
     if (!svg) throw new Error("No SVG produced for " + title.file);
 
-    const styleInject = "\n  " + "<style>" + SVG_FIXES.join("\n    ") + "</style>";
-    const fixedSvg = svg.replace("</style>", "</style>" + styleInject);
-
     // Replace width="100%" with explicit px dimensions from the viewBox.
-    const vbMatch = fixedSvg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/);
+    const vbMatch = svg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/);
     const w = vbMatch ? vbMatch[1] : "3108";
     const h = vbMatch ? vbMatch[2] : "587";
-    const outSvg = fixedSvg.replace('width="100%"', 'width="' + w + '" height="' + h + '"');
+    const outSvg = svg.replace('width="100%"', 'width="' + w + '" height="' + h + '"');
 
     const outPath = path.join(outDir, title.file + ".svg");
     writeFileSync(outPath, outSvg, "utf8");
@@ -97,7 +117,7 @@ async function main() {
     // Render to PNG by loading the SVG in the page, taking a
     // full-page screenshot, then optimizing with sharp.
     const svgHtml =
-      "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><style>body{margin:0;background:#1f2020;}</style></head><body style=\"width:max-content;min-width:100%\">" +
+      "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><style>body{margin:0;background:#09090b;}</style></head><body style=\"width:max-content;min-width:100%\">" +
       outSvg +
       "</body></html>";
     await page.setContent(svgHtml, { waitUntil: "load", timeout: 30000 });

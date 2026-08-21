@@ -157,7 +157,7 @@ export function ArchitecturePage() {
                 what&apos;s built and checked today; dashed blue is verified but
                 on-demand; dashed grey is target state we haven&apos;t built yet. Every
                 verified claim traces to a decision record in the reference
-                implementation — fetched live from it, not a snapshot.
+                implementation — pre-rendered from it, not a snapshot.
               </p>
             </div>
             <LiveArchitectureDiagrams />

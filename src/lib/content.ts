@@ -435,7 +435,7 @@ export const technicalReference = {
 export const evidence = {
   eyebrow: "Proof, not promises",
   headline: "Verify it yourself.",
-  sub: "Everything below links to the actual reference implementation — Terraform modules, decision records, and live evidence — not a marketing snapshot. The diagrams above are fetched live from that repository.",
+  sub: "Everything below links to the actual reference implementation — Terraform modules, decision records, and live evidence — not a marketing snapshot. The diagrams above are pre-rendered from that repository.",
   links: [
     {
       label: "The repository",
@@ -454,7 +454,7 @@ export const evidence = {
     },
     {
       label: "Architecture source",
-      description: "The single source of truth for the diagrams above — fetched live from this file.",
+      description: "The single source of truth for the diagrams above — pre-rendered from this file.",
       href: `${IDP_REPO_URL}/-/blob/main/docs/architecture/architecture.md`,
     },
     {
@@ -492,7 +492,7 @@ export const landingEvidence = {
     },
     {
       label: "Architecture source",
-      description: "Single source of truth for the live diagrams — fetched directly from this file.",
+      description: "Single source of truth for the diagrams — pre-rendered from this file.",
       href: `${IDP_REPO_URL}/-/blob/main/docs/architecture/architecture.md`,
     },
   ],
