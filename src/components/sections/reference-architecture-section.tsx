@@ -1,10 +1,11 @@
 "use client";
 
-import { Fragment } from "react";
 import Link from "next/link";
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { ArrowRight, User, GitBranch, Workflow, Server, Cloud, Rocket } from "lucide-react";
 import { FadeIn } from "@/lib/motion";
 import { architecture } from "@/lib/content";
+
+const stageIcons = [User, GitBranch, Workflow, Server, Cloud, Rocket];
 
 export function ReferenceArchitectureSection() {
   return (
@@ -22,50 +23,75 @@ export function ReferenceArchitectureSection() {
           </p>
         </FadeIn>
 
-        <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
-          <FadeIn>
-            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
-              <ol className="space-y-1">
-                {architecture.flow.map((step, i) => (
-                  <Fragment key={step}>
+        {/* Simplified golden path flow */}
+        <FadeIn>
+          <div className="overflow-x-auto pb-4">
+            <div className="mx-auto flex min-w-fit items-start justify-center gap-0">
+              {architecture.flow.map((step, i) => {
+                const Icon = stageIcons[i];
+                const isAccent = i === 1; // "PlatformBox Golden Path"
+                return (
+                  <div key={step} className="flex items-start">
+                    {/* Connector arrow between stages */}
                     {i > 0 && (
-                      <li aria-hidden className="flex justify-center py-1 text-zinc-600">
-                        <ArrowDown className="h-4 w-4" />
-                      </li>
+                      <div className="flex shrink-0 items-center pt-12">
+                        <div className="h-px w-6 bg-white/15 sm:w-10" />
+                        <div className="-ml-1 h-0 w-0 border-b-[5px] border-l-[7px] border-t-[5px] border-b-transparent border-l-white/20 border-t-transparent" />
+                      </div>
                     )}
-                    <li
-                      className={`rounded-lg border px-4 py-3 text-sm font-medium ${
-                        i === 1
-                          ? "border-accent/40 bg-accent/10 text-accent-hover"
-                          : "border-white/10 bg-zinc-950/40 text-white"
-                      }`}
+
+                    {/* Stage card */}
+                    <div
+                      className={
+                        "flex w-28 shrink-0 flex-col items-center gap-3 rounded-xl border p-4 text-center sm:w-36 sm:p-5 " +
+                        (isAccent
+                          ? "border-accent/50 bg-accent/[0.08]"
+                          : "border-white/10 bg-white/[0.03]")
+                      }
                     >
-                      {step}
-                    </li>
-                  </Fragment>
-                ))}
-              </ol>
+                      <div
+                        className={
+                          "flex h-12 w-12 items-center justify-center rounded-xl border " +
+                          (isAccent
+                            ? "border-accent/40 bg-accent/10 text-accent"
+                            : "border-white/10 bg-zinc-950 text-zinc-400")
+                        }
+                      >
+                        <Icon className="h-6 w-6" strokeWidth={1.5} />
+                      </div>
+                      <div>
+                        <p
+                          className={
+                            "text-sm font-semibold leading-tight " +
+                            (isAccent ? "text-accent-hover" : "text-white")
+                          }
+                        >
+                          {step}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          </FadeIn>
-          <FadeIn delay={0.1}>
-            <div className="flex h-full flex-col justify-center rounded-xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
-              <p className="text-sm leading-relaxed text-zinc-400 sm:text-base">
-                PlatformBox sits between your developers and your stack: it owns the golden path and
-                the developer experience, while your tools and infrastructure stay exactly where they
-                are.
-              </p>
-              <div className="mt-6">
-                <Link
-                  href={architecture.ctaHref}
-                  className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/20 px-6 text-sm font-medium text-zinc-200 transition-colors hover:border-white/30"
-                >
-                  {architecture.ctaLabel}
-                  <ArrowRight className="h-4 w-4" aria-hidden />
-                </Link>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
+          </div>
+
+          {/* Caption row */}
+          <div className="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+            <p className="text-sm leading-relaxed text-zinc-400">
+              PlatformBox sits between your developers and your stack — it owns
+              the golden path and the developer experience, while your tools and
+              infrastructure stay exactly where they are.
+            </p>
+            <Link
+              href={architecture.ctaHref}
+              className="inline-flex h-11 shrink-0 items-center gap-2 rounded-lg border border-white/20 px-6 text-sm font-medium text-zinc-200 transition-colors hover:border-white/30"
+            >
+              {architecture.ctaLabel}
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
