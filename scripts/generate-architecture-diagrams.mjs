@@ -62,7 +62,7 @@ async function main() {
         tertiaryColor: "rgba(34,197,94,0.1)",
         tertiaryTextColor: "#86efac",
         tertiaryBorderColor: "rgba(34,197,94,0.3)",
-        lineColor: "rgba(255,255,255,0.15)",
+        lineColor: "rgba(255,255,255,0.35)",
         background: "#09090b",
         mainBkg: "#09090b",
         nodeBorder: "rgba(255,255,255,0.12)",
