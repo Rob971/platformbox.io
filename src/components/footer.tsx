@@ -15,7 +15,7 @@ export function Footer() {
             <div className="flex items-center gap-2">
               <PlatformBoxLogoIcon className="h-5 w-5" />
               <p className="text-sm font-semibold text-foreground">
-                PlatformBox<span className="text-accent">.io</span>
+                {"PlatformBox"}<span className="text-accent">.io</span>
               </p>
             </div>
             <p className="mt-3 max-w-xs text-xs leading-relaxed text-muted">
