@@ -32,7 +32,7 @@ export function Header({ showHomeLink = false }: HeaderProps) {
           className="flex shrink-0 items-center gap-2.5 text-sm font-semibold tracking-tight text-foreground"
         >
           <PlatformBoxLogoIcon className="h-7 w-7" />
-          {"PlatformBox"}<span className="text-accent">.io</span>
+          <span>PlatformBox<span className="text-accent">.io</span></span>
         </Link>
 
         {/* Desktop nav */}
