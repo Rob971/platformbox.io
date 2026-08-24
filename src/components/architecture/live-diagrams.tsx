@@ -16,25 +16,25 @@ const DIAGRAMS: DiagramSpec[] = [
     src: "/diagrams/golden-path.svg",
     label: "Golden Path — Developer Flow",
     description:
-      "Flowchart of the golden path: a developer pushes code through CI validation and Terraform apply into AWS; application changes are built and scanned, pushed to the container registry, and deployed to EKS Fargate.",
+      "The full developer path: infrastructure changes flow from git push through CI validation into AWS. Application changes (demo-service) build, scan (Trivy), push to the container registry, and deploy to EKS Fargate via a self-hosted CI runner (ADR-011). Feature branches deploy to preview environments (ADR-015). GitOps reconciliation via ArgoCD is cluster-level proven (ADR-016).",
   },
   {
     src: "/diagrams/platform-infra.svg",
     label: "Platform Infrastructure",
     description:
-      "Flowchart of the six platform layers as deployed on AWS: network, compute, delivery, security, observability, and the Terraform that provisions them.",
+      "Six platform layers deployed on AWS: network (VPC, NAT), compute (EKS Fargate, apply-up/destroy-down), delivery (CI/CD, self-hosted runner, GitLab registry), security (GuardDuty, KMS, OIDC), observability (planned), and the Terraform modules that provision it all. Both dev and prod Terraform environments exist (ADR-013).",
   },
   {
     src: "/diagrams/security-auth.svg",
     label: "Security & Auth Flow",
     description:
-      "Flowchart of the security and authentication flow: human access via IAM Identity Center SSO, keyless CI access via OIDC federation, and KMS plus S3 encryption, with ArgoCD and Pod Identity shown as planned.",
+      "Human access via IAM Identity Center SSO. Keyless CI-to-AWS auth via OIDC federation (ADR-010), with separate IAM roles for dev, qa/uat, and preview (ADR-014, ADR-015). KMS encryption for EKS secrets and CloudWatch logs. ArgoCD is cluster-level proven (ADR-016); Pod Identity for workload-to-AWS access is still planned.",
   },
   {
     src: "/diagrams/promotion-sequence.svg",
     label: "Promotion Sequence — Dev Push to Release",
     description:
-      "Sequence diagram of artifact promotion: a push builds the image once, then the same digest is promoted through the dev, qa, and uat namespaces, with a human approver gating uat; production is shown as planned but not yet wired.",
+      "Full artifact promotion pipeline: feature-branch push deploys to preview (ADR-015, auto-torn down on merge/close), merge to main builds once and promotes the same digest through dev, qa, and uat namespaces — with a human approver gating uat via AWS-STS-enforced IAM role. Production infrastructure exists (ADR-013) but has no CI deploy job yet.",
     initialFit: false,
   },
 ];

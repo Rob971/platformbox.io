@@ -424,8 +424,8 @@ export const technicalReference = {
     { name: "Kubernetes / EKS", role: "Application runtime", text: "Workloads run on EKS with least-privilege RBAC, per-team namespaces, autoscaling, and a monitoring baseline." },
     { name: "GitHub / GitLab", role: "Source and workflow", text: "Repositories, merge requests, and approvals stay where your teams already work. PlatformBox wires them into the golden path." },
     { name: "CI/CD", role: "Application delivery", text: "A standard pipeline builds, scans (Trivy), and promotes each service from commit to production — no per-team pipeline maintenance." },
-    { name: "GitOps", role: "Declared desired state", text: "The cluster reconciles to the state declared in Git. Deployments are pull-based, reviewable, and auditable." },
-    { name: "IAM", role: "Least-privilege access", text: "Scoped roles for humans and workloads. Keyless CI-to-AWS auth via OIDC — no static credentials, no secrets to rotate. Environment separation by default." },
+    { name: "GitOps", role: "Declared desired state", text: "The cluster reconciles to the state declared in Git (ArgoCD, cluster-level proven per ADR-016). Deployments are pull-based, reviewable, and auditable." },
+    { name: "IAM", role: "Least-privilege access", text: "Scoped roles for humans and workloads. Keyless CI-to-AWS auth via OIDC — no static credentials. Separate IAM roles per environment tier (dev, qa/uat, preview, prod) — environment separation by default, enforced by AWS STS." },
     { name: "Security", role: "Built into the path", text: "Trivy scanning in CI, GuardDuty threat detection, encrypted secrets and storage, and policy checks run on every change." },
     { name: "Observability", role: "See what's running", text: "Metrics, logs, and traces with a baseline dashboard and alerting for every service." },
     { name: "Platform ownership", role: "You own it all", text: "Everything lives in your accounts and repositories. No proprietary runtime, no lock-in." },
@@ -449,7 +449,7 @@ export const evidence = {
     },
     {
       label: "Decision records",
-      description: "Eight ADRs explaining each architecture choice — and what was rejected.",
+      description: "Sixteen ADRs explaining each architecture choice — and what was rejected.",
       href: `${IDP_REPO_URL}/-/tree/main/docs/decisions`,
     },
     {
