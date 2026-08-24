@@ -17,7 +17,7 @@ export function BookingCta({
   const styles =
     variant === "primary"
       ? "bg-accent-strong text-white hover:bg-accent"
-      : "border border-white/20 text-zinc-200 hover:border-white/30";
+      : "border border-border-strong text-foreground-secondary hover:border-border-strong";
 
   return (
     <a

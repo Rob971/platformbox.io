@@ -75,13 +75,13 @@ export function K8sArchitecture() {
       </svg>
 
       {hoveredId && (
-        <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="mt-3 rounded-lg border border-white/10 bg-white/[0.03] p-3">
-          <p className="text-xs text-zinc-300">{layers.find((l) => l.id === hoveredId)?.description}</p>
+        <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="mt-3 rounded-lg border border-border bg-card p-3">
+          <p className="text-xs text-foreground-secondary">{layers.find((l) => l.id === hoveredId)?.description}</p>
         </motion.div>
       )}
 
       {!hoveredId && (
-        <p className="mt-3 text-center text-xs text-zinc-600">Hover over the diagram to explore each layer.</p>
+        <p className="mt-3 text-center text-xs text-muted">Hover over the diagram to explore each layer.</p>
       )}
     </div>
   );

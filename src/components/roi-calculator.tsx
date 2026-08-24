@@ -20,7 +20,7 @@ export function RoiCalculator() {
   const scalePct = annualEngineeringCost > 0 ? Math.round((scale / annualEngineeringCost) * 100) : null;
 
   const rangeThumb =
-    "w-full h-1.5 rounded-full appearance-none cursor-pointer bg-white/10 accent-accent [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:cursor-pointer";
+    "w-full h-1.5 rounded-full appearance-none cursor-pointer bg-card-hover accent-accent [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:cursor-pointer";
 
   return (
     <motion.div
@@ -28,7 +28,7 @@ export function RoiCalculator() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="rounded-xl border border-white/10 bg-white/[0.03] p-6 sm:p-8"
+      className="rounded-xl border border-border bg-card p-6 sm:p-8"
     >
       <div className="mb-6 flex items-center gap-2">
         <Calculator className="h-4 w-4 text-accent" />
@@ -41,7 +41,7 @@ export function RoiCalculator() {
         <div className="space-y-6">
           <div>
             <div className="mb-2 flex items-center justify-between">
-              <label htmlFor="roi-engineers" className="text-xs font-medium text-zinc-400">
+              <label htmlFor="roi-engineers" className="text-xs font-medium text-foreground-tertiary">
                 Engineers doing platform/infra work
               </label>
               <input
@@ -51,7 +51,7 @@ export function RoiCalculator() {
                 max={500}
                 value={engineers}
                 onChange={(e) => setEngineers(Math.max(1, Number(e.target.value) || 1))}
-                className="w-20 rounded-md border border-white/10 bg-zinc-900/60 px-2 py-1 text-sm font-semibold text-white tabular-nums outline-none focus:border-accent/50"
+                className="w-20 rounded-md border border-border bg-card/60 px-2 py-1 text-sm font-semibold text-foreground tabular-nums outline-none focus:border-accent/50"
               />
             </div>
             <input
@@ -67,10 +67,10 @@ export function RoiCalculator() {
 
           <div>
             <div className="mb-2 flex items-center justify-between">
-              <label htmlFor="roi-hours" className="text-xs font-medium text-zinc-400">
+              <label htmlFor="roi-hours" className="text-xs font-medium text-foreground-tertiary">
                 Hours/week per engineer
               </label>
-              <span className="text-sm font-semibold text-white tabular-nums">
+              <span className="text-sm font-semibold text-foreground tabular-nums">
                 {hoursPerWeek}
               </span>
             </div>
@@ -87,11 +87,11 @@ export function RoiCalculator() {
 
           <div>
             <div className="mb-2 flex items-center justify-between">
-              <label htmlFor="roi-cost" className="text-xs font-medium text-zinc-400">
+              <label htmlFor="roi-cost" className="text-xs font-medium text-foreground-tertiary">
                 Loaded hourly cost
               </label>
               <div className="flex items-center gap-1">
-                <span className="text-zinc-500">€</span>
+                <span className="text-muted">€</span>
                 <input
                   id="roi-cost"
                   type="number"
@@ -99,7 +99,7 @@ export function RoiCalculator() {
                   max={300}
                   value={hourlyCost}
                   onChange={(e) => setHourlyCost(Math.max(20, Number(e.target.value) || 20))}
-                  className="w-20 rounded-md border border-white/10 bg-zinc-900/60 px-2 py-1 text-sm font-semibold text-white tabular-nums outline-none focus:border-accent/50"
+                  className="w-20 rounded-md border border-border bg-card/60 px-2 py-1 text-sm font-semibold text-foreground tabular-nums outline-none focus:border-accent/50"
                 />
               </div>
             </div>
@@ -107,10 +107,10 @@ export function RoiCalculator() {
 
           <div>
             <div className="mb-2 flex items-center justify-between">
-              <label htmlFor="roi-waste" className="text-xs font-medium text-zinc-400">
-                Monthly cloud waste <span className="text-zinc-600">(optional)</span>
+              <label htmlFor="roi-waste" className="text-xs font-medium text-foreground-tertiary">
+                Monthly cloud waste <span className="text-muted">(optional)</span>
               </label>
-              <span className="text-sm font-semibold text-white tabular-nums">
+              <span className="text-sm font-semibold text-foreground tabular-nums">
                 €{monthlyWaste.toLocaleString()}
               </span>
             </div>
@@ -127,58 +127,58 @@ export function RoiCalculator() {
           </div>
         </div>
 
-        <div className="space-y-3 rounded-lg border border-white/10 bg-zinc-950/50 p-4">
+        <div className="space-y-3 rounded-lg border border-border bg-background/50 p-4">
           <div className="flex items-center justify-between">
-            <span className="flex items-center gap-1.5 text-xs text-zinc-400">
+            <span className="flex items-center gap-1.5 text-xs text-foreground-tertiary">
               <Clock className="h-3 w-3" />
               Engineering cost absorbed
             </span>
-            <span className="text-sm font-medium text-white tabular-nums">
+            <span className="text-sm font-medium text-foreground tabular-nums">
               €{annualEngineeringCost.toLocaleString()}/yr
             </span>
           </div>
 
           <div className="flex items-center justify-between">
-            <span className="flex items-center gap-1.5 text-xs text-zinc-400">
+            <span className="flex items-center gap-1.5 text-xs text-foreground-tertiary">
               <TrendingUp className="h-3 w-3" />
               Cloud waste
             </span>
-            <span className="text-sm font-medium text-white tabular-nums">
+            <span className="text-sm font-medium text-foreground tabular-nums">
               €{annualWaste.toLocaleString()}/yr
             </span>
           </div>
 
-          <div className="border-t border-white/10 pt-3">
+          <div className="border-t border-border pt-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-zinc-400">
+              <span className="text-xs font-medium text-foreground-tertiary">
                 Estimated annual cost
               </span>
-              <span className="text-sm font-semibold text-white tabular-nums">
+              <span className="text-sm font-semibold text-foreground tabular-nums">
                 €{totalAnnual.toLocaleString()}
               </span>
             </div>
           </div>
 
-          <div className="border-t border-white/10 pt-3">
+          <div className="border-t border-border pt-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-zinc-400">
+              <span className="text-xs text-foreground-tertiary">
                 PlatformBox Launch (one-time)
               </span>
-              <span className="text-xs text-zinc-300 tabular-nums">€20,000</span>
+              <span className="text-xs text-foreground-secondary tabular-nums">€20,000</span>
             </div>
             {launchPct !== null && (
-              <p className="mt-1 text-[11px] text-zinc-500">
+              <p className="mt-1 text-[11px] text-muted">
                 {launchPct}% of your annual engineering estimate
               </p>
             )}
             <div className="mt-2 flex items-center justify-between">
-              <span className="text-xs text-zinc-400">
+              <span className="text-xs text-foreground-tertiary">
                 PlatformBox Scale (one-time)
               </span>
-              <span className="text-xs text-zinc-300 tabular-nums">€39,000</span>
+              <span className="text-xs text-foreground-secondary tabular-nums">€39,000</span>
             </div>
             {scalePct !== null && (
-              <p className="mt-1 text-[11px] text-zinc-500">
+              <p className="mt-1 text-[11px] text-muted">
                 {scalePct}% of your annual engineering estimate
               </p>
             )}

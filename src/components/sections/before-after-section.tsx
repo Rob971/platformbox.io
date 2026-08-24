@@ -13,7 +13,7 @@ interface PathListProps {
 function PathList({ title, steps, tone }: PathListProps) {
   const isBefore = tone === "before";
   return (
-    <div className="h-full rounded-xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+    <div className="h-full rounded-xl border border-border bg-card p-6 sm:p-8">
       <p
         className={`mb-5 text-[10px] font-medium uppercase tracking-[0.15em] ${
           isBefore ? "text-red-400" : "text-green-400"
@@ -35,7 +35,7 @@ function PathList({ title, steps, tone }: PathListProps) {
                 <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
               )}
             </span>
-            <span className={`text-sm leading-relaxed ${isBefore ? "text-zinc-400" : "font-medium text-zinc-200"}`}>
+            <span className={`text-sm leading-relaxed ${isBefore ? "text-foreground-tertiary" : "font-medium text-foreground-secondary"}`}>
               {step}
             </span>
           </li>
@@ -47,16 +47,16 @@ function PathList({ title, steps, tone }: PathListProps) {
 
 export function BeforeAfterSection() {
   return (
-    <section id="before-after" className="border-t border-white/10">
+    <section id="before-after" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
         <FadeIn className="mb-12 max-w-2xl">
-          <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
+          <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-foreground-tertiary">
             {beforeAfter.eyebrow}
           </p>
-          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             {beforeAfter.headline}
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-zinc-400 sm:text-base">
+          <p className="mt-4 text-sm leading-relaxed text-foreground-tertiary sm:text-base">
             {beforeAfter.sub}
           </p>
         </FadeIn>

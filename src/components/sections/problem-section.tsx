@@ -8,13 +8,13 @@ export function ProblemSection() {
   return (
     <section id="problem" className="mx-auto max-w-6xl px-6 pb-20 pt-16 sm:pt-20">
       <FadeIn className="mb-12 max-w-2xl">
-        <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
+        <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-foreground-tertiary">
           {problem.eyebrow}
         </p>
-        <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+        <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
           {problem.headline}
         </h2>
-        <p className="mt-4 text-sm leading-relaxed text-zinc-400 sm:text-base">
+        <p className="mt-4 text-sm leading-relaxed text-foreground-tertiary sm:text-base">
           {problem.sub}
         </p>
       </FadeIn>
@@ -30,10 +30,10 @@ export function ProblemSection() {
           <motion.li
             key={point}
             variants={fadeUp}
-            className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-5"
+            className="flex items-start gap-3 rounded-xl border border-border bg-card p-5"
           >
             <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
-            <span className="text-sm leading-relaxed text-zinc-300">{point}</span>
+            <span className="text-sm leading-relaxed text-foreground-secondary">{point}</span>
           </motion.li>
         ))}
       </motion.ul>

@@ -3,7 +3,7 @@
 ## Brand direction
 
 - Follow an ultra-premium B2B visual language inspired by Linear and Vercel.
-- Keep the experience strictly dark-mode oriented.
+- Support both light and dark mode — default to dark but let users toggle via the header button. All colors use semantic CSS custom properties (--background, --foreground, --border, etc.) that switch automatically.
 - Preserve the existing design tokens in src/app/globals.css.
 
 ## Brand identity (immutable)

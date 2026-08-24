@@ -26,7 +26,7 @@ export function DeliverableCard({
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] transition-all hover:border-white/20">
+    <div className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-border-strong">
       {/* Header */}
       <button
         onClick={() => setExpanded(!expanded)}
@@ -39,14 +39,14 @@ export function DeliverableCard({
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between gap-2">
-              <h3 className="text-base font-medium text-white">{title}</h3>
+              <h3 className="text-base font-medium text-foreground">{title}</h3>
               <ChevronDown
-                className={`h-4 w-4 shrink-0 text-zinc-500 transition-transform ${
+                className={`h-4 w-4 shrink-0 text-muted transition-transform ${
                   expanded ? "rotate-180" : ""
                 }`}
               />
             </div>
-            <p className="mt-1.5 text-sm leading-relaxed text-zinc-400">{text}</p>
+            <p className="mt-1.5 text-sm leading-relaxed text-foreground-tertiary">{text}</p>
           </div>
         </div>
       </button>
@@ -66,8 +66,8 @@ export function DeliverableCard({
               {code ? (
                 <CodeBlock code={code} language={codeLanguage} />
               ) : !children ? (
-                <div className="rounded-lg border border-white/10 bg-zinc-900/50 p-4">
-                  <p className="text-xs text-zinc-500">Configuration details available upon request.</p>
+                <div className="rounded-lg border border-border bg-card/50 p-4">
+                  <p className="text-xs text-muted">Configuration details available upon request.</p>
                 </div>
               ) : null}
             </div>

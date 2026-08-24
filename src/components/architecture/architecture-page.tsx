@@ -63,10 +63,10 @@ export function ArchitecturePage() {
           <p className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-accent">
             {technicalReference.eyebrow}
           </p>
-          <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl md:leading-[1.08]">
+          <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl md:leading-[1.08]">
             {technicalReference.headline}
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-foreground-tertiary sm:text-lg">
             {technicalReference.sub}
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -74,7 +74,7 @@ export function ArchitecturePage() {
             <Link
               href="/showcase"
               prefetch={false}
-              className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/20 px-5 text-sm font-medium text-white transition-colors hover:bg-white/5"
+              className="inline-flex h-11 items-center gap-2 rounded-lg border border-border-strong px-5 text-sm font-medium text-foreground transition-colors hover:bg-surface-hover"
             >
               See the 14-Day Blueprint
               <ArrowRight className="h-4 w-4" aria-hidden />
@@ -82,16 +82,16 @@ export function ArchitecturePage() {
           </div>
         </section>
 
-        <section id="path" className="border-t border-white/10">
+        <section id="path" className="border-t border-border">
           <div className="mx-auto max-w-3xl px-6 py-16">
-            <h2 className="mb-8 text-center text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+            <h2 className="mb-8 text-center text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
               The path from developer to production
             </h2>
             <ol className="space-y-1">
               {architecture.flow.map((step, i) => (
                 <Fragment key={step}>
                   {i > 0 && (
-                    <li aria-hidden className="flex justify-center py-1 text-zinc-600">
+                    <li aria-hidden className="flex justify-center py-1 text-muted">
                       <ArrowDown className="h-4 w-4" />
                     </li>
                   )}
@@ -99,7 +99,7 @@ export function ArchitecturePage() {
                     className={`rounded-lg border px-5 py-3.5 text-center text-sm font-medium ${
                       i === 1
                         ? "border-accent/40 bg-accent/10 text-accent-hover"
-                        : "border-white/10 bg-white/[0.03] text-white"
+                        : "border-border bg-card text-foreground"
                     }`}
                   >
                     {step}
@@ -110,13 +110,13 @@ export function ArchitecturePage() {
           </div>
         </section>
 
-        <section id="components" className="border-t border-white/10">
+        <section id="components" className="border-t border-border">
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
             <div className="mb-10 max-w-2xl">
-              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-foreground-tertiary">
                 The components
               </p>
-              <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 What each layer does — and who owns it.
               </h2>
             </div>
@@ -126,16 +126,16 @@ export function ArchitecturePage() {
                 return (
                   <div
                     key={section.name}
-                    className="rounded-xl border border-white/10 bg-white/[0.03] p-6"
+                    className="rounded-xl border border-border bg-card p-6"
                   >
-                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-zinc-950 text-accent">
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-background text-accent">
                       <Icon className="h-5 w-5" strokeWidth={1.75} />
                     </div>
-                    <p className="text-sm font-semibold text-white">{section.name}</p>
+                    <p className="text-sm font-semibold text-foreground">{section.name}</p>
                     <p className="mt-0.5 text-xs font-medium uppercase tracking-[0.12em] text-accent-hover">
                       {section.role}
                     </p>
-                    <p className="mt-3 text-sm leading-relaxed text-zinc-400">{section.text}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-foreground-tertiary">{section.text}</p>
                   </div>
                 );
               })}
@@ -143,16 +143,16 @@ export function ArchitecturePage() {
           </div>
         </section>
 
-        <section id="diagrams" className="border-t border-white/10">
+        <section id="diagrams" className="border-t border-border">
           <div className="mx-auto max-w-none px-6 py-16 md:py-24">
             <div className="mb-10 max-w-2xl">
               <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-accent">
                 Verified vs. planned
               </p>
-              <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 What&apos;s actually built today.
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-zinc-400 sm:text-base">
+              <p className="mt-3 text-sm leading-relaxed text-foreground-tertiary sm:text-base">
                 Drawn from applied Terraform state, not the roadmap. Solid green marks
                 what&apos;s built and checked today; dashed blue is verified but
                 on-demand; dashed grey is target state we haven&apos;t built yet. Every
@@ -164,16 +164,16 @@ export function ArchitecturePage() {
           </div>
         </section>
 
-        <section id="verify" className="border-t border-white/10">
+        <section id="verify" className="border-t border-border">
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
             <div className="mb-10 max-w-2xl">
               <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-accent">
                 {evidence.eyebrow}
               </p>
-              <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                 {evidence.headline}
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-zinc-400 sm:text-base">
+              <p className="mt-3 text-sm leading-relaxed text-foreground-tertiary sm:text-base">
                 {evidence.sub}
               </p>
             </div>
@@ -186,19 +186,19 @@ export function ArchitecturePage() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group rounded-xl border border-white/10 bg-white/[0.03] p-6 transition-colors hover:border-accent/40 hover:bg-white/[0.05]"
+                    className="group rounded-xl border border-border bg-card p-6 transition-colors hover:border-accent/40 hover:bg-surface-hover"
                   >
                     <div className="mb-3 flex items-center justify-between">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-zinc-950 text-accent">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-background text-accent">
                         <Icon className="h-5 w-5" strokeWidth={1.75} />
                       </div>
                       <ArrowUpRight
-                        className="h-4 w-4 text-zinc-500 transition-colors group-hover:text-accent"
+                        className="h-4 w-4 text-muted transition-colors group-hover:text-accent"
                         aria-hidden
                       />
                     </div>
-                    <p className="text-sm font-semibold text-white">{link.label}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-zinc-400">{link.description}</p>
+                    <p className="text-sm font-semibold text-foreground">{link.label}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-foreground-tertiary">{link.description}</p>
                   </a>
                 );
               })}
@@ -206,12 +206,12 @@ export function ArchitecturePage() {
           </div>
         </section>
 
-        <section id="book" className="border-t border-white/10">
+        <section id="book" className="border-t border-border">
           <div className="mx-auto max-w-5xl px-6 py-24 text-center">
-            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
               {finalCta.headline}
             </h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-zinc-400 sm:text-base">
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-foreground-tertiary sm:text-base">
               {finalCta.sub}
             </p>
             <div className="mt-8">

@@ -24,13 +24,13 @@ export function HeroSection() {
         </motion.p>
         <motion.h1
           variants={fadeUp}
-          className="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl md:leading-[1.08]"
+          className="max-w-4xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl md:leading-[1.08]"
         >
           {hero.headline}
         </motion.h1>
         <motion.p
           variants={fadeUp}
-          className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg"
+          className="mt-6 max-w-2xl text-base leading-relaxed text-foreground-tertiary sm:text-lg"
         >
           {hero.sub}
         </motion.p>
@@ -42,14 +42,14 @@ export function HeroSection() {
           <Link
             href="/showcase"
             prefetch={false}
-            className="inline-flex h-11 w-full items-center justify-center rounded-lg border border-white/20 px-6 text-sm font-medium text-zinc-200 transition-colors hover:border-white/30 sm:w-auto"
+            className="inline-flex h-11 w-full items-center justify-center rounded-lg border border-border-strong px-6 text-sm font-medium text-foreground-secondary transition-colors hover:border-border-strong sm:w-auto"
           >
             See the 14-Day Blueprint
           </Link>
         </motion.div>
         <motion.p
           variants={fadeUp}
-          className="mt-4 max-w-md text-sm text-zinc-500"
+          className="mt-4 max-w-md text-sm text-muted"
         >
           {BOOKING_NOTE}
         </motion.p>

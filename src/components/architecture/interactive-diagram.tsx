@@ -150,19 +150,19 @@ export function InteractiveDiagram({
   const fitToWidth = () => setZoom("fit");
 
   const controlClass =
-    "flex h-7 w-7 items-center justify-center text-zinc-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent";
+    "flex h-7 w-7 items-center justify-center text-foreground-tertiary transition-colors hover:bg-surface-hover hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent";
 
   if (loading) {
     return (
-      <div className="rounded-xl border border-white/10">
-        <div className="flex items-center gap-2 border-b border-white/10 px-5 py-3">
+      <div className="rounded-xl border border-border">
+        <div className="flex items-center gap-2 border-b border-border px-5 py-3">
           <span className="text-xs font-semibold text-accent">
             Figure {figureNumber}
           </span>
-          <span className="text-sm font-medium text-white">{title}</span>
+          <span className="text-sm font-medium text-foreground">{title}</span>
         </div>
-        <div className="flex items-center justify-center bg-white/[0.02] py-24">
-          <Loader2 className="h-6 w-6 animate-spin text-zinc-600" />
+        <div className="flex items-center justify-center bg-surface py-24">
+          <Loader2 className="h-6 w-6 animate-spin text-muted" />
         </div>
       </div>
     );
@@ -170,15 +170,15 @@ export function InteractiveDiagram({
 
   if (error) {
     return (
-      <div className="rounded-xl border border-white/10">
-        <div className="flex items-center gap-2 border-b border-white/10 px-5 py-3">
+      <div className="rounded-xl border border-border">
+        <div className="flex items-center gap-2 border-b border-border px-5 py-3">
           <span className="text-xs font-semibold text-accent">
             Figure {figureNumber}
           </span>
-          <span className="text-sm font-medium text-white">{title}</span>
+          <span className="text-sm font-medium text-foreground">{title}</span>
         </div>
-        <div className="flex flex-col items-center justify-center gap-3 bg-white/[0.02] py-20 text-center">
-          <p className="text-sm text-zinc-500">Unable to load diagram.</p>
+        <div className="flex flex-col items-center justify-center gap-3 bg-surface py-20 text-center">
+          <p className="text-sm text-muted">Unable to load diagram.</p>
           <a
             href={src}
             target="_blank"
@@ -193,17 +193,17 @@ export function InteractiveDiagram({
   }
 
   return (
-    <figure className="rounded-xl border border-white/10">
-      <figcaption className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-3">
+    <figure className="rounded-xl border border-border">
+      <figcaption className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-3">
         <div className="flex items-center gap-2">
           <span className="text-xs font-semibold text-accent">
             Figure {figureNumber}
           </span>
-          <span className="text-sm font-medium text-white">{title}</span>
+          <span className="text-sm font-medium text-foreground">{title}</span>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <div className="flex items-center rounded-md border border-white/10">
+          <div className="flex items-center rounded-md border border-border">
             <button
               type="button"
               onClick={zoomOut}
@@ -214,7 +214,7 @@ export function InteractiveDiagram({
             </button>
             <span
               aria-live="polite"
-              className="min-w-12 border-x border-white/10 px-2 text-center text-[11px] tabular-nums text-zinc-400"
+              className="min-w-12 border-x border-border px-2 text-center text-[11px] tabular-nums text-foreground-tertiary"
             >
               {Math.round(scale * 100)}%
             </span>
@@ -231,7 +231,7 @@ export function InteractiveDiagram({
               onClick={fitToWidth}
               aria-label={`Fit ${title} to width`}
               title="Fit to width"
-              className={`${controlClass} rounded-r-md border-l border-white/10`}
+              className={`${controlClass} rounded-r-md border-l border-border`}
             >
               <Scan className="h-3.5 w-3.5" aria-hidden />
             </button>
@@ -241,7 +241,7 @@ export function InteractiveDiagram({
             href={src}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 rounded-md border border-white/10 px-2.5 py-1.5 text-[11px] text-zinc-400 transition-colors hover:border-white/25 hover:text-white"
+            className="flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1.5 text-[11px] text-foreground-tertiary transition-colors hover:border-border-strong hover:text-foreground"
             title="Open full resolution SVG"
           >
             <Maximize2 className="h-3 w-3" aria-hidden />
@@ -250,10 +250,10 @@ export function InteractiveDiagram({
         </div>
       </figcaption>
 
-      <div className="bg-[#09090b] p-4">
+      <div className="bg-background p-4">
         <div
           ref={scrollRef}
-          className="overflow-auto"
+          className="overflow-auto diagram-light-invert"
           style={{ maxHeight: "75vh" }}
         >
           <div
@@ -274,9 +274,9 @@ export function InteractiveDiagram({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-t border-white/10"
+            className="overflow-hidden border-t border-border"
           >
-            <p className="px-5 py-2.5 text-xs text-zinc-400">
+            <p className="px-5 py-2.5 text-xs text-foreground-tertiary">
               <span className="text-accent">Element:</span> {activeLabel}
             </p>
           </motion.div>
@@ -285,9 +285,9 @@ export function InteractiveDiagram({
             key="hint"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="border-t border-white/10 px-5 py-2.5"
+            className="border-t border-border px-5 py-2.5"
           >
-            <p className="text-center text-[11px] text-zinc-600">
+            <p className="text-center text-[11px] text-muted">
               Hover over the diagram to inspect each element · use the controls
               to zoom.
             </p>

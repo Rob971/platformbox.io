@@ -48,14 +48,14 @@ const LEGEND_ITEMS = [
 export function LiveArchitectureDiagrams() {
   return (
     <div className="space-y-8">
-      <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-lg border border-white/10 bg-white/[0.02] px-5 py-3">
+      <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-lg border border-border bg-surface px-5 py-3">
         {LEGEND_ITEMS.map((item) => (
           <div key={item.label} className="flex items-center gap-2">
             <span
               className={`inline-block h-2.5 w-2.5 rounded-sm ${item.color}`}
               aria-hidden
             />
-            <span className="text-xs text-zinc-400">{item.label}</span>
+            <span className="text-xs text-foreground-tertiary">{item.label}</span>
           </div>
         ))}
       </div>
@@ -71,7 +71,7 @@ export function LiveArchitectureDiagrams() {
         />
       ))}
 
-      <p className="text-center text-xs text-zinc-500">
+      <p className="text-center text-xs text-muted">
         Source:{" "}
         <a
           href={`${IDP_REPO_URL}/-/blob/main/docs/architecture/architecture.md`}
@@ -82,7 +82,7 @@ export function LiveArchitectureDiagrams() {
           architecture.md
         </a>{" "}
         — pre-rendered from the reference implementation. To refresh, run{" "}
-        <code className="rounded bg-white/[0.06] px-1.5 py-0.5 font-mono text-[11px] text-zinc-400">
+        <code className="rounded bg-card-hover px-1.5 py-0.5 font-mono text-[11px] text-foreground-tertiary">
           npm run generate-diagrams
         </code>
         .

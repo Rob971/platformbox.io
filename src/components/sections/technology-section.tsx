@@ -5,16 +5,16 @@ import { technology } from "@/lib/content";
 
 export function TechnologySection() {
   return (
-    <section id="technology" className="border-t border-white/10">
+    <section id="technology" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
         <FadeIn className="mb-12 max-w-2xl">
-          <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
+          <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-foreground-tertiary">
             {technology.eyebrow}
           </p>
-          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             {technology.headline}
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-zinc-400 sm:text-base">
+          <p className="mt-4 text-sm leading-relaxed text-foreground-tertiary sm:text-base">
             {technology.sub}
           </p>
         </FadeIn>
@@ -27,13 +27,13 @@ export function TechnologySection() {
                 className={`flex flex-col gap-1 rounded-xl border p-5 ${
                   item.accent
                     ? "border-accent/40 bg-accent/[0.06]"
-                    : "border-white/10 bg-white/[0.03]"
+                    : "border-border bg-card"
                 }`}
               >
-                <span className={`text-sm font-semibold ${item.accent ? "text-accent-hover" : "text-white"}`}>
+                <span className={`text-sm font-semibold ${item.accent ? "text-accent-hover" : "text-foreground"}`}>
                   {item.name}
                 </span>
-                <span className="text-sm leading-relaxed text-zinc-400">{item.role}</span>
+                <span className="text-sm leading-relaxed text-foreground-tertiary">{item.role}</span>
               </li>
             ))}
           </ul>

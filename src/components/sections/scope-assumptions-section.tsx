@@ -6,16 +6,16 @@ import { scopeAssumptions } from "@/lib/content";
 
 export function ScopeAssumptionsSection() {
   return (
-    <section id="scope" className="border-t border-white/10">
+    <section id="scope" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
         <FadeIn className="mb-12 max-w-2xl">
-          <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
+          <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-foreground-tertiary">
             {scopeAssumptions.eyebrow}
           </p>
-          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             {scopeAssumptions.headline}
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-zinc-400 sm:text-base">
+          <p className="mt-4 text-sm leading-relaxed text-foreground-tertiary sm:text-base">
             {scopeAssumptions.sub}
           </p>
         </FadeIn>
@@ -26,7 +26,7 @@ export function ScopeAssumptionsSection() {
               {scopeAssumptions.items.map((item) => (
                 <li
                   key={item}
-                  className="flex gap-3 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-zinc-300"
+                  className="flex gap-3 rounded-lg border border-border bg-card px-4 py-3 text-sm text-foreground-secondary"
                 >
                   <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={2} />
                   <span>{item}</span>
@@ -35,8 +35,8 @@ export function ScopeAssumptionsSection() {
             </ul>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <div className="flex h-full items-center rounded-xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
-              <p className="text-sm leading-relaxed text-zinc-300 sm:text-base">
+            <div className="flex h-full items-center rounded-xl border border-border bg-card p-6 sm:p-8">
+              <p className="text-sm leading-relaxed text-foreground-secondary sm:text-base">
                 {scopeAssumptions.note}
               </p>
             </div>

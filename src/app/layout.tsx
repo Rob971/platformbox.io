@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "@/lib/theme";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,6 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 const siteUrl = "https://www.platformbox.io";
+
+const ANTI_FLASH = `(function(){try{var t=localStorage.getItem("platformbox-theme");if(t==="light"){document.documentElement.classList.remove("dark")}else if(!t){document.documentElement.classList.add("dark")}}catch(e){}})()`;
 
 export const metadata: Metadata = {
   title: "PlatformBox.io — Your Developer Platform. Live in 14 Working Days.",
@@ -59,9 +62,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-50 font-sans">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: ANTI_FLASH }} />
+      </head>
+      <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -113,7 +120,7 @@ export default function RootLayout({
             }),
           }}
         />
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

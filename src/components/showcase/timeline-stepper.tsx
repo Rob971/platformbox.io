@@ -12,13 +12,13 @@ export function TimelineStepper() {
             {week.phases.map((phase) => (
               <div
                 key={phase.day}
-                className="rounded-xl border border-white/10 bg-white/[0.03] p-5 transition-colors hover:border-white/20"
+                className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-border-strong"
               >
                 <p className="text-[11px] font-medium uppercase tracking-[0.15em] text-accent">
                   {phase.day}
                 </p>
-                <p className="mt-2 text-sm font-semibold text-white">{phase.title}</p>
-                <p className="mt-1.5 text-xs leading-relaxed text-zinc-400">
+                <p className="mt-2 text-sm font-semibold text-foreground">{phase.title}</p>
+                <p className="mt-1.5 text-xs leading-relaxed text-foreground-tertiary">
                   {phase.description}
                 </p>
               </div>
