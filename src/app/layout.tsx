@@ -66,6 +66,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* System-level favicon switching before JS hydrates.
+            The ThemeProvider overrides the all-media one on mount/toggle. */}
+        <link rel="icon" href="/favicon.ico" media="(prefers-color-scheme: dark)" />
+        <link rel="icon" href="/favicon-light.ico" media="(prefers-color-scheme: light)" />
+        <link rel="icon" href="/favicon.ico" />
         <script dangerouslySetInnerHTML={{ __html: ANTI_FLASH }} />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">

@@ -26,33 +26,70 @@ function icoEntry(width, height, offset, size) {
   return buf;
 }
 
-async function main() {
-  const source = readFileSync(path.join(root, "public/brand-logo.png"));
+async function buildIco(source, bg) {
   const sizes = [16, 32, 48];
   const pngBuffers = [];
   let offset = 6 + sizes.length * 16;
 
   for (const size of sizes) {
-    const buf = await sharp(source).resize(size, size).png().toBuffer();
+    // Composite the source (transparent logo) onto a solid background
+    // so the favicon always has the correct background for its theme.
+    const bgLayer = await sharp({
+      create: { width: size, height: size, channels: 4, background: bg },
+    })
+      .png()
+      .toBuffer();
+    const logo = await sharp(source).resize(size, size).png().toBuffer();
+    const buf = await sharp(bgLayer)
+      .composite([{ input: logo }])
+      .png()
+      .toBuffer();
     pngBuffers.push({ size, buf, offset });
     offset += buf.length;
-    console.log("  " + size + "x" + size + " PNG (" + buf.length + " bytes)");
+    console.log(`  ${size}x${size} (${buf.length} bytes)`);
   }
 
-  const entries = pngBuffers.map(function(p) {
-    return icoEntry(p.size, p.size, p.offset, p.buf.length);
-  });
-
-  const ico = Buffer.concat([icoHeader(sizes.length), ...entries, ...pngBuffers.map(function(p) { return p.buf; })]);
-  writeFileSync(path.join(root, "public/favicon.ico"), ico);
-  console.log("favicon.ico (" + ico.length + " bytes, " + sizes.length + " sizes)");
-
-  const appleBuf = await sharp(source).resize(180, 180).png().toBuffer();
-  writeFileSync(path.join(root, "public/apple-touch-icon.png"), appleBuf);
-  console.log("apple-touch-icon.png (180x180, " + appleBuf.length + " bytes)");
+  const entries = pngBuffers.map((p) =>
+    icoEntry(p.size, p.size, p.offset, p.buf.length),
+  );
+  return Buffer.concat([
+    icoHeader(sizes.length),
+    ...entries,
+    ...pngBuffers.map((p) => p.buf),
+  ]);
 }
 
-main().catch(function(err) {
+export async function main() {
+  const source = readFileSync(path.join(root, "public/brand-logo.png"));
+
+  // Dark-mode favicon (default) — composited on #09090b
+  console.log("favicon.ico (dark background #09090b):");
+  const darkIco = await buildIco(source, "#09090b");
+  writeFileSync(path.join(root, "public/favicon.ico"), darkIco);
+  console.log(`  → ${darkIco.length} bytes`);
+
+  // Light-mode favicon — same dark-background mark for now.
+  // TODO: design a light-mode variant of the logo mark where the
+  // left bar uses a darker stroke so it reads on white. When ready,
+  // change the background below to #ffffff or #f1f5f9 and update
+  // the source SVG in scripts/logo-source.svg accordingly.
+  console.log("favicon-light.ico (same as dark for now):");
+  const lightIco = await buildIco(source, "#09090b");
+  writeFileSync(path.join(root, "public/favicon-light.ico"), lightIco);
+  console.log(`  → ${lightIco.length} bytes`);
+
+  // Apple touch icon — 180×180, dark background (same as the favicon default)
+  const appleBuf = await sharp(source)
+    .resize(180, 180)
+    .png()
+    .toBuffer();
+  writeFileSync(path.join(root, "public/apple-touch-icon.png"), appleBuf);
+  console.log(
+    `apple-touch-icon.png (180x180, ${appleBuf.length} bytes)`,
+  );
+}
+
+main().catch((err) => {
   console.error("Failed:", err);
   process.exit(1);
 });
