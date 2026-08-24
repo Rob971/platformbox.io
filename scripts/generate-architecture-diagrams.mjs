@@ -11,6 +11,7 @@ const DIAGRAM_TITLES = [
   { file: "golden-path", label: "Golden Path — Developer Flow" },
   { file: "platform-infra", label: "Platform Infrastructure" },
   { file: "security-auth", label: "Security & Auth Flow" },
+  { file: "promotion-sequence", label: "Promotion Sequence — Dev Push to Release" },
 ];
 
 function extractMermaidBlocks(markdown) {
@@ -70,12 +71,34 @@ async function main() {
         clusterBorder: "rgba(255,255,255,0.08)",
         titleColor: "#f5f5f5",
         edgeLabelBackground: "transparent",
+        // Sequence diagram (promotion flow) — dark-theme colors so the
+        // actors, messages, notes and activations match the site instead of
+        // falling back to mermaid's light defaults.
+        actorBkg: "#18181b",
+        actorBorder: "#3f3f46",
+        actorTextColor: "#fafafa",
+        actorLineColor: "#52525b",
+        signalColor: "#71717a",
+        signalTextColor: "#e4e4e7",
+        labelBoxBkgColor: "#18181b",
+        labelBoxBorderColor: "#3f3f46",
+        labelTextColor: "#a1a1aa",
+        loopTextColor: "#a1a1aa",
+        noteBkgColor: "#1e293b",
+        noteTextColor: "#e4e4e7",
+        noteBorderColor: "#334155",
+        activationBkgColor: "#1e293b",
+        activationBorderColor: "#3f3f46",
+        sequenceNumberColor: "#a1a1aa",
       },
       themeCSS: [
         ".node .nodeLabel { font-family: Geist, 'Geist Fallback', sans-serif !important; }",
         ".label text, .nodeLabel text, text.label { font-family: Geist, 'Geist Fallback', sans-serif !important; }",
         ".edgeLabel, .edgeLabel p, .edgeLabel span { font-family: Geist, 'Geist Fallback', sans-serif !important; color: #a1a1aa !important; font-size: 13px !important; }",
         ".edgeLabel foreignObject { overflow: visible !important; }",
+        // The "prod" region in the promotion sequence uses a hardcoded light
+        // `rect rgb(...)` band in the source markdown; force it dark here.
+        ".rect { fill: rgba(255,255,255,0.03) !important; }",
       ].join("\n"),
     });
   });
@@ -103,11 +126,20 @@ async function main() {
 
     if (!svg) throw new Error("No SVG produced for " + title.file);
 
-    // Replace width="100%" with explicit px dimensions from the viewBox.
-    const vbMatch = svg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/);
+    // Mermaid emits `width="100%"` plus a `viewBox`. Replace that with explicit
+    // pixel dimensions so the SVG has an intrinsic size the site can measure.
+    // Sequence diagrams use a viewBox with negative min-x/min-y offsets
+    // (e.g. `viewBox="-50 -10 1835 1437"`), so capture width/height from any
+    // position, not just `0 0`.
+    const vbMatch = svg.match(/viewBox="[-\d.]+ [-\d.]+ ([\d.]+) ([\d.]+)"/);
     const w = vbMatch ? vbMatch[1] : "3108";
     const h = vbMatch ? vbMatch[2] : "587";
     let outSvg = svg.replace('width="100%"', 'width="' + w + '" height="' + h + '"');
+
+    // Drop mermaid's `max-width` cap (sequence diagrams add `style="max-width:…"`).
+    // The site sizes the SVG itself (fit + zoom), so a hard cap would block
+    // zooming and break the scroll container.
+    outSvg = outSvg.replace(/\s*style="[^"]*max-width[^"]*"/g, "");
 
     // Fix HTML void elements inside foreignObjects that break XML parsing.
     // Mermaid emits <br> (HTML-style) but .svg files are parsed as XML, which
