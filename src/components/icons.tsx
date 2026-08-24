@@ -14,7 +14,7 @@ export function PlatformBoxLogoIcon({ className }: { className?: string }) {
   const id = useId();
   return (
     <svg className={className} viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-      <rect width="512" height="512" rx="112" className="fill-background" />
+      <rect width="512" height="512" rx="112" fill="#09090b" />
       <defs>
         <linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#3b82f6" />
