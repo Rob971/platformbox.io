@@ -28,11 +28,15 @@ export const outcome = {
   headline: "From Git push to production, on a standardized golden path.",
   sub: "The product isn't Terraform or Kubernetes. The product is the shorter path — one self-service workflow every team follows.",
   steps: [
-    { label: "Developer", note: "Pushes code" },
+    { label: "Code", note: "Developer pushes code" },
     { label: "Golden Path", note: "Standard template" },
     { label: "Preview", note: "Ephemeral environment" },
-    { label: "Security", note: "Automated checks" },
-    { label: "Production", note: "Promoted via pipeline" },
+    { label: "DEV", note: "Deploy & verify" },
+    { label: "QA", note: "Automated gate" },
+    { label: "UAT", note: "Manual approval" },
+    { label: "PROD", note: "Promoted to production" },
+    { label: "Observe", note: "Prometheus + Grafana" },
+    { label: "Repeat", note: "Same path, every service" },
   ],
 } as const;
 
@@ -73,14 +77,14 @@ export const delivery = {
     {
       label: "Week 2 — Delivery path (Days 6–10)",
       phases: [
-        { day: "Days 6–7", title: "CI/CD & environments", description: "Standard pipelines, preview environments, and the production deployment workflow." },
+        { day: "Days 6–7", title: "CI/CD & environments", description: "Standard pipelines, preview environments, DEV → QA → UAT promotion gates, GitOps reconciliation, and the production deployment workflow." },
         { day: "Days 8–10", title: "Golden paths & preview", description: "Service template, repository bootstrap, and preview environments." },
       ],
     },
     {
       label: "Week 3 — Production readiness (Days 11–14)",
       phases: [
-        { day: "Days 11–12", title: "Security & observability", description: "Security controls, an observability baseline, and cost controls." },
+        { day: "Days 11–12", title: "Security & observability", description: "Security controls, live-proven application observability (Prometheus + Grafana), and cost controls." },
         { day: "Days 13–14", title: "Validation & handover", description: "End-to-end validation, documentation, training, and a phase-2 backlog." },
       ],
     },
@@ -245,6 +249,8 @@ export const day14 = {
     "See the service documented and registered",
     "Hand the platform over to the internal team",
   ],
+  distinction:
+    "The reference implementation proves this path through UAT today — the production application deployment is the final, openly-tracked milestone. Your engagement delivers the full path to production on your stack.",
 } as const;
 
 export const whyDifferent = {
@@ -394,6 +400,10 @@ export const faqs: Faq[] = [
     q: "How are security concerns handled?",
     a: "Baseline security is part of every engagement: least-privilege IAM, encrypted storage and secrets, and automated security checks in the pipeline. Advanced governance is available in Scale and Enterprise.",
   },
+  {
+    q: "What does \"production-ready\" mean here?",
+    a: "Two distinct things. The promise: a production-ready golden path and implementation approach delivered in 14 working days, subject to the agreed assessment and scope. The reference implementation: a production-shaped, cost-optimized, publicly inspectable build that proves the pattern — infrastructure and access model verified, and the application path proven end-to-end through UAT, with the production application deployment as the final, openly-tracked milestone.",
+  },
 ];
 
 export const blueprint = {
@@ -407,7 +417,7 @@ export const blueprint = {
     { title: "Environments", text: "Preview and production environments with automated provisioning." },
     { title: "Golden path", text: "The standard service template and repository bootstrap developers follow." },
     { title: "Security", text: "Least-privilege access, encrypted secrets, and automated checks in the pipeline." },
-    { title: "Observability", text: "Metrics, logs, and traces with a baseline dashboard and alerting." },
+    { title: "Observability", text: "Prometheus + Grafana — metrics and dashboards, live-proven across both services (ADR-018)." },
     { title: "Production validation", text: "End-to-end validation of the golden path against a real workload." },
     { title: "Handover", text: "Documentation, runbooks, training, and the phase-2 backlog." },
   ],
@@ -427,7 +437,7 @@ export const technicalReference = {
     { name: "GitOps", role: "Declared desired state", text: "The cluster reconciles to the state declared in Git (ArgoCD, cluster-level proven per ADR-016). Deployments are pull-based, reviewable, and auditable." },
     { name: "IAM", role: "Least-privilege access", text: "Scoped roles for humans and workloads. Keyless CI-to-AWS auth via OIDC — no static credentials. Separate IAM roles per environment tier (dev, qa/uat, preview, prod) — environment separation by default, enforced by AWS STS." },
     { name: "Security", role: "Built into the path", text: "Trivy scanning in CI, GuardDuty threat detection, encrypted secrets and storage, and policy checks run on every change." },
-    { name: "Observability", role: "See what's running", text: "Metrics, logs, and traces with a baseline dashboard and alerting for every service." },
+    { name: "Observability", role: "See what's running", text: "Prometheus + Grafana — metrics and dashboards, live-proven across both services and all three tiers (ADR-018)." },
     { name: "Platform ownership", role: "You own it all", text: "Everything lives in your accounts and repositories. No proprietary runtime, no lock-in." },
   ],
 } as const;
@@ -449,7 +459,7 @@ export const evidence = {
     },
     {
       label: "Decision records",
-      description: "Sixteen ADRs explaining each architecture choice — and what was rejected.",
+      description: "Eighteen ADRs explaining each architecture choice — and what was rejected.",
       href: `${IDP_REPO_URL}/-/tree/main/docs/decisions`,
     },
     {
@@ -459,7 +469,7 @@ export const evidence = {
     },
     {
       label: "Terraform modules",
-      description: "Network, security, EKS, ECR, and IAM — versioned, reviewed, and reproducible.",
+      description: "Network, security, EKS, IAM, and CI runner — versioned, reviewed, and reproducible.",
       href: `${IDP_REPO_URL}/-/tree/main/terraform`,
     },
   ],
@@ -468,7 +478,7 @@ export const evidence = {
 export const landingEvidence = {
   eyebrow: "Verified, not claimed",
   headline: "Every claim links to real, live evidence.",
-  sub: "The reference implementation is public and inspectable. The decision records are published. The Terraform state output is real — not a marketing snapshot.",
+  sub: "The reference implementation is public and inspectable. The decision records are published. The Terraform state output is real — not a marketing snapshot. Production infrastructure is verified; the production application deployment is the final, openly-tracked milestone.",
   cards: [
     {
       label: "The repository",
@@ -487,7 +497,7 @@ export const landingEvidence = {
     },
     {
       label: "Terraform modules",
-      description: "Network, security, EKS, ECR, and IAM — versioned, reviewed, and reproducible.",
+      description: "Network, security, EKS, IAM, and CI runner — versioned, reviewed, and reproducible.",
       href: `${IDP_REPO_URL}/-/tree/main/terraform`,
     },
     {
@@ -497,13 +507,46 @@ export const landingEvidence = {
     },
   ],
   stats: [
-    { value: "16", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
-    { value: "8", label: "Terraform modules", href: `${IDP_REPO_URL}/-/tree/main/terraform` },
-    { value: "6", label: "Environment tiers live-proven", href: `${IDP_REPO_URL}/-/tree/main/docs/evidence` },
+    { value: "18", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
+    { value: "5", label: "Terraform modules", href: `${IDP_REPO_URL}/-/tree/main/terraform` },
+    { value: "5", label: "Environment tiers proven end-to-end", href: `${IDP_REPO_URL}/-/tree/main/docs/evidence` },
     { value: "1", label: "Public reference implementation", href: IDP_REPO_URL },
   ],
   ctaLabel: "View the full reference architecture",
   ctaHref: "/architecture",
+} as const;
+
+export const operatingModel = {
+  eyebrow: "The operating model",
+  headline: "From architecture proposal to inspectable operating model.",
+  philosophy: "We make software delivery predictable, repeatable — and boring, in the best possible way.",
+  sub: "The reference implementation isn't a diagram. Every item below links to the decision record and live evidence that proves it.",
+  groups: [
+    {
+      title: "Delivery lifecycle",
+      items: ["LOCAL", "PREVIEW", "DEV", "QA", "UAT", "PROD"],
+      note: "Five tiers proven end-to-end; PROD infrastructure and access model verified (ADR-013).",
+      href: `${IDP_REPO_URL}/-/blob/main/docs/architecture/target-operating-model.md`,
+    },
+    {
+      title: "Release engineering",
+      items: ["BUILD ONCE", "IMMUTABLE DIGEST", "PROMOTE", "ROLLBACK"],
+      note: "Digest-pinned promotion with no rebuild, live-proven (ADR-012).",
+      href: `${IDP_REPO_URL}/-/blob/main/docs/decisions/ADR-012-version-promotion-model.md`,
+    },
+    {
+      title: "Platform operation",
+      items: ["GITOPS", "SECURITY", "OBSERVABILITY", "FINOPS"],
+      note: "ArgoCD reconciliation, least-privilege IAM, Prometheus + Grafana, cost-aware ephemeral infrastructure.",
+      href: `${IDP_REPO_URL}/-/tree/main/docs/decisions`,
+    },
+    {
+      title: "Multi-service behaviour",
+      items: ["demo-service", "orders-service"],
+      note: "Two services, independent lifecycles on the same golden path (ADR-017).",
+      href: `${IDP_REPO_URL}/-/blob/main/docs/decisions/ADR-017-second-service.md`,
+    },
+  ],
 } as const;
 
 export const finalCta = {

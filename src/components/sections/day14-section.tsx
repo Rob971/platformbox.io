@@ -64,6 +64,9 @@ export function Day14Section() {
                   </li>
                 ))}
               </ul>
+              <p className="mt-6 rounded-lg border border-border bg-surface px-4 py-3 text-xs leading-relaxed text-foreground-tertiary">
+                {day14.distinction}
+              </p>
               <div className="mt-8 border-t border-border pt-6">
                 <Link
                   href="/showcase"

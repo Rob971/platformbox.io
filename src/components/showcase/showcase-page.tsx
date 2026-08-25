@@ -135,46 +135,25 @@ spec:
           averageUtilization: 70`;
 
 
-const otelCollectorConfig = `receivers:
-  otlp:
-    protocols:
-      grpc:
-        endpoint: 0.0.0.0:4317
-      http:
-        endpoint: 0.0.0.0:4318
-
-processors:
-  batch:
-    timeout: 5s
-    send_batch_size: 512
-  memory_limiter:
-    limit_mib: 512
-    spike_limit_mib: 128
-
-exporters:
-  prometheus:
-    endpoint: "0.0.0.0:9464"
-  loki:
-    endpoint: "http://loki:3100/loki/api/v1/push"
-  otlp/tempo:
-    endpoint: "http://tempo:4317"
-    tls:
-      insecure: true
-
-service:
-  pipelines:
-    traces:
-      receivers: [otlp]
-      processors: [memory_limiter, batch]
-      exporters: [otlp/tempo]
-    metrics:
-      receivers: [otlp]
-      processors: [batch]
-      exporters: [prometheus]
-    logs:
-      receivers: [otlp]
-      processors: [batch]
-      exporters: [loki]`;
+const prometheusScrapeConfig = `# ADR-018 — plain Prometheus over the Prometheus Operator.
+# One scrape job covers both services across all three tiers.
+scrape_configs:
+  - job_name: platformbox-services
+    kubernetes_sd_configs:
+      - role: endpoints
+        namespaces:
+          names:
+            - demo-service
+            - qa
+            - uat
+    relabel_configs:
+      # Only the two application services — never ArgoCD or kube-system.
+      - source_labels: [__meta_kubernetes_service_label_app_kubernetes_io_name]
+        regex: (demo-service|orders-service)
+        action: keep
+      - source_labels: [__meta_kubernetes_endpoint_port_name]
+        regex: http
+        action: keep`;
 
 const backstageCatalog = `apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -355,7 +334,7 @@ export function ShowcasePage() {
             <DeliverableCard icon={InfrastructureIcon} title="Infrastructure as Code" text="Fully modular Terraform templates for self-serve provisioning." code={terraformModule} codeLanguage="Terraform" />
             <DeliverableCard icon={PipelineIcon} title="DevSecOps CI/CD" text="Standardized CI/CD pipelines (GitHub or GitLab) with automated testing and security scanning." code={gitlabCI} codeLanguage="GitLab CI (sample — GitHub Actions available)" />
             <DeliverableCard icon={EphemeralIcon} title="Ephemeral Environments" text="Auto-generated preview environments for every Pull Request to eliminate staging bottlenecks."><EnvDashboard /></DeliverableCard>
-            <DeliverableCard icon={Boxes} title="Production Kubernetes" text="Highly available EKS clusters managed for you with HPA, ingress, and monitoring." code={k8sManifest} codeLanguage="Kubernetes"><K8sArchitecture /></DeliverableCard>
+            <DeliverableCard icon={Boxes} title="Production Kubernetes" text="EKS clusters with HPA, ingress, and monitoring — built on your account and handed to you to own." code={k8sManifest} codeLanguage="Kubernetes"><K8sArchitecture /></DeliverableCard>
           </div>
         </section>
 
@@ -375,14 +354,14 @@ export function ShowcasePage() {
         <section id="platform" className="border-t border-border mx-auto max-w-5xl px-6 pb-20 pt-20">
           <FadeIn className="mb-10 text-center">
             <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-foreground-tertiary">04 / Platform Capabilities</p>
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Built In From Day One</h2>
-            <p className="mt-3 text-sm text-foreground-tertiary">Included in the 14-working-day engagement — observability, developer portal, data, and security built in from day one.</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Proven now. Delivered later.</h2>
+            <p className="mt-3 text-sm text-foreground-tertiary">What the reference implementation proves today, and what ships as an optional Scale or Enterprise extension.</p>
           </FadeIn>
           <div className="grid gap-4 sm:grid-cols-2">
-            <DeliverableCard icon={Gauge} title="Observability Stack" text="OpenTelemetry auto-instrumentation with Prometheus, Grafana, and Loki — every service ships with dashboards and alerts." code={otelCollectorConfig} codeLanguage="OpenTelemetry"><ObservabilityDashboard /></DeliverableCard>
-            <DeliverableCard icon={LayoutDashboard} title="Developer Portal" text="Optional developer portal — a Backstage-ready service catalog and software scaffolder so teams discover, create, and own services autonomously." code={backstageCatalog} codeLanguage="catalog-info.yaml"><BackstagePortal /></DeliverableCard>
-            <DeliverableCard icon={Database} title="Self-Service Databases" text="Declare a database in your service config and get a production-ready, encrypted RDS instance with automated backups — no ticket required." code={terraformRDS} codeLanguage="Terraform"><DatabaseProvisioning /></DeliverableCard>
-            <DeliverableCard icon={KeyRound} title="Secret Management" text="Vault or AWS Secrets Manager integrated with CSI driver — credentials auto-rotate, never touch etcd, and mount as files without code changes." code={externalSecrets} codeLanguage="Kubernetes"><SecretManagement /></DeliverableCard>
+            <DeliverableCard icon={Gauge} title="Observability — proven" text="Prometheus + Grafana, live-proven (ADR-018): 12/12 scrape targets across both services and all three tiers. Ephemeral by design — cost-aware, not an always-on stack." code={prometheusScrapeConfig} codeLanguage="Prometheus"><ObservabilityDashboard /></DeliverableCard>
+            <DeliverableCard icon={LayoutDashboard} title="Developer Portal — optional" text="A Backstage-style service catalog and software scaffolder, delivered as a Scale or Enterprise extension. Not part of the reference implementation." code={backstageCatalog} codeLanguage="catalog-info.yaml"><BackstagePortal /></DeliverableCard>
+            <DeliverableCard icon={Database} title="Self-Service Databases — optional" text="Self-service, encrypted RDS provisioning declared from service config, delivered as a Scale or Enterprise extension." code={terraformRDS} codeLanguage="Terraform"><DatabaseProvisioning /></DeliverableCard>
+            <DeliverableCard icon={KeyRound} title="Secret Management — optional" text="Vault or AWS Secrets Manager productization with the CSI driver, delivered as a Scale or Enterprise extension. KMS-encrypted secrets and least-privilege IAM are already in the baseline." code={externalSecrets} codeLanguage="Kubernetes"><SecretManagement /></DeliverableCard>
           </div>
         </section>
 

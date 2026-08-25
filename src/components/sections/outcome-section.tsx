@@ -2,11 +2,11 @@
 
 import { Fragment } from "react";
 import { motion } from "framer-motion";
-import { User, GitBranch, Eye, ShieldCheck, Rocket, ArrowRight } from "lucide-react";
+import { Code2, GitBranch, Eye, Boxes, ShieldCheck, BadgeCheck, Rocket, Gauge, RefreshCw, ArrowRight } from "lucide-react";
 import { FadeIn, fadeUp, stagger } from "@/lib/motion";
 import { outcome } from "@/lib/content";
 
-const icons = [User, GitBranch, Eye, ShieldCheck, Rocket];
+const icons = [Code2, GitBranch, Eye, Boxes, ShieldCheck, BadgeCheck, Rocket, Gauge, RefreshCw];
 
 export function OutcomeSection() {
   return (

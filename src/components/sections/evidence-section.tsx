@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, GitBranch, ShieldCheck, FileText, Boxes, Layers } from "lucide-react";
 import { FadeIn } from "@/lib/motion";
-import { landingEvidence } from "@/lib/content";
+import { landingEvidence, operatingModel } from "@/lib/content";
 
 const cardIcons = [GitBranch, FileText, ShieldCheck, Boxes, Layers] as const;
 
@@ -74,6 +74,47 @@ export function EvidenceSection() {
                 </p>
               </a>
             ))}
+          </div>
+        </FadeIn>
+
+        {/* Operating model */}
+        <FadeIn delay={0.1}>
+          <div className="mt-10 border-t border-border pt-10">
+            <p className="text-center text-xs font-medium uppercase tracking-[0.2em] text-accent">
+              {operatingModel.eyebrow}
+            </p>
+            <h3 className="mt-3 text-center text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+              {operatingModel.headline}
+            </h3>
+            <p className="mx-auto mt-3 max-w-2xl text-center text-sm font-medium text-foreground-secondary">
+              {operatingModel.philosophy}
+            </p>
+            <p className="mx-auto mt-2 max-w-2xl text-center text-sm leading-relaxed text-foreground-tertiary">
+              {operatingModel.sub}
+            </p>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {operatingModel.groups.map((group) => (
+                <a
+                  key={group.title}
+                  href={group.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group rounded-xl border border-border bg-card p-6 transition-colors hover:border-accent/40 hover:bg-surface-hover"
+                >
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-semibold text-foreground">{group.title}</p>
+                    <ArrowUpRight
+                      className="h-4 w-4 text-muted transition-colors group-hover:text-accent"
+                      aria-hidden
+                    />
+                  </div>
+                  <p className="mt-3 text-sm font-medium tracking-tight text-accent-hover">
+                    {group.items.join("  →  ")}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground-tertiary">{group.note}</p>
+                </a>
+              ))}
+            </div>
           </div>
         </FadeIn>
 

@@ -16,11 +16,11 @@ interface ObsNode {
 }
 
 const nodes: ObsNode[] = [
-  { id: "apps", label: "Applications", description: "Services auto-instrumented with OpenTelemetry SDKs — traces, metrics, and logs captured at the source.", x: 15, y: 10, w: 85, h: 55, icon: Server },
-  { id: "collector", label: "OTel Collector", description: "Sidecar collector receives, processes, and exports telemetry data — no code changes needed after initial wiring.", x: 120, y: 10, w: 85, h: 55, icon: Activity },
-  { id: "prometheus", label: "Prometheus", description: "Time-series metrics database with pre-built alerting rules for SLOs, error rates, and latency.", x: 35, y: 100, w: 85, h: 50, icon: BarChart3 },
-  { id: "grafana", label: "Grafana", description: "Pre-built dashboards for every service: RED metrics, logs, and traces in a single pane of glass.", x: 175, y: 100, w: 85, h: 50, icon: BarChart3 },
-  { id: "loki", label: "Loki", description: "Centralized log aggregation — every service log is shipped, indexed, and queryable from Grafana.", x: 105, y: 110, w: 55, h: 30, icon: List },
+  { id: "apps", label: "Applications", description: "Two Go services — demo-service and orders-service — each exposing /metrics and /healthz on the golden path.", x: 15, y: 10, w: 85, h: 55, icon: Server },
+  { id: "prometheus", label: "Prometheus", description: "Scrapes service metrics — 12/12 targets healthy across both services and all three tiers (dev, qa, uat).", x: 120, y: 10, w: 85, h: 55, icon: BarChart3 },
+  { id: "grafana", label: "Grafana", description: "Pre-built dashboards for route, status, and latency — one view per service and tier.", x: 35, y: 100, w: 85, h: 50, icon: BarChart3 },
+  { id: "targets", label: "12/12 targets", description: "All Prometheus scrape targets up across demo-service and orders-service in dev, qa, and uat.", x: 175, y: 100, w: 85, h: 50, icon: Activity },
+  { id: "ephemeral", label: "Per-session", description: "Deployed with the on-demand cluster — live metrics during each session, cost-aware by design (ADR-018).", x: 105, y: 110, w: 55, h: 30, icon: List },
 ];
 
 export function ObservabilityDashboard() {
@@ -30,7 +30,7 @@ export function ObservabilityDashboard() {
 
   return (
     <div className="w-full max-w-sm mx-auto">
-      <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full h-auto" role="img" aria-label="Observability Architecture">
+      <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full h-auto" role="img" aria-label="Application Observability — Prometheus + Grafana">
         {/* Connection lines */}
         <path d="M100 37 L120 37" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" markerEnd="url(#arrowObs)" />
         <path d="M162 65 L162 95 L77 95 L77 100" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="4 2" />
@@ -87,7 +87,7 @@ export function ObservabilityDashboard() {
                   fontFamily="var(--font-geist-sans), sans-serif"
                   className="pointer-events-none"
                 >
-                  {node.id === "apps" ? "auto-instrumented" : node.id === "collector" ? "receivers → exporters" : node.id === "prometheus" ? "metrics + alerts" : node.id === "grafana" ? "dashboards" : "log aggregation"}
+                  {node.id === "apps" ? "demo + orders" : node.id === "prometheus" ? "metrics" : node.id === "grafana" ? "dashboards" : node.id === "targets" ? "dev · qa · uat" : "on-demand"}
                 </text>
               )}
             </g>
