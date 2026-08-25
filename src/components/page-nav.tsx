@@ -2,7 +2,8 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUp, BookOpen, X } from "lucide-react";
+import { ArrowUp, BookOpen, X, ArrowRight } from "lucide-react";
+import { BOOKING_URL } from "@/lib/constants";
 
 export interface PageNavSection {
   id: string;
@@ -70,6 +71,13 @@ export function PageNav({ sections }: PageNavProps) {
 
   const nav = (id: string) => { scrollToSection(id); setTocOpen(false); setMobileTocOpen(false); };
 
+  // Position context for the mobile bar's center label
+  const currentIndex = sections.findIndex((s) => s.id === active);
+  const currentLabel = currentIndex >= 0 ? sections[currentIndex].label : sections[0]?.label ?? "";
+  const positionLabel = currentIndex >= 0
+    ? `${currentLabel} · ${currentIndex + 1} of ${sections.length}`
+    : `${sections.length} sections`;
+
   return (
     <>
       {/* Desktop: fixed right dot rail + TOC */}
@@ -129,15 +137,25 @@ export function PageNav({ sections }: PageNavProps) {
         ))}
       </nav>
 
-      {/* Mobile: bottom pill bar + TOC button */}
-      <nav className="fixed bottom-6 left-1/2 z-30 flex max-w-[calc(100vw-2rem)] -translate-x-1/2 items-center gap-1 overflow-x-auto rounded-full border border-white/15 bg-background/90 px-2 py-2 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.5)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:hidden" aria-label="Page sections">
-        <button onClick={scrollToTop} className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-surface-hover text-foreground-secondary transition-colors hover:bg-card-hover hover:text-foreground" aria-label="Scroll to top"><ArrowUp className="h-3.5 w-3.5" /></button>
-        <span className="mx-0.5 h-4 w-px shrink-0 bg-card-hover" aria-hidden />
-        <button onClick={() => setMobileTocOpen(!mobileTocOpen)} className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors ${mobileTocOpen ? "bg-accent-strong text-white" : "bg-surface-hover text-foreground-secondary hover:bg-card-hover hover:text-foreground"}`} aria-label={mobileTocOpen ? "Close table of contents" : "Open table of contents"} aria-expanded={mobileTocOpen}><BookOpen className="h-3.5 w-3.5" /></button>
-        <span className="mx-0.5 h-4 w-px shrink-0 bg-card-hover" aria-hidden />
-        {sections.map(({ id, label }) => (
-          <button key={id} onClick={() => nav(id)} className={`shrink-0 whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] font-medium transition-colors ${active === id ? "bg-accent-strong text-white" : "text-foreground-tertiary hover:text-foreground"}`} aria-current={active === id ? "true" : undefined}>{label}</button>
-        ))}
+      {/* Mobile: fixed bottom bar — 3 buttons, always fits */}
+      <nav className="fixed bottom-4 left-1/2 z-30 flex w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 items-center rounded-full border border-white/15 bg-background/90 px-2 py-2 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.5)] lg:hidden" aria-label="Page sections">
+        {/* Back to top */}
+        <button onClick={scrollToTop} className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-foreground-tertiary transition-colors hover:bg-surface-hover hover:text-foreground" aria-label="Scroll to top">
+          <ArrowUp className="h-4 w-4" />
+        </button>
+
+        {/* Position + TOC trigger */}
+        <button onClick={() => setMobileTocOpen(!mobileTocOpen)} className="mx-1 flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full py-2 text-xs font-medium transition-colors hover:bg-surface-hover" aria-label={mobileTocOpen ? "Close table of contents" : "Open table of contents"} aria-expanded={mobileTocOpen}>
+          <BookOpen className="h-3.5 w-3.5 shrink-0 text-accent" aria-hidden />
+          <span className="truncate text-foreground-secondary">{positionLabel}</span>
+        </button>
+
+        {/* Booking CTA */}
+        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-8 shrink-0 items-center gap-1 rounded-full bg-accent-strong px-4 text-xs font-medium text-white transition-colors hover:bg-accent" aria-label="Book a call">
+          <span className="hidden sm:inline">Book a call</span>
+          <span className="sm:hidden">Book</span>
+          <ArrowRight className="h-3 w-3" aria-hidden />
+        </a>
       </nav>
 
       {/* Mobile TOC bottom sheet */}
