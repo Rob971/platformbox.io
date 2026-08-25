@@ -17,7 +17,7 @@ import {
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { BookingCta } from "@/components/booking-cta";
-import { PageNav } from "@/components/page-nav";
+import { PageNav, type PageNavSection } from "@/components/page-nav";
 import { LiveArchitectureDiagrams } from "@/components/architecture/live-diagrams";
 import { technicalReference, architecture, finalCta, evidence } from "@/lib/content";
 
@@ -41,13 +41,13 @@ const evidenceIcons = [
   Boxes,
 ];
 
-const pageSections = [
-  { id: "overview", label: "Overview" },
-  { id: "path", label: "Path" },
-  { id: "components", label: "Components" },
-  { id: "diagrams", label: "Diagrams" },
-  { id: "verify", label: "Verify" },
-  { id: "book", label: "Book" },
+const pageSections: PageNavSection[] = [
+  { id: "overview", label: "Overview", description: "The PlatformBox reference architecture at a glance." },
+  { id: "path", label: "Path", description: "The step-by-step flow from developer to production." },
+  { id: "components", label: "Components", description: "Each layer and who owns it." },
+  { id: "diagrams", label: "Diagrams", description: "Live architecture diagrams, pre-rendered from the IDP repo." },
+  { id: "verify", label: "Verify", description: "Links to the reference implementation — proof, not promises." },
+  { id: "book", label: "Book", description: "Schedule your Platform Assessment." },
 ];
 
 export function ArchitecturePage() {

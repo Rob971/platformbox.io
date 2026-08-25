@@ -21,15 +21,15 @@ import { FaqSection } from "@/components/sections/faq-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 
 const pageSections = [
-  { id: "outcome", label: "Path" },
-  { id: "day-14", label: "Day 14" },
-  { id: "why-not-build", label: "Why us" },
-  { id: "pricing", label: "Pricing" },
-  { id: "assessment", label: "Assessment" },
-  { id: "ownership", label: "Ownership" },
-  { id: "technology", label: "Stack" },
-  { id: "evidence", label: "Proof" },
-  { id: "faq", label: "FAQ" },
+  { id: "outcome", label: "Path", number: "02", description: "The standardized golden path from Git to production." },
+  { id: "day-14", label: "Day 14", number: "05", description: "What is actually working on handover day." },
+  { id: "why-not-build", label: "Why us", number: "06", description: "Why not build the platform internally." },
+  { id: "pricing", label: "Pricing", number: "07", description: "Fixed price. Live in 14 working days." },
+  { id: "assessment", label: "Assessment", number: "08", description: "The risk-reduction step before any commitment." },
+  { id: "ownership", label: "Ownership", number: "10", description: "You own everything — no lock-in." },
+  { id: "technology", label: "Stack", number: "11", description: "Integrates with the tools you already use." },
+  { id: "evidence", label: "Proof", number: "12", description: "Every claim links to the public reference implementation." },
+  { id: "faq", label: "FAQ", number: "15", description: "Common questions, answered directly." },
 ];
 
 export function LandingPage() {
