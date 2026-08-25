@@ -40,7 +40,7 @@ export function LandingPage() {
       <Header />
       <PageNav sections={pageSections} />
 
-      <main className="relative z-10 flex-1">
+      <main className="relative z-10 flex-1" id="main-content">
         <HeroSection />
         <ProblemSection />
         <OutcomeSection />

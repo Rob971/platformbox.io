@@ -23,7 +23,7 @@ export function OwnershipSection() {
         <div className="grid gap-6 lg:grid-cols-2">
           <FadeIn>
             <div className="flex h-full flex-col rounded-xl border border-border bg-card p-6 sm:p-8">
-              <p className="mb-5 text-sm font-semibold text-foreground">Everything lives in your accounts</p>
+              <p className="mb-5 text-sm font-semibold text-foreground" role="heading" aria-level={3}>Everything lives in your accounts</p>
               <ul className="space-y-3">
                 {ownership.items.map((item) => (
                   <li key={item} className="flex gap-2.5 text-sm text-foreground-secondary">

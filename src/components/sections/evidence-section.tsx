@@ -47,7 +47,7 @@ export function EvidenceSection() {
                       aria-hidden
                     />
                   </div>
-                  <p className="text-sm font-semibold text-foreground">{card.label}</p>
+                  <p className="text-sm font-semibold text-foreground" role="heading" aria-level={3}>{card.label}</p>
                   <p className="text-sm leading-relaxed text-foreground-tertiary">{card.description}</p>
                 </a>
               );

@@ -74,6 +74,9 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: ANTI_FLASH }} />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
+        <a href="#main-content" className="skip-to-content">
+          Skip to content
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

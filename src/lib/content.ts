@@ -497,9 +497,9 @@ export const landingEvidence = {
     },
   ],
   stats: [
-    { value: "8", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
-    { value: "14", label: "Terraform modules", href: `${IDP_REPO_URL}/-/tree/main/terraform` },
-    { value: "21", label: "Security controls verified", href: `${IDP_REPO_URL}/-/tree/main/docs/evidence` },
+    { value: "16", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
+    { value: "8", label: "Terraform modules", href: `${IDP_REPO_URL}/-/tree/main/terraform` },
+    { value: "6", label: "Environment tiers live-proven", href: `${IDP_REPO_URL}/-/tree/main/docs/evidence` },
     { value: "1", label: "Public reference implementation", href: IDP_REPO_URL },
   ],
   ctaLabel: "View the full reference architecture",

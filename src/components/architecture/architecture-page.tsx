@@ -58,7 +58,7 @@ export function ArchitecturePage() {
       <Header showHomeLink />
       <PageNav sections={pageSections} />
 
-      <main className="relative z-10 flex-1">
+      <main className="relative z-10 flex-1" id="main-content">
         <section id="overview" className="mx-auto max-w-5xl px-6 pb-16 pt-16 text-center sm:pt-24 md:pt-28">
           <p className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-accent">
             {technicalReference.eyebrow}

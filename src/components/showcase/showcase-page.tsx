@@ -295,7 +295,7 @@ export function ShowcasePage() {
 
       <Header showHomeLink />
 
-      <main className="relative z-10 flex-1">
+      <main className="relative z-10 flex-1" id="main-content">
         <section className="mx-auto max-w-5xl px-6 pb-16 pt-16 text-center sm:pt-24 md:pt-28">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="flex flex-col items-center">
             <motion.p variants={fadeUp} className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-accent">The 14-Day Blueprint</motion.p>

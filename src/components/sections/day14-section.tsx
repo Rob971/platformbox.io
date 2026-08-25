@@ -55,7 +55,7 @@ export function Day14Section() {
 
           <FadeIn delay={0.1}>
             <div className="flex h-full flex-col rounded-xl border border-border bg-card p-6 sm:p-8">
-              <p className="mb-5 text-sm font-semibold text-foreground">On Day 14, your team can:</p>
+              <p className="mb-5 text-sm font-semibold text-foreground" role="heading" aria-level={3}>On Day 14, your team can:</p>
               <ul className="grid gap-3 sm:grid-cols-2">
                 {day14.capabilities.map((item) => (
                   <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-foreground-secondary">

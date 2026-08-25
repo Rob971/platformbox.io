@@ -73,6 +73,7 @@ export function PageNav({ sections }: PageNavProps) {
             onClick={() => scrollToSection(id)}
             className="group relative flex h-2.5 w-2.5 items-center justify-center"
             aria-label={`Scroll to ${label}`}
+            aria-current={active === id ? "true" : undefined}
           >
             <span className="absolute right-full top-1/2 mr-2 -translate-y-1/2 whitespace-nowrap text-xs text-muted opacity-0 transition-opacity group-hover:opacity-100">
               {label}
@@ -117,6 +118,7 @@ export function PageNav({ sections }: PageNavProps) {
                 ? "bg-accent-strong text-white"
                 : "text-foreground-tertiary hover:text-foreground"
             }`}
+            aria-current={active === id ? "true" : undefined}
           >
             {label}
           </button>

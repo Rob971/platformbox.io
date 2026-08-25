@@ -48,7 +48,7 @@ export function AssessmentSection() {
             <div className="flex h-full flex-col rounded-xl border border-border bg-card p-6 sm:p-8">
               <div className="mb-5 flex items-center gap-2">
                 <ClipboardList className="h-4 w-4 text-accent" aria-hidden />
-                <p className="text-sm font-semibold text-foreground">The assessment output</p>
+                <p className="text-sm font-semibold text-foreground" role="heading" aria-level={3}>The assessment output</p>
               </div>
               <ul className="space-y-3">
                 {assessmentSection.outputs.map((item) => (
