@@ -11,6 +11,7 @@ import {
   Lock,
   Server,
   ShieldCheck,
+  Terminal,
   Gauge,
   Workflow,
 } from "lucide-react";
@@ -39,6 +40,7 @@ const evidenceIcons = [
   GitMerge,
   Layers,
   Boxes,
+  Terminal,
 ];
 
 const pageSections: PageNavSection[] = [

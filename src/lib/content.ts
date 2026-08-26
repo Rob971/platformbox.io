@@ -250,7 +250,7 @@ export const day14 = {
     "Hand the platform over to the internal team",
   ],
   distinction:
-    "The reference implementation proves this path through UAT today — the production application deployment is the final, openly-tracked milestone. Your engagement delivers the full path to production on your stack.",
+    "The reference implementation proves this path end-to-end, through to production — both services promoted from UAT's approved build with no rebuild, ArgoCD reconciled to healthy, and a real production rollback demonstrated (ADR-019, ADR-020). Your engagement delivers the same path on your stack.",
 } as const;
 
 export const whyDifferent = {
@@ -402,7 +402,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "What does \"production-ready\" mean here?",
-    a: "Two distinct things. The promise: a production-ready golden path and implementation approach delivered in 14 working days, subject to the agreed assessment and scope. The reference implementation: a production-shaped, cost-optimized, publicly inspectable build that proves the pattern — infrastructure and access model verified, and the application path proven end-to-end through UAT, with the production application deployment as the final, openly-tracked milestone.",
+    a: "Two distinct things. The promise: a production-ready golden path and implementation approach delivered in 14 working days, subject to the agreed assessment and scope. The reference implementation: a production-shaped, cost-optimized, publicly inspectable build that proves the pattern end-to-end — both services promoted from UAT's approved build into production with no rebuild, ArgoCD reconciled to healthy, and a real production rollback demonstrated (ADR-019, ADR-020).",
   },
 ];
 
@@ -428,7 +428,7 @@ export const blueprint = {
 export const technicalReference = {
   eyebrow: "Technical reference",
   headline: "The PlatformBox reference architecture.",
-  sub: "A standardized, provider-neutral path from Git to production — built on your existing AWS and Kubernetes stack.",
+  sub: "A standardized path from Git to production — built on your existing AWS and Kubernetes stack.",
   sections: [
     { name: "Terraform", role: "Infrastructure lifecycle", text: "All infrastructure is defined as versioned Terraform modules, reviewed and applied through CI. Changes are auditable and reversible." },
     { name: "Kubernetes / EKS", role: "Application runtime", text: "Workloads run on EKS with least-privilege RBAC, per-team namespaces, autoscaling, and a monitoring baseline." },
@@ -454,12 +454,12 @@ export const evidence = {
     },
     {
       label: "Live evidence",
-      description: "Real terraform plan output, GuardDuty findings, and a published-pricing cost breakdown against the live account.",
+      description: "Real Terraform plan output, GuardDuty findings, cost breakdown, and dated end-to-end proof files for the golden path, preview, promotion, GitOps, observability, production, and rollback.",
       href: `${IDP_REPO_URL}/-/tree/main/docs/evidence`,
     },
     {
       label: "Decision records",
-      description: "Eighteen ADRs explaining each architecture choice — and what was rejected.",
+      description: "22 ADRs explaining each architecture choice — and what was rejected.",
       href: `${IDP_REPO_URL}/-/tree/main/docs/decisions`,
     },
     {
@@ -472,13 +472,18 @@ export const evidence = {
       description: "Network, security, EKS, IAM, and CI runner — versioned, reviewed, and reproducible.",
       href: `${IDP_REPO_URL}/-/tree/main/terraform`,
     },
+    {
+      label: "Demo runbook",
+      description: "The full lifecycle as a repeatable runbook — local → preview → dev → qa → uat → prod → rollback. Every step individually proven; not yet rehearsed end-to-end.",
+      href: `${IDP_REPO_URL}/-/blob/main/docs/operations/demo-runbook.md`,
+    },
   ],
 } as const;
 
 export const landingEvidence = {
   eyebrow: "Verified, not claimed",
   headline: "Every claim links to real, live evidence.",
-  sub: "The reference implementation is public and inspectable. The decision records are published. The Terraform state output is real — not a marketing snapshot. Production infrastructure is verified; the production application deployment is the final, openly-tracked milestone.",
+  sub: "The reference implementation is public and inspectable. The decision records are published. The Terraform state output is real — not a marketing snapshot. The full path to production is live-proven end-to-end, including a real production rollback.",
   cards: [
     {
       label: "The repository",
@@ -492,7 +497,7 @@ export const landingEvidence = {
     },
     {
       label: "Live evidence",
-      description: "Real Terraform plan output, GuardDuty findings, and cost breakdown against the live account.",
+      description: "Real Terraform plan output, GuardDuty findings, cost breakdown, and dated end-to-end proof files for the golden path, preview, promotion, GitOps, observability, production, and rollback.",
       href: `${IDP_REPO_URL}/-/tree/main/docs/evidence`,
     },
     {
@@ -505,11 +510,16 @@ export const landingEvidence = {
       description: "Single source of truth for the diagrams — pre-rendered from this file.",
       href: `${IDP_REPO_URL}/-/blob/main/docs/architecture/architecture.md`,
     },
+    {
+      label: "Demo runbook",
+      description: "The full lifecycle as a repeatable runbook — local → preview → dev → qa → uat → prod → rollback. Every step individually proven; not yet rehearsed end-to-end.",
+      href: `${IDP_REPO_URL}/-/blob/main/docs/operations/demo-runbook.md`,
+    },
   ],
   stats: [
-    { value: "18", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
+    { value: "22", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
     { value: "5", label: "Terraform modules", href: `${IDP_REPO_URL}/-/tree/main/terraform` },
-    { value: "5", label: "Environment tiers proven end-to-end", href: `${IDP_REPO_URL}/-/tree/main/docs/evidence` },
+    { value: "6", label: "Environment tiers proven end-to-end", href: `${IDP_REPO_URL}/-/tree/main/docs/evidence` },
     { value: "1", label: "Public reference implementation", href: IDP_REPO_URL },
   ],
   ctaLabel: "View the full reference architecture",
@@ -525,7 +535,7 @@ export const operatingModel = {
     {
       title: "Delivery lifecycle",
       items: ["LOCAL", "PREVIEW", "DEV", "QA", "UAT", "PROD"],
-      note: "Five tiers proven end-to-end; PROD infrastructure and access model verified (ADR-013).",
+      note: "Six tiers proven end-to-end — LOCAL through PROD, including production promotion (ADR-019) and rollback (ADR-020).",
       href: `${IDP_REPO_URL}/-/blob/main/docs/architecture/target-operating-model.md`,
     },
     {

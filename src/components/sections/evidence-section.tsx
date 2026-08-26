@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, GitBranch, ShieldCheck, FileText, Boxes, Layers } from "lucide-react";
+import { ArrowRight, ArrowUpRight, GitBranch, ShieldCheck, FileText, Boxes, Layers, Terminal } from "lucide-react";
 import { FadeIn } from "@/lib/motion";
 import { landingEvidence, operatingModel } from "@/lib/content";
 
-const cardIcons = [GitBranch, FileText, ShieldCheck, Boxes, Layers] as const;
+const cardIcons = [GitBranch, FileText, ShieldCheck, Boxes, Layers, Terminal] as const;
 
 export function EvidenceSection() {
   return (
