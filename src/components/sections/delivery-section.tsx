@@ -23,6 +23,12 @@ export function DeliverySection() {
         <FadeIn>
           <TimelineStepper />
         </FadeIn>
+
+        <FadeIn delay={0.1}>
+          <p className="mx-auto mt-10 max-w-3xl rounded-xl border border-accent/30 bg-accent/10 px-6 py-5 text-center text-sm leading-relaxed text-foreground-secondary sm:text-base">
+            {delivery.mechanism}
+          </p>
+        </FadeIn>
       </div>
     </section>
   );

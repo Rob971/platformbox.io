@@ -23,7 +23,7 @@ import { FinalCtaSection } from "@/components/sections/final-cta-section";
 const pageSections = [
   { id: "outcome", label: "Path", number: "02", description: "The standardized golden path from Git to production." },
   { id: "day-14", label: "Day 14", number: "05", description: "What is actually working on handover day." },
-  { id: "why-not-build", label: "Why us", number: "06", description: "Why not build the platform internally." },
+  { id: "why-not-build", label: "Why us", number: "06", description: "Why PlatformBox over building internally or adopting an IDP product." },
   { id: "pricing", label: "Pricing", number: "07", description: "Fixed price. Live in 14 working days." },
   { id: "assessment", label: "Assessment", number: "08", description: "The risk-reduction step before any commitment." },
   { id: "ownership", label: "Ownership", number: "10", description: "You own everything — no lock-in." },

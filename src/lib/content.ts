@@ -66,6 +66,8 @@ export const delivery = {
   eyebrow: "04 / The 14-Day Delivery",
   headline: "Exactly what gets delivered.",
   sub: "Fourteen working days — about three calendar weeks — from kickoff to a working developer path to production.",
+  mechanism:
+    "Why 14 days is credible: PlatformBox does not build your platform from scratch. It adapts a pre-engineered reference architecture — reusable Terraform modules, a standard golden path, security controls, CI/CD, and validation — proven end-to-end in the public reference implementation.",
   weeks: [
     {
       label: "Week 1 — Foundation (Days 1–5)",
@@ -128,6 +130,7 @@ export const offers: Offer[] = [
       "One production-ready golden path",
       "Preview environments",
       "Production deployment workflow",
+      "Up to 2 initial services onboarded",
       "Baseline security",
       "Documentation & runbooks",
       "Handover & training",
@@ -254,18 +257,17 @@ export const day14 = {
 } as const;
 
 export const whyDifferent = {
-  eyebrow: "06 / Why Not DIY",
-  headline: "Why not build it internally?",
-  sub: "The biggest alternative to PlatformBox is building it yourself. Here is what changes when you don't.",
+  eyebrow: "06 / Why PlatformBox",
+  headline: "Why PlatformBox over building it yourself or adopting an IDP product?",
+  sub: "Building internally gives control but costs months of senior engineering. Adopting an IDP product gives tooling, not a finished platform. PlatformBox delivers the implemented platform — pre-engineered, standardized, and handed to your team.",
   rows: [
-    { internal: "Months of platform engineering", platformbox: "14 working days" },
-    { internal: "Internal engineers diverted", platformbox: "Fixed scope and price" },
-    { internal: "Architecture decisions still unresolved", platformbox: "Reference architecture" },
-    { internal: "Tool integration work", platformbox: "Integrated golden path" },
-    { internal: "Long time before developer adoption", platformbox: "Working developer path at handover" },
-    { internal: "Ongoing ownership burden begins immediately", platformbox: "Optional PlatformBox Care" },
+    { internal: "Months of platform engineering", product: "Tooling, but the platform work remains", platformbox: "14 working days, fixed scope" },
+    { internal: "Build and wire every tool yourself", product: "Still must integrate with your stack", platformbox: "Integrated golden path" },
+    { internal: "Architecture decisions still unresolved", product: "Opinionated product — your fit varies", platformbox: "Proven reference architecture" },
+    { internal: "Long time before developer adoption", product: "Workflows still need engineering", platformbox: "Working developer path at handover" },
+    { internal: "Ongoing ownership burden from day one", product: "Product plus your platform team", platformbox: "You own it — we hand it back" },
   ],
-  message: "PlatformBox compresses the work required to reach a usable first platform.",
+  message: "Build internally for control. Adopt a product for tooling. Choose PlatformBox for the implemented platform — delivered as a defined service, evidence-backed.",
 } as const;
 
 export const assessmentSection = {
@@ -403,6 +405,22 @@ export const faqs: Faq[] = [
   {
     q: "What does \"production-ready\" mean here?",
     a: "Two distinct things. The promise: a production-ready golden path and implementation approach delivered in 14 working days, subject to the agreed assessment and scope. The reference implementation: a production-shaped, cost-optimized, publicly inspectable build that proves the pattern end-to-end — both services promoted from UAT's approved build into production with no rebuild, ArgoCD reconciled to healthy, and a real production rollback demonstrated (ADR-019, ADR-020).",
+  },
+  {
+    q: "Why not just adopt Backstage, Port, or another IDP product?",
+    a: "An IDP product is a tool, not a finished platform. The product still needs to be implemented: integrated with your cloud and CI/CD, wired to your repositories, given golden paths, and governed. That is exactly the engineering work PlatformBox delivers. You can adopt an IDP product and have PlatformBox implement and configure it — or use our reference architecture without one.",
+  },
+  {
+    q: "Who owns the platform — and who owns our applications?",
+    a: "PlatformBox owns the platform engineering: infrastructure, delivery pipelines, golden paths, security controls, and observability. You own your application logic, product requirements, and application-level operations. PlatformBox is a defined platform scope, not unlimited outsourced DevOps.",
+  },
+  {
+    q: "Do you onboard our existing services?",
+    a: "Launch includes onboarding up to two initial services to prove the golden path with real workloads — the reference implementation demonstrates two services with independent lifecycles. Additional application onboarding is a defined expansion, not per-service billing.",
+  },
+  {
+    q: "What can we add after Launch?",
+    a: "Platform expansion modules: additional golden paths, environments, teams, a developer portal, self-service databases, advanced security or observability, and Enterprise compliance. Each is a fixed-scope engagement agreed during the Platform Assessment.",
   },
 ];
 
