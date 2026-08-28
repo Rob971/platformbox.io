@@ -18,7 +18,7 @@ const pageLinks = [
 
 export function Header({ showHomeLink = false }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { theme, toggle } = useTheme();
+  const { toggle } = useTheme();
 
   const close = () => setMenuOpen(false);
 
@@ -81,14 +81,14 @@ export function Header({ showHomeLink = false }: HeaderProps) {
             <button
               type="button"
               onClick={toggle}
-              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
               className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-foreground-tertiary transition-colors hover:bg-card-hover hover:text-foreground"
             >
-              {theme === "dark" ? (
-                <Sun className="h-4 w-4" aria-hidden />
-              ) : (
-                <Moon className="h-4 w-4" aria-hidden />
-              )}
+              {/* Icon and accessible name both follow the .dark class rather
+                  than React state, so neither can advertise the wrong mode. */}
+              <Sun className="hidden h-4 w-4 dark:block" aria-hidden />
+              <Moon className="h-4 w-4 dark:hidden" aria-hidden />
+              <span className="sr-only hidden dark:inline">Switch to light mode</span>
+              <span className="sr-only dark:hidden">Switch to dark mode</span>
             </button>
             <a
               href={BOOKING_URL}
@@ -179,15 +179,12 @@ export function Header({ showHomeLink = false }: HeaderProps) {
               }}
               className="mt-1 inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-border px-3 text-sm font-medium text-foreground-secondary transition-colors hover:bg-surface-hover hover:text-foreground"
             >
-              {theme === "dark" ? (
-                <>
-                  <Sun className="h-4 w-4" aria-hidden /> Light mode
-                </>
-              ) : (
-                <>
-                  <Moon className="h-4 w-4" aria-hidden /> Dark mode
-                </>
-              )}
+              <span className="hidden items-center gap-2 dark:flex">
+                <Sun className="h-4 w-4" aria-hidden /> Light mode
+              </span>
+              <span className="flex items-center gap-2 dark:hidden">
+                <Moon className="h-4 w-4" aria-hidden /> Dark mode
+              </span>
             </button>
           </nav>
         </div>

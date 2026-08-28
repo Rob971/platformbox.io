@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 const siteUrl = "https://www.platformbox.io";
 
-const ANTI_FLASH = `(function(){try{var t=localStorage.getItem("platformbox-theme");if(t==="light"){document.documentElement.classList.remove("dark")}else if(!t){document.documentElement.classList.add("dark")}}catch(e){}})()`;
+const ANTI_FLASH = `(function(){try{var t=localStorage.getItem("platformbox-theme");document.documentElement.classList.toggle("dark",t!=="light")}catch(e){document.documentElement.classList.add("dark")}})()`;
 
 export const metadata: Metadata = {
   title: "PlatformBox.io — Your Developer Platform. Live in 14 Working Days.",
@@ -62,7 +62,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>

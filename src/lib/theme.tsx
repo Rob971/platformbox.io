@@ -3,7 +3,6 @@
 import {
   createContext,
   useContext,
-  useState,
   useCallback,
   useEffect,
   type ReactNode,
@@ -12,22 +11,24 @@ import {
 type Theme = "dark" | "light";
 
 interface ThemeContextValue {
-  theme: Theme;
   toggle: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 const STORAGE_KEY = "platformbox-theme";
 
-function readStoredTheme(): Theme {
-  if (typeof window === "undefined") return "dark";
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === "light" || stored === "dark") return stored;
-  } catch {
-    // ignore
-  }
-  return "dark";
+/**
+ * The `dark` class on <html> is the single source of truth for the theme.
+ *
+ * It is written by the anti-flash script in layout.tsx before first paint and
+ * read back here. Deliberately NOT mirrored into React state: a second copy
+ * could disagree with the class, and did — a saved `light` preference left the
+ * page dark while the toggle rendered a moon, so the button advertised the
+ * mode the visitor was already in.
+ */
+function currentTheme(): Theme {
+  if (typeof document === "undefined") return "dark";
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
 }
 
 function applyTheme(theme: Theme) {
@@ -37,7 +38,6 @@ function applyTheme(theme: Theme) {
   } catch {
     // ignore
   }
-  // Swap favicon to match the theme.
   updateFavicon(theme);
 }
 
@@ -54,28 +54,19 @@ function updateFavicon(theme: Theme) {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  // The anti-flash script in layout.tsx sets the initial class before React
-  // hydrates. The lazy initializer reads localStorage to match that class.
-  const [theme, setTheme] = useState<Theme>(readStoredTheme);
-
-  // On mount, ensure favicon matches the current theme (the anti-flash
-  // script already set the class, but the favicon needs a JS update).
+  // Re-assert on mount. React renders <html> without the `dark` class, so this
+  // restores it if a hydration pass ever clobbers what the script wrote, and
+  // points the favicon at the theme actually on screen.
   useEffect(() => {
-    updateFavicon(theme);
-  }, [theme]);
+    applyTheme(currentTheme());
+  }, []);
 
   const toggle = useCallback(() => {
-    setTheme((prev) => {
-      const next = prev === "dark" ? "light" : "dark";
-      applyTheme(next);
-      return next;
-    });
+    applyTheme(currentTheme() === "dark" ? "light" : "dark");
   }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme, toggle }}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={{ toggle }}>{children}</ThemeContext.Provider>
   );
 }
 
