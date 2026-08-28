@@ -19,6 +19,8 @@ import { RoiSection } from "@/components/sections/roi-section";
 import { FitSection } from "@/components/sections/fit-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
+import { ProofMomentSection } from "@/components/sections/proof-moment-section";
+import { NotIncludedSection } from "@/components/sections/not-included-section";
 
 const pageSections = [
   { id: "outcome", label: "Path", number: "02", description: "The standardized golden path from Git to production." },
@@ -44,6 +46,7 @@ export function LandingPage() {
         <HeroSection />
         <ProblemSection />
         <OutcomeSection />
+        <ProofMomentSection />
         <BeforeAfterSection />
         <DeliverySection />
         <Day14Section />
@@ -56,6 +59,7 @@ export function LandingPage() {
         <ReferenceArchitectureSection />
         <EvidenceSection />
         <RoiSection />
+        <NotIncludedSection />
         <FitSection />
         <FaqSection />
         <FinalCtaSection />

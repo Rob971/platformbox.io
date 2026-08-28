@@ -19,7 +19,7 @@ export function Footer() {
               </p>
             </div>
             <p className="mt-3 max-w-xs text-xs leading-relaxed text-muted">
-              A production-ready developer platform delivered in 14 working days, at a fixed price.
+              A working developer platform delivered in 14 working days, at a fixed price.
             </p>
             <p className="mt-2 text-xs text-muted">
               © 2026 PlatformBox.io

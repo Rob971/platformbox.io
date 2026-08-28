@@ -19,24 +19,23 @@ import { fadeUp, stagger, FadeIn } from "@/lib/motion";
 import { blueprint } from "@/lib/content";
 import { InfrastructureIcon, PipelineIcon, EphemeralIcon } from "../icons";
 
-const terraformModule = `module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
-  version = "5.5.1"
+// VERBATIM from the frozen reference implementation:
+// terraform/modules/network/main.tf. Note the NAT *instance* — a
+// deliberate cost decision (ADR-002): ~$3.36/mo against ~$32/mo for a
+// managed NAT Gateway. IMDSv2 enforced (ADR-006).
+const terraformModule = `resource "aws_instance" "nat" {
+  count = var.enable_nat_instance ? 1 : 0
 
-  name = "platformbox-\${var.environment}"
-  cidr = "10.0.0.0/16"
+  ami                    = data.aws_ami.al2023_arm64[0].id
+  instance_type          = var.nat_instance_type   # t4g.nano
+  subnet_id              = aws_subnet.public[0].id
+  vpc_security_group_ids = [aws_security_group.nat[0].id]
+  iam_instance_profile   = aws_iam_instance_profile.nat[0].name
+  source_dest_check      = false
 
-  azs             = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
-  private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
-
-  enable_nat_gateway = true
-  single_nat_gateway = false
-  enable_vpn_gateway = false
-
-  tags = {
-    Environment = var.environment
-    ManagedBy   = "platformbox"
+  metadata_options {
+    http_tokens   = "required"   # IMDSv2 only
+    http_endpoint = "enabled"
   }
 }`;
 
@@ -98,7 +97,7 @@ spec:
       serviceAccountName: api-gateway
       containers:
         - name: api-gateway
-          image: \${ECR_REPO}:\${IMAGE_TAG}
+          image: \${CI_REGISTRY_IMAGE}/\${SERVICE}@\${IMAGE_DIGEST}
           ports:
             - containerPort: 8080
           resources:
@@ -154,101 +153,6 @@ scrape_configs:
       - source_labels: [__meta_kubernetes_endpoint_port_name]
         regex: http
         action: keep`;
-
-const backstageCatalog = `apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: api-gateway
-  description: Edge API gateway for all services
-  annotations:
-    github.com/project-slug: acme/api-gateway
-    backstage.io/techdocs-ref: dir:.
-  tags:
-    - golang
-    - grpc
-    - platform
-  links:
-    - url: https://grafana.acme.dev/d/api-gateway
-      title: Dashboard
-      icon: dashboard
-spec:
-  type: service
-  lifecycle: production
-  owner: platform-team
-  system: api-platform
-  providesApis:
-    - api-gateway-grpc`;
-
-const terraformRDS = `module "db" {
-  source  = "terraform-aws-modules/rds/aws"
-  version = "6.5.0"
-
-  identifier = "\${var.service}-\${var.environment}"
-
-  engine               = "postgres"
-  engine_version       = "16.3"
-  instance_class       = "db.t4g.medium"
-  allocated_storage    = 100
-  storage_encrypted    = true
-
-  db_name  = var.service
-  username = var.service
-  manage_master_user_password = true
-
-  vpc_security_group_ids = [module.sg.id]
-  db_subnet_group_name   = module.vpc.db_subnet_group
-  publicly_accessible    = false
-
-  backup_retention_period = 14
-  deletion_protection     = true
-  skip_final_snapshot     = false
-
-  tags = {
-    Service     = var.service
-    Environment = var.environment
-    ManagedBy   = "platformbox"
-  }
-}`;
-
-const externalSecrets = `apiVersion: external-secrets.io/v1beta1
-kind: ExternalSecret
-metadata:
-  name: api-gateway-secrets
-spec:
-  refreshInterval: "1h"
-  secretStoreRef:
-    name: aws-secrets-manager
-    kind: ClusterSecretStore
-  target:
-    name: api-gateway-secrets
-    creationPolicy: Owner
-  data:
-    - secretKey: DB_PASSWORD
-      remoteRef:
-        key: prod/api-gateway/db-password
-        property: password
-    - secretKey: API_KEY
-      remoteRef:
-        key: prod/api-gateway/api-key
----
-apiVersion: secrets-store.csi.x-k8s.io/v1
-kind: SecretProviderClass
-metadata:
-  name: api-gateway-secrets
-spec:
-  provider: aws
-  parameters:
-    objects: |
-      - objectName: "prod/api-gateway/db-password"
-        objectType: "secretsmanager"
-      - objectName: "prod/api-gateway/api-key"
-        objectType: "secretsmanager"
-  secretObjects:
-    - secretName: db-credentials
-      type: Opaque
-      data:
-        - key: password
-          objectName: db-password`;
 
 const beforeAfter = [
   { before: "3 weeks to ship a new service", after: "1 click — under 5 minutes" },
@@ -359,9 +263,9 @@ export function ShowcasePage() {
           </FadeIn>
           <div className="grid gap-4 sm:grid-cols-2">
             <DeliverableCard icon={Gauge} title="Observability — proven" text="Prometheus + Grafana, live-proven (ADR-018): 12/12 scrape targets across both services and all three tiers. Ephemeral by design — cost-aware, not an always-on stack." code={prometheusScrapeConfig} codeLanguage="Prometheus"><ObservabilityDashboard /></DeliverableCard>
-            <DeliverableCard icon={LayoutDashboard} title="Developer Portal — optional" text="A Backstage-style service catalog and software scaffolder, delivered as a Scale or Enterprise extension. Not part of the reference implementation." code={backstageCatalog} codeLanguage="catalog-info.yaml"><BackstagePortal /></DeliverableCard>
-            <DeliverableCard icon={Database} title="Self-Service Databases — optional" text="Self-service, encrypted RDS provisioning declared from service config, delivered as a Scale or Enterprise extension." code={terraformRDS} codeLanguage="Terraform"><DatabaseProvisioning /></DeliverableCard>
-            <DeliverableCard icon={KeyRound} title="Secret Management — optional" text="Vault or AWS Secrets Manager productization with the CSI driver, delivered as a Scale or Enterprise extension. KMS-encrypted secrets and least-privilege IAM are already in the baseline." code={externalSecrets} codeLanguage="Kubernetes"><SecretManagement /></DeliverableCard>
+            <DeliverableCard icon={LayoutDashboard} title="Developer Portal — optional" text="A Backstage-style service catalog and software scaffolder, delivered as a Scale or Enterprise extension. Not part of the reference implementation."><BackstagePortal /></DeliverableCard>
+            <DeliverableCard icon={Database} title="Self-Service Databases — optional" text="Self-service, encrypted RDS provisioning declared from service config, delivered as a Scale or Enterprise extension."><DatabaseProvisioning /></DeliverableCard>
+            <DeliverableCard icon={KeyRound} title="Secret Management — optional" text="Vault or AWS Secrets Manager productization with the CSI driver, delivered as a Scale or Enterprise extension. KMS-encrypted secrets and least-privilege IAM are already in the baseline."><SecretManagement /></DeliverableCard>
           </div>
         </section>
 

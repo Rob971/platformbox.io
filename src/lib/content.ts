@@ -122,12 +122,12 @@ export const offers: Offer[] = [
     name: "PlatformBox Launch",
     price: "€20,000",
     delivery: "14 working days",
-    blurb: "One production-ready golden path — your first standardized, self-service route from Git to production.",
+    blurb: "One golden path proven to production — your first standardized, self-service route from Git to production.",
     features: [
       "AWS/EKS foundation",
       "Terraform modules",
       "CI/CD (GitHub or GitLab)",
-      "One production-ready golden path",
+      "One golden path proven to production",
       "Preview environments",
       "Production deployment workflow",
       "Up to 2 initial services onboarded",
@@ -360,7 +360,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "What exactly is delivered in 14 working days?",
-    a: "A working developer path to production: an AWS/EKS foundation, Terraform modules, CI/CD, one production-ready golden path, preview environments, baseline security, documentation, and a live handover. On day 14, a developer can create a service from the standard template, deploy it to a preview environment, pass automated security checks, and promote it to production.",
+    a: "A working developer path to production: an AWS/EKS foundation, Terraform modules, CI/CD, one golden path proven to production, preview environments, baseline security, documentation, and a live handover. On day 14, a developer can create a service from the standard template, deploy it to a preview environment, pass automated security checks, and promote it to production.",
   },
   {
     q: "Do you replace Terraform, GitHub, GitLab, or Kubernetes?",
@@ -404,7 +404,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "What does \"production-ready\" mean here?",
-    a: "Two distinct things. The promise: a production-ready golden path and implementation approach delivered in 14 working days, subject to the agreed assessment and scope. The reference implementation: a production-shaped, cost-optimized, publicly inspectable build that proves the pattern end-to-end — both services promoted from UAT's approved build into production with no rebuild, ArgoCD reconciled to healthy, and a real production rollback demonstrated (ADR-019, ADR-020).",
+    a: "Two distinct things, and we keep them apart. THE PROMISE: a golden path proven to production, plus the implementation approach behind it, delivered in 14 working days — subject to the agreed assessment and scope. THE REFERENCE IMPLEMENTATION: a production-shaped, cost-optimised, publicly inspectable build that proves the pattern end to end. Three services now run it; the third was created by the platform\u2019s own generator and reached production on 27 August 2026, promoted from UAT\u2019s approved image with no rebuild, reconciled by ArgoCD, and health-checked from inside the production cluster (ADR-019, ADR-020, ADR-023). What it does NOT mean: we do not claim enterprise-readiness, alerting, log aggregation or secrets management \u2014 see what PlatformBox does not do.",
   },
   {
     q: "Why not just adopt Backstage, Port, or another IDP product?",
@@ -434,7 +434,7 @@ export const blueprint = {
     { title: "CI/CD", text: "Standard pipelines, registries, and the commit-to-production workflow." },
     { title: "Environments", text: "Preview and production environments with automated provisioning." },
     { title: "Golden path", text: "The standard service template and repository bootstrap developers follow." },
-    { title: "Security", text: "Least-privilege access, encrypted secrets, and automated checks in the pipeline." },
+    { title: "Security", text: "Least-privilege access, encrypted storage and state, and automated checks in the pipeline." },
     { title: "Observability", text: "Prometheus + Grafana — metrics and dashboards, live-proven across both services (ADR-018)." },
     { title: "Production validation", text: "End-to-end validation of the golden path against a real workload." },
     { title: "Handover", text: "Documentation, runbooks, training, and the phase-2 backlog." },
@@ -454,7 +454,7 @@ export const technicalReference = {
     { name: "CI/CD", role: "Application delivery", text: "A standard pipeline builds, scans (Trivy), and promotes each service from commit to production — no per-team pipeline maintenance." },
     { name: "GitOps", role: "Declared desired state", text: "The cluster reconciles to the state declared in Git (ArgoCD, cluster-level proven per ADR-016). Deployments are pull-based, reviewable, and auditable." },
     { name: "IAM", role: "Least-privilege access", text: "Scoped roles for humans and workloads. Keyless CI-to-AWS auth via OIDC — no static credentials. Separate IAM roles per environment tier (dev, qa/uat, preview, prod) — environment separation by default, enforced by AWS STS." },
-    { name: "Security", role: "Built into the path", text: "Trivy scanning in CI, GuardDuty threat detection, encrypted secrets and storage, and policy checks run on every change." },
+    { name: "Security", role: "Built into the path", text: "Trivy scanning in CI, GuardDuty threat detection, encrypted storage and state and storage, and policy checks run on every change." },
     { name: "Observability", role: "See what's running", text: "Prometheus + Grafana — metrics and dashboards, live-proven across both services and all three tiers (ADR-018)." },
     { name: "Platform ownership", role: "You own it all", text: "Everything lives in your accounts and repositories. No proprietary runtime, no lock-in." },
   ],
@@ -477,7 +477,7 @@ export const evidence = {
     },
     {
       label: "Decision records",
-      description: "22 ADRs explaining each architecture choice — and what was rejected.",
+      description: "26 ADRs explaining each architecture choice — and what was rejected.",
       href: `${IDP_REPO_URL}/-/tree/main/docs/decisions`,
     },
     {
@@ -535,8 +535,8 @@ export const landingEvidence = {
     },
   ],
   stats: [
-    { value: "22", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
-    { value: "5", label: "Terraform modules", href: `${IDP_REPO_URL}/-/tree/main/terraform` },
+    { value: "26", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
+    { value: "6", label: "Terraform modules", href: `${IDP_REPO_URL}/-/tree/main/terraform` },
     { value: "6", label: "Environment tiers proven end-to-end", href: `${IDP_REPO_URL}/-/tree/main/docs/evidence` },
     { value: "1", label: "Public reference implementation", href: IDP_REPO_URL },
   ],
@@ -570,9 +570,65 @@ export const operatingModel = {
     },
     {
       title: "Multi-service behaviour",
-      items: ["demo-service", "orders-service"],
-      note: "Two services, independent lifecycles on the same golden path (ADR-017).",
+      items: ["demo-service", "orders-service", "payments-service"],
+      note: "Three services, independent lifecycles on the same golden path. The third was created by the platform's own generator and reached production (ADR-017, ADR-023).",
       href: `${IDP_REPO_URL}/-/blob/main/docs/decisions/ADR-017-second-service.md`,
+    },
+  ],
+} as const;
+
+// The strongest single fact the platform can offer, and the one a
+// competitor cannot copy without doing the work. Verbatim-checkable
+// against docs/evidence/2026-08-27/generated-service-to-production.md
+export const proofMoment = {
+  eyebrow: "27 August 2026",
+  headline: "One command. Six environments. Production.",
+  sub: "A developer ran a single command. The service it generated went to production through six environments and two human approval gates — carrying the same immutable image digest at every tier, verified by a health check answering from inside a private production cluster that a laptop cannot reach.",
+  steps: [
+    { label: "make new-service", text: "35 files: Go service with tests, Dockerfile, Helm chart, four environment definitions, full CI/CD pipeline. No platform configuration written by hand." },
+    { label: "Preview → Dev → QA", text: "Lint, unit tests, dependency, image and infrastructure scanning, then deploy and verify. Failed checks stop the deployment — they do not warn about it." },
+    { label: "UAT → Production", text: "Two human approval gates, enforced by AWS IAM rather than by a setting in the CI interface. The audit record is committed only after the deployment answers a health check." },
+  ],
+  caveat: "Production onboarding of a new service still requires a platform engineer to make two Terraform edits — the generator prints exactly which. We do not call that automated.",
+  linkLabel: "Read the evidence for this run",
+  linkHref: `${IDP_REPO_URL}/-/blob/main/docs/evidence/2026-08-27/generated-service-to-production.md`,
+} as const;
+
+// Publishing limitations is not a disclaimer. It is the reason the other
+// claims are believable, and it disqualifies bad-fit buyers before a call.
+export const notIncluded = {
+  eyebrow: "Before you talk to us",
+  headline: "What PlatformBox does not do.",
+  sub: "Every item below is a real boundary of the reference implementation, not a roadmap. If one of these is essential to you, say so on the first call — some are quotable as additional scope, and some are simply not what we do.",
+  groups: [
+    {
+      title: "Not built, quotable as extra scope",
+      items: [
+        "Ingress, TLS and DNS — services are cluster-internal in the reference build",
+        "Secrets distribution — there is no secrets manager. Credential elimination is done: CI holds no static AWS keys",
+        "Log aggregation — services emit structured JSON; nothing ships or indexes it centrally",
+        "Alerting and on-call routing — metrics and dashboards exist, nothing pages anyone",
+        "Databases, queues and caches — no module provisions a stateful dependency",
+        "Runtimes other than Go, and CI providers other than GitLab",
+      ],
+    },
+    {
+      title: "Deliberately not our model",
+      items: [
+        "A developer portal or web UI — the front door is a command-line tool in your platform repository",
+        "Policy-as-code admission control — governance is IAM, Kubernetes RBAC and ArgoCD project restrictions",
+        "Service mesh, multi-region and multi-cloud",
+        "Application development, staff augmentation, or ad-hoc cloud troubleshooting",
+        "AI-assisted anything",
+      ],
+    },
+    {
+      title: "Honest limits of the evidence",
+      items: [
+        "The reference implementation has been rebuilt from an empty AWS account twice — by the same engineer. It has not been independently reproduced.",
+        "Production rollback is demonstrated for one service, not for every service.",
+        "Cost figures are modelled from published AWS pricing. They are not a reconciled bill, and we do not extrapolate them into savings claims.",
+      ],
     },
   ],
 } as const;
