@@ -1,8 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
-    { "source": "/workspace",         "destination": "https://platformbox-delivery.fly.dev/" },
-    { "source": "/workspace/:match*", "destination": "https://platformbox-delivery.fly.dev/:match*" }
+    { "source": "/workspace(/:match*)?", "destination": "https://platformbox-delivery.fly.dev/:match*" }
   ],
   "headers": [
     {
