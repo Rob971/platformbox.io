@@ -2,14 +2,30 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     { "source": "/workspace",         "destination": "https://platformbox-delivery.fly.dev/" },
-    { "source": "/workspace/:match*", "destination": "https://platformbox-delivery.fly.dev/:match*" }
+    { "source": "/workspace/:match*", "destination": "https://platformbox-delivery.fly.dev/:match*" },
+    { "source": "/admin/delivery",         "destination": "https://platformbox-delivery.fly.dev/admin" },
+    { "source": "/admin/delivery/:match*", "destination": "https://platformbox-delivery.fly.dev/admin/:match*" }
+  ],
+  "redirects": [
+    { "source": "/workspace/admin",         "destination": "/admin/delivery",               "permanent": false },
+    { "source": "/workspace/admin/:match*", "destination": "/admin/delivery/:match*",       "permanent": false }
   ],
   "headers": [
     {
-      "source": "/workspace(/:match*)?",
-      "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
-      ]
+      "source": "/workspace",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/workspace/:match*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/admin/delivery",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/admin/delivery/:match*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     }
   ]
 }
