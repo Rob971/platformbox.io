@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 const siteUrl = "https://www.platformbox.io";
 
-const ANTI_FLASH = `(function(){try{var t=localStorage.getItem("platformbox-theme");document.documentElement.classList.toggle("dark",t!=="light")}catch(e){document.documentElement.classList.add("dark")}})()`;
+const ANTI_FLASH = `(function(){try{var t=localStorage.getItem("platformbox-theme");var d=(t==="light"||t==="dark")?t==="dark":!window.matchMedia("(prefers-color-scheme: light)").matches;document.documentElement.classList.toggle("dark",d)}catch(e){document.documentElement.classList.add("dark")}})()`;
 
 export const metadata: Metadata = {
   title: "PlatformBox.io — Your Developer Platform. Live in 14 Working Days.",

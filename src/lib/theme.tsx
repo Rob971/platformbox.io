@@ -31,14 +31,32 @@ function currentTheme(): Theme {
   return document.documentElement.classList.contains("dark") ? "dark" : "light";
 }
 
-function applyTheme(theme: Theme) {
+/**
+ * `persist` is only ever true for a deliberate click. Writing storage on every
+ * mount would stamp a preference the visitor never expressed, and from then on
+ * their OS setting could never be consulted again.
+ */
+function applyTheme(theme: Theme, persist: boolean) {
   document.documentElement.classList.toggle("dark", theme === "dark");
+  if (persist) {
+    try {
+      localStorage.setItem(STORAGE_KEY, theme);
+    } catch {
+      // ignore
+    }
+  }
+  updateFavicon(theme);
+}
+
+/** An explicit choice, or null while the visitor is still following their OS. */
+function storedChoice(): Theme | null {
   try {
-    localStorage.setItem(STORAGE_KEY, theme);
+    const v = localStorage.getItem(STORAGE_KEY);
+    if (v === "light" || v === "dark") return v;
   } catch {
     // ignore
   }
-  updateFavicon(theme);
+  return null;
 }
 
 /** Update every `<link rel="icon">` to point at the correct favicon for `theme`. */
@@ -58,11 +76,21 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   // restores it if a hydration pass ever clobbers what the script wrote, and
   // points the favicon at the theme actually on screen.
   useEffect(() => {
-    applyTheme(currentTheme());
+    applyTheme(currentTheme(), false);
+
+    // Until the visitor picks a side, track their OS so the site changes with
+    // the rest of their desktop at sundown rather than staying stuck.
+    const mq = window.matchMedia("(prefers-color-scheme: light)");
+    const onSystemChange = () => {
+      if (storedChoice()) return;
+      applyTheme(mq.matches ? "light" : "dark", false);
+    };
+    mq.addEventListener("change", onSystemChange);
+    return () => mq.removeEventListener("change", onSystemChange);
   }, []);
 
   const toggle = useCallback(() => {
-    applyTheme(currentTheme() === "dark" ? "light" : "dark");
+    applyTheme(currentTheme() === "dark" ? "light" : "dark", true);
   }, []);
 
   return (
