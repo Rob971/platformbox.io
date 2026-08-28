@@ -20,7 +20,7 @@ const ANTI_FLASH = `(function(){try{var t=localStorage.getItem("platformbox-them
 export const metadata: Metadata = {
   title: "PlatformBox.io — Your Developer Platform. Live in 14 Working Days.",
   description:
-    "A fixed-price engagement that delivers a production-ready Internal Developer Platform (IDP) in 14 working days — a standardized, self-service path from Git to production, built on your existing AWS and Kubernetes stack.",
+    "A fixed-price engagement that delivers a Internal Developer Platform (IDP) in 14 working days — a standardized, self-service path from Git to production, built on your existing AWS and Kubernetes stack.",
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: "/",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "PlatformBox.io — Your Developer Platform. Live in 14 Working Days.",
     description:
-      "A fixed-price engagement that delivers a production-ready developer platform in 14 working days.",
+      "A fixed-price engagement that delivers a working developer platform in your own AWS account in 14 working days.",
     images: ["/og-image.png"],
   },
 };
@@ -90,7 +90,7 @@ export default function RootLayout({
                   url: siteUrl,
                   logo: `${siteUrl}/favicon.ico`,
                   description:
-                    "A fixed-price engagement that delivers a production-ready developer platform in 14 working days.",
+                    "A fixed-price engagement that delivers a working developer platform in your own AWS account in 14 working days.",
                   sameAs: [
                     "https://www.linkedin.com/in/robertocornano/",
                   ],
@@ -100,7 +100,7 @@ export default function RootLayout({
                   "@id": `${siteUrl}/#service`,
                   name: "PlatformBox Launch",
                   description:
-                    "A production-ready Internal Developer Platform (IDP) delivered in 14 working days — a standardized, self-service path from Git to production on your existing AWS and Kubernetes stack.",
+                    "A Internal Developer Platform (IDP) delivered in 14 working days — a standardized, self-service path from Git to production on your existing AWS and Kubernetes stack.",
                   provider: { "@id": `${siteUrl}/#organization` },
                   areaServed: "Worldwide",
                   offers: [
