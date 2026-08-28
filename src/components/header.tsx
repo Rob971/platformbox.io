@@ -4,17 +4,27 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { PlatformBoxLogoIcon } from "./icons";
-import { BOOKING_URL, BOOKING_LABEL } from "@/lib/constants";
+import { BOOKING_URL, BOOKING_LABEL, WORKSPACE_PATH } from "@/lib/constants";
 import { useTheme } from "@/lib/theme";
 
 interface HeaderProps {
   showHomeLink?: boolean;
 }
 
-const pageLinks = [
+interface PageLink {
+  href: string;
+  label: string;
+  /** Rendered as a plain <a> (leaves the Next.js app) instead of next/link. */
+  external?: boolean;
+}
+
+const pageLinks: readonly PageLink[] = [
   { href: "/showcase", label: "Blueprint" },
   { href: "/architecture", label: "Architecture" },
-] as const;
+  // The workspace is a plain <a>, not a next/link: a 307 on the same origin
+  // leaves the Next.js app for app.platformbox.io (ADR-008 revised).
+  { href: WORKSPACE_PATH, label: "Client workspace", external: true },
+];
 
 export function Header({ showHomeLink = false }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -67,16 +77,26 @@ export function Header({ showHomeLink = false }: HeaderProps) {
               </a>
             </>
           )}
-          {pageLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              prefetch={false}
-              className="rounded-lg px-3 py-2 text-sm text-foreground-tertiary transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {pageLinks.map((link) =>
+            link.external ? (
+              <a
+                key={link.href}
+                href={link.href}
+                className="rounded-lg px-3 py-2 text-sm text-foreground-tertiary transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                prefetch={false}
+                className="rounded-lg px-3 py-2 text-sm text-foreground-tertiary transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            ),
+          )}
           <div className="ml-3 flex items-center gap-2">
             <button
               type="button"
@@ -151,17 +171,28 @@ export function Header({ showHomeLink = false }: HeaderProps) {
                 </a>
               </>
             )}
-            {pageLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={close}
-                prefetch={false}
-                className="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground-secondary transition-colors hover:bg-surface-hover hover:text-foreground"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {pageLinks.map((link) =>
+              link.external ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={close}
+                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground-secondary transition-colors hover:bg-surface-hover hover:text-foreground"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={close}
+                  prefetch={false}
+                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground-secondary transition-colors hover:bg-surface-hover hover:text-foreground"
+                >
+                  {link.label}
+                </Link>
+              ),
+            )}
             <a
               href={BOOKING_URL}
               target="_blank"

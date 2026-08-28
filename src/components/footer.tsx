@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Mail } from "lucide-react";
 import { LinkedInIcon, PlatformBoxLogoIcon } from "./icons";
-import { BOOKING_URL, BOOKING_LABEL } from "@/lib/constants";
+import { BOOKING_URL, BOOKING_LABEL, WORKSPACE_PATH } from "@/lib/constants";
 
 export function Footer() {
   return (
@@ -61,6 +61,14 @@ export function Footer() {
                 >
                   Reference Architecture
                 </Link>
+              </li>
+              <li>
+                <a
+                  href={WORKSPACE_PATH}
+                  className="text-sm text-foreground-tertiary transition-colors hover:text-foreground"
+                >
+                  Client workspace
+                </a>
               </li>
             </ul>
           </div>

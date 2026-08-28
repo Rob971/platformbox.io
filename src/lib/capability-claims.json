@@ -1,0 +1,284 @@
+[
+  {
+    "id": "pbx.foundation.aws",
+    "name": "AWS foundation",
+    "category": "foundation",
+    "referenceStatus": "PROVEN",
+    "deliveryStatus": "DELIVERABLE",
+    "packages": [
+      "launch",
+      "scale",
+      "enterprise"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.foundation.iac-terraform",
+    "name": "Infrastructure as Code (Terraform)",
+    "category": "foundation",
+    "referenceStatus": "PROVEN",
+    "deliveryStatus": "DELIVERABLE",
+    "packages": [
+      "launch",
+      "scale",
+      "enterprise"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.platform.kubernetes-eks",
+    "name": "Kubernetes / EKS",
+    "category": "platform",
+    "referenceStatus": "PROVEN",
+    "deliveryStatus": "DELIVERABLE",
+    "packages": [
+      "launch",
+      "scale",
+      "enterprise"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.platform.networking",
+    "name": "Networking",
+    "category": "platform",
+    "referenceStatus": "PROVEN",
+    "deliveryStatus": "DELIVERABLE",
+    "packages": [
+      "launch",
+      "scale",
+      "enterprise"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.security.iam-least-privilege",
+    "name": "IAM & least privilege",
+    "category": "security",
+    "referenceStatus": "PROVEN",
+    "deliveryStatus": "DELIVERABLE",
+    "packages": [
+      "launch",
+      "scale",
+      "enterprise"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.platform.container-registry",
+    "name": "Container registry",
+    "category": "platform",
+    "referenceStatus": "PARTIALLY_PROVEN",
+    "deliveryStatus": "PARTIALLY_READY",
+    "packages": [
+      "launch"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.delivery.ci-cd",
+    "name": "CI/CD",
+    "category": "delivery",
+    "referenceStatus": "PROVEN",
+    "deliveryStatus": "DELIVERABLE",
+    "packages": [
+      "launch",
+      "scale",
+      "enterprise"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.golden-path.build-to-production",
+    "name": "Golden Path (build -> production)",
+    "category": "golden-path",
+    "referenceStatus": "PROVEN",
+    "deliveryStatus": "DELIVERABLE",
+    "packages": [
+      "launch"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.golden-path.service-scaffold",
+    "name": "Self-service (service creation)",
+    "category": "golden-path",
+    "referenceStatus": "PROVEN",
+    "deliveryStatus": "DELIVERABLE",
+    "packages": [
+      "launch"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.delivery.gitops",
+    "name": "GitOps / declarative deployment",
+    "category": "delivery",
+    "referenceStatus": "PROVEN",
+    "deliveryStatus": "DELIVERABLE",
+    "packages": [
+      "launch",
+      "scale"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.environments.preview",
+    "name": "Preview environments",
+    "category": "environments",
+    "referenceStatus": "PROVEN",
+    "deliveryStatus": "DELIVERABLE",
+    "packages": [
+      "launch"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.delivery.production-promotion",
+    "name": "Production promotion & controls",
+    "category": "delivery",
+    "referenceStatus": "PROVEN",
+    "deliveryStatus": "DELIVERABLE",
+    "packages": [
+      "launch"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.operations.rollback-recovery",
+    "name": "Rollback & recovery",
+    "category": "operations",
+    "referenceStatus": "PARTIALLY_PROVEN",
+    "deliveryStatus": "PARTIALLY_READY",
+    "packages": [
+      "launch"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.security.scanning",
+    "name": "Security scanning",
+    "category": "security",
+    "referenceStatus": "PROVEN",
+    "deliveryStatus": "DELIVERABLE",
+    "packages": [
+      "launch",
+      "scale",
+      "enterprise"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.security.secrets",
+    "name": "Secrets management",
+    "category": "security",
+    "referenceStatus": "PARTIALLY_PROVEN",
+    "deliveryStatus": "PARTIALLY_READY",
+    "packages": [
+      "launch"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.security.policy-enforcement",
+    "name": "Governance & policy enforcement",
+    "category": "security",
+    "referenceStatus": "PARTIALLY_PROVEN",
+    "deliveryStatus": "NOT_READY",
+    "packages": [],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.observability.metrics",
+    "name": "Metrics",
+    "category": "observability",
+    "referenceStatus": "PROVEN",
+    "deliveryStatus": "DELIVERABLE",
+    "packages": [
+      "launch"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.observability.logging",
+    "name": "Logging",
+    "category": "observability",
+    "referenceStatus": "PARTIALLY_PROVEN",
+    "deliveryStatus": "NOT_OFFERED",
+    "packages": [],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.observability.alerting",
+    "name": "Alerting",
+    "category": "observability",
+    "referenceStatus": "NOT_SUPPORTED",
+    "deliveryStatus": "NOT_OFFERED",
+    "packages": [],
+    "websiteClaimAllowed": false
+  },
+  {
+    "id": "pbx.delivery.repeatability",
+    "name": "Repeatability (delivery IP)",
+    "category": "delivery",
+    "referenceStatus": "PARTIALLY_PROVEN",
+    "deliveryStatus": "NOT_READY",
+    "packages": [],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.operations.drift-control",
+    "name": "Validation & drift control",
+    "category": "operations",
+    "referenceStatus": "PARTIALLY_PROVEN",
+    "deliveryStatus": "PARTIALLY_READY",
+    "packages": [
+      "launch"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.operations.service-ownership",
+    "name": "Service ownership",
+    "category": "operations",
+    "referenceStatus": "PARTIALLY_PROVEN",
+    "deliveryStatus": "PARTIALLY_READY",
+    "packages": [
+      "launch"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.delivery.handover",
+    "name": "Documentation & handover",
+    "category": "delivery",
+    "referenceStatus": "PROVEN",
+    "deliveryStatus": "DELIVERABLE",
+    "packages": [
+      "launch",
+      "scale",
+      "enterprise"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.operations.finops",
+    "name": "Cost control (FinOps)",
+    "category": "operations",
+    "referenceStatus": "PARTIALLY_PROVEN",
+    "deliveryStatus": "PARTIALLY_READY",
+    "packages": [
+      "launch"
+    ],
+    "websiteClaimAllowed": true
+  },
+  {
+    "id": "pbx.developer-experience.ai-workflow",
+    "name": "AI-assisted developer workflow",
+    "category": "developer-experience",
+    "referenceStatus": "NOT_SUPPORTED",
+    "deliveryStatus": "NOT_OFFERED",
+    "packages": [],
+    "websiteClaimAllowed": false
+  }
+]

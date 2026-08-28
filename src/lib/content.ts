@@ -98,11 +98,11 @@ export const technology = {
   headline: "Integrates with the tools you already have.",
   sub: "PlatformBox is not a replacement for your stack — it is the layer that makes it self-service. Each tool keeps its job; PlatformBox owns the path between them.",
   roles: [
-    { name: "Terraform", role: "Infrastructure lifecycle", accent: false },
-    { name: "Kubernetes / EKS", role: "Application runtime", accent: false },
-    { name: "GitHub / GitLab", role: "Source and workflow", accent: false },
-    { name: "GitOps / CI/CD", role: "Application delivery", accent: false },
-    { name: "PlatformBox", role: "Golden paths, orchestration and developer experience", accent: true },
+    { name: "Terraform", role: "Infrastructure lifecycle", accent: false, claims: ["pbx.foundation.iac-terraform"] },
+    { name: "Kubernetes / EKS", role: "Application runtime", accent: false, claims: ["pbx.platform.kubernetes-eks"] },
+    { name: "GitHub / GitLab", role: "Source and workflow", accent: false, claims: ["__process__"] },
+    { name: "GitOps / CI/CD", role: "Application delivery", accent: false, claims: ["pbx.delivery.gitops", "pbx.delivery.ci-cd"] },
+    { name: "PlatformBox", role: "Golden paths and orchestration", accent: true, claims: ["pbx.golden-path.service-scaffold", "pbx.golden-path.build-to-production"] },
   ],
 } as const;
 
@@ -114,6 +114,8 @@ export type Offer = {
   blurb: string;
   recommended?: boolean;
   features: string[];
+  /** Capability ids this offer asserts. Empty / omitted = no capability claims. */
+  claims?: string[];
 };
 
 export const offers: Offer[] = [
@@ -123,6 +125,17 @@ export const offers: Offer[] = [
     price: "€20,000",
     delivery: "14 working days",
     blurb: "One golden path proven to production — your first standardized, self-service route from Git to production.",
+    claims: [
+      "pbx.foundation.aws",
+      "pbx.platform.kubernetes-eks",
+      "pbx.foundation.iac-terraform",
+      "pbx.delivery.ci-cd",
+      "pbx.golden-path.build-to-production",
+      "pbx.environments.preview",
+      "pbx.delivery.production-promotion",
+      "pbx.security.scanning",
+      "pbx.delivery.handover",
+    ],
     features: [
       "AWS/EKS foundation",
       "Terraform modules",
@@ -251,6 +264,18 @@ export const day14 = {
     "Deploy to production",
     "See the service documented and registered",
     "Hand the platform over to the internal team",
+  ],
+  // The capability each day-14 capability rests on — the check refuses claims
+  // the vendored catalogue does not authorise.
+  claims: [
+    "pbx.golden-path.service-scaffold",
+    "pbx.foundation.iac-terraform",
+    "pbx.environments.preview",
+    "pbx.delivery.ci-cd",
+    "pbx.security.scanning",
+    "pbx.delivery.production-promotion",
+    "pbx.delivery.handover",
+    "pbx.delivery.handover",
   ],
   distinction:
     "The reference implementation proves this path end-to-end, through to production — both services promoted from UAT's approved build with no rebuild, ArgoCD reconciled to healthy, and a real production rollback demonstrated (ADR-019, ADR-020). Your engagement delivers the same path on your stack.",
@@ -429,15 +454,15 @@ export const blueprint = {
   headline: "How the 14 working days work.",
   sub: "Nine phases, one fixed-price engagement — from discovery to a handed-over platform.",
   phases: [
-    { title: "Discovery and architecture", text: "Map the current state, agree the target architecture, and lock the 14-working-day scope." },
-    { title: "Infrastructure foundation", text: "Stand up the AWS/EKS foundation, networking, and baseline IAM." },
-    { title: "CI/CD", text: "Standard pipelines, registries, and the commit-to-production workflow." },
-    { title: "Environments", text: "Preview and production environments with automated provisioning." },
-    { title: "Golden path", text: "The standard service template and repository bootstrap developers follow." },
-    { title: "Security", text: "Least-privilege access, encrypted storage and state, and automated checks in the pipeline." },
-    { title: "Observability", text: "Prometheus + Grafana — metrics and dashboards, live-proven across both services (ADR-018)." },
-    { title: "Production validation", text: "End-to-end validation of the golden path against a real workload." },
-    { title: "Handover", text: "Documentation, runbooks, training, and the phase-2 backlog." },
+    { title: "Discovery and architecture", text: "Map the current state, agree the target architecture, and lock the 14-working-day scope.", claims: ["__process__"] },
+    { title: "Infrastructure foundation", text: "Stand up the AWS/EKS foundation, networking, and baseline IAM.", claims: ["pbx.foundation.aws", "pbx.platform.kubernetes-eks", "pbx.platform.networking", "pbx.security.iam-least-privilege"] },
+    { title: "CI/CD", text: "Standard pipelines, registries, and the commit-to-production workflow.", claims: ["pbx.delivery.ci-cd", "pbx.platform.container-registry"] },
+    { title: "Environments", text: "Preview and production environments with automated provisioning.", claims: ["pbx.environments.preview"] },
+    { title: "Golden path", text: "The standard service template and repository bootstrap developers follow.", claims: ["pbx.golden-path.service-scaffold", "pbx.golden-path.build-to-production"] },
+    { title: "Security", text: "Least-privilege access, encrypted storage and state, and automated checks in the pipeline.", claims: ["pbx.security.scanning", "pbx.security.iam-least-privilege"] },
+    { title: "Observability", text: "Prometheus + Grafana — metrics and dashboards, live-proven across both services (ADR-018).", claims: ["pbx.observability.metrics"] },
+    { title: "Production validation", text: "End-to-end validation of the golden path against a real workload.", claims: ["pbx.delivery.production-promotion"] },
+    { title: "Handover", text: "Documentation, runbooks, training, and the phase-2 backlog.", claims: ["pbx.delivery.handover"] },
   ],
   disclaimer:
     "This is the standard PlatformBox delivery model. Individual environments may require scope adjustments identified during the Platform Assessment.",
@@ -448,15 +473,15 @@ export const technicalReference = {
   headline: "The PlatformBox reference architecture.",
   sub: "A standardized path from Git to production — built on your existing AWS and Kubernetes stack.",
   sections: [
-    { name: "Terraform", role: "Infrastructure lifecycle", text: "All infrastructure is defined as versioned Terraform modules, reviewed and applied through CI. Changes are auditable and reversible." },
-    { name: "Kubernetes / EKS", role: "Application runtime", text: "Workloads run on EKS with least-privilege RBAC, per-team namespaces, autoscaling, and a monitoring baseline." },
-    { name: "GitHub / GitLab", role: "Source and workflow", text: "Repositories, merge requests, and approvals stay where your teams already work. PlatformBox wires them into the golden path." },
-    { name: "CI/CD", role: "Application delivery", text: "A standard pipeline builds, scans (Trivy), and promotes each service from commit to production — no per-team pipeline maintenance." },
-    { name: "GitOps", role: "Declared desired state", text: "The cluster reconciles to the state declared in Git (ArgoCD, cluster-level proven per ADR-016). Deployments are pull-based, reviewable, and auditable." },
-    { name: "IAM", role: "Least-privilege access", text: "Scoped roles for humans and workloads. Keyless CI-to-AWS auth via OIDC — no static credentials. Separate IAM roles per environment tier (dev, qa/uat, preview, prod) — environment separation by default, enforced by AWS STS." },
-    { name: "Security", role: "Built into the path", text: "Trivy scanning in CI, GuardDuty threat detection, encrypted storage and state and storage, and policy checks run on every change." },
-    { name: "Observability", role: "See what's running", text: "Prometheus + Grafana — metrics and dashboards, live-proven across both services and all three tiers (ADR-018)." },
-    { name: "Platform ownership", role: "You own it all", text: "Everything lives in your accounts and repositories. No proprietary runtime, no lock-in." },
+    { name: "Terraform", role: "Infrastructure lifecycle", claims: ["pbx.foundation.iac-terraform"], text: "All infrastructure is defined as versioned Terraform modules, reviewed and applied through CI. Changes are auditable and reversible." },
+    { name: "Kubernetes / EKS", role: "Application runtime", claims: ["pbx.platform.kubernetes-eks"], text: "Workloads run on EKS with least-privilege RBAC, per-team namespaces, autoscaling, and a monitoring baseline." },
+    { name: "GitHub / GitLab", role: "Source and workflow", claims: ["__process__"], text: "Repositories, merge requests, and approvals stay where your teams already work. PlatformBox wires them into the golden path." },
+    { name: "CI/CD", role: "Application delivery", claims: ["pbx.delivery.ci-cd"], text: "A standard pipeline builds, scans (Trivy), and promotes each service from commit to production — no per-team pipeline maintenance." },
+    { name: "GitOps", role: "Declared desired state", claims: ["pbx.delivery.gitops"], text: "The cluster reconciles to the state declared in Git (ArgoCD, cluster-level proven per ADR-016). Deployments are pull-based, reviewable, and auditable." },
+    { name: "IAM", role: "Least-privilege access", claims: ["pbx.security.iam-least-privilege"], text: "Scoped roles for humans and workloads. Keyless CI-to-AWS auth via OIDC — no static credentials. Separate IAM roles per environment tier (dev, qa/uat, preview, prod) — environment separation by default, enforced by AWS STS." },
+    { name: "Security", role: "Built into the path", claims: ["pbx.security.scanning"], text: "Trivy scanning in CI, GuardDuty threat detection, encrypted storage and state, and automated checks run on every change." },
+    { name: "Observability", role: "See what's running", claims: ["pbx.observability.metrics"], text: "Prometheus + Grafana — metrics and dashboards, live-proven across both services and all three tiers (ADR-018)." },
+    { name: "Platform ownership", role: "You own it all", claims: ["__process__"], text: "Everything lives in your accounts and repositories. No proprietary runtime, no lock-in." },
   ],
 } as const;
 

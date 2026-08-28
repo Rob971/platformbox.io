@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: "/workspace",
     },
     sitemap: "https://www.platformbox.io/sitemap.xml",
   };

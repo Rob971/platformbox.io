@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "enforce": "node scripts/enforce-agent-rules.mjs",
-    "check": "npm run lint && npm run enforce && npm run build",
+    "check:claims": "node scripts/check-capability-claims.mjs",
+    "check": "npm run lint && npm run enforce && npm run check:claims && npm run build",
     "generate-diagrams": "node scripts/generate-architecture-diagrams.mjs",
     "generate-favicon": "node scripts/generate-favicon.mjs"
   },

@@ -8,3 +8,6 @@ export const BOOKING_NOTE =
 // Public reference implementation — the single source of truth for the
 // /architecture diagrams and every verifiable evidence link on the site.
 export const IDP_REPO_URL = "https://gitlab.com/platform-box-group/platformbox-idp";
+
+/** The authenticated delivery workspace. Redirects to app.platformbox.io — see ADR-008 (revised). */
+export const WORKSPACE_PATH = "/workspace";
