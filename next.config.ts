@@ -10,22 +10,6 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_COMMIT_SHA: process.env.VERCEL_GIT_COMMIT_SHA ?? process.env.NEXT_PUBLIC_COMMIT_SHA ?? "dev",
   },
 
-  async redirects() {
-    // The branded path to the delivery workspace. ADR-008 (revised): the app
-    // lives directly on app.platformbox.io; /workspace is a TEMPORARY redirect
-    // so the destination can change without a marketing redeploy. permanent:
-    // false is deliberate — 308s are cached indefinitely by browsers and
-    // painful to walk back. Promote to permanent only once a real customer has
-    // shipped.
-    return [
-      { source: "/workspace", destination: "https://app.platformbox.io", permanent: false },
-      // trailingSlash: true normalises /workspace to /workspace/ before
-      // matching, so the slash form must be explicit to avoid a second hop.
-      { source: "/workspace/", destination: "https://app.platformbox.io/", permanent: false },
-      { source: "/workspace/:path*", destination: "https://app.platformbox.io/:path*", permanent: false },
-    ];
-  },
-
   async headers() {
     return [
       {
