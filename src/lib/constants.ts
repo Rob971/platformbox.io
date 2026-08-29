@@ -9,5 +9,5 @@ export const BOOKING_NOTE =
 // /architecture diagrams and every verifiable evidence link on the site.
 export const IDP_REPO_URL = "https://gitlab.com/platform-box-group/platformbox-idp";
 
-/** The authenticated delivery workspace. Redirects to app.platformbox.io — see ADR-008 (revised). */
-export const WORKSPACE_PATH = "/workspace";
+/** The authenticated delivery control plane entry point. Same origin — the /admin base proxy to app.platformbox.io's Fly app — see ADR-008 in platformbox-delivery. */
+export const WORKSPACE_PATH = "/admin";

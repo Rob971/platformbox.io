@@ -6,10 +6,10 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        // The same-origin proxies to the delivery control plane are
-        // customer-confidential — never index the workspace or the admin
-        // console (ADR-008).
-        disallow: ["/workspace", "/admin/delivery"],
+        // The same-origin control plane lives at /admin and is
+        // customer-confidential — never index it (or the legacy /workspace
+        // redirect which lands there). ADR-008.
+        disallow: ["/admin", "/workspace"],
       },
     ],
     sitemap: "https://www.platformbox.io/sitemap.xml",
