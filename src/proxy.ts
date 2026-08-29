@@ -233,6 +233,13 @@ function edgeFailureResponse(
   const headers = new Headers();
   headers.set("Content-Type", "text/html; charset=utf-8");
   headers.set("Content-Security-Policy", ERROR_PAGE_CSP);
+  // An error page must never outlive the outage that produced it. Without an
+  // explicit policy the platform default (`public, max-age=0, must-revalidate`)
+  // applies, and `public` permits browsers, corporate proxies and ISP caches to
+  // STORE this 502 for /admin. A stored copy can keep a customer staring at a
+  // failure page — and re-serve it to the "Try again" link — long after the
+  // delivery app has recovered. This response is never reusable.
+  headers.set("Cache-Control", "no-store, must-revalidate");
   for (const [name, value] of EDGE_HEADERS) headers.set(name, value);
   if (DIAGNOSTICS) {
     headers.set("x-pb-diag-upstream", reason);
