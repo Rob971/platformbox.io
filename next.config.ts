@@ -12,7 +12,11 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: "/(.*)",
+        // Exclude /admin and /admin/* — proxy.ts (G0) owns the /admin header
+        // policy: it forwards the delivery application's own CSP and sets
+        // baseline edge headers. The marketing-site CSP must never be
+        // combined with the delivery CSP on /admin.
+        source: "/((?!admin).*)",
         headers: [
           {
             key: "X-Frame-Options",

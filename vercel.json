@@ -1,11 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
-    { "source": "/admin/delivery",         "destination": "https://platformbox-delivery.fly.dev/admin" },
-    { "source": "/admin/delivery/:match*", "destination": "https://platformbox-delivery.fly.dev/admin/:match*" },
-    { "source": "/admin",         "destination": "https://platformbox-delivery.fly.dev/" },
-    { "source": "/admin/:match*", "destination": "https://platformbox-delivery.fly.dev/:match*" }
-  ],
   "redirects": [
     { "source": "/workspace/admin",         "destination": "/admin/delivery",         "permanent": false },
     { "source": "/workspace/admin/:match*", "destination": "/admin/delivery/:match*", "permanent": false },
