@@ -29,6 +29,33 @@ const UPSTREAM = (process.env.DELIVERY_UPSTREAM_URL ?? DEFAULT_UPSTREAM).replace
 const DIAGNOSTICS = process.env.EDGE_DIAGNOSTICS === "1";
 
 /**
+ * Time-to-first-byte budget for the upstream request.
+ *
+ * Without this, a *hung* upstream (TCP accepted, headers never sent) is the one
+ * failure mode this boundary does not own: `fetch()` would never reject, the
+ * invocation would ride until the platform's own limit, and the customer would
+ * get the platform's error page — precisely what this file exists to prevent.
+ * A connection *reset* rejects immediately and was always handled; a silent
+ * stall was not.
+ *
+ * The budget is bounded on both sides:
+ *  - It must fire well before the platform limit, or the platform answers first
+ *    and owns the failure instead of us.
+ *  - It must not fire before a legitimately slow start. The delivery app runs
+ *    `auto_start_machines = true`, so a stopped machine boots on first request;
+ *    too tight a budget would turn a routine cold start into a false 502.
+ *
+ * 15s clears a Fly cold start with room to spare while leaving margin under the
+ * platform ceiling.
+ *
+ * Deliberately a fixed constant, not an environment variable: this value is
+ * only correct while it stays below a platform limit the deployer cannot see,
+ * so a well-meaning override (say 60s) would silently hand the failure back to
+ * the platform and defeat this entire file. Changing it is a code review.
+ */
+const UPSTREAM_TIMEOUT_MS = 15_000;
+
+/**
  * Response headers owned by the PlatformBox edge. Each must appear exactly
  * once. Content-Security-Policy is deliberately NOT here: the delivery
  * application owns its own CSP (it renders the admin HTML and knows exactly
@@ -196,13 +223,19 @@ function networkFailurePage(correlationId: string, retryPath: string): string {
 const ERROR_PAGE_CSP =
   "default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'self'; frame-ancestors 'none'";
 
-function edgeFailureResponse(correlationId: string, retryPath: string): Response {
+type FailureReason = "network-error" | "timeout";
+
+function edgeFailureResponse(
+  correlationId: string,
+  retryPath: string,
+  reason: FailureReason,
+): Response {
   const headers = new Headers();
   headers.set("Content-Type", "text/html; charset=utf-8");
   headers.set("Content-Security-Policy", ERROR_PAGE_CSP);
   for (const [name, value] of EDGE_HEADERS) headers.set(name, value);
   if (DIAGNOSTICS) {
-    headers.set("x-pb-diag-upstream", "network-error");
+    headers.set("x-pb-diag-upstream", reason);
     headers.set("x-pb-diag-correlation-id", correlationId);
   }
   return new Response(networkFailurePage(correlationId, retryPath), {
@@ -235,11 +268,19 @@ export function proxy(request: NextRequest): Promise<Response> | Response {
 
   const hasBody = method !== "GET" && method !== "HEAD" && !!request.body;
 
+  // Abort the upstream request if it stalls before sending headers. An
+  // AbortController with a cleared timer is used rather than
+  // AbortSignal.timeout(): the latter keeps running once the response begins
+  // and would truncate a large but healthy body mid-stream.
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), UPSTREAM_TIMEOUT_MS);
+
   const init: RequestInit = {
     method,
     headers: reqHeaders,
     redirect: "manual", // forward 3xx to the browser; never let fetch follow and drop Set-Cookie
     cache: "no-store",
+    signal: controller.signal,
   };
   if (hasBody) {
     init.body = request.body as BodyInit;
@@ -248,6 +289,13 @@ export function proxy(request: NextRequest): Promise<Response> | Response {
 
   return fetch(target, init)
     .then((upstream) => {
+      // Headers are in: the upstream is alive, so the budget has been met.
+      // Stop the timer before it can fire mid-body and truncate the stream.
+      // The body itself is intentionally unguarded — status and headers are
+      // already committed to the browser, so a stall there can no longer be
+      // turned into an error page.
+      clearTimeout(timer);
+
       const resHeaders = new Headers();
       upstream.headers.forEach((value, name) => {
         const lower = name.toLowerCase();
@@ -287,9 +335,13 @@ export function proxy(request: NextRequest): Promise<Response> | Response {
       });
     })
     .catch(() => {
-      // Transport-level failure (DNS / TCP / TLS handshake / timeout). The
-      // delivery app is unreachable, so PlatformBox owns this response.
-      return edgeFailureResponse(correlationId, pathname + search);
+      // Transport-level failure (DNS / TCP / TLS handshake) or a stall that
+      // exhausted the budget above. Either way the delivery app is effectively
+      // unreachable, so PlatformBox owns this response. The customer-facing
+      // page is identical in both cases; only diagnostics tell them apart.
+      clearTimeout(timer);
+      const reason = controller.signal.aborted ? "timeout" : "network-error";
+      return edgeFailureResponse(correlationId, pathname + search, reason);
     });
 }
 
