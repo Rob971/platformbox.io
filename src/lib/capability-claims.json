@@ -52,6 +52,15 @@
     "websiteClaimAllowed": true
   },
   {
+    "id": "pbx.security.network-segmentation",
+    "name": "Pod network segmentation",
+    "category": "security",
+    "referenceStatus": "NOT_SUPPORTED",
+    "deliveryStatus": "NOT_OFFERED",
+    "packages": [],
+    "websiteClaimAllowed": false
+  },
+  {
     "id": "pbx.security.iam-least-privilege",
     "name": "IAM & least privilege",
     "category": "security",

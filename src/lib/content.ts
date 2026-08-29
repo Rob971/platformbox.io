@@ -560,7 +560,7 @@ export const landingEvidence = {
     },
   ],
   stats: [
-    { value: "28", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
+    { value: "29", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
     { value: "7", label: "Terraform modules", href: `${IDP_REPO_URL}/-/tree/main/terraform` },
     { value: "6", label: "Environment tiers proven end-to-end", href: `${IDP_REPO_URL}/-/tree/main/docs/evidence` },
     { value: "1", label: "Public reference implementation", href: IDP_REPO_URL },
@@ -630,6 +630,7 @@ export const notIncluded = {
       title: "Not built, quotable as extra scope",
       items: [
         "Ingress, TLS and DNS — services are cluster-internal in the reference build",
+        "Pod-to-pod network segmentation — the cluster runs on Fargate, where Kubernetes NetworkPolicy cannot be enforced. Traffic in and out is controlled; traffic between pods is not",
           "Log aggregation — services emit structured JSON; nothing ships or indexes it centrally",
         "Alerting and on-call routing — metrics and dashboards exist, nothing pages anyone",
         "Databases, queues and caches — no module provisions a stateful dependency",
