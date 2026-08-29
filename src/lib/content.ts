@@ -425,7 +425,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "How are security concerns handled?",
-    a: "Baseline security is part of every engagement: least-privilege IAM, encrypted storage and secrets, and automated security checks in the pipeline. Advanced governance is available in Scale and Enterprise.",
+    a: "Baseline security is part of every engagement: least-privilege IAM, encrypted storage and state, application secrets held in AWS Secrets Manager and delivered to pods by the External Secrets Operator over federated identity — scoped per environment, so one environment cannot read another\u2019s — and automated security checks in the pipeline. Advanced governance is available in Scale and Enterprise.",
   },
   {
     q: "What does \"production-ready\" mean here?",
@@ -560,8 +560,8 @@ export const landingEvidence = {
     },
   ],
   stats: [
-    { value: "26", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
-    { value: "6", label: "Terraform modules", href: `${IDP_REPO_URL}/-/tree/main/terraform` },
+    { value: "27", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
+    { value: "7", label: "Terraform modules", href: `${IDP_REPO_URL}/-/tree/main/terraform` },
     { value: "6", label: "Environment tiers proven end-to-end", href: `${IDP_REPO_URL}/-/tree/main/docs/evidence` },
     { value: "1", label: "Public reference implementation", href: IDP_REPO_URL },
   ],
@@ -630,11 +630,17 @@ export const notIncluded = {
       title: "Not built, quotable as extra scope",
       items: [
         "Ingress, TLS and DNS — services are cluster-internal in the reference build",
-        "Secrets distribution — there is no secrets manager. Credential elimination is done: CI holds no static AWS keys",
-        "Log aggregation — services emit structured JSON; nothing ships or indexes it centrally",
+          "Log aggregation — services emit structured JSON; nothing ships or indexes it centrally",
         "Alerting and on-call routing — metrics and dashboards exist, nothing pages anyone",
         "Databases, queues and caches — no module provisions a stateful dependency",
         "Runtimes other than Go, and CI providers other than GitLab",
+      ],
+    },
+    {
+      title: "Built, with limits worth stating",
+      items: [
+        "Secret rotation is manual — rotation propagates to running workloads, but nothing schedules it",
+        "Secrets are proven in a development tier; production has not yet taken the module",
       ],
     },
     {

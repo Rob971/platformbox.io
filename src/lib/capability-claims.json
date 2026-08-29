@@ -172,7 +172,7 @@
     "id": "pbx.security.secrets",
     "name": "Secrets management",
     "category": "security",
-    "referenceStatus": "PARTIALLY_PROVEN",
+    "referenceStatus": "PROVEN",
     "deliveryStatus": "PARTIALLY_READY",
     "packages": [
       "launch"
