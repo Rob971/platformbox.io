@@ -560,7 +560,7 @@ export const landingEvidence = {
     },
   ],
   stats: [
-    { value: "27", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
+    { value: "28", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
     { value: "7", label: "Terraform modules", href: `${IDP_REPO_URL}/-/tree/main/terraform` },
     { value: "6", label: "Environment tiers proven end-to-end", href: `${IDP_REPO_URL}/-/tree/main/docs/evidence` },
     { value: "1", label: "Public reference implementation", href: IDP_REPO_URL },
