@@ -106,12 +106,6 @@ body {
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
-/* Architecture diagrams are pre-rendered with a dark background.
-   In light mode, invert them so they stay readable. */
-:not(.dark) .diagram-light-invert svg {
-  filter: invert(1) hue-rotate(180deg);
-}
-
 /* Respect the user's OS-level reduced-motion preference.
    Disable all entrance animations, spring transitions, and
    AnimatePresence — the page still renders correctly, just
