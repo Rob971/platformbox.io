@@ -95,6 +95,11 @@ const ALLOWED_REQUEST_HEADERS = new Set([
   "accept-encoding",
   "content-type",
   "user-agent",
+  // NOTE: `accept-encoding` is deliberately absent. `fetch()` negotiates and
+  // transparently DECODES the response body, so forwarding the browser's
+  // encoding preferences only makes the upstream compress bytes that undici
+  // immediately decompresses again. Worse, it invites a `content-encoding`
+  // header describing a body that no longer exists in that form.
   "x-forwarded-for",
   "x-forwarded-host",
   "x-forwarded-proto",
@@ -308,6 +313,15 @@ export function proxy(request: NextRequest): Promise<Response> | Response {
         const lower = name.toLowerCase();
         if (HOP_BY_HOP.has(lower)) return;
         if (lower === "set-cookie") return; // handled individually below
+        // `fetch()` has already decoded the body, so `upstream.body` is plain
+        // bytes. Forwarding the upstream's `content-encoding` would promise the
+        // browser a gzip/br/zstd stream and hand it plaintext — the browser
+        // trusts the header, fails to decode, and renders NOTHING
+        // (ERR_CONTENT_DECODING_FAILED). curl does not decode by default, so
+        // this failure is invisible to a plain `curl` check and visible to
+        // every real customer. `content-length` is dropped as hop-by-hop above
+        // for the same reason: the decoded length differs.
+        if (lower === "content-encoding") return;
         if (lower === "content-security-policy") {
           // Delivery owns CSP: pass it through untouched, exactly once.
           resHeaders.set(name, value);
