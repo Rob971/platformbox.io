@@ -11,6 +11,7 @@
     "check:claims": "node scripts/check-capability-claims.mjs",
     "check": "npm run lint && npm run enforce && npm run check:claims && npm run build",
     "generate-diagrams": "node scripts/generate-architecture-diagrams.mjs",
+    "generate-claims": "node scripts/generate-capability-claims.mjs",
     "generate-favicon": "node scripts/generate-favicon.mjs"
   },
   "dependencies": {

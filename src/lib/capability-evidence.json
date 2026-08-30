@@ -1,0 +1,133 @@
+[
+  {
+    "capabilityId": "pbx.foundation.aws",
+    "phase": "05-foundation",
+    "workingDay": 5,
+    "evidenceKeys": ["e-iac-plan", "e-cluster-proof"],
+    "evidence": ["docs/evidence/2026-08-19/terraform-plan.md"]
+  },
+  {
+    "capabilityId": "pbx.foundation.iac-terraform",
+    "phase": "05-foundation",
+    "workingDay": 5,
+    "evidenceKeys": ["e-iac-plan"],
+    "evidence": [
+      "docs/evidence/2026-08-19/terraform-plan.md",
+      "docs/evidence/2026-08-19/bootstrap-plan.txt"
+    ]
+  },
+  {
+    "capabilityId": "pbx.platform.kubernetes-eks",
+    "phase": "05-foundation",
+    "workingDay": 5,
+    "evidenceKeys": ["e-cluster-proof"],
+    "evidence": [
+      "docs/evidence/2026-08-19/eks-apply-up-kubectl-proof.md",
+      "docs/evidence/2026-08-21/adr-013-prod-apply-proof.md"
+    ]
+  },
+  {
+    "capabilityId": "pbx.platform.networking",
+    "phase": "05-foundation",
+    "workingDay": 5,
+    "evidenceKeys": ["e-iac-plan"],
+    "evidence": [
+      "docs/evidence/2026-08-19/terraform-plan.md",
+      "docs/evidence/2026-08-19/eks-apply-up-kubectl-proof.md"
+    ]
+  },
+  {
+    "capabilityId": "pbx.security.iam-least-privilege",
+    "phase": "06-security-identity",
+    "workingDay": 6,
+    "evidenceKeys": ["e-oidc-proof"],
+    "evidence": [
+      "docs/evidence/2026-08-19/oidc-trust-verification.txt",
+      "docs/evidence/2026-08-24/adr-014-qa-uat-gating-proof.md"
+    ]
+  },
+  {
+    "capabilityId": "pbx.platform.container-registry",
+    "phase": "07-cicd",
+    "workingDay": 7,
+    "evidenceKeys": ["e-pipeline-green"],
+    "evidence": [
+      "docs/evidence/2026-08-21/adr-012-promotion-model-proof.md",
+      "docs/evidence/2026-08-26/adr-023-stage1-ci-template.md"
+    ]
+  },
+  {
+    "capabilityId": "pbx.delivery.ci-cd",
+    "phase": "07-cicd",
+    "workingDay": 7,
+    "evidenceKeys": ["e-pipeline-green"],
+    "evidence": [
+      "docs/evidence/2026-08-20/ci-runner-golden-path-proof.md",
+      "docs/evidence/2026-08-24/adr-016-gitops-argocd-proof.md"
+    ]
+  },
+  {
+    "capabilityId": "pbx.golden-path.build-to-production",
+    "phase": "09-golden-path",
+    "workingDay": 9,
+    "evidenceKeys": ["e-generated-service", "e-promotion-digest", "e-rollback"],
+    "evidence": [
+      "docs/evidence/2026-08-27/generated-service-to-production.md",
+      "docs/evidence/2026-08-24/adr-014-qa-uat-gating-proof.md",
+      "docs/evidence/2026-08-25/adr-019-prod-application-path-proof.md"
+    ]
+  },
+  {
+    "capabilityId": "pbx.golden-path.service-scaffold",
+    "phase": "09-golden-path",
+    "workingDay": 9,
+    "evidenceKeys": ["e-generated-service"],
+    "evidence": [
+      "docs/evidence/2026-08-26/full-rebuild-and-golden-path.md",
+      "docs/evidence/2026-08-26/adr-023-stage2-generator.md",
+      "docs/evidence/2026-08-26/adr-023-stage1-ci-template.md"
+    ]
+  },
+  {
+    "capabilityId": "pbx.delivery.gitops",
+    "phase": "09-golden-path",
+    "workingDay": 9,
+    "evidenceKeys": ["e-promotion-digest"],
+    "evidence": ["docs/evidence/2026-08-24/adr-016-gitops-argocd-proof.md"]
+  },
+  {
+    "capabilityId": "pbx.environments.preview",
+    "phase": "08-environments",
+    "workingDay": 8,
+    "evidenceKeys": ["e-tiers"],
+    "evidence": ["docs/evidence/2026-08-24/adr-015-preview-environments-proof.md"]
+  },
+  {
+    "capabilityId": "pbx.delivery.production-promotion",
+    "phase": "09-golden-path",
+    "workingDay": 9,
+    "evidenceKeys": ["e-promotion-digest", "e-gate-blocks"],
+    "evidence": ["docs/evidence/2026-08-25/adr-019-prod-application-path-proof.md"]
+  },
+  {
+    "capabilityId": "pbx.security.scanning",
+    "phase": "06-security-identity",
+    "workingDay": 6,
+    "evidenceKeys": ["e-scan-blocking"],
+    "evidence": ["docs/evidence/2026-08-26/adr-023-stage1-ci-template.md"]
+  },
+  {
+    "capabilityId": "pbx.observability.metrics",
+    "phase": "10-observability",
+    "workingDay": 10,
+    "evidenceKeys": ["e-scrape-targets"],
+    "evidence": ["docs/evidence/2026-08-25/adr-018-observability-proof.md"]
+  },
+  {
+    "capabilityId": "pbx.delivery.handover",
+    "phase": "14-handover",
+    "workingDay": 14,
+    "evidenceKeys": ["e-handover-pack"],
+    "evidence": ["docs/evidence/README.md"]
+  }
+]

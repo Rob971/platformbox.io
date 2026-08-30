@@ -17,6 +17,8 @@ import { SecretManagement } from "./secret-management";
 import { BOOKING_URL, BOOKING_LABEL } from "@/lib/constants";
 import { fadeUp, stagger, FadeIn } from "@/lib/motion";
 import { blueprint } from "@/lib/content";
+import { EvidenceLinks } from "@/components/proof/evidence-links";
+import { ProofSurfaceSection } from "@/components/sections/proof-surface-section";
 import { InfrastructureIcon, PipelineIcon, EphemeralIcon } from "../icons";
 
 // VERBATIM from the frozen reference implementation:
@@ -206,6 +208,7 @@ export function ShowcasePage() {
                   </p>
                   <p className="mt-2 text-sm font-semibold text-foreground">{phase.title}</p>
                   <p className="mt-1.5 text-xs leading-relaxed text-foreground-tertiary">{phase.text}</p>
+                  <EvidenceLinks claims={phase.claims} />
                 </div>
               </FadeIn>
             ))}
@@ -302,6 +305,8 @@ export function ShowcasePage() {
             </div>
           </FadeIn>
         </section>
+
+        <ProofSurfaceSection />
       </main>
 
       <Footer />

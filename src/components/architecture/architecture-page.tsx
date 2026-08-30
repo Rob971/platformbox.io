@@ -20,6 +20,8 @@ import { Footer } from "@/components/footer";
 import { BookingCta } from "@/components/booking-cta";
 import { PageNav, type PageNavSection } from "@/components/page-nav";
 import { LiveArchitectureDiagrams } from "@/components/architecture/live-diagrams";
+import { EvidenceLinks } from "@/components/proof/evidence-links";
+import { ProofSurfaceSection } from "@/components/sections/proof-surface-section";
 import { technicalReference, architecture, finalCta, evidence } from "@/lib/content";
 
 const sectionIcons = [
@@ -138,6 +140,7 @@ export function ArchitecturePage() {
                       {section.role}
                     </p>
                     <p className="mt-3 text-sm leading-relaxed text-foreground-tertiary">{section.text}</p>
+                    <EvidenceLinks claims={section.claims} />
                   </div>
                 );
               })}
@@ -207,6 +210,8 @@ export function ArchitecturePage() {
             </div>
           </div>
         </section>
+
+        <ProofSurfaceSection />
 
         <section id="book" className="border-t border-border">
           <div className="mx-auto max-w-5xl px-6 py-24 text-center">

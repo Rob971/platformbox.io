@@ -36,13 +36,22 @@ function assert(condition, message) {
   if (!condition) errors.push(message);
 }
 
-const claimsPath = path.join(root, "src/lib/capability-claims.json");
-if (!fs.existsSync(claimsPath)) {
-  console.error("check-capability-claims: src/lib/capability-claims.json not found.");
-  console.error("  Generate it from platformbox-capabilities.json — never proven_with.");
+function fail(message) {
+  console.error(`check-capability-claims: ${message}`);
   process.exit(1);
 }
-const claims = JSON.parse(fs.readFileSync(claimsPath, "utf8"));
+
+function readJson(rel, label) {
+  const p = path.join(root, rel);
+  if (!fs.existsSync(p)) fail(`${rel} not found — ${label}.`);
+  try {
+    return JSON.parse(fs.readFileSync(p, "utf8"));
+  } catch (e) {
+    fail(`${rel} is not valid JSON — ${label} (${e.message}).`);
+  }
+}
+
+const claims = readJson("src/lib/capability-claims.json", "the projection must exist, never skip");
 assert(Array.isArray(claims), "capability-claims.json must be an array");
 const byId = new Map(claims.map((c) => [c.id, c]));
 
@@ -54,12 +63,14 @@ const content = fs.readFileSync(contentPath, "utf8");
 
 const claimArrays = content.matchAll(/\bclaims:\s*\[([^\[\]]*)\]/g);
 let annotationCount = 0;
+const claimedIds = new Set();
 for (const m of claimArrays) {
   annotationCount++;
   const ids = [...m[1].matchAll(/"([^"]+)"/g)].map((x) => x[1]);
   for (const id of ids) {
     claimCount++;
     if (id === "__process__" || id === "__pricing__") continue; // explicit non-capability marker
+    claimedIds.add(id);
     const cap = byId.get(id);
     if (!cap) {
       console.error(`check-capability-claims: claimed capability "${id}" is not in capability-claims.json.`);
@@ -88,7 +99,92 @@ for (const m of claimArrays) {
 }
 
 assert(annotationCount > 0, "no claims: [...] annotations found in content.ts — the check would be silent");
-console.log(`Verified ${claimCount} claim(s) across ${annotationCount} annotation(s).`);
+
+// ---------------------------------------------------------------------------
+// Proof-link validation.
+// ---------------------------------------------------------------------------
+const evidenceKeys = readJson("src/lib/evidence-keys.json", "the evidence-key taxonomy must exist, never skip");
+assert(Array.isArray(evidenceKeys) && evidenceKeys.length > 0, "evidence-keys.json must be a non-empty array");
+const evidenceKeyById = new Map();
+for (const k of evidenceKeys) {
+  for (const field of ["key", "title", "artifactType", "provenance", "phase", "workingDay", "description"]) {
+    if (typeof k?.[field] !== "string" && typeof k?.[field] !== "number") {
+      assert(false, `evidence-keys.json entry missing field "${field}": ${JSON.stringify(k)?.slice(0, 80)}`);
+    }
+  }
+  if (!["DERIVED", "ATTESTED"].includes(k?.provenance)) {
+    assert(false, `evidence-keys.json "${k?.key}" has invalid provenance "${k?.provenance}" (expected DERIVED or ATTESTED)`);
+  }
+  if (evidenceKeyById.has(k?.key)) {
+    assert(false, `evidence-keys.json duplicate key "${k.key}"`);
+  }
+  evidenceKeyById.set(k?.key, k);
+}
+
+const capEvidence = readJson("src/lib/capability-evidence.json", "the capability→evidence map must exist, never skip");
+assert(Array.isArray(capEvidence) && capEvidence.length > 0, "capability-evidence.json must be a non-empty array");
+
+let proofLinkCount = 0;
+const capEvidenceById = new Map();
+for (const entry of capEvidence) {
+  const cid = entry?.capabilityId;
+  if (typeof cid !== "string" || !Array.isArray(entry?.evidenceKeys) || !Array.isArray(entry?.evidence)) {
+    assert(false, `capability-evidence.json entry malformed: ${JSON.stringify(entry)?.slice(0, 120)}`);
+    continue;
+  }
+  if (capEvidenceById.has(cid)) {
+    assert(false, `capability-evidence.json duplicate capabilityId "${cid}"`);
+  }
+  capEvidenceById.set(cid, entry);
+
+  // The mapped capability must itself be claimable — a proof link for an
+  // unclaimable capability is a back door past the claim guard.
+  const cap = byId.get(cid);
+  if (!cap) {
+    assert(false, `capability-evidence.json maps "${cid}" which is absent from the projection`);
+  } else if (
+    cap.websiteClaimAllowed === false ||
+    cap.deliveryStatus === "NOT_READY" ||
+    cap.deliveryStatus === "NOT_OFFERED" ||
+    cap.referenceStatus === "NOT_SUPPORTED"
+  ) {
+    assert(false, `capability-evidence.json maps "${cid}" but it is not claimable`);
+  }
+
+  if (entry.evidenceKeys.length === 0) {
+    assert(false, `capability-evidence.json "${cid}" has no evidenceKeys`);
+  }
+  if (entry.evidence.length === 0) {
+    assert(false, `capability-evidence.json "${cid}" has no evidence file paths`);
+  }
+  for (const key of entry.evidenceKeys) {
+    if (!evidenceKeyById.has(key)) {
+      assert(false, `capability-evidence.json "${cid}" names unknown evidence key "${key}"`);
+    }
+  }
+  for (const p of entry.evidence) {
+    proofLinkCount++;
+    // Public-safe by construction: reference-implementation docs only.
+    if (typeof p !== "string" || !p.startsWith("docs/")) {
+      assert(false, `capability-evidence.json "${cid}" evidence path not under docs/: "${p}"`);
+    }
+    if (/proven_with|engagement/i.test(p)) {
+      assert(false, `capability-evidence.json "${cid}" evidence path looks customer-scoped: "${p}"`);
+    }
+  }
+}
+
+// FAIL-CLOSED invariant 1: every claimed capability must have a proof link.
+for (const id of claimedIds) {
+  if (!capEvidenceById.has(id)) {
+    assert(false, `claimed capability "${id}" has no proof link in capability-evidence.json`);
+  }
+}
+
+console.log(
+  `Verified ${claimCount} claim(s) across ${annotationCount} annotation(s), ` +
+    `${claimedIds.size} capability/ies with ${proofLinkCount} public proof link(s) across ${evidenceKeys.length} evidence key(s).`,
+);
 
 if (errors.length) {
   console.error("\nCapability claim enforcement failed:\n");
