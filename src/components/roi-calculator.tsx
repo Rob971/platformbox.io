@@ -6,6 +6,8 @@ import { Calculator, Clock, TrendingUp, Scale } from "lucide-react";
 
 // Loaded annual cost per engineer, in €. Midpoint of each selectable range.
 const COST_RANGES = [
+  { label: "€40k–€60k", value: 50000 },
+  { label: "€60k–€80k", value: 70000 },
   { label: "€80k–€100k", value: 90000 },
   { label: "€100k–€120k", value: 110000 },
   { label: "€120k–€140k", value: 130000 },
@@ -15,6 +17,18 @@ const COST_RANGES = [
 
 // Transparent benchmark assumption used when the buyer is not sure.
 const BENCHMARK_LOADED_COST = 110000;
+
+// Predefined recurring platform/support share — deliberately approximate.
+const CAPACITY_PCTS = [
+  { label: "5%", value: 5 },
+  { label: "10%", value: 10 },
+  { label: "15%", value: 15 },
+  { label: "20%", value: 20 },
+  { label: "25%", value: 25 },
+  { label: "30%", value: 30 },
+  { label: "40%", value: 40 },
+  { label: "50%+", value: 50 },
+] as const;
 
 const FREQUENCIES = [
   { label: "<5 / month", mid: 3 },
@@ -74,13 +88,9 @@ export function RoiCalculator() {
   const launch = 20000;
   const scale = 39000;
   const launchPct =
-    engineeringCapacity > 0 ? Math.round((launch / engineeringCapacity) * 100) : null;
+    platformTax > 0 ? Math.round((launch / platformTax) * 100) : null;
   const scalePct =
-    engineeringCapacity > 0 ? Math.round((scale / engineeringCapacity) * 100) : null;
-  const launchMonths =
-    engineeringCapacity > 0 ? launch / (engineeringCapacity / 12) : null;
-  const launchMonthsLabel =
-    launchMonths !== null ? (launchMonths < 1 ? "<1" : Math.round(launchMonths).toString()) : null;
+    platformTax > 0 ? Math.round((scale / platformTax) * 100) : null;
 
   const rangeThumb =
     "w-full h-1.5 rounded-full appearance-none cursor-pointer bg-card-hover accent-accent [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:cursor-pointer";
@@ -108,7 +118,7 @@ export function RoiCalculator() {
           <div>
             <div className="mb-2 flex items-center justify-between">
               <label htmlFor="roi-engineers" className="text-xs font-medium text-foreground-tertiary">
-                Engineers doing platform/infra work
+                Engineers regularly involved in platform / infrastructure / delivery
               </label>
               <input
                 id="roi-engineers"
@@ -136,20 +146,19 @@ export function RoiCalculator() {
               <label htmlFor="roi-capacity" className="text-xs font-medium text-foreground-tertiary">
                 % of their time on recurring platform/support work
               </label>
-              <span className="text-sm font-semibold text-foreground tabular-nums">
-                {capacityPct}%
-              </span>
+              <select
+                id="roi-capacity"
+                value={capacityPct}
+                onChange={(e) => setCapacityPct(Number(e.target.value))}
+                className={selectClass}
+              >
+                {CAPACITY_PCTS.map((p) => (
+                  <option key={p.value} value={p.value}>
+                    {p.label}
+                  </option>
+                ))}
+              </select>
             </div>
-            <input
-              id="roi-capacity"
-              type="range"
-              min={5}
-              max={100}
-              step={5}
-              value={capacityPct}
-              onChange={(e) => setCapacityPct(Number(e.target.value))}
-              className={rangeThumb}
-            />
           </div>
 
           <div>
@@ -182,8 +191,8 @@ export function RoiCalculator() {
             </div>
             {notSure && (
               <p className="text-[11px] text-muted">
-                Uses a benchmark loaded engineering cost; replace with your actual
-                figure for a more accurate estimate.
+                Benchmark estimate; replace with your actual loaded cost for greater
+                accuracy.
               </p>
             )}
           </div>
@@ -315,11 +324,9 @@ export function RoiCalculator() {
               </span>
               <span className="text-xs text-foreground-secondary tabular-nums">€20,000</span>
             </div>
-            {launchPct !== null && launchMonthsLabel !== null && (
+            {launchPct !== null && (
               <p className="mt-1 text-[11px] text-muted">
-                ≈ {launchPct}% of your engineering capacity estimate — about{" "}
-                {launchMonthsLabel} month{launchMonthsLabel === "1" ? "" : "s"} of recurring
-                platform capacity.
+                ≈ {launchPct}% of the estimated annual platform tax.
               </p>
             )}
             <div className="mt-2 flex items-center justify-between">
@@ -330,7 +337,7 @@ export function RoiCalculator() {
             </div>
             {scalePct !== null && (
               <p className="mt-1 text-[11px] text-muted">
-                ≈ {scalePct}% of your engineering capacity estimate.
+                ≈ {scalePct}% of the estimated annual platform tax.
               </p>
             )}
           </div>
