@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   check:
-    name: lint · enforce · build
+    name: lint · enforce · claims · build
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -34,6 +34,9 @@ jobs:
 
       - name: Lint
         run: npm run lint
+
+      - name: Validate capability claims
+        run: npm run check:claims
 
       - name: Build
         run: npm run build
