@@ -128,19 +128,6 @@ export const aboutFinalCta = {
   secondaryLabel: "Explore the Technical Evidence",
 } as const;
 
-export const problem = {
-  eyebrow: "01 / The Problem",
-  headline: "Your engineering team is becoming your platform team.",
-  sub: "As services multiply, infrastructure work quietly absorbs your most senior people. PlatformBox turns those repeated tasks into a standardized developer path.",
-  painPoints: [
-    "Every deployment needs DevOps help",
-    "Infrastructure provisioning is slow",
-    "Teams solve the same problems repeatedly",
-    "Kubernetes and CI/CD complexity keeps growing",
-    "Senior engineers lose time on infrastructure",
-  ],
-} as const;
-
 export const outcome = {
   eyebrow: "01 / The Path",
   headline: "From Git push to production, on a standardized golden path.",
@@ -429,20 +416,6 @@ export const assessmentSection = {
     "Fixed-price recommendation",
   ],
   credit: "€2,500 — fully credited toward PlatformBox Launch if you proceed.",
-} as const;
-
-export const scopeAssumptions = {
-  eyebrow: "09 / Scope & Assumptions",
-  headline: "What makes the 14-working-day promise credible.",
-  sub: "The 14-working-day delivery assumes a defined reference architecture and customer readiness. These assumptions are agreed during the Platform Assessment, before work begins.",
-  items: [
-    "AWS access is available",
-    "Required repositories and accounts are accessible",
-    "Required stakeholders are available for decisions",
-    "Network and IAM prerequisites are known",
-    "Implementation scope is agreed during the Assessment",
-  ],
-  note: "If your environment doesn't fit these assumptions, the Platform Assessment tells you before you commit.",
 } as const;
 
 export const ownership = {
