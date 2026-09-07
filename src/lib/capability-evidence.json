@@ -129,5 +129,12 @@
     "workingDay": 14,
     "evidenceKeys": ["e-handover-pack"],
     "evidence": ["docs/evidence/README.md"]
+  },
+  {
+    "capabilityId": "pbx.operations.finops",
+    "phase": "11-finops",
+    "workingDay": 11,
+    "evidenceKeys": ["e-cost"],
+    "evidence": ["docs/evidence/2026-08-19/cost-breakdown.md"]
   }
 ]

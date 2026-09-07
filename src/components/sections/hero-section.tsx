@@ -11,7 +11,7 @@ export function HeroSection() {
   return (
     <section className="mx-auto flex max-w-5xl flex-col items-center px-6 pb-24 pt-20 text-center sm:pt-28 md:pb-32 md:pt-36">
       <motion.div
-        initial="hidden"
+        initial={false}
         animate="visible"
         variants={stagger}
         className="flex flex-col items-center"
@@ -24,7 +24,7 @@ export function HeroSection() {
         </motion.p>
         <motion.h1
           variants={fadeUp}
-          className="max-w-4xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl md:leading-[1.08]"
+          className="max-w-3xl whitespace-pre-line text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl md:leading-[1.08]"
         >
           {hero.headline}
         </motion.h1>
@@ -34,17 +34,23 @@ export function HeroSection() {
         >
           {hero.sub}
         </motion.p>
+        <motion.p
+          variants={fadeUp}
+          className="mt-6 inline-flex rounded-full border border-accent/30 bg-accent/[0.06] px-4 py-1.5 text-sm font-semibold text-accent-hover"
+        >
+          {hero.proofLine}
+        </motion.p>
         <motion.div
           variants={fadeUp}
-          className="mt-10 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
+          className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
         >
-          <BookingCta className="w-full sm:w-auto" />
+          <BookingCta className="w-full sm:w-auto" label="Start with a €2.5k Platform Assessment" />
           <Link
             href="/showcase"
             prefetch={false}
             className="inline-flex h-11 w-full items-center justify-center rounded-lg border border-border-strong px-6 text-sm font-medium text-foreground-secondary transition-colors hover:border-border-strong sm:w-auto"
           >
-            See the 14-Day Blueprint
+            See the platform working
           </Link>
         </motion.div>
         <motion.p

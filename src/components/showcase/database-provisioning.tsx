@@ -13,7 +13,7 @@ interface Step {
 const steps: Step[] = [
   { id: 1, label: "Declare", detail: "Developer adds a database resource block to the service config. No ticket, no manual request." },
   { id: 2, label: "Provision", detail: "Pipeline runs Terraform — RDS/Aurora instance created in private subnets with encryption at rest." },
-  { id: 3, label: "Inject", detail: "Connection string and credentials auto-injected as Kubernetes secrets via CSI driver." },
+  { id: 3, label: "Inject", detail: "Connection string and credentials auto-injected as Kubernetes secrets via the platform's External Secrets Operator." },
   { id: 4, label: "Connect", detail: "Service starts with DB_URL already populated. Health check confirms connectivity before traffic routes." },
 ];
 

@@ -239,7 +239,7 @@ export function ShowcasePage() {
           </FadeIn>
           <div className="grid gap-4 sm:grid-cols-2">
             <DeliverableCard icon={InfrastructureIcon} title="Infrastructure as Code" text="Fully modular Terraform templates for self-serve provisioning." code={terraformModule} codeLanguage="Terraform" />
-            <DeliverableCard icon={PipelineIcon} title="DevSecOps CI/CD" text="Standardized CI/CD pipelines (GitHub or GitLab) with automated testing and security scanning." code={gitlabCI} codeLanguage="GitLab CI (sample — GitHub Actions available)" />
+            <DeliverableCard icon={PipelineIcon} title="DevSecOps CI/CD" text="Standardized GitLab CI/CD pipelines with automated testing and security scanning." code={gitlabCI} codeLanguage="GitLab CI (sample)" />
             <DeliverableCard icon={EphemeralIcon} title="Ephemeral Environments" text="Auto-generated preview environments for every Pull Request to eliminate staging bottlenecks."><EnvDashboard /></DeliverableCard>
             <DeliverableCard icon={Boxes} title="Production Kubernetes" text="EKS clusters with HPA, ingress, and monitoring — built on your account and handed to you to own." code={k8sManifest} codeLanguage="Kubernetes"><K8sArchitecture /></DeliverableCard>
           </div>
@@ -268,7 +268,7 @@ export function ShowcasePage() {
             <DeliverableCard icon={Gauge} title="Observability — proven" text="Prometheus + Grafana, live-proven (ADR-018): 12/12 scrape targets across both services and all three tiers. Ephemeral by design — cost-aware, not an always-on stack." code={prometheusScrapeConfig} codeLanguage="Prometheus"><ObservabilityDashboard /></DeliverableCard>
             <DeliverableCard icon={LayoutDashboard} title="Developer Portal — optional" text="A Backstage-style service catalog and software scaffolder, delivered as a Scale or Enterprise extension. Not part of the reference implementation."><BackstagePortal /></DeliverableCard>
             <DeliverableCard icon={Database} title="Self-Service Databases — optional" text="Self-service, encrypted RDS provisioning declared from service config, delivered as a Scale or Enterprise extension."><DatabaseProvisioning /></DeliverableCard>
-            <DeliverableCard icon={KeyRound} title="Secret Management — optional" text="Vault or AWS Secrets Manager productization with the CSI driver, delivered as a Scale or Enterprise extension. KMS-encrypted secrets and least-privilege IAM are already in the baseline."><SecretManagement /></DeliverableCard>
+            <DeliverableCard icon={KeyRound} title="Secret Management — proven in dev" text="AWS Secrets Manager + External Secrets Operator over IRSA: secrets reach pods as environment variables, scoped per environment — proven including rotation and a denied cross-environment read. Production has not yet taken the module."><SecretManagement /></DeliverableCard>
           </div>
         </section>
 

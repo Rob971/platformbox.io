@@ -18,9 +18,9 @@ const siteUrl = "https://www.platformbox.io";
 const ANTI_FLASH = `(function(){try{var t=localStorage.getItem("platformbox-theme");var d=(t==="light"||t==="dark")?t==="dark":!window.matchMedia("(prefers-color-scheme: light)").matches;document.documentElement.classList.toggle("dark",d)}catch(e){document.documentElement.classList.add("dark")}})()`;
 
 export const metadata: Metadata = {
-  title: "PlatformBox.io — Your Developer Platform. Live in 14 Working Days.",
+  title: "PlatformBox.io — Your Code. From Local to Production. We Build the Path.",
   description:
-    "A fixed-price engagement that delivers a Internal Developer Platform (IDP) in 14 working days — a standardized, self-service path from Git to production, built on your existing AWS and Kubernetes stack.",
+    "PlatformBox builds the infrastructure, environments and deployment automation that takes your software from a developer's laptop to production — fixed at €20k, live in 14 working days.",
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: "/",
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "PlatformBox.io — Your Developer Platform. Live in 14 Working Days.",
+    title: "PlatformBox.io — Your Code. From Local to Production. We Build the Path.",
     description:
-      "Give your engineering teams a standardized, self-service path from Git to production. Fixed-price, live in 14 working days.",
+      "PlatformBox builds the infrastructure, environments and deployment automation that takes your software from a developer's laptop to production. Fixed-price, live in 14 working days.",
     url: siteUrl,
     siteName: "PlatformBox.io",
     type: "website",
@@ -41,15 +41,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PlatformBox.io — Your Developer Platform. Live in 14 Working Days.",
+        alt: "PlatformBox.io — Your Code. From Local to Production. We Build the Path.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PlatformBox.io — Your Developer Platform. Live in 14 Working Days.",
+    title: "PlatformBox.io — Your Code. From Local to Production. We Build the Path.",
     description:
-      "A fixed-price engagement that delivers a working developer platform in your own AWS account in 14 working days.",
+      "PlatformBox builds the path from a developer's laptop to production in your own AWS account — fixed at €20k, live in 14 working days.",
     images: ["/og-image.png"],
   },
 };
@@ -90,7 +90,7 @@ export default function RootLayout({
                   url: siteUrl,
                   logo: `${siteUrl}/favicon.ico`,
                   description:
-                    "A fixed-price engagement that delivers a working developer platform in your own AWS account in 14 working days.",
+                    "PlatformBox builds the infrastructure, environments and deployment automation that takes your software from a developer's laptop to production — fixed at €20k, live in 14 working days.",
                   sameAs: [
                     "https://www.linkedin.com/in/robertocornano/",
                   ],
@@ -100,7 +100,7 @@ export default function RootLayout({
                   "@id": `${siteUrl}/#service`,
                   name: "PlatformBox Launch",
                   description:
-                    "A Internal Developer Platform (IDP) delivered in 14 working days — a standardized, self-service path from Git to production on your existing AWS and Kubernetes stack.",
+                    "Your code, from local to production — we build the path. Infrastructure, environments, CI/CD, security, observability and production delivery, built in your existing AWS and Kubernetes environment, delivered in 14 working days.",
                   provider: { "@id": `${siteUrl}/#organization` },
                   areaServed: "Worldwide",
                   offers: [

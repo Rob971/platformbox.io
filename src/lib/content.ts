@@ -6,14 +6,132 @@ import { IDP_REPO_URL } from "@/lib/constants";
 
 export const hero = {
   eyebrow: "PlatformBox Launch · 14 working days",
-  headline: "Your developer platform. Live in 14 working days.",
-  sub: "Give your engineering teams a standardized, self-service path from Git to production — without spending months building an internal platform.",
+  headline: "Your code.\nFrom local to production.\nWe build the path.",
+  sub: "PlatformBox builds the infrastructure, environments and deployment automation that takes your software from a developer's laptop to production.",
+  proofLine: "14 working days · €20k fixed price",
+} as const;
+
+export const whatWeBuild = {
+  eyebrow: "03 / What We Build",
+  headline: "One supported path from local development to production.",
+  components: ["Infrastructure", "Environments", "CI/CD", "Security", "Observability", "Production delivery"],
+  note: "Built in your existing AWS/Kubernetes environment.",
+  ownershipNote: "You own the platform.",
+} as const;
+
+export const founder = {
+  eyebrow: "Why PlatformBox Exists",
+  headline: "I kept seeing engineers rebuild the same delivery infrastructure.",
+  body: "For 16 years I've worked across backend engineering, distributed systems, cloud infrastructure, DevOps and software architecture. As engineering teams grow, shipping a new service stops being just a development task — someone has to build the container, wire up CI/CD, handle secrets, add observability, and make it safe to run in production. Necessary work. Rarely the work engineers were hired to do.",
+  name: "Roberto Cornano",
+  role: "Founder, PlatformBox",
+  linkHref: "/about",
+  linkLabel: "Why I started PlatformBox",
+} as const;
+
+export const aboutHero = {
+  eyebrow: "About",
+  name: "Roberto Cornano",
+  role: "Founder & Platform Engineer",
+  oneLiner: "16 years across backend engineering, distributed systems, cloud infrastructure, DevOps and software architecture.",
+  intro: "I've spent most of my career working behind the scenes of software products.",
+} as const;
+
+export const aboutStory = {
+  eyebrow: "Why I started PlatformBox",
+  paragraphs: [
+    "For the last 16 years, I've worked across backend engineering, infrastructure, DevOps and architecture.",
+    "Over time, I noticed something that kept happening.",
+    "As engineering teams grow, developers don't just build the product anymore. They also end up dealing with containers, pipelines, environments, infrastructure, security, monitoring and everything else needed to get that product safely into production.",
+    "I've been on both sides of that problem. I've built software, and I've built the infrastructure around it.",
+  ],
+  quote: "And I kept asking myself: why should every engineering team have to solve the same problems again and again?",
+  closing: [
+    "That's really where PlatformBox started.",
+    "I'm building PlatformBox around a simple idea: give engineering teams a reliable path from code to production, without making every developer become a platform engineer.",
+  ],
+} as const;
+
+export const aboutProblem = {
+  eyebrow: "The problem I kept seeing",
+  steps: [
+    "Code",
+    "Container",
+    "Configuration",
+    "CI/CD",
+    "Environments",
+    "Secrets",
+    "Networking",
+    "Security",
+    "Observability",
+    "Production",
+  ],
+  resolved: ["Code", "Golden Path", "Production"],
+} as const;
+
+export const aboutBuilding = {
+  eyebrow: "What I'm building now",
+  paragraphs: [
+    "I'm still building it.",
+    "The reference platform, the Golden Paths, the infrastructure, the processes and the evidence are all part of that work.",
+  ],
+  capabilities: [
+    "Golden Paths",
+    "AWS",
+    "Terraform",
+    "Kubernetes",
+    "CI/CD",
+    "Security",
+    "Observability",
+    "FinOps",
+    "Developer self-service",
+  ],
+  philosophy: "The goal isn't to build the most complicated platform. It's to build one that genuinely makes engineering teams better.",
+} as const;
+
+export const aboutReference = {
+  headline: "I'm not building PlatformBox from a slide deck.",
+  body: "The reference platform is where I'm validating the architecture, the workflows and the engineering approach — in public, not in a pitch deck.",
+  linkHref: "/architecture",
+  linkLabel: "Explore the Reference Platform",
+} as const;
+
+export const aboutPrinciples = {
+  eyebrow: "What I believe good platform engineering should do",
+  items: [
+    "Make the common path easy.",
+    "Standardize what should be standardized.",
+    "Automate what should be automated.",
+    "Build security into the path.",
+    "Make operational decisions visible.",
+    "Keep infrastructure understandable.",
+    "Treat cost as an engineering concern.",
+  ],
+} as const;
+
+export const aboutExperience = {
+  stats: [
+    { value: "16 years", label: "Engineering experience" },
+    { value: "Backend", label: "Distributed systems / microservices / APIs" },
+    { value: "Cloud", label: "AWS / infrastructure / automation" },
+    { value: "DevOps", label: "CI/CD / deployment / operations" },
+    { value: "Platform", label: "Kubernetes / Terraform / IDP" },
+  ],
+  companies: ["Neopost", "Ortec", "Spir Communication", "Fleet Note", "My Multiverse", "Saber.tech"],
+} as const;
+
+export const aboutFinalCta = {
+  headline: "If you're seeing the same problems in your engineering organization, the first step isn't necessarily building a platform.",
+  sub: "First, understand what you actually have.",
+  primaryLabel: "Start with the Assessment",
+  secondaryHref: "/architecture#verify",
+  secondaryLabel: "Explore the Technical Evidence",
 } as const;
 
 export const problem = {
   eyebrow: "01 / The Problem",
   headline: "Your engineering team is becoming your platform team.",
-  sub: "As services multiply, infrastructure work quietly absorbs your most senior people. PlatformBox turns those repeated tasks into standardized, self-service workflows.",
+  sub: "As services multiply, infrastructure work quietly absorbs your most senior people. PlatformBox turns those repeated tasks into a standardized developer path.",
   painPoints: [
     "Every deployment needs DevOps help",
     "Infrastructure provisioning is slow",
@@ -24,9 +142,9 @@ export const problem = {
 } as const;
 
 export const outcome = {
-  eyebrow: "02 / The Outcome",
+  eyebrow: "01 / The Path",
   headline: "From Git push to production, on a standardized golden path.",
-  sub: "The product isn't Terraform or Kubernetes. The product is the shorter path — one self-service workflow every team follows.",
+  sub: "The product isn't Terraform or Kubernetes. The product is the shorter path — one standardized workflow every team follows.",
   steps: [
     { label: "Code", note: "Developer pushes code" },
     { label: "Golden Path", note: "Standard template" },
@@ -41,7 +159,7 @@ export const outcome = {
 } as const;
 
 export const beforeAfter = {
-  eyebrow: "03 / Before → After",
+  eyebrow: "02 / What Changes",
   headline: "The shorter path to production.",
   sub: "You don't buy Terraform, Kubernetes, or a pipeline. You buy the path between them.",
   before: [
@@ -63,7 +181,7 @@ export const beforeAfter = {
 } as const;
 
 export const delivery = {
-  eyebrow: "04 / The 14-Day Delivery",
+  eyebrow: "06 / The 14-Day Delivery",
   headline: "Exactly what gets delivered.",
   sub: "Fourteen working days — about three calendar weeks — from kickoff to a working developer path to production.",
   mechanism:
@@ -96,11 +214,11 @@ export const delivery = {
 export const technology = {
   eyebrow: "11 / Technology",
   headline: "Integrates with the tools you already have.",
-  sub: "PlatformBox is not a replacement for your stack — it is the layer that makes it self-service. Each tool keeps its job; PlatformBox owns the path between them.",
+  sub: "PlatformBox is not a replacement for your stack — it is the layer that makes the supported path self-service. Each tool keeps its job; PlatformBox owns the path between them.",
   roles: [
     { name: "Terraform", role: "Infrastructure lifecycle", accent: false, claims: ["pbx.foundation.iac-terraform"] },
     { name: "Kubernetes / EKS", role: "Application runtime", accent: false, claims: ["pbx.platform.kubernetes-eks"] },
-    { name: "GitHub / GitLab", role: "Source and workflow", accent: false, claims: ["__process__"] },
+    { name: "GitLab", role: "Source and workflow", accent: false, claims: ["__process__"] },
     { name: "GitOps / CI/CD", role: "Application delivery", accent: false, claims: ["pbx.delivery.gitops", "pbx.delivery.ci-cd"] },
     { name: "PlatformBox", role: "Golden paths and orchestration", accent: true, claims: ["pbx.golden-path.service-scaffold", "pbx.golden-path.build-to-production"] },
   ],
@@ -134,17 +252,21 @@ export const offers: Offer[] = [
       "pbx.environments.preview",
       "pbx.delivery.production-promotion",
       "pbx.security.scanning",
+      "pbx.observability.metrics",
+      "pbx.operations.finops",
       "pbx.delivery.handover",
     ],
     features: [
       "AWS/EKS foundation",
       "Terraform modules",
-      "CI/CD (GitHub or GitLab)",
+      "CI/CD (GitLab)",
       "One golden path proven to production",
       "Preview environments",
       "Production deployment workflow",
       "Up to 2 initial services onboarded",
       "Baseline security",
+      "Observability (Prometheus + Grafana)",
+      "Cost visibility (FinOps)",
       "Documentation & runbooks",
       "Handover & training",
     ],
@@ -161,9 +283,7 @@ export const offers: Offer[] = [
       "2–4 golden paths",
       "Multiple environments",
       "Advanced IAM/RBAC",
-      "Observability",
-      "FinOps",
-      "Additional security & governance",
+      "Additional security controls",
       "Team onboarding",
       "60 days post-launch support",
     ],
@@ -224,7 +344,7 @@ export const pricingNote =
   "A fixed-price implementation that is live in 14 working days. No hourly rates." as const;
 
 export const fit = {
-  eyebrow: "14 / Is It a Fit?",
+  eyebrow: "12 / Is It a Fit?",
   headline: "Who PlatformBox is for — and who it isn't.",
   strong: [
     "100–500 engineers",
@@ -254,7 +374,7 @@ export const day14 = {
     "Automated security checks",
     "Production deployment",
   ],
-  claim: "Day 14 = a working developer path to production.",
+  claim: "Day 14 acceptance: a real service has travelled through the supported path and reached production.",
   capabilities: [
     "Create a new service from the standard template",
     "Provision its required infrastructure",
@@ -278,11 +398,11 @@ export const day14 = {
     "pbx.delivery.handover",
   ],
   distinction:
-    "The reference implementation proves this path end-to-end, through to production — both services promoted from UAT's approved build with no rebuild, ArgoCD reconciled to healthy, and a real production rollback demonstrated (ADR-019, ADR-020). Your engagement delivers the same path on your stack.",
+    "The reference implementation proves this path end-to-end, through to production — services are promoted from UAT's approved build with no rebuild, ArgoCD reconciled to healthy, and a real production rollback demonstrated (ADR-019, ADR-020). Your engagement delivers the same path on your stack.",
 } as const;
 
 export const whyDifferent = {
-  eyebrow: "06 / Why PlatformBox",
+  eyebrow: "07 / Why PlatformBox",
   headline: "Why PlatformBox over building it yourself or adopting an IDP product?",
   sub: "Building internally gives control but costs months of senior engineering. Adopting an IDP product gives tooling, not a finished platform. PlatformBox delivers the implemented platform — pre-engineered, standardized, and handed to your team.",
   rows: [
@@ -296,7 +416,7 @@ export const whyDifferent = {
 } as const;
 
 export const assessmentSection = {
-  eyebrow: "08 / Risk Reduction",
+  eyebrow: "09 / Risk Reduction",
   headline: "Before we promise 14 working days, we assess your environment.",
   sub: "PlatformBox does not start with a blind fixed-price promise. We first assess your architecture, delivery workflow, and platform constraints so the 14-working-day scope is realistic.",
   outputs: [
@@ -346,11 +466,11 @@ export const lockIn = {
   title: "Built on your stack. Owned by you.",
   message:
     "PlatformBox integrates the tools and infrastructure you already use. The goal is to give your team a repeatable developer platform — not trap you inside a proprietary infrastructure layer.",
-  stack: ["AWS", "Kubernetes", "Terraform", "GitHub", "GitLab"],
+  stack: ["AWS", "Kubernetes", "Terraform", "GitLab"],
 } as const;
 
 export const architecture = {
-  eyebrow: "12 / Reference Architecture",
+  eyebrow: "04 / Reference Architecture",
   headline: "A clean path from developer to production.",
   sub: "One golden path, on your stack — no proprietary runtime, no black box.",
   flow: [
@@ -393,7 +513,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Do you support GitHub?",
-    a: "PlatformBox is source-control and CI-provider agnostic. The public reference implementation is GitLab-first because it demonstrates the complete DevSecOps golden path in one place. GitHub Actions support can be delivered where that is the customer’s stack.",
+    a: "The public reference implementation is GitLab for both source and CI — it demonstrates the complete DevSecOps golden path in one place. GitHub (source hosting or Actions) is delivered as defined scope where that is the customer’s stack.",
   },
   {
     q: "Who owns everything?",
@@ -425,11 +545,11 @@ export const faqs: Faq[] = [
   },
   {
     q: "How are security concerns handled?",
-    a: "Baseline security is part of every engagement: least-privilege IAM, encrypted storage and state, application secrets held in AWS Secrets Manager and delivered to pods by the External Secrets Operator over federated identity — scoped per environment, so one environment cannot read another\u2019s — and automated security checks in the pipeline. Advanced governance is available in Scale and Enterprise.",
+    a: "Baseline security is part of every engagement: least-privilege IAM, encrypted storage and state, application secrets held in AWS Secrets Manager and delivered to pods by the External Secrets Operator over federated identity — scoped per environment, so one environment cannot read another\u2019s — and automated security checks in the pipeline. Additional security controls are available in Scale and Enterprise.",
   },
   {
     q: "What does \"production-ready\" mean here?",
-    a: "Two distinct things, and we keep them apart. THE PROMISE: a golden path proven to production, plus the implementation approach behind it, delivered in 14 working days — subject to the agreed assessment and scope. THE REFERENCE IMPLEMENTATION: a production-shaped, cost-optimised, publicly inspectable build that proves the pattern end to end. Three services now run it; the third was created by the platform\u2019s own generator and reached production on 27 August 2026, promoted from UAT\u2019s approved image with no rebuild, reconciled by ArgoCD, and health-checked from inside the production cluster (ADR-019, ADR-020, ADR-023). What it does NOT mean: we do not claim enterprise-readiness, alerting, log aggregation or secrets management \u2014 see what PlatformBox does not do.",
+    a: "Two distinct things, and we keep them apart. THE PROMISE: a golden path proven to production, plus the implementation approach behind it, delivered in 14 working days — subject to the agreed assessment and scope. THE REFERENCE IMPLEMENTATION: a production-shaped, cost-optimised, publicly inspectable build that proves the pattern end to end. Three services now run it; the third was created by the platform\u2019s own generator and reached production on 27 August 2026, promoted from UAT\u2019s approved image with no rebuild, reconciled by ArgoCD, and health-checked from inside the production cluster (ADR-019, ADR-020, ADR-023). What it does NOT mean: we do not claim enterprise-readiness, alerting or log aggregation \u2014 see what PlatformBox does not do.",
   },
   {
     q: "Why not just adopt Backstage, Port, or another IDP product?",
@@ -441,7 +561,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Do you onboard our existing services?",
-    a: "Launch includes onboarding up to two initial services to prove the golden path with real workloads — the reference implementation demonstrates two services with independent lifecycles. Additional application onboarding is a defined expansion, not per-service billing.",
+    a: "Launch includes onboarding up to two initial services to prove the golden path with real workloads — the reference implementation demonstrates three services with independent lifecycles. Additional application onboarding is a defined expansion, not per-service billing.",
   },
   {
     q: "What can we add after Launch?",
@@ -475,7 +595,7 @@ export const technicalReference = {
   sections: [
     { name: "Terraform", role: "Infrastructure lifecycle", claims: ["pbx.foundation.iac-terraform"], text: "All infrastructure is defined as versioned Terraform modules, reviewed and applied through CI. Changes are auditable and reversible." },
     { name: "Kubernetes / EKS", role: "Application runtime", claims: ["pbx.platform.kubernetes-eks"], text: "Workloads run on EKS with least-privilege RBAC, per-team namespaces, autoscaling, and a monitoring baseline." },
-    { name: "GitHub / GitLab", role: "Source and workflow", claims: ["__process__"], text: "Repositories, merge requests, and approvals stay where your teams already work. PlatformBox wires them into the golden path." },
+    { name: "GitLab", role: "Source and workflow", claims: ["__process__"], text: "Repositories, merge requests, and approvals stay in GitLab. PlatformBox wires them into the golden path." },
     { name: "CI/CD", role: "Application delivery", claims: ["pbx.delivery.ci-cd"], text: "A standard pipeline builds, scans (Trivy), and promotes each service from commit to production — no per-team pipeline maintenance." },
     { name: "GitOps", role: "Declared desired state", claims: ["pbx.delivery.gitops"], text: "The cluster reconciles to the state declared in Git (ArgoCD, cluster-level proven per ADR-016). Deployments are pull-based, reviewable, and auditable." },
     { name: "IAM", role: "Least-privilege access", claims: ["pbx.security.iam-least-privilege"], text: "Scoped roles for humans and workloads. Keyless CI-to-AWS auth via OIDC — no static credentials. Separate IAM roles per environment tier (dev, qa/uat, preview, prod) — environment separation by default, enforced by AWS STS." },
@@ -502,7 +622,7 @@ export const evidence = {
     },
     {
       label: "Decision records",
-      description: "26 ADRs explaining each architecture choice — and what was rejected.",
+      description: "32 ADRs explaining each architecture choice — and what was rejected.",
       href: `${IDP_REPO_URL}/-/tree/main/docs/decisions`,
     },
     {
@@ -560,7 +680,7 @@ export const landingEvidence = {
     },
   ],
   stats: [
-    { value: "29", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
+    { value: "32", label: "Architecture Decision Records", href: `${IDP_REPO_URL}/-/tree/main/docs/decisions` },
     { value: "7", label: "Terraform modules", href: `${IDP_REPO_URL}/-/tree/main/terraform` },
     { value: "6", label: "Environment tiers proven end-to-end", href: `${IDP_REPO_URL}/-/tree/main/docs/evidence` },
     { value: "1", label: "Public reference implementation", href: IDP_REPO_URL },
@@ -671,7 +791,7 @@ export const finalCta = {
 } as const;
 
 export const pricing = {
-  eyebrow: "07 / Pricing",
+  eyebrow: "08 / Pricing",
   headline: "Fixed-price. Live in 14 working days.",
 } as const;
 
@@ -682,6 +802,6 @@ export const roi = {
 } as const;
 
 export const faqSection = {
-  eyebrow: "15 / FAQ",
+  eyebrow: "14 / FAQ",
   headline: "Answers before you book.",
 } as const;

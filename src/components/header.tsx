@@ -19,6 +19,7 @@ interface PageLink {
 }
 
 const pageLinks: readonly PageLink[] = [
+  { href: "/about", label: "About" },
   { href: "/showcase", label: "Blueprint" },
   { href: "/architecture", label: "Architecture" },
   // The workspace is a plain <a>, not a next/link: a 307 on the same origin
@@ -46,7 +47,7 @@ export function Header({ showHomeLink = false }: HeaderProps) {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-1 sm:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {showHomeLink ? (
             <Link
               href="/"
@@ -124,7 +125,7 @@ export function Header({ showHomeLink = false }: HeaderProps) {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="inline-flex items-center justify-center rounded-lg p-2 text-foreground-tertiary transition-colors hover:bg-card-hover hover:text-foreground sm:hidden"
+          className="inline-flex items-center justify-center rounded-lg p-2 text-foreground-tertiary transition-colors hover:bg-card-hover hover:text-foreground lg:hidden"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
         >
@@ -134,7 +135,7 @@ export function Header({ showHomeLink = false }: HeaderProps) {
 
       {/* Mobile menu panel */}
       {menuOpen && (
-        <div className="border-t border-border bg-background/95 backdrop-blur-md sm:hidden">
+        <div className="border-t border-border bg-background/95 backdrop-blur-md lg:hidden">
           <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-6 py-4">
             {showHomeLink && (
               <Link

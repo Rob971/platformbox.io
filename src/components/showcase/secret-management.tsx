@@ -15,10 +15,10 @@ interface SecretNode {
 }
 
 const secretNodes: SecretNode[] = [
-  { id: "vault", label: "Vault / AWS Secrets Manager", description: "Central secret store with versioned secrets, automatic rotation policies, and fine-grained access control.", x: 25, y: 8, w: 230, h: 38 },
-  { id: "csi", label: "CSI Driver", description: "Kubernetes Secrets Store CSI driver syncs secrets from the external provider into pod volumes — no hardcoded credentials in manifests.", x: 25, y: 60, w: 230, h: 38 },
-  { id: "pod", label: "Application Pods", description: "Secrets mounted as a tmpfs volume. Application reads from file — credentials never touch etcd or environment variables.", x: 65, y: 112, w: 150, h: 38 },
-  { id: "rotation", label: "Auto-Rotation", description: "Rotation policies trigger secret renewal. CSI driver hot-reloads without pod restart — zero downtime credential refresh.", x: 40, y: 85, w: 70, h: 22 },
+  { id: "store", label: "AWS Secrets Manager", description: "Encrypted (KMS) central secret store. No secret material passes through Git, CI logs, or helm values.", x: 25, y: 8, w: 230, h: 38 },
+  { id: "eso", label: "External Secrets Operator", description: "Pulls secrets over IRSA (federated identity, no static credentials) into a Kubernetes Secret scoped per environment.", x: 25, y: 60, w: 230, h: 38 },
+  { id: "pod", label: "Application Pods", description: "The Kubernetes Secret is consumed as environment variables, scoped so one environment cannot read another.", x: 65, y: 112, w: 150, h: 38 },
+  { id: "rotation", label: "Rotation", description: "Rotation is proven and propagates to running workloads, but nothing schedules it automatically.", x: 40, y: 85, w: 70, h: 22 },
 ];
 
 export function SecretManagement() {
@@ -41,11 +41,11 @@ export function SecretManagement() {
           </marker>
         </defs>
 
-        {/* Vault lock icon */}
+        {/* Store lock icon */}
         <foreignObject x="205" y="14" width="16" height="16">
           <Lock className="h-4 w-4 text-accent" strokeWidth={1.5} />
         </foreignObject>
-        {/* Shield icon on CSI */}
+        {/* Shield icon on ESO */}
         <foreignObject x="205" y="68" width="16" height="16">
           <Shield className="h-4 w-4 text-accent/70" strokeWidth={1.5} />
         </foreignObject>
@@ -97,7 +97,7 @@ export function SecretManagement() {
                 fontFamily="var(--font-geist-sans), sans-serif"
                 className="pointer-events-none"
               >
-                {node.id === "vault" ? "versioned storage • rotation policies" : node.id === "csi" ? "syncs to tmpfs • never in etcd" : node.id === "pod" ? "file-based mount • zero code changes" : "hot-reload • zero downtime"}
+                {node.id === "store" ? "KMS-encrypted store" : node.id === "eso" ? "IRSA-synced • per environment" : node.id === "pod" ? "env vars • scoped per env" : "manual • propagates live"}
               </text>
             </g>
           );
