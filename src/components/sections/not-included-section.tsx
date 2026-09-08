@@ -20,7 +20,7 @@ export function NotIncludedSection() {
           </p>
         </FadeIn>
 
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2">
           {notIncluded.groups.map((group, i) => (
             <FadeIn key={group.title} delay={i * 0.05}>
               <div className="h-full rounded-xl border border-border bg-card p-6">

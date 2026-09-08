@@ -522,7 +522,11 @@ export const faqs: Faq[] = [
   },
   {
     q: "What is included and excluded?",
-    a: "Each package has a fixed scope. Launch covers one primary AWS environment and one golden path; Scale adds multiple golden paths and environments. Anything outside scope is agreed during the Platform Assessment, before work begins. Concretely, these are out of Launch’s scope today — real engineering, quoted separately, not something we’d discover mid-engagement: any runtime other than Go, public-facing ingress/TLS/DNS (services are internal-only unless added), databases, queues, or caches (no module provisions a stateful dependency), scheduled secret rotation and production secrets distribution beyond the dev-tier baseline, alerting and on-call paging, log aggregation, migrating an existing platform estate, and compliance mapping such as SOC 2 or PCI. None of it is a gap in the 14-day promise — it’s the reason the 14 days is credible for what it does cover. Scale and Enterprise extend parts of this list; the Assessment maps which parts you’d actually need.",
+    a: "Each package has a fixed scope. Launch covers one primary AWS environment and one golden path; Scale adds multiple golden paths and environments. We don't force every workload onto the same shape — the exact list of what's in and out for your stack is mapped during the Platform Assessment, before any fixed-price commitment, not discovered mid-engagement. None of what's excluded is a gap in the 14-day promise — it's the reason the 14 days is credible for what it does cover. Scale and Enterprise extend what's covered; the Assessment determines which parts you'd actually need.",
+  },
+  {
+    q: "Do we need to migrate everything to start?",
+    a: "No. PlatformBox doesn't require a rip-and-replace of your existing platform. The pattern is: Assessment determines fit, you select one workload to pilot, we deliver and validate it end to end, you accept it — then expand to more workloads and teams on the same foundation. You keep running everything else exactly as it runs today until you choose to bring it across.",
   },
   {
     q: "How are security concerns handled?",
@@ -542,7 +546,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Who owns the platform — and who owns our applications?",
-    a: "PlatformBox owns the platform engineering: infrastructure, delivery pipelines, golden paths, security controls, and observability. You own your application logic, product requirements, and application-level operations. PlatformBox is a defined platform scope, not unlimited outsourced DevOps.",
+    a: "PlatformBox owns the platform engineering: infrastructure, delivery pipelines, golden paths, security controls, and observability. You own your application logic, product requirements, and application-level operations. A few things sit between us and are handled jointly: security incidents that touch the platform layer, cloud-provider outages, and disaster recovery where it spans both. During a Care engagement the same split carries forward — PlatformBox keeps the platform current and secure, you keep running your applications on it, and the shared items stay shared. PlatformBox is a defined platform scope, not unlimited outsourced DevOps.",
   },
   {
     q: "Do you onboard our existing services?",
@@ -726,29 +730,17 @@ export const proofMoment = {
 
 // Publishing limitations is not a disclaimer. It is the reason the other
 // claims are believable, and it disqualifies bad-fit buyers before a call.
+//
+// The itemized technical constraint list (runtimes, CI, ingress, stateful
+// deps, secret rotation) deliberately does NOT live here. It is workload-
+// specific delivery-envelope detail — the Platform Assessment's job, not a
+// free checklist. Keep this section to product positioning and evidence
+// honesty, both of which are true regardless of the buyer's stack.
 export const notIncluded = {
   eyebrow: "Before you talk to us",
   headline: "What PlatformBox does not do.",
-  sub: "Every item below is a real boundary of the reference implementation, not a roadmap. If one of these is essential to you, say so on the first call — some are quotable as additional scope, and some are simply not what we do.",
+  sub: "PlatformBox evaluates technical fit case by case rather than forcing every workload onto one shape. The exact constraints and required changes for your stack are what the Platform Assessment determines. What's below are our product boundaries and the honest limits of our own evidence — not a constraint checklist for your environment.",
   groups: [
-    {
-      title: "Not built, quotable as extra scope",
-      items: [
-        "Ingress, TLS and DNS — services are cluster-internal in the reference build",
-        "Pod-to-pod network segmentation — the cluster runs on Fargate, where Kubernetes NetworkPolicy cannot be enforced. Traffic in and out is controlled; traffic between pods is not",
-          "Log aggregation — services emit structured JSON; nothing ships or indexes it centrally",
-        "Alerting and on-call routing — metrics and dashboards exist, nothing pages anyone",
-        "Databases, queues and caches — no module provisions a stateful dependency",
-        "Runtimes other than Go, and CI providers other than GitLab",
-      ],
-    },
-    {
-      title: "Built, with limits worth stating",
-      items: [
-        "Secret rotation is manual — rotation propagates to running workloads, but nothing schedules it",
-        "Secrets are proven in a development tier; production has not yet taken the module",
-      ],
-    },
     {
       title: "Deliberately not our model",
       items: [
