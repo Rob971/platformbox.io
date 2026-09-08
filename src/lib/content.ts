@@ -477,6 +477,10 @@ export const faqs: Faq[] = [
     a: "You can — and some teams should. PlatformBox is for teams that would otherwise spend months redirecting senior engineers into platform work. We deliver a working developer path to production in 14 working days using a proven reference architecture, then hand it to your team to own and operate. You get the result without the months of internal engineering, the unresolved architecture decisions, and the adoption delay.",
   },
   {
+    q: "Will this replace our DevOps team?",
+    a: "No — this is built for teams that haven’t hired a dedicated platform engineer yet, not to replace one that exists. If you already have DevOps or SRE headcount, bring them into the Assessment call: the platform they’d run day-to-day is exactly what’s being scoped, and their read on fit matters more than ours.",
+  },
+  {
     q: "What exactly is delivered in 14 working days?",
     a: "A working developer path to production: an AWS/EKS foundation, Terraform modules, CI/CD, one golden path proven to production, preview environments, baseline security, documentation, and a live handover. On day 14, a developer can create a service from the standard template, deploy it to a preview environment, pass automated security checks, and promote it to production.",
   },
@@ -497,6 +501,10 @@ export const faqs: Faq[] = [
     a: "Temporary, scoped access to your AWS account and source repositories for the 14 working days. We agree the exact scope and permissions up front.",
   },
   {
+    q: "How exactly do you access our AWS account, and what happens after handover?",
+    a: "During the 14 working days, access is granted through AWS IAM Identity Center (SSO) — MFA-enforced, scoped to a permission set you create, and revocable by you at any time. There’s no root usage and no static access keys, and every action is recorded in CloudTrail. That access ends at handover; an ongoing PlatformBox Care engagement uses the same scoped-SSO model, not standing credentials. Once built, the platform doesn’t depend on us to keep running: CI reaches your Kubernetes cluster through a GitLab Runner inside your own VPC, on your own AWS account, authenticated via OIDC rather than a static key. Production has no public API endpoint — the only way in for anyone, us included, is through that in-VPC runner over AWS Systems Manager, never SSH.",
+  },
+  {
     q: "What exactly happens after day 14?",
     a: "You run the platform with your team. Launch includes handover and training, and PlatformBox Care is available for ongoing maintenance and evolution.",
   },
@@ -510,15 +518,19 @@ export const faqs: Faq[] = [
   },
   {
     q: "Do you provide ongoing support?",
-    a: "Yes. PlatformBox Care provides ongoing platform engineering — maintenance, upgrades, security updates, and new golden paths — for €2,000–€4,000/month. It's optional; the platform keeps running without it.",
+    a: "Yes. PlatformBox Care provides ongoing platform engineering — maintenance, upgrades, security updates, and new golden paths — for €2,000–€4,000/month. It's optional; the platform keeps running without it. Care does not include alerting or on-call incident response — no package pages anyone today; the observability baseline is dashboards and metrics, not paging.",
   },
   {
     q: "What is included and excluded?",
-    a: "Each package has a fixed scope. Launch covers one primary AWS environment and one golden path; Scale adds multiple golden paths and environments. Anything outside scope is agreed during the Platform Assessment, before work begins.",
+    a: "Each package has a fixed scope. Launch covers one primary AWS environment and one golden path; Scale adds multiple golden paths and environments. Anything outside scope is agreed during the Platform Assessment, before work begins. Concretely, these are out of Launch’s scope today — real engineering, quoted separately, not something we’d discover mid-engagement: any runtime other than Go, public-facing ingress/TLS/DNS (services are internal-only unless added), databases, queues, or caches (no module provisions a stateful dependency), scheduled secret rotation and production secrets distribution beyond the dev-tier baseline, alerting and on-call paging, log aggregation, migrating an existing platform estate, and compliance mapping such as SOC 2 or PCI. None of it is a gap in the 14-day promise — it’s the reason the 14 days is credible for what it does cover. Scale and Enterprise extend parts of this list; the Assessment maps which parts you’d actually need.",
   },
   {
     q: "How are security concerns handled?",
     a: "Baseline security is part of every engagement: least-privilege IAM, encrypted storage and state, application secrets held in AWS Secrets Manager and delivered to pods by the External Secrets Operator over federated identity — scoped per environment, so one environment cannot read another\u2019s — and automated security checks in the pipeline. Additional security controls are available in Scale and Enterprise.",
+  },
+  {
+    q: "Are you SOC 2, ISO 27001, HIPAA, or PCI-DSS certified?",
+    a: "No — we don’t hold any of those certifications today, and we won’t imply otherwise to close a deal. If your procurement process requires a certified vendor regardless of the technical access model, raise it before the Assessment, not after — we don’t have a report to produce on short notice. The structural difference worth weighing: the platform lands in your own AWS account and GitLab org from day one, we don’t operate a multi-tenant service on your behalf, and standing access ends at handover — a different risk shape than a typical SaaS vendor, though not a substitute for certification if your framework requires one.",
   },
   {
     q: "What does \"production-ready\" mean here?",
