@@ -118,7 +118,7 @@ this repo, not a bug to route around (see Rules/00, "capability renamed").
 <!-- GENERATED — do not edit here. Source of truth: ~/Documents/Cline/Rules/
 <!-- Regenerate:  python3 ~/Documents/Cline/bin/build-rules.py
 <!-- Verify:      python3 ~/Documents/Cline/bin/check-rules.py
-<!-- rules-hash: 530d2aefaace   built: 2026-09-06   tier: full (all sources) -->
+<!-- rules-hash: db269d465c37   built: 2026-09-11   tier: full (all sources) -->
 
 These govern how I work in every session on this machine. They sit on top of
 the system prompt, not inside it — where they conflict with a safety
@@ -561,15 +561,40 @@ copy is stale. This is not self-reported and cannot be gamed.
 One tab-separated line per task, appended by the agent that did the work,
 before the final report. Never batched, never reconstructed later.
 
+Exactly 14 fields, in this order, tab-separated — the header IS the schema:
+
 ```
 date  agent  task  turns  rework  q_asked  q_useful  claims  verified  rederiv  escaped  self_init  ktokens  note
 ```
 
-`agent` is one of `claude` `cline` `deepseek` `chatgpt`. `note` is the one
-transferable thing learned — the SHAPE, not the fix (see 04).
+Append through `bin/ledger_write.py`, never by hand-building the TSV line.
+Direct `printf`/`echo` appends are how 2026-09-11's corruption happened
+(a dropped field on 2 of cline's first 5 rows, both silent) -- the write
+path is now validated, not just documented:
+
+```bash
+python3 "$HOME/Documents/Cline/bin/ledger_write.py" --json '{
+  "date":"2026-09-30","agent":"cline","task":"some-task",
+  "turns":"1","rework":"0","q_asked":"0","q_useful":"0",
+  "claims":"4","verified":"4","rederiv":"0","escaped":"0",
+  "self_init":"no","ktokens":"?","note":"The one transferable shape."
+}'
+```
+
+It rejects -- writing nothing -- on a missing/extra field, a bad `agent` or
+`self_init` value, a non-numeric numeric field, or an embedded tab/newline,
+and appends under an exclusive lock so two agents writing at once cannot
+interleave. `self_init` is one of `yes` `no` — never `0`, never `?`, never a
+blank. The numeric columns accept `?` for unmeasured; `self_init` does not
+(it is a boolean). `agent` is one of `claude` `cline` `deepseek` `chatgpt`.
+`note` is the one transferable thing learned — the SHAPE, not the fix (see 04).
+If `ledger_write.py` is unreachable from an agent surface, STOP and report
+that rather than falling back to a raw `printf` append.
 
 `python3 Cline/bin/kpi.py` summarises the ledger and prints the gap to each
-ceiling. Run it when a number looks wrong, not on a schedule.
+ceiling. Run it when a number looks wrong, not on a schedule. Any malformed
+row makes it exit 1 with the row named — a red kpi.py is the contract
+enforcer; leave the workspace only with it green.
 
 ### Honesty rules for the ledger
 
