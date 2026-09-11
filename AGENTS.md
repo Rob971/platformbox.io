@@ -118,7 +118,7 @@ this repo, not a bug to route around (see Rules/00, "capability renamed").
 <!-- GENERATED — do not edit here. Source of truth: ~/Documents/Cline/Rules/
 <!-- Regenerate:  python3 ~/Documents/Cline/bin/build-rules.py
 <!-- Verify:      python3 ~/Documents/Cline/bin/check-rules.py
-<!-- rules-hash: db269d465c37   built: 2026-09-11   tier: full (all sources) -->
+<!-- rules-hash: 71e7b5726591   built: 2026-09-11   tier: full (all sources) -->
 
 These govern how I work in every session on this machine. They sit on top of
 the system prompt, not inside it — where they conflict with a safety
@@ -612,13 +612,9 @@ readily as for you.
 
 ### What efficiency may never come from
 
-Never from the priority order in 00. Getting faster by skipping a check, wider
-by fixing what nobody asked for, or cheaper by shortening the investigation is
-not improvement — it is trading Correctness or Security for Speed or Cost.
-
-  Weak   "Cost: I skipped the browser check and trusted the tests."
-  Real   "Cost: I found the one command that reproduces this in two seconds
-          and recorded it, so nobody runs the suite for it again."
+Same boundary as 07's "WHERE IMPROVEMENT MAY NOT COME FROM" -- never the
+priority order in 00. Here it means: no trading Correctness or Security
+for Speed or Cost. See 07 for the worked Weak/Real example.
 
 ### The rules are themselves a recurring cost
 
