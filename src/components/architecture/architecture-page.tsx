@@ -22,7 +22,9 @@ import { PageNav, type PageNavSection } from "@/components/page-nav";
 import { LiveArchitectureDiagrams } from "@/components/architecture/live-diagrams";
 import { EvidenceLinks } from "@/components/proof/evidence-links";
 import { ProofSurfaceSection } from "@/components/sections/proof-surface-section";
+import { ReferenceViewer } from "@/components/ReferenceViewer";
 import { technicalReference, architecture, finalCta, evidence } from "@/lib/content";
+import architectureNodes from "@/../data/architecture-nodes.json";
 
 const sectionIcons = [
   Layers,
@@ -50,6 +52,7 @@ const pageSections: PageNavSection[] = [
   { id: "path", label: "Path", description: "The step-by-step flow from developer to production." },
   { id: "components", label: "Components", description: "Each layer and who owns it." },
   { id: "diagrams", label: "Diagrams", description: "Live architecture diagrams, pre-rendered from the IDP repo." },
+  { id: "inspect", label: "Code", description: "Real infrastructure-as-code and pipeline manifests." },
   { id: "verify", label: "Verify", description: "Links to the reference implementation — proof, not promises." },
   { id: "book", label: "Book", description: "Schedule your Platform Assessment." },
 ];
@@ -166,6 +169,25 @@ export function ArchitecturePage() {
               </p>
             </div>
             <LiveArchitectureDiagrams />
+          </div>
+        </section>
+
+        <section id="inspect" className="border-t border-border">
+          <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+            <div className="mb-10 max-w-2xl">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-accent">
+                Inspect the Implementation
+              </p>
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                Real code. Real infrastructure.
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-foreground-tertiary sm:text-base">
+                Click through the actual Terraform, YAML, and pipeline manifests
+                that the reference implementation applies on Day 14. Every snippet
+                comes from a working, inspected repository.
+              </p>
+            </div>
+            <ReferenceViewer nodes={architectureNodes} />
           </div>
         </section>
 

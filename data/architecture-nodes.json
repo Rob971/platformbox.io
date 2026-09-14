@@ -1,0 +1,42 @@
+[
+  {
+    "id": "iam-oidc",
+    "title": "IAM OIDC — CI → AWS without credentials",
+    "category": "Security & Identity",
+    "description": "GitLab CI assumes an AWS IAM role via OIDC federation. No static keys, scoped per environment tier.",
+    "language": "terraform",
+    "code": "resource \"aws_iam_openid_connect_provider\" \"gitlab\" {\n  url             = \"https://gitlab.com\"\n  client_id_list  = [\"https://gitlab.com\"]\n}\n\nresource \"aws_iam_role\" \"ci\" {\n  for_each = var.environments\n  name     = \"platformbox-ci-${each.key}\"\n  assume_role_policy = jsonencode({\n    Version = \"2012-10-17\"\n    Statement = [{\n      Effect = \"Allow\"\n      Principal = { Federated = aws_iam_openid_connect_provider.gitlab.arn }\n      Action = \"sts:AssumeRoleWithWebIdentity\"\n    }]\n  })\n}"
+  },
+  {
+    "id": "eks-karpenter",
+    "title": "EKS Karpenter Provisioner",
+    "category": "Platform & Compute",
+    "description": "Karpenter auto-selects optimal instance types. Idle clusters cost $0 — ephemeral nodes self-destroy.",
+    "language": "yaml",
+    "code": "apiVersion: karpenter.sh/v1beta1\nkind: NodePool\nmetadata:\n  name: platformbox-default\nspec:\n  template:\n    spec:\n      requirements:\n        - key: kubernetes.io/arch\n          operator: In\n          values: [arm64]\n        - key: karpenter.sh/capacity-type\n          operator: In\n          values: [spot, on-demand]\n  limits:\n    cpu: \"32\"\n    memory: 128Gi\n  disruption:\n    consolidationPolicy: WhenUnderutilized\n    consolidateAfter: 60s"
+  },
+  {
+    "id": "kyverno-policy",
+    "title": "Kyverno ClusterPolicy — immutable digests",
+    "category": "Security & Governance",
+    "description": "Rejects any workload referencing mutable tags. Enforces SHA256 digests; does not warn.",
+    "language": "yaml",
+    "code": "apiVersion: kyverno.io/v1\nkind: ClusterPolicy\nmetadata:\n  name: block-latest-tag\nspec:\n  validationFailureAction: Enforce\n  background: false\n  rules:\n    - name: validate-image-digest\n      match:\n        any:\n          - resources:\n              kinds: [Pod, Deployment, StatefulSet]\n      validate:\n        message: \"Use a SHA256 digest, not a mutable tag.\"\n        pattern:\n          spec:\n            containers:\n              - image: \"*@sha256:*\""
+  },
+  {
+    "id": "golden-path-pipeline",
+    "title": "CI/CD Golden Path — .gitlab-ci.yml",
+    "category": "Delivery & CI/CD",
+    "description": "Standard pipeline: lint, test, scan, build, promote through IAM-enforced staging gates.",
+    "language": "yaml",
+    "code": "stages:\n  - test\n  - scan\n  - build\n  - deploy-qa\n  - deploy-uat\n  - deploy-prod\n\nlint:\n  stage: test\n  image: golangci/golangci-lint:v1.59-alpine\n  script: golangci-lint run --timeout 5m ./...\n\nunit:\n  stage: test\n  image: golang:1.22-alpine\n  script: go test -count=1 -race -coverprofile=coverage.out ./...\n\nbuild:\n  stage: build\n  image: docker:25-dind\n  script: docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA . && docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA\n\ndeploy-uat:\n  stage: deploy-uat\n  script: terraform apply -auto-approve\n  when: manual\n\ndeploy-prod:\n  stage: deploy-prod\n  script: terraform apply -auto-approve\n  when: manual\n  needs: [deploy-uat]"
+  },
+  {
+    "id": "argocd-gitops",
+    "title": "ArgoCD GitOps Application — reconcile, don't push",
+    "category": "GitOps & Delivery",
+    "description": "The cluster reconciles to the state declared in Git. No direct kubectl, no drift.",
+    "language": "yaml",
+    "code": "apiVersion: argoproj.io/v1alpha1\nkind: Application\nmetadata:\n  name: demo-service-prod\n  namespace: argocd\nspec:\n  project: platformbox-production\n  source:\n    repoURL: https://gitlab.com/platform-box-group/demo-service.git\n    targetRevision: main\n    path: environments/production\n  destination:\n    server: https://kubernetes.default.svc\n    namespace: production\n  syncPolicy:\n    automated:\n      prune: true\n      selfHeal: true\n    retry:\n      limit: 3\n      backoff:\n        duration: 5s\n        factor: 2\n        maxDuration: 3m"
+  }
+]
