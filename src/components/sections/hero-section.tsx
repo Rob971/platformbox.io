@@ -44,7 +44,7 @@ export function HeroSection() {
           variants={fadeUp}
           className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
         >
-          <BookingCta className="w-full sm:w-auto" label="Start with a €2.5k Platform Assessment" />
+          <BookingCta className="w-full sm:w-auto" label="Book a free 30-min fit call" />
           <Link
             href="/showcase"
             prefetch={false}

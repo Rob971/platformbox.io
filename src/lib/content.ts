@@ -135,11 +135,11 @@ export const howItWorks = {
     {
       label: "Assess",
       title: "Platform Assessment",
-      text: "We map your current state — infrastructure, pipelines, security, operations — and establish whether the PlatformBox model is the right fit. The assessment ends with a decision, not a pitch.",
+      text: "Book a free 30-minute call — no sales pitch, just fit. If it's a match, the paid Platform Readiness Assessment (3–5 days) maps your current state and locks the 14-working-day scope before anything is fixed-price.",
       outcomes: [
-        "Current-state baseline & friction analysis",
-        "Target architecture & implementation plan",
-        "Fixed-price proposal or honest no-go",
+        "Free 30-min call determines fit",
+        "Paid Assessment maps current-state & target architecture",
+        "Fixed-price proposal or honest no-go — credited toward Launch",
       ],
     },
     {
@@ -177,7 +177,7 @@ export const howItWorks = {
     },
   ],
   outro:
-    "The assessment is a separate €2,500 step — credited toward the implementation if you proceed. We may conclude that PlatformBox is not the right answer for your situation. That honesty is part of the trust model.",
+    "The first call is free — 30 minutes, no sales pitch. Only the Platform Readiness Assessment that follows is €2,500, credited toward the implementation if you proceed. We may conclude that PlatformBox is not the right answer for your situation. That honesty is part of the trust model.",
 } as const;
 
 export const outcome = {
@@ -525,6 +525,10 @@ export type Faq = { q: string; a: string };
 
 export const faqs: Faq[] = [
   {
+    q: "How does this actually start?",
+    a: "Two steps. First, a free 30-minute call — no sales pitch — to check whether PlatformBox is a fit for your stack and team. If it is, the paid Platform Readiness Assessment (€2,500, 3–5 days) maps your current state and locks the 14-working-day scope, credited toward Launch if you proceed. Nothing is fixed-price until after that Assessment.",
+  },
+  {
     q: "Why not build this ourselves?",
     a: "You can — and some teams should. PlatformBox is for teams that would otherwise spend months redirecting senior engineers into platform work. We deliver a working developer path to production in 14 working days using a proven reference architecture, then hand it to your team to own and operate. You get the result without the months of internal engineering, the unresolved architecture decisions, and the adoption delay.",
   },
@@ -848,7 +852,7 @@ export const notIncluded = {
 
 export const finalCta = {
   headline: "Book your Platform Assessment.",
-  sub: "€2,500 · 3–5 days · credited toward Launch if you proceed.",
+  sub: "Free · 30 minutes · no sales pitch. If it's a fit, a paid Assessment maps the build before anything is fixed-price.",
 } as const;
 
 export const pricing = {
