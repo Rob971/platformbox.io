@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import {
-  ArrowRight,
   Check,
   CircleHelp,
   FileCheck2,
@@ -47,7 +46,7 @@ export function AssessmentPage() {
               </Link>
             </div>
             <p className="mt-5 text-sm font-medium text-foreground-secondary">
-              {assessmentProduct.price} · {assessmentProduct.duration} — after a free 30-min fit call confirms it's a match
+              {assessmentProduct.price} · {assessmentProduct.duration} — after a free 30-min fit call confirms it&apos;s a match
             </p>
           </FadeIn>
         </section>
