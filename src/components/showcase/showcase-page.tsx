@@ -203,7 +203,7 @@ export function ShowcasePage() {
           </FadeIn>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {blueprint.phases.map((phase, i) => (
-              <FadeIn key={phase.title} delay={i * 0.03}>
+              <FadeIn key={`${phase.title}-${i}`} delay={i * 0.03}>
                 <div className="h-full rounded-xl border border-border bg-card p-5">
                   <p className="text-[11px] font-medium uppercase tracking-[0.15em] text-accent">
                     Phase {i + 1}
