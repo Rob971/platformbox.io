@@ -6,8 +6,8 @@ import { IDP_REPO_URL } from "@/lib/constants";
 
 export const hero = {
   eyebrow: "Growing engineering team?",
-  headline: "We build the delivery platform\nyour team needs to ship predictably.",
-  sub: "Engineering delivery infrastructure gets too complex to manage ad-hoc as your team grows. PlatformBox standardises environments, CI/CD, security and observability — on your stack, in 14 working days, fixed price.",
+  headline: "A production-ready developer platform.\nLive in 14 working days.",
+  sub: "Stop forcing developers to write Terraform and pipeline YAML. Get an opinionated, production-ready Internal Developer Platform deployed into your AWS account at a fixed price.",
   proofLine: "14 working days · €20,000 fixed price",
 } as const;
 
@@ -123,7 +123,7 @@ export const aboutExperience = {
 export const aboutFinalCta = {
   headline: "If you're seeing the same problems in your engineering organization, the first step isn't necessarily building a platform.",
   sub: "First, understand what you actually have.",
-  primaryLabel: "Start with the Assessment",
+  primaryLabel: "Book Platform Assessment",
   secondaryHref: "/architecture#verify",
   secondaryLabel: "Explore the Technical Evidence",
 } as const;
@@ -629,6 +629,39 @@ export const blueprint = {
     "This is the standard PlatformBox delivery model. Individual environments may require scope adjustments identified during the Platform Assessment.",
 } as const;
 
+export const showcaseComparison = {
+  eyebrow: "Building it yourself",
+  headline: "Building internally vs. the PlatformBox Blueprint.",
+  sub: "The same outcome, two different timelines.",
+  rows: [
+    { dimension: "Timeline", internal: "6–12 months, often longer", platformbox: "14 working days" },
+    { dimension: "Cost model", internal: "Open-ended hiring + tooling spend", platformbox: "Fixed price, €20,000" },
+    { dimension: "Who builds it", internal: "A platform team you have to hire first", platformbox: "One engineer, 16 years in the stack" },
+    { dimension: "Scope risk", internal: "Discovered mid-build", platformbox: "Fixed before Build starts, via the Platform Assessment" },
+    { dimension: "Ownership", internal: "Yours from day one", platformbox: "Yours from day one — same repos, same AWS account" },
+  ],
+} as const;
+
+export const scopeGuardrails = {
+  eyebrow: "Before you book",
+  headline: "What's in the 14 working days — and what isn't.",
+  sub: "Fixed scope, stated up front. The Platform Assessment locks these in for your environment before Build starts.",
+  inScope: {
+    title: "In scope — PlatformBox Launch",
+    items: offers[0].features,
+  },
+  outOfScope: {
+    title: "Out of scope for the 14 days",
+    items: [
+      "A developer portal or web UI (Backstage-style catalog) — available as a Scale/Enterprise extension",
+      "Self-service database provisioning — available as a Scale/Enterprise extension",
+      "Multiple golden paths, multiple environments, or multi-team governance — that's PlatformBox Scale",
+      "Multi-account AWS, multi-region, service mesh, or compliance scopes — that's PlatformBox Enterprise",
+      "Application development, staff augmentation, or ad-hoc cloud troubleshooting",
+    ],
+  },
+} as const;
+
 export const technicalReference = {
   eyebrow: "Technical reference",
   headline: "The PlatformBox reference architecture.",
@@ -815,7 +848,7 @@ export const notIncluded = {
 
 export const finalCta = {
   headline: "Book your Platform Assessment.",
-  sub: "30 minutes to determine whether your environment is a fit for the 14-working-day PlatformBox Launch.",
+  sub: "€2,500 · 3–5 days · credited toward Launch if you proceed.",
 } as const;
 
 export const pricing = {

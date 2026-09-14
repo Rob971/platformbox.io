@@ -50,7 +50,7 @@ export function HeroSection() {
             prefetch={false}
             className="inline-flex h-11 w-full items-center justify-center rounded-lg border border-border-strong px-6 text-sm font-medium text-foreground-secondary transition-colors hover:border-border-strong sm:w-auto"
           >
-            See the platform working
+            Explore 14-Day Blueprint
           </Link>
         </motion.div>
         <motion.p

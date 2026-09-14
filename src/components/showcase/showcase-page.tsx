@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Boxes, Eye, Gauge, LayoutDashboard, Database, KeyRound } from "lucide-react";
+import { ArrowRight, Boxes, Eye, Gauge, LayoutDashboard, Database, KeyRound, Check, Minus } from "lucide-react";
 import { Header } from "../header";
 import { Footer } from "../footer";
 import { TimelineStepper } from "./timeline-stepper";
@@ -16,7 +16,7 @@ import { DatabaseProvisioning } from "./database-provisioning";
 import { SecretManagement } from "./secret-management";
 import { BOOKING_URL, BOOKING_LABEL } from "@/lib/constants";
 import { fadeUp, stagger, FadeIn } from "@/lib/motion";
-import { blueprint } from "@/lib/content";
+import { blueprint, showcaseComparison, scopeGuardrails } from "@/lib/content";
 import { EvidenceLinks } from "@/components/proof/evidence-links";
 import { ProofSurfaceSection } from "@/components/sections/proof-surface-section";
 import { InfrastructureIcon, PipelineIcon, EphemeralIcon } from "../icons";
@@ -169,6 +169,8 @@ const pageSections = [
   { id: "pipeline", label: "Pipeline" },
   { id: "platform", label: "Platform" },
   { id: "roi", label: "Reference Results" },
+  { id: "comparison", label: "Build vs. Buy" },
+  { id: "scope", label: "Scope" },
 ];
 
 export function ShowcasePage() {
@@ -304,6 +306,72 @@ export function ShowcasePage() {
               </a>
             </div>
           </FadeIn>
+        </section>
+
+        <section id="comparison" className="border-t border-border mx-auto max-w-5xl px-6 pb-20 pt-20">
+          <FadeIn className="mb-10 text-center">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-foreground-tertiary">06 / {showcaseComparison.eyebrow}</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">{showcaseComparison.headline}</h2>
+            <p className="mt-3 text-sm text-foreground-tertiary">{showcaseComparison.sub}</p>
+          </FadeIn>
+          <FadeIn>
+            <div className="overflow-x-auto rounded-xl border border-border">
+              <table className="w-full min-w-[560px] border-collapse text-left text-sm">
+                <thead>
+                  <tr className="border-b border-border bg-card">
+                    <th className="px-5 py-3 font-medium text-foreground-tertiary">Dimension</th>
+                    <th className="px-5 py-3 font-medium text-foreground-tertiary">Building internally</th>
+                    <th className="px-5 py-3 font-medium text-foreground">PlatformBox Blueprint</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {showcaseComparison.rows.map((row) => (
+                    <tr key={row.dimension} className="border-b border-border last:border-0">
+                      <td className="px-5 py-3.5 font-medium text-foreground">{row.dimension}</td>
+                      <td className="px-5 py-3.5 text-foreground-tertiary">{row.internal}</td>
+                      <td className="px-5 py-3.5 text-foreground-secondary">{row.platformbox}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </FadeIn>
+        </section>
+
+        <section id="scope" className="border-t border-border mx-auto max-w-5xl px-6 pb-24 pt-20">
+          <FadeIn className="mb-10 text-center">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-foreground-tertiary">07 / {scopeGuardrails.eyebrow}</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">{scopeGuardrails.headline}</h2>
+            <p className="mt-3 text-sm text-foreground-tertiary">{scopeGuardrails.sub}</p>
+          </FadeIn>
+          <div className="grid gap-4 md:grid-cols-2">
+            <FadeIn>
+              <div className="h-full rounded-xl border border-border bg-card p-6">
+                <p className="text-sm font-semibold text-foreground">{scopeGuardrails.inScope.title}</p>
+                <ul className="mt-4 space-y-3">
+                  {scopeGuardrails.inScope.items.map((item) => (
+                    <li key={item} className="flex gap-2.5">
+                      <Check className="mt-1 h-3.5 w-3.5 shrink-0 text-green-500" aria-hidden="true" />
+                      <span className="text-sm leading-relaxed text-foreground-tertiary">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </FadeIn>
+            <FadeIn delay={0.05}>
+              <div className="h-full rounded-xl border border-border bg-card p-6">
+                <p className="text-sm font-semibold text-foreground">{scopeGuardrails.outOfScope.title}</p>
+                <ul className="mt-4 space-y-3">
+                  {scopeGuardrails.outOfScope.items.map((item) => (
+                    <li key={item} className="flex gap-2.5">
+                      <Minus className="mt-1 h-3.5 w-3.5 shrink-0 text-foreground-tertiary" aria-hidden="true" />
+                      <span className="text-sm leading-relaxed text-foreground-tertiary">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </FadeIn>
+          </div>
         </section>
 
         <ProofSurfaceSection />

@@ -19,9 +19,9 @@ interface PageLink {
 }
 
 const pageLinks: readonly PageLink[] = [
-  { href: "/about", label: "About" },
   { href: "/showcase", label: "Blueprint" },
   { href: "/architecture", label: "Architecture" },
+  { href: "/about", label: "About" },
   // The workspace is a plain <a>, not a next/link: a 307 on the same origin
   // leaves the Next.js app for app.platformbox.io (ADR-008 revised).
   { href: WORKSPACE_PATH, label: "Client workspace", external: true },
