@@ -800,7 +800,6 @@ export const notIncluded = {
         "Policy-as-code admission control — governance is IAM, Kubernetes RBAC and ArgoCD project restrictions",
         "Service mesh, multi-region and multi-cloud",
         "Application development, staff augmentation, or ad-hoc cloud troubleshooting",
-        "AI-assisted anything",
       ],
     },
     {
