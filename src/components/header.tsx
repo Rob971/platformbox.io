@@ -56,28 +56,7 @@ export function Header({ showHomeLink = false }: HeaderProps) {
             >
               Home
             </Link>
-          ) : (
-            <>
-              <a
-                href="#delivery"
-                className="rounded-lg px-3 py-2 text-sm text-foreground-tertiary transition-colors hover:text-foreground"
-              >
-                How it works
-              </a>
-              <a
-                href="#pricing"
-                className="rounded-lg px-3 py-2 text-sm text-foreground-tertiary transition-colors hover:text-foreground"
-              >
-                Pricing
-              </a>
-              <a
-                href="#faq"
-                className="rounded-lg px-3 py-2 text-sm text-foreground-tertiary transition-colors hover:text-foreground"
-              >
-                FAQ
-              </a>
-            </>
-          )}
+          ) : null}
           {pageLinks.map((link) =>
             link.external ? (
               <a
@@ -148,29 +127,9 @@ export function Header({ showHomeLink = false }: HeaderProps) {
               </Link>
             )}
             {!showHomeLink && (
-              <>
-                <a
-                  href="#delivery"
-                  onClick={close}
-                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground-secondary transition-colors hover:bg-surface-hover hover:text-foreground"
-                >
-                  How it works
-                </a>
-                <a
-                  href="#pricing"
-                  onClick={close}
-                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground-secondary transition-colors hover:bg-surface-hover hover:text-foreground"
-                >
-                  Pricing
-                </a>
-                <a
-                  href="#faq"
-                  onClick={close}
-                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground-secondary transition-colors hover:bg-surface-hover hover:text-foreground"
-                >
-                  FAQ
-                </a>
-              </>
+              <div className="px-3 py-2 text-xs text-muted uppercase tracking-wider">
+                Pages
+              </div>
             )}
             {pageLinks.map((link) =>
               link.external ? (

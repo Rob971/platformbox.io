@@ -1,42 +1,22 @@
-name: CI
-
+name: CI Verification & Drift Check
 on:
   push:
-    branches: [main, "cursor/**"]
+    branches: [ main, master, develop ]
   pull_request:
-    branches: [main]
-
+    branches: [ main, master, develop ]
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
-  check:
-    name: lint · enforce · claims · build
+  verify:
+    name: Build, Lint & Drift Check
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "22"
-          cache: npm
-
-      - name: Install
-        run: npm ci
-
-      - name: Enforce agent rules
-        run: npm run enforce
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Validate capability claims
-        run: npm run check:claims
-
-      - name: Build
-        run: npm run build
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run check:claims
+      - run: npm run check

@@ -168,7 +168,7 @@ const pageSections = [
   { id: "deliverables", label: "Deliverables" },
   { id: "pipeline", label: "Pipeline" },
   { id: "platform", label: "Platform" },
-  { id: "roi", label: "Results" },
+  { id: "roi", label: "Reference Results" },
 ];
 
 export function ShowcasePage() {
@@ -275,9 +275,9 @@ export function ShowcasePage() {
 
         <section id="roi" className="border-t border-border mx-auto max-w-5xl px-6 pb-24 pt-20">
           <FadeIn className="mb-8 text-center">
-            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-foreground-tertiary">05 / Before → After</p>
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">The Transformation</h2>
-            <p className="mt-3 text-sm text-foreground-tertiary">What changes when you stop doing platform engineering yourself.</p>
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-foreground-tertiary">05 / Reference Results</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">What the reference platform actually measures.</h2>
+            <p className="mt-3 text-sm text-foreground-tertiary">These numbers come from exercising the PlatformBox reference implementation. Your engagement is built on the same process and tooling; the specific timelines depend on your environment complexity.</p>
           </FadeIn>
           <div className="grid gap-4 lg:grid-cols-2">
             {beforeAfter.map((item, i) => (

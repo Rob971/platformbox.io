@@ -2,37 +2,20 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { PageNav } from "@/components/page-nav";
 import { HeroSection } from "@/components/sections/hero-section";
-import { OutcomeSection } from "@/components/sections/outcome-section";
-import { BeforeAfterSection } from "@/components/sections/before-after-section";
-import { WhatWeBuildSection } from "@/components/sections/what-we-build-section";
-import { DeliverySection } from "@/components/sections/delivery-section";
 import { Day14Section } from "@/components/sections/day14-section";
-import { WhyDifferentSection } from "@/components/sections/why-different-section";
-import { FounderSection } from "@/components/sections/founder-section";
-import { PricingSection } from "@/components/sections/pricing-section";
-import { AssessmentSection } from "@/components/sections/assessment-section";
-import { OwnershipSection } from "@/components/sections/ownership-section";
-import { TechnologySection } from "@/components/sections/technology-section";
-import { ReferenceArchitectureSection } from "@/components/sections/reference-architecture-section";
 import { EvidenceSection } from "@/components/sections/evidence-section";
-import { RoiSection } from "@/components/sections/roi-section";
-import { FitSection } from "@/components/sections/fit-section";
+import { NotIncludedSection } from "@/components/sections/not-included-section";
+import { PricingSection } from "@/components/sections/pricing-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
-import { ProofMomentSection } from "@/components/sections/proof-moment-section";
-import { NotIncludedSection } from "@/components/sections/not-included-section";
+import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 
 const pageSections = [
-  { id: "outcome", label: "Path", number: "01", description: "Local to production, on one supported path." },
-  { id: "what-we-build", label: "What we build", number: "03", description: "Infrastructure, environments, CI/CD, security, observability, production delivery." },
-  { id: "evidence", label: "Proof", number: "04", description: "The reference platform — every claim links to real, live evidence." },
-  { id: "day-14", label: "Day 14", number: "05", description: "What is actually working on handover day." },
-  { id: "why-not-build", label: "Why us", number: "07", description: "Why PlatformBox over building internally or adopting an IDP product." },
-  { id: "pricing", label: "Pricing", number: "08", description: "Fixed price. Live in 14 working days." },
-  { id: "assessment", label: "Assessment", number: "09", description: "The risk-reduction step before any commitment." },
-  { id: "ownership", label: "Ownership", number: "10", description: "You own everything — no lock-in." },
-  { id: "technology", label: "Stack", number: "11", description: "Integrates with the tools you already use." },
-  { id: "faq", label: "FAQ", number: "14", description: "Common questions, answered directly." },
+  { id: "how-it-works", label: "How it works", number: "01", description: "Assess → Build → Prove → Outcome — the engagement model." },
+  { id: "day-14", label: "Day 14", number: "02", description: "What is actually working on handover day." },
+  { id: "evidence", label: "Proof", number: "03", description: "Every claim links to real, live reference evidence." },
+  { id: "pricing", label: "Pricing", number: "04", description: "Fixed price. Live in 14 working days." },
+  { id: "faq", label: "FAQ", number: "06", description: "Common questions, answered directly." },
 ];
 
 export function LandingPage() {
@@ -45,23 +28,11 @@ export function LandingPage() {
 
       <main className="relative z-10 flex-1" id="main-content">
         <HeroSection />
-        <OutcomeSection />
-        <BeforeAfterSection />
-        <WhatWeBuildSection />
-        <ProofMomentSection />
-        <ReferenceArchitectureSection />
+        <HowItWorksSection />
+        <Day14Section />
         <EvidenceSection />
         <NotIncludedSection />
-        <Day14Section />
-        <DeliverySection />
-        <WhyDifferentSection />
-        <FounderSection />
         <PricingSection />
-        <AssessmentSection />
-        <OwnershipSection />
-        <TechnologySection />
-        <FitSection />
-        <RoiSection />
         <FaqSection />
         <FinalCtaSection />
       </main>

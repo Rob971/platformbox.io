@@ -5,10 +5,10 @@
 import { IDP_REPO_URL } from "@/lib/constants";
 
 export const hero = {
-  eyebrow: "PlatformBox Launch · 14 working days",
-  headline: "Your code.\nFrom local to production.\nWe build the path.",
-  sub: "PlatformBox builds the infrastructure, environments and deployment automation that takes your software from a developer's laptop to production.",
-  proofLine: "14 working days · €20k fixed price",
+  eyebrow: "Growing engineering team?",
+  headline: "We build the delivery platform\nyour team needs to ship predictably.",
+  sub: "Engineering delivery infrastructure gets too complex to manage ad-hoc as your team grows. PlatformBox standardises environments, CI/CD, security and observability — on your stack, in 14 working days, fixed price.",
+  proofLine: "14 working days · €20,000 fixed price",
 } as const;
 
 export const whatWeBuild = {
@@ -117,7 +117,7 @@ export const aboutExperience = {
     { value: "DevOps", label: "CI/CD / deployment / operations" },
     { value: "Platform", label: "Kubernetes / Terraform / IDP" },
   ],
-  companies: ["Neopost", "Ortec", "Spir Communication", "Fleet Note", "My Multiverse", "Saber.tech"],
+  companies: ["Neopost", "Ortec", "Spir Communication", "My Multiverse", "Saber.tech"],
 } as const;
 
 export const aboutFinalCta = {
@@ -126,6 +126,58 @@ export const aboutFinalCta = {
   primaryLabel: "Start with the Assessment",
   secondaryHref: "/architecture#verify",
   secondaryLabel: "Explore the Technical Evidence",
+} as const;
+export const howItWorks = {
+  eyebrow: "01 / How it works",
+  headline: "Assess → Build → Prove → Outcome.",
+  sub: "A fixed-scope engagement built around repeatable phases, not open-ended consulting.",
+  steps: [
+    {
+      label: "Assess",
+      title: "Platform Assessment",
+      text: "We map your current state — infrastructure, pipelines, security, operations — and establish whether the PlatformBox model is the right fit. The assessment ends with a decision, not a pitch.",
+      outcomes: [
+        "Current-state baseline & friction analysis",
+        "Target architecture & implementation plan",
+        "Fixed-price proposal or honest no-go",
+      ],
+    },
+    {
+      label: "Build",
+      title: "14-Day Implementation",
+      text: "We build the platform in your AWS account and across your repositories. Each phase delivers working infrastructure — golden path, CI/CD, environments, security, observability — on your stack, owned by you.",
+      outcomes: [
+        "AWS/EKS foundation with infrastructure-as-code",
+        "CI/CD pipelines and GitOps delivery",
+        "Preview, staging and production environments",
+        "Baseline security, IAM scanning and observability",
+      ],
+    },
+    {
+      label: "Prove",
+      title: "Production Validation",
+      text: "We verify that the agreed capabilities work — not with a slide deck, but with evidence: a real service traverses the golden path through every gate to production, with every check passing.",
+      outcomes: [
+        "End-to-end golden path proven on your stack",
+        "Promotion gates verified with live evidence",
+        "Production rollback demonstrated",
+        "Every requirement linked to verifiable output",
+      ],
+    },
+    {
+      label: "Outcome",
+      title: "Handover & Measurement",
+      text: "You receive documentation, runbooks, training, and a measured baseline against which future improvements can be tracked. The platform is yours — no proprietary runtime, no ongoing obligation.",
+      outcomes: [
+        "Documentation, runbooks and team training",
+        "Measured baseline of the delivered platform",
+        "Recommended evolution roadmap",
+        "Optional post-launch support (PlatformBox Care)",
+      ],
+    },
+  ],
+  outro:
+    "The assessment is a separate €2,500 step — credited toward the implementation if you proceed. We may conclude that PlatformBox is not the right answer for your situation. That honesty is part of the trust model.",
 } as const;
 
 export const outcome = {
@@ -561,17 +613,17 @@ export const faqs: Faq[] = [
 export const blueprint = {
   eyebrow: "The 14-Day Blueprint",
   headline: "How the 14 working days work.",
-  sub: "Nine phases, one fixed-price engagement — from discovery to a handed-over platform.",
+  sub: "Assess → Build → Prove → Outcome — the four-stage engagement that delivers a working platform.",
   phases: [
-    { title: "Discovery and architecture", text: "Map the current state, agree the target architecture, and lock the 14-working-day scope.", claims: ["__process__"] },
-    { title: "Infrastructure foundation", text: "Stand up the AWS/EKS foundation, networking, and baseline IAM.", claims: ["pbx.foundation.aws", "pbx.platform.kubernetes-eks", "pbx.platform.networking", "pbx.security.iam-least-privilege"] },
-    { title: "CI/CD", text: "Standard pipelines, registries, and the commit-to-production workflow.", claims: ["pbx.delivery.ci-cd", "pbx.platform.container-registry"] },
-    { title: "Environments", text: "Preview and production environments with automated provisioning.", claims: ["pbx.environments.preview"] },
-    { title: "Golden path", text: "The standard service template and repository bootstrap developers follow.", claims: ["pbx.golden-path.service-scaffold", "pbx.golden-path.build-to-production"] },
-    { title: "Security", text: "Least-privilege access, encrypted storage and state, and automated checks in the pipeline.", claims: ["pbx.security.scanning", "pbx.security.iam-least-privilege"] },
-    { title: "Observability", text: "Prometheus + Grafana — metrics and dashboards, live-proven across both services (ADR-018).", claims: ["pbx.observability.metrics"] },
-    { title: "Production validation", text: "End-to-end validation of the golden path against a real workload.", claims: ["pbx.delivery.production-promotion"] },
-    { title: "Handover", text: "Documentation, runbooks, training, and the phase-2 backlog.", claims: ["pbx.delivery.handover"] },
+    { title: "Assess", label: "Discovery & architecture", text: "Map the current state, agree the target architecture, and lock the 14-working-day scope.", claims: ["__process__"] },
+    { title: "Build", label: "Infrastructure foundation", text: "Stand up the AWS/EKS foundation, networking, and baseline IAM.", claims: ["pbx.foundation.aws", "pbx.platform.kubernetes-eks", "pbx.platform.networking", "pbx.security.iam-least-privilege"] },
+    { title: "Build", label: "CI/CD", text: "Standard pipelines, registries, and the commit-to-production workflow.", claims: ["pbx.delivery.ci-cd", "pbx.platform.container-registry"] },
+    { title: "Build", label: "Environments", text: "Preview and production environments with automated provisioning.", claims: ["pbx.environments.preview"] },
+    { title: "Build", label: "Golden path", text: "The standard service template and repository bootstrap developers follow.", claims: ["pbx.golden-path.service-scaffold", "pbx.golden-path.build-to-production"] },
+    { title: "Build", label: "Security", text: "Least-privilege access, encrypted storage and state, and automated checks in the pipeline.", claims: ["pbx.security.scanning", "pbx.security.iam-least-privilege"] },
+    { title: "Build", label: "Observability", text: "Prometheus + Grafana — metrics and dashboards, live-proven across both services (ADR-018).", claims: ["pbx.observability.metrics"] },
+    { title: "Prove", label: "Production validation", text: "End-to-end validation of the golden path against a real workload.", claims: ["pbx.delivery.production-promotion"] },
+    { title: "Outcome", label: "Handover", text: "Documentation, runbooks, training, and the phase-2 backlog.", claims: ["pbx.delivery.handover"] },
   ],
   disclaimer:
     "This is the standard PlatformBox delivery model. Individual environments may require scope adjustments identified during the Platform Assessment.",
