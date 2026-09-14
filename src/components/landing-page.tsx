@@ -9,12 +9,14 @@ import { PricingSection } from "@/components/sections/pricing-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 import { HowItWorksSection } from "@/components/sections/how-it-works-section";
+import { FounderSection } from "@/components/sections/founder-section";
 
 const pageSections = [
   { id: "how-it-works", label: "How it works", number: "01", description: "Assess → Build → Prove → Outcome — the engagement model." },
   { id: "day-14", label: "Day 14", number: "02", description: "What is actually working on handover day." },
   { id: "evidence", label: "Proof", number: "03", description: "Every claim links to real, live reference evidence." },
   { id: "pricing", label: "Pricing", number: "04", description: "Fixed price. Live in 14 working days." },
+  { id: "founder", label: "Founder", number: "05", description: "Who's behind PlatformBox, and why it exists." },
   { id: "faq", label: "FAQ", number: "06", description: "Common questions, answered directly." },
 ];
 
@@ -33,6 +35,7 @@ export function LandingPage() {
         <EvidenceSection />
         <NotIncludedSection />
         <PricingSection />
+        <FounderSection />
         <FaqSection />
         <FinalCtaSection />
       </main>
