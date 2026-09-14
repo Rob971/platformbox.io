@@ -20,7 +20,7 @@ export const whatWeBuild = {
 } as const;
 
 export const founder = {
-  eyebrow: "Why PlatformBox Exists",
+  eyebrow: "05 / Why PlatformBox Exists",
   headline: "I kept seeing engineers rebuild the same delivery infrastructure.",
   body: "For 16 years I've worked across backend engineering, distributed systems, cloud infrastructure, DevOps and software architecture. As engineering teams grow, shipping a new service stops being just a development task — someone has to build the container, wire up CI/CD, handle secrets, add observability, and make it safe to run in production. Necessary work. Rarely the work engineers were hired to do.",
   name: "Roberto Cornano",
@@ -402,7 +402,7 @@ export const fit = {
 } as const;
 
 export const day14 = {
-  eyebrow: "05 / Day 14",
+  eyebrow: "02 / Day 14",
   headline: "What is actually working on Day 14?",
   sub: "Not a demo or a proof of concept — a working developer path to production, live in your environment.",
   steps: [
@@ -722,7 +722,7 @@ export const evidence = {
 } as const;
 
 export const landingEvidence = {
-  eyebrow: "Verified, not claimed",
+  eyebrow: "03 / Verified, not claimed",
   headline: "Every claim links to real, live evidence.",
   sub: "The reference implementation is public and inspectable. The decision records are published. The Terraform state output is real — not a marketing snapshot. The full path to production is live-proven end-to-end, including a real production rollback.",
   cards: [
@@ -856,7 +856,7 @@ export const finalCta = {
 } as const;
 
 export const pricing = {
-  eyebrow: "08 / Pricing",
+  eyebrow: "04 / Pricing",
   headline: "Fixed-price. Live in 14 working days.",
 } as const;
 
@@ -867,6 +867,6 @@ export const roi = {
 } as const;
 
 export const faqSection = {
-  eyebrow: "14 / FAQ",
+  eyebrow: "06 / FAQ",
   headline: "Answers before you book.",
 } as const;
