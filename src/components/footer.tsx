@@ -12,12 +12,16 @@ export function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2">
+            <Link
+              href="/"
+              prefetch={false}
+              className="flex w-fit items-center gap-2"
+            >
               <PlatformBoxLogoIcon className="h-5 w-5" />
               <p className="text-sm font-semibold text-foreground">
                 {"PlatformBox"}<span className="text-accent">.io</span>
               </p>
-            </div>
+            </Link>
             <p className="mt-3 max-w-xs text-xs leading-relaxed text-muted">
               A working developer platform delivered in 14 working days, at a fixed price.
             </p>
