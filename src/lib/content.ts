@@ -11,14 +11,6 @@ export const hero = {
   proofLine: "14 working days · €20,000 fixed price",
 } as const;
 
-export const whatWeBuild = {
-  eyebrow: "03 / What We Build",
-  headline: "One supported path from local development to production.",
-  components: ["Infrastructure", "Environments", "CI/CD", "Security", "Observability", "Production delivery"],
-  note: "Built in your existing AWS/Kubernetes environment.",
-  ownershipNote: "You own the platform.",
-} as const;
-
 export const founder = {
   eyebrow: "05 / Why PlatformBox Exists",
   headline: "I kept seeing engineers rebuild the same delivery infrastructure.",
@@ -180,45 +172,6 @@ export const howItWorks = {
     "The first call is free — 30 minutes, no sales pitch. Only the Platform Readiness Assessment that follows is €2,500, credited toward the implementation if you proceed. We may conclude that PlatformBox is not the right answer for your situation. That honesty is part of the trust model.",
 } as const;
 
-export const outcome = {
-  eyebrow: "01 / The Path",
-  headline: "From Git push to production, on a standardized golden path.",
-  sub: "The product isn't Terraform or Kubernetes. The product is the shorter path — one standardized workflow every team follows.",
-  steps: [
-    { label: "Code", note: "Developer pushes code" },
-    { label: "Golden Path", note: "Standard template" },
-    { label: "Preview", note: "Ephemeral environment" },
-    { label: "DEV", note: "Deploy & verify" },
-    { label: "QA", note: "Automated gate" },
-    { label: "UAT", note: "Manual approval" },
-    { label: "PROD", note: "Promoted to production" },
-    { label: "Observe", note: "Prometheus + Grafana" },
-    { label: "Repeat", note: "Same path, every service" },
-  ],
-} as const;
-
-export const beforeAfter = {
-  eyebrow: "02 / What Changes",
-  headline: "The shorter path to production.",
-  sub: "You don't buy Terraform, Kubernetes, or a pipeline. You buy the path between them.",
-  before: [
-    "Developer opens a DevOps ticket",
-    "Manual infrastructure work",
-    "Different deployment patterns per team",
-    "Environment provisioning delays",
-    "Platform knowledge concentrated in a few engineers",
-    "Repeated operational work",
-  ],
-  after: [
-    "Developer uses a golden path",
-    "Infrastructure is standardized",
-    "Preview environments are automated",
-    "Deployment follows a repeatable workflow",
-    "Security controls are built into the path",
-    "Platform knowledge is encoded in the system",
-  ],
-} as const;
-
 export const delivery = {
   eyebrow: "06 / The 14-Day Delivery",
   headline: "Exactly what gets delivered.",
@@ -247,19 +200,6 @@ export const delivery = {
         { day: "Days 13–14", title: "Validation & handover", description: "End-to-end validation, documentation, training, and a phase-2 backlog." },
       ],
     },
-  ],
-} as const;
-
-export const technology = {
-  eyebrow: "11 / Technology",
-  headline: "Integrates with the tools you already have.",
-  sub: "PlatformBox is not a replacement for your stack — it is the layer that makes the supported path self-service. Each tool keeps its job; PlatformBox owns the path between them.",
-  roles: [
-    { name: "Terraform", role: "Infrastructure lifecycle", accent: false, claims: ["pbx.foundation.iac-terraform"] },
-    { name: "Kubernetes / EKS", role: "Application runtime", accent: false, claims: ["pbx.platform.kubernetes-eks"] },
-    { name: "GitLab", role: "Source and workflow", accent: false, claims: ["__process__"] },
-    { name: "GitOps / CI/CD", role: "Application delivery", accent: false, claims: ["pbx.delivery.gitops", "pbx.delivery.ci-cd"] },
-    { name: "PlatformBox", role: "Golden paths and orchestration", accent: true, claims: ["pbx.golden-path.service-scaffold", "pbx.golden-path.build-to-production"] },
   ],
 } as const;
 
@@ -346,22 +286,6 @@ export const offers: Offer[] = [
   },
 ];
 
-export const assessment = {
-  name: "Platform Readiness Assessment",
-  price: "€2,500",
-  duration: "3–5 days",
-  blurb: "A technical deep-dive that maps your current state, bottlenecks, and target architecture before you commit.",
-  note: "€2,500 is fully credited toward PlatformBox Launch if you proceed.",
-  deliverables: [
-    "Current-state assessment",
-    "Platform maturity & bottleneck analysis",
-    "Target architecture",
-    "Technical risks",
-    "14-working-day implementation plan",
-    "Fixed-price proposal",
-  ],
-} as const;
-
 export const care = {
   name: "PlatformBox Care",
   price: "€2,000–€4,000/month",
@@ -381,25 +305,6 @@ export const care = {
 
 export const pricingNote =
   "A fixed-price implementation that is live in 14 working days. No hourly rates." as const;
-
-export const fit = {
-  eyebrow: "12 / Is It a Fit?",
-  headline: "Who PlatformBox is for — and who it isn't.",
-  strong: [
-    "100–500 engineers",
-    "AWS / EKS, or an imminent Kubernetes migration",
-    "Multiple engineering teams",
-    "Growing infrastructure complexity",
-    "A small or overloaded platform/DevOps team",
-    "You need results quickly",
-  ],
-  not: [
-    "Fewer than ~50 engineers",
-    "Already have a mature, large platform team",
-    "Require a fully bespoke multi-cloud architecture",
-    "Can't commit to a clearly defined 14-working-day scope",
-  ],
-} as const;
 
 export const day14 = {
   eyebrow: "02 / Day 14",
@@ -440,64 +345,7 @@ export const day14 = {
     "The reference implementation proves this path end-to-end, through to production — services are promoted from UAT's approved build with no rebuild, ArgoCD reconciled to healthy, and a real production rollback demonstrated (ADR-019, ADR-020). Your engagement delivers the same path on your stack.",
 } as const;
 
-export const whyDifferent = {
-  eyebrow: "07 / Why PlatformBox",
-  headline: "Why PlatformBox over building it yourself or adopting an IDP product?",
-  sub: "Building internally gives control but costs months of senior engineering. Adopting an IDP product gives tooling, not a finished platform. PlatformBox delivers the implemented platform — pre-engineered, standardized, and handed to your team.",
-  rows: [
-    { internal: "Months of platform engineering", product: "Tooling, but the platform work remains", platformbox: "14 working days, fixed scope" },
-    { internal: "Build and wire every tool yourself", product: "Still must integrate with your stack", platformbox: "Integrated golden path" },
-    { internal: "Architecture decisions still unresolved", product: "Opinionated product — your fit varies", platformbox: "Proven reference architecture" },
-    { internal: "Long time before developer adoption", product: "Workflows still need engineering", platformbox: "Working developer path at handover" },
-    { internal: "Ongoing ownership burden from day one", product: "Product plus your platform team", platformbox: "You own it — we hand it back" },
-  ],
-  message: "Build internally for control. Adopt a product for tooling. Choose PlatformBox for the implemented platform — delivered as a defined service, evidence-backed.",
-} as const;
-
-export const assessmentSection = {
-  eyebrow: "09 / Risk Reduction",
-  headline: "Before we promise 14 working days, we assess your environment.",
-  sub: "PlatformBox does not start with a blind fixed-price promise. We first assess your architecture, delivery workflow, and platform constraints so the 14-working-day scope is realistic.",
-  outputs: [
-    "Current-state map",
-    "Bottleneck analysis",
-    "Platform maturity assessment",
-    "Target architecture",
-    "Risks and dependencies",
-    "14-working-day implementation scope",
-    "Fixed-price recommendation",
-  ],
-  credit: "€2,500 — fully credited toward PlatformBox Launch if you proceed.",
-} as const;
-
-export const ownership = {
-  eyebrow: "10 / Ownership",
-  headline: "You own the platform.",
-  sub: "PlatformBox builds on your stack and hands it back. Nothing is trapped inside a proprietary runtime.",
-  items: [
-    "You own your AWS resources",
-    "You own your repositories",
-    "You own your Terraform",
-    "You own your deployment configuration",
-    "You own the resulting platform",
-  ],
-  noDependency:
-    "PlatformBox does not create dependency by locking infrastructure into a proprietary runtime.",
-  careNote:
-    "PlatformBox Care is optional ongoing expertise — not a requirement to keep the platform running.",
-} as const;
-
-export const lockIn = {
-  title: "Built on your stack. Owned by you.",
-  message:
-    "PlatformBox integrates the tools and infrastructure you already use. The goal is to give your team a repeatable developer platform — not trap you inside a proprietary infrastructure layer.",
-  stack: ["AWS", "Kubernetes", "Terraform", "GitLab"],
-} as const;
-
 export const architecture = {
-  eyebrow: "04 / Reference Architecture",
-  headline: "A clean path from developer to production.",
-  sub: "One golden path, on your stack — no proprietary runtime, no black box.",
   flow: [
     "Developer",
     "PlatformBox Golden Path",
@@ -506,8 +354,6 @@ export const architecture = {
     "AWS / Kubernetes",
     "Production",
   ],
-  ctaLabel: "View the technical reference architecture",
-  ctaHref: "/architecture",
 } as const;
 
 export const whichPackage = {
@@ -800,23 +646,6 @@ export const operatingModel = {
   ],
 } as const;
 
-// The strongest single fact the platform can offer, and the one a
-// competitor cannot copy without doing the work. Verbatim-checkable
-// against docs/evidence/2026-08-27/generated-service-to-production.md
-export const proofMoment = {
-  eyebrow: "27 August 2026",
-  headline: "One command. Six environments. Production.",
-  sub: "A developer ran a single command. The service it generated went to production through six environments and two human approval gates — carrying the same immutable image digest at every tier, verified by a health check answering from inside a private production cluster that a laptop cannot reach.",
-  steps: [
-    { label: "make new-service", text: "35 files: Go service with tests, Dockerfile, Helm chart, four environment definitions, full CI/CD pipeline. No platform configuration written by hand." },
-    { label: "Preview → Dev → QA", text: "Lint, unit tests, dependency, image and infrastructure scanning, then deploy and verify. Failed checks stop the deployment — they do not warn about it." },
-    { label: "UAT → Production", text: "Two human approval gates, enforced by AWS IAM rather than by a setting in the CI interface. The audit record is committed only after the deployment answers a health check." },
-  ],
-  caveat: "Production onboarding of a new service still requires a platform engineer to make two Terraform edits — the generator prints exactly which. We do not call that automated.",
-  linkLabel: "Read the evidence for this run",
-  linkHref: `${IDP_REPO_URL}/-/blob/main/docs/evidence/2026-08-27/generated-service-to-production.md`,
-} as const;
-
 // Publishing limitations is not a disclaimer. It is the reason the other
 // claims are believable, and it disqualifies bad-fit buyers before a call.
 //
@@ -858,12 +687,6 @@ export const finalCta = {
 export const pricing = {
   eyebrow: "04 / Pricing",
   headline: "Fixed-price. Live in 14 working days.",
-} as const;
-
-export const roi = {
-  eyebrow: "13 / The ROI",
-  headline: "What does your current platform actually cost?",
-  sub: "Adjust the numbers to your team. Transparent, editable, and yours to keep.",
 } as const;
 
 export const faqSection = {
