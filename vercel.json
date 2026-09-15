@@ -1,8 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
-    { "source": "/workspace/admin",         "destination": "/admin/delivery",         "permanent": false },
-    { "source": "/workspace/admin/:match*", "destination": "/admin/delivery/:match*", "permanent": false },
+    { "source": "/workspace/admin",         "destination": "/admin",         "permanent": false },
+    { "source": "/workspace/admin/:match*", "destination": "/admin/:match*", "permanent": false },
     { "source": "/workspace",         "destination": "/admin",         "permanent": false },
     { "source": "/workspace/:match*", "destination": "/admin/:match*", "permanent": false }
   ],
