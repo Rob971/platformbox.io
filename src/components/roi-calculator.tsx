@@ -112,6 +112,9 @@ export function RoiCalculator() {
           Estimate your annual platform tax
         </p>
       </div>
+      <p className="-mt-3 mb-6 rounded-lg border border-amber-500/20 bg-amber-500/5 px-3 py-2 text-[11px] leading-relaxed text-amber-300/80">
+        <strong>Illustrative example.</strong> The default values below are placeholders — replace them with your team&apos;s own numbers. This is an input-driven estimate, not a claimed customer saving.
+      </p>
 
       <div className="grid gap-8 sm:grid-cols-2">
         <div className="space-y-6">

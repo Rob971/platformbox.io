@@ -458,6 +458,10 @@ export const faqs: Faq[] = [
     q: "What can we add after Launch?",
     a: "Platform expansion modules: additional golden paths, environments, teams, a developer portal, self-service databases, advanced security or observability, and Enterprise compliance. Each is a fixed-scope engagement agreed during the Platform Assessment.",
   },
+  {
+    q: "Is PlatformBox an established company with existing customers?",
+    a: "PlatformBox is a new specialist practice. The delivery model was built and exercised against a public reference implementation before taking it into customer environments. We don't claim customer outcomes we haven't earned yet. What we do offer is inspectable technical evidence: a public reference implementation, published decision records, and proven end-to-end delivery — all independently verifiable before any engagement.",
+  },
 ];
 
 export const blueprint = {
@@ -569,8 +573,8 @@ export const evidence = {
 
 export const landingEvidence = {
   eyebrow: "03 / Verified, not claimed",
-  headline: "Every claim links to real, live evidence.",
-  sub: "The reference implementation is public and inspectable. The decision records are published. The Terraform state output is real — not a marketing snapshot. The full path to production is live-proven end-to-end, including a real production rollback.",
+  headline: "Technical claims are backed by inspectable reference evidence.",
+  sub: "The reference implementation is public and inspectable. The decision records are published. The Terraform state is real — not a marketing snapshot. Every technical claim on this site can be verified from the same source.",
   cards: [
     {
       label: "The repository",

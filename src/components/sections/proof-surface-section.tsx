@@ -23,7 +23,7 @@ export function ProofSurfaceSection() {
             The proof surface
           </p>
           <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Every claim links to the evidence behind it.
+            Each capability claim links to the evidence behind it.
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-foreground-tertiary sm:text-base">
             The 19 evidence keys below are the delivery standard&apos;s proof
