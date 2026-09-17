@@ -190,7 +190,7 @@ export function AssessmentPage() {
           <FadeIn>
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Start with the decision</p>
             <h2 className="mx-auto mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Find out whether a platform investment is justified before you make it.</h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-foreground-tertiary sm:text-base">{assessmentProduct.price} · {assessmentProduct.duration} · €2,500 credited toward PlatformBox Launch if you proceed. Every engagement starts here; a call is optional.</p>
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-foreground-tertiary sm:text-base">{assessmentProduct.price} · {assessmentProduct.duration} · €2,500 credited toward PlatformBox Launch if you proceed within 90 days. Every engagement starts here; a call is optional.</p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <AssessmentCta />
               <BookingCta />

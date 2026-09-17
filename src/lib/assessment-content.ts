@@ -58,6 +58,6 @@ export const assessmentProduct = {
     { q: "What if there is not enough data to quantify savings?", a: "The Assessment does not invent precision. Evidence is labelled as measured, estimated, assumed, or unknown, with confidence and a validation path." },
     { q: "What happens if PlatformBox is not a fit?", a: "That is a valid outcome. The purpose is to improve the decision, not to force an implementation." },
     { q: "Does the Assessment expose your internal diagnostic checklist?", a: "No. You receive the conclusions, evidence, reasoning, and decisions relevant to your organization. Customer-specific fit constraints and internal diagnostic detail are part of the paid engagement, not a public checklist." },
-    { q: "Is the €2,500 credited toward implementation?", a: "Yes. The current commercial model credits the €2,500 Assessment toward PlatformBox Launch if you proceed." },
+    { q: "Is the €2,500 credited toward implementation?", a: "Yes. The current commercial model credits the €2,500 Assessment toward PlatformBox Launch if you proceed within 90 days." },
   ],
 } as const;

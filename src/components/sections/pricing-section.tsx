@@ -44,7 +44,7 @@ export function PricingSection() {
               <ul className="mt-6 space-y-2.5">
                 {assessmentProduct.deliverables.slice(0, 6).map((item) => <li key={item} className="flex gap-2.5 text-sm text-foreground-secondary"><Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={2.5} /><span>{item}</span></li>)}
               </ul>
-              <p className="mt-4 text-xs leading-relaxed text-muted">{assessmentProduct.price} is fully credited toward PlatformBox Launch if you proceed.</p>
+              <p className="mt-4 text-xs leading-relaxed text-muted">{assessmentProduct.price} is fully credited toward PlatformBox Launch if you proceed within 90 days.</p>
               <div className="mt-auto border-t border-border pt-6"><div className="flex flex-col gap-3 sm:flex-row"><AssessmentCta className="w-full sm:w-auto" /><BookingCta className="w-full sm:w-auto" /></div></div>
             </div>
           </FadeIn>
