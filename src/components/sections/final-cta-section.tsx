@@ -1,7 +1,7 @@
 "use client";
 
 import { FadeIn } from "@/lib/motion";
-import { BookingCta } from "@/components/booking-cta";
+import { AssessmentCta, BookingCta } from "@/components/booking-cta";
 import { finalCta } from "@/lib/content";
 
 export function FinalCtaSection() {
@@ -15,7 +15,8 @@ export function FinalCtaSection() {
           <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-foreground-tertiary sm:text-base">
             {finalCta.sub}
           </p>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <AssessmentCta />
             <BookingCta />
           </div>
         </FadeIn>

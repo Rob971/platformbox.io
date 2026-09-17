@@ -2,7 +2,7 @@
 
 import { Check } from "lucide-react";
 import { FadeIn } from "@/lib/motion";
-import { BookingCta } from "@/components/booking-cta";
+import { AssessmentCta, BookingCta } from "@/components/booking-cta";
 import { offers, care, pricingNote, pricing, whichPackage } from "@/lib/content";
 import { assessmentProduct } from "@/lib/assessment-content";
 
@@ -28,7 +28,7 @@ export function PricingSection() {
                 <ul className="mt-6 space-y-2.5">
                   {offer.features.map((feature) => <li key={feature} className="flex gap-2.5 text-sm text-foreground-secondary"><Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={2.5} /><span>{feature}</span></li>)}
                 </ul>
-                <div className="mt-8 border-t border-border pt-6"><BookingCta variant={offer.recommended ? "primary" : "outline"} className="w-full" /></div>
+                <div className="mt-8 border-t border-border pt-6"><AssessmentCta variant={offer.recommended ? "primary" : "outline"} className="w-full" /></div>
               </div>
             </FadeIn>
           ))}
@@ -45,7 +45,7 @@ export function PricingSection() {
                 {assessmentProduct.deliverables.slice(0, 6).map((item) => <li key={item} className="flex gap-2.5 text-sm text-foreground-secondary"><Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={2.5} /><span>{item}</span></li>)}
               </ul>
               <p className="mt-4 text-xs leading-relaxed text-muted">{assessmentProduct.price} is fully credited toward PlatformBox Launch if you proceed.</p>
-              <div className="mt-auto border-t border-border pt-6"><div className="flex flex-col gap-3 sm:flex-row"><BookingCta label="Book a free 30-min fit call" className="w-full sm:w-auto" /><a href="/assessment" className="inline-flex h-11 items-center justify-center rounded-lg border border-border-strong px-5 text-sm font-medium text-foreground transition-colors hover:bg-surface-hover">See the Assessment</a></div></div>
+              <div className="mt-auto border-t border-border pt-6"><div className="flex flex-col gap-3 sm:flex-row"><AssessmentCta className="w-full sm:w-auto" /><BookingCta className="w-full sm:w-auto" /></div></div>
             </div>
           </FadeIn>
 
@@ -55,7 +55,7 @@ export function PricingSection() {
               <p className="mt-4 text-sm font-medium text-accent-hover">{care.position}</p>
               <p className="mt-2 text-sm leading-relaxed text-foreground-tertiary">{care.blurb}</p>
               <ul className="mt-6 space-y-2.5">{care.items.map((item) => <li key={item} className="flex gap-2.5 text-sm text-foreground-secondary"><Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={2.5} /><span>{item}</span></li>)}</ul>
-              <div className="mt-8 border-t border-border pt-6"><BookingCta variant="outline" className="w-full" /></div>
+              <div className="mt-8 border-t border-border pt-6"><AssessmentCta variant="outline" className="w-full" /></div>
             </div>
           </FadeIn>
         </div>

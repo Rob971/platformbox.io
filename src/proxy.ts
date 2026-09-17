@@ -135,7 +135,24 @@ function newCorrelationId(): string {
  *   /admin/delivery           → /admin             (console keeps its own prefix)
  *   /admin/delivery/:match*   → /admin/:match*
  */
+const PUBLIC_ROUTES: Record<string, string> = {
+  "/assessment/start": "/public/assessment",
+  "/assessment/complete": "/public/assessment/complete",
+  "/assessment/cancelled": "/public/assessment/cancelled",
+  "/assessment/activate": "/public/activate",
+  "/assessment/resend-activation": "/public/resend-activation",
+};
+
+function canonicalPublicPath(pathname: string): string | undefined {
+  const path = pathname.replace(/\/$/, "");
+  if (path === "/start") return "/assessment/start";
+  if (path === "/start/complete") return "/assessment/complete";
+  if (path === "/start/cancelled") return "/assessment/cancelled";
+  return Object.entries(PUBLIC_ROUTES).find(([, internal]) => path === `/admin${internal}`)?.[0];
+}
+
 function upstreamPath(pathname: string): string {
+  if (PUBLIC_ROUTES[pathname]) return PUBLIC_ROUTES[pathname];
   if (pathname === "/admin" || pathname === "/admin/") return "/";
   if (pathname === "/admin/delivery" || pathname.startsWith("/admin/delivery/")) {
     return "/admin" + pathname.slice("/admin/delivery".length);
@@ -258,8 +275,15 @@ function edgeFailureResponse(
 }
 
 export function proxy(request: NextRequest): Promise<Response> | Response {
-  // Only /admin is proxied; the matcher below keeps every other route untouched.
+  // Public onboarding aliases reuse Delivery handlers; workspace routes retain their mapping.
   const { pathname, search, origin } = request.nextUrl;
+  const canonical = canonicalPublicPath(pathname);
+  if (canonical) {
+    return new Response(null, {
+      status: 307,
+      headers: { location: origin + canonical + search, "cache-control": "no-store" },
+    });
+  }
   const method = request.method.toUpperCase();
   const target = `${UPSTREAM}${upstreamPath(pathname)}${search}`;
 
@@ -367,6 +391,6 @@ export function proxy(request: NextRequest): Promise<Response> | Response {
 }
 
 export const config = {
-  matcher: ["/admin", "/admin/:path*"],
+  matcher: ["/admin", "/admin/:path*", "/start", "/start/complete", "/start/cancelled", "/assessment/start", "/assessment/complete", "/assessment/cancelled", "/assessment/activate", "/assessment/resend-activation"],
 };
 

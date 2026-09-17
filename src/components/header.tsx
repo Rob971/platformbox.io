@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { PlatformBoxLogoIcon } from "./icons";
-import { BOOKING_URL, BOOKING_LABEL, WORKSPACE_PATH } from "@/lib/constants";
+import { ASSESSMENT_URL, ASSESSMENT_LABEL, BOOKING_URL, BOOKING_LABEL, WORKSPACE_PATH } from "@/lib/constants";
 import { useTheme } from "@/lib/theme";
 
 interface HeaderProps {
@@ -61,8 +61,9 @@ export function Header({ showHomeLink = false }: HeaderProps) {
               <span className="sr-only hidden dark:inline">Switch to light mode</span>
               <span className="sr-only dark:hidden">Switch to dark mode</span>
             </button>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-9 items-center rounded-lg bg-accent-strong px-4 text-sm font-medium text-white transition-colors hover:bg-accent">
-              {BOOKING_LABEL}
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="text-sm text-foreground-secondary">{BOOKING_LABEL}</a>
+            <a href={ASSESSMENT_URL} className="inline-flex h-9 items-center rounded-lg bg-accent-strong px-4 text-sm font-medium text-white transition-colors hover:bg-accent">
+              {ASSESSMENT_LABEL}
             </a>
           </div>
         </nav>
@@ -88,7 +89,8 @@ export function Header({ showHomeLink = false }: HeaderProps) {
                 <Link key={link.href} href={link.href} onClick={close} prefetch={false} className="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground-secondary transition-colors hover:bg-surface-hover hover:text-foreground">{link.label}</Link>
               ),
             )}
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={close} className="mt-2 inline-flex h-11 items-center justify-center rounded-lg bg-accent-strong px-4 text-sm font-medium text-white transition-colors hover:bg-accent">{BOOKING_LABEL}</a>
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="text-sm text-foreground-secondary">{BOOKING_LABEL}</a>
+            <a href={ASSESSMENT_URL} onClick={close} className="mt-2 inline-flex h-11 items-center justify-center rounded-lg bg-accent-strong px-4 text-sm font-medium text-white transition-colors hover:bg-accent">{ASSESSMENT_LABEL}</a>
             <button type="button" onClick={() => { toggle(); close(); }} className="mt-1 inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-border px-3 text-sm font-medium text-foreground-secondary transition-colors hover:bg-surface-hover hover:text-foreground">
               <span className="hidden items-center gap-2 dark:flex"><Sun className="h-4 w-4" aria-hidden /> Light mode</span>
               <span className="flex items-center gap-2 dark:hidden"><Moon className="h-4 w-4" aria-hidden /> Dark mode</span>

@@ -1,9 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeUp, stagger } from "@/lib/motion";
-import { BookingCta } from "@/components/booking-cta";
+import { AssessmentCta, BookingCta } from "@/components/booking-cta";
 import { BOOKING_NOTE } from "@/lib/constants";
 import { hero } from "@/lib/content";
 
@@ -44,14 +43,8 @@ export function HeroSection() {
           variants={fadeUp}
           className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
         >
-          <BookingCta className="w-full sm:w-auto" label="Book a free 30-min fit call" />
-          <Link
-            href="/showcase"
-            prefetch={false}
-            className="inline-flex h-11 w-full items-center justify-center rounded-lg border border-border-strong px-6 text-sm font-medium text-foreground-secondary transition-colors hover:border-border-strong sm:w-auto"
-          >
-            Explore 14-Day Blueprint
-          </Link>
+          <AssessmentCta className="w-full sm:w-auto" />
+          <BookingCta className="w-full sm:w-auto" />
         </motion.div>
         <motion.p
           variants={fadeUp}

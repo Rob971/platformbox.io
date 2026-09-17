@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   Check,
   CircleHelp,
@@ -12,7 +11,7 @@ import {
 } from "lucide-react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { BookingCta } from "@/components/booking-cta";
+import { AssessmentCta, BookingCta } from "@/components/booking-cta";
 import { FadeIn } from "@/lib/motion";
 import { assessmentProduct } from "@/lib/assessment-content";
 
@@ -37,16 +36,11 @@ export function AssessmentPage() {
               {assessmentProduct.hero.sub}
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <BookingCta label="Book a free 30-min fit call" />
-              <Link
-                href="/#pricing"
-                className="inline-flex h-11 items-center gap-2 rounded-lg border border-border-strong px-5 text-sm font-medium text-foreground transition-colors hover:bg-surface-hover"
-              >
-                Back to overview
-              </Link>
+              <AssessmentCta />
+              <BookingCta />
             </div>
             <p className="mt-5 text-sm font-medium text-foreground-secondary">
-              {assessmentProduct.price} · {assessmentProduct.duration} — after a free 30-min fit call confirms it&apos;s a match
+              {assessmentProduct.price} · {assessmentProduct.duration} · Mandatory first step. A call is optional.
             </p>
           </FadeIn>
         </section>
@@ -196,9 +190,10 @@ export function AssessmentPage() {
           <FadeIn>
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Start with the decision</p>
             <h2 className="mx-auto mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Find out whether a platform investment is justified before you make it.</h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-foreground-tertiary sm:text-base">{assessmentProduct.price} · {assessmentProduct.duration} · €2,500 credited toward PlatformBox Launch if you proceed. Starts with a free 30-min fit call — no sales pitch.</p>
-            <div className="mt-8">
-              <BookingCta label="Book a free 30-min fit call" />
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-foreground-tertiary sm:text-base">{assessmentProduct.price} · {assessmentProduct.duration} · €2,500 credited toward PlatformBox Launch if you proceed. Every engagement starts here; a call is optional.</p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <AssessmentCta />
+              <BookingCta />
             </div>
           </FadeIn>
         </section>

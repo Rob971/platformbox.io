@@ -115,7 +115,7 @@ export const aboutExperience = {
 export const aboutFinalCta = {
   headline: "If you're seeing the same problems in your engineering organization, the first step isn't necessarily building a platform.",
   sub: "First, understand what you actually have.",
-  primaryLabel: "Book Platform Assessment",
+  primaryLabel: "Start Assessment — €2,500",
   secondaryHref: "/architecture#verify",
   secondaryLabel: "Explore the Technical Evidence",
 } as const;
@@ -127,9 +127,9 @@ export const howItWorks = {
     {
       label: "Assess",
       title: "Platform Assessment",
-      text: "Book a free 30-minute call — no sales pitch, just fit. If it's a match, the paid Platform Readiness Assessment (3–5 days) maps your current state and locks the 14-working-day scope before anything is fixed-price.",
+      text: "Every engagement starts with the €2,500 Platform Readiness Assessment (3–5 working days after the Start Gate). It maps your current state and recommends the right next step before you commit to implementation.",
       outcomes: [
-        "Free 30-min call determines fit",
+        "Assessment produces an independent fit decision",
         "Paid Assessment maps current-state & target architecture",
         "Fixed-price proposal or honest no-go — credited toward Launch",
       ],
@@ -169,7 +169,7 @@ export const howItWorks = {
     },
   ],
   outro:
-    "The first call is free — 30 minutes, no sales pitch. Only the Platform Readiness Assessment that follows is €2,500, credited toward the implementation if you proceed. We may conclude that PlatformBox is not the right answer for your situation. That honesty is part of the trust model.",
+    "The mandatory first step is the €2,500 Platform Readiness Assessment, credited toward Launch if you proceed within 90 days. A free 30-minute call with Roberto is optional assistance before buying. We may conclude that PlatformBox is not the right answer for your situation. That honesty is part of the trust model.",
 } as const;
 
 export const delivery = {
@@ -363,7 +363,7 @@ export const whichPackage = {
     { title: "Choose Launch if", text: "You need your first standardized developer path." },
     { title: "Choose Scale if", text: "Multiple teams need standardized workflows and platform governance." },
     { title: "Choose Enterprise if", text: "You have complex AWS, networking, compliance, or multi-account requirements." },
-    { title: "Start with Assessment if", text: "You are unsure whether your environment can realistically fit the 14-working-day model." },
+    { title: "Every engagement starts with Assessment", text: "Establish whether your environment fits the 14-working-day model before committing to implementation." },
   ],
 } as const;
 
@@ -372,7 +372,7 @@ export type Faq = { q: string; a: string };
 export const faqs: Faq[] = [
   {
     q: "How does this actually start?",
-    a: "Two steps. First, a free 30-minute call — no sales pitch — to check whether PlatformBox is a fit for your stack and team. If it is, the paid Platform Readiness Assessment (€2,500, 3–5 days) maps your current state and locks the 14-working-day scope, credited toward Launch if you proceed. Nothing is fixed-price until after that Assessment.",
+    a: "Start the €2,500 Platform Readiness Assessment: enter your company, name and email, pay securely, activate your account, then complete Intake in your workspace. The 3–5 working days begin after the Start Gate. Talk to Roberto first if you have questions; a call is optional. The Assessment fee is credited toward Launch if you proceed within 90 days.",
   },
   {
     q: "Why not build this ourselves?",
@@ -380,7 +380,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Will this replace our DevOps team?",
-    a: "No — this is built for teams that haven’t hired a dedicated platform engineer yet, not to replace one that exists. If you already have DevOps or SRE headcount, bring them into the Assessment call: the platform they’d run day-to-day is exactly what’s being scoped, and their read on fit matters more than ours.",
+    a: "No — this is built for teams that haven’t hired a dedicated platform engineer yet, not to replace one that exists. If you already have DevOps or SRE headcount, involve them in the Assessment: the platform they’d run day-to-day is exactly what’s being scoped, and their read on fit matters more than ours.",
   },
   {
     q: "What exactly is delivered in 14 working days?",
@@ -497,7 +497,7 @@ export const showcaseComparison = {
 } as const;
 
 export const scopeGuardrails = {
-  eyebrow: "Before you book",
+  eyebrow: "Before you start",
   headline: "What's in the 14 working days — and what isn't.",
   sub: "Fixed scope, stated up front. The Platform Assessment locks these in for your environment before Build starts.",
   inScope: {
@@ -684,8 +684,8 @@ export const notIncluded = {
 } as const;
 
 export const finalCta = {
-  headline: "Book your Platform Assessment.",
-  sub: "Free · 30 minutes · no sales pitch. If it's a fit, a paid Assessment maps the build before anything is fixed-price.",
+  headline: "Start with the Platform Readiness Assessment.",
+  sub: "€2,500 · Mandatory first step · Independent recommendation before implementation. Talk to Roberto first if you have questions.",
 } as const;
 
 export const pricing = {
@@ -695,5 +695,5 @@ export const pricing = {
 
 export const faqSection = {
   eyebrow: "06 / FAQ",
-  headline: "Answers before you book.",
+  headline: "Answers before you start.",
 } as const;

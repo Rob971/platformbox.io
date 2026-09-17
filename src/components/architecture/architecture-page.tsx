@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { BookingCta } from "@/components/booking-cta";
+import { AssessmentCta, BookingCta } from "@/components/booking-cta";
 import { PageNav, type PageNavSection } from "@/components/page-nav";
 import { LiveArchitectureDiagrams } from "@/components/architecture/live-diagrams";
 import { EvidenceLinks } from "@/components/proof/evidence-links";
@@ -54,7 +54,7 @@ const pageSections: PageNavSection[] = [
   { id: "diagrams", label: "Diagrams", description: "Live architecture diagrams, pre-rendered from the IDP repo." },
   { id: "inspect", label: "Code", description: "Real infrastructure-as-code and pipeline manifests." },
   { id: "verify", label: "Verify", description: "Links to the reference implementation — proof, not promises." },
-  { id: "book", label: "Book", description: "Schedule your Platform Assessment." },
+  { id: "book", label: "Assessment", description: "Start your Platform Readiness Assessment." },
 ];
 
 export function ArchitecturePage() {
@@ -77,6 +77,7 @@ export function ArchitecturePage() {
             {technicalReference.sub}
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <AssessmentCta />
             <BookingCta />
             <Link
               href="/showcase"
@@ -243,8 +244,9 @@ export function ArchitecturePage() {
             <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-foreground-tertiary sm:text-base">
               {finalCta.sub}
             </p>
-            <div className="mt-8">
-              <BookingCta />
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <AssessmentCta />
+            <BookingCta />
             </div>
           </div>
         </section>

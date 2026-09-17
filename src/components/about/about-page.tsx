@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { BookingCta } from "@/components/booking-cta";
+import { AssessmentCta, BookingCta } from "@/components/booking-cta";
 import { FadeIn, fadeUp, stagger } from "@/lib/motion";
 import {
   aboutHero,
@@ -234,7 +234,8 @@ export function AboutPage() {
                 {aboutFinalCta.sub}
               </p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <BookingCta label={aboutFinalCta.primaryLabel} />
+                <AssessmentCta />
+                <BookingCta />
                 <Link
                   href={aboutFinalCta.secondaryHref}
                   prefetch={false}

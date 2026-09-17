@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUp, BookOpen, X, ArrowRight } from "lucide-react";
-import { BOOKING_URL } from "@/lib/constants";
+import { ASSESSMENT_URL, ASSESSMENT_LABEL } from "@/lib/constants";
 
 export interface PageNavSection {
   id: string;
@@ -150,10 +150,9 @@ export function PageNav({ sections }: PageNavProps) {
           <span className="truncate text-foreground-secondary">{positionLabel}</span>
         </button>
 
-        {/* Booking CTA */}
-        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-8 shrink-0 items-center gap-1 rounded-full bg-accent-strong px-4 text-xs font-medium text-white transition-colors hover:bg-accent" aria-label="Book a call">
-          <span className="hidden sm:inline">Book a call</span>
-          <span className="sm:hidden">Book</span>
+        {/* Assessment purchase CTA */}
+        <a href={ASSESSMENT_URL} className="inline-flex h-8 shrink-0 items-center gap-1 rounded-full bg-accent-strong px-4 text-xs font-medium text-white transition-colors hover:bg-accent" aria-label={ASSESSMENT_LABEL}>
+          <span>{ASSESSMENT_LABEL}</span>
           <ArrowRight className="h-3 w-3" aria-hidden />
         </a>
       </nav>

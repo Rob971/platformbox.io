@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Mail } from "lucide-react";
 import { LinkedInIcon, PlatformBoxLogoIcon } from "./icons";
-import { BOOKING_URL, BOOKING_LABEL, WORKSPACE_PATH } from "@/lib/constants";
+import { ASSESSMENT_URL, ASSESSMENT_LABEL, BOOKING_URL, BOOKING_LABEL, WORKSPACE_PATH } from "@/lib/constants";
 
 export function Footer() {
   return (
@@ -105,15 +105,13 @@ export function Footer() {
                 </a>
               </li>
               <li className="mt-3">
-                <a
-                  href={BOOKING_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <a href={ASSESSMENT_URL}
                   className="text-sm font-medium text-accent-hover transition-colors hover:text-foreground"
                 >
-                  {BOOKING_LABEL} →
+                  {ASSESSMENT_LABEL} →
                 </a>
               </li>
+              <li><a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="text-sm text-foreground-secondary">{BOOKING_LABEL}</a></li>
             </ul>
           </div>
         </div>

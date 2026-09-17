@@ -1,7 +1,9 @@
 "use client";
 
+import { AssessmentCta, BookingCta } from "@/components/booking-cta";
+
 import { motion } from "framer-motion";
-import { ArrowRight, Boxes, Eye, Gauge, LayoutDashboard, Database, KeyRound, Check, Minus } from "lucide-react";
+import { ArrowRight, Boxes, Gauge, LayoutDashboard, Database, KeyRound, Check, Minus } from "lucide-react";
 import { Header } from "../header";
 import { Footer } from "../footer";
 import { TimelineStepper } from "./timeline-stepper";
@@ -14,7 +16,7 @@ import { ObservabilityDashboard } from "./observability-dashboard";
 import { BackstagePortal } from "./backstage-portal";
 import { DatabaseProvisioning } from "./database-provisioning";
 import { SecretManagement } from "./secret-management";
-import { BOOKING_URL, BOOKING_LABEL } from "@/lib/constants";
+import { ASSESSMENT_URL, ASSESSMENT_LABEL } from "@/lib/constants";
 import { fadeUp, stagger, FadeIn } from "@/lib/motion";
 import { blueprint, showcaseComparison, scopeGuardrails } from "@/lib/content";
 import { EvidenceLinks } from "@/components/proof/evidence-links";
@@ -189,8 +191,8 @@ export function ShowcasePage() {
             <motion.h1 variants={fadeUp} className="max-w-4xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl md:leading-[1.08]">See exactly what your team receives</motion.h1>
             <motion.p variants={fadeUp} className="mt-4 max-w-2xl text-base text-foreground-tertiary leading-relaxed sm:text-lg">A visual walkthrough of the platform that ships in 14 working days — from modular Terraform to production Kubernetes.</motion.p>
             <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <a href="#deliverables" className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent-strong px-5 text-sm font-medium text-white transition-colors hover:bg-accent"><Eye className="h-4 w-4" />Explore Deliverables</a>
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center gap-2 rounded-lg border border-border-strong px-5 text-sm font-medium text-foreground transition-colors hover:bg-surface-hover">{BOOKING_LABEL}<ArrowRight className="h-4 w-4" /></a>
+              <AssessmentCta />
+              <BookingCta />
             </motion.div>
           </motion.div>
         </section>
@@ -300,8 +302,8 @@ export function ShowcasePage() {
           </div>
           <FadeIn delay={0.3}>
             <div className="mt-6 flex justify-center">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-accent-strong px-6 text-sm font-medium text-white transition-colors hover:bg-accent">
-                {BOOKING_LABEL}
+              <a href={ASSESSMENT_URL} className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-accent-strong px-6 text-sm font-medium text-white transition-colors hover:bg-accent">
+                {ASSESSMENT_LABEL}
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </a>
             </div>
