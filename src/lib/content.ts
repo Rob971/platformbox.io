@@ -127,7 +127,7 @@ export const howItWorks = {
     {
       label: "Assess",
       title: "Platform Assessment",
-      text: "Every engagement starts with the €2,500 Platform Readiness Assessment (3–5 working days after the Start Gate). It maps your current state and recommends the right next step before you commit to implementation.",
+      text: "Every engagement starts with the €2,500 Platform Readiness Assessment (3–5 working days once PlatformBox starts it). It maps your current state and recommends the right next step before you commit to implementation.",
       outcomes: [
         "Assessment produces an independent fit decision",
         "Paid Assessment maps current-state & target architecture",
@@ -372,7 +372,7 @@ export type Faq = { q: string; a: string };
 export const faqs: Faq[] = [
   {
     q: "How does this actually start?",
-    a: "Start the €2,500 Platform Readiness Assessment: enter your company, name and email, pay securely, activate your account, then complete Intake in your workspace. The 3–5 working days begin after the Start Gate. Talk to Roberto first if you have questions; a call is optional. The Assessment fee is credited toward Launch if you proceed within 90 days.",
+    a: "Start the €2,500 Platform Readiness Assessment: enter your company, name and email, pay securely, activate your account, then complete a short setup in your workspace — about 10 minutes. PlatformBox reviews readiness and starts the Assessment; the 3–5 working days begin then. Talk to Roberto first if you have questions; a call is optional. The Assessment fee is credited toward Launch if you proceed within 90 days.",
   },
   {
     q: "Why not build this ourselves?",
