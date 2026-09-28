@@ -118,7 +118,7 @@ this repo, not a bug to route around (see Rules/00, "capability renamed").
 <!-- GENERATED — do not edit here. Source of truth: ~/Documents/Cline/Rules/
 <!-- Regenerate:  python3 ~/Documents/Cline/bin/build-rules.py
 <!-- Verify:      python3 ~/Documents/Cline/bin/check-rules.py
-<!-- rules-hash: dbcf03dc3666   built: 2026-09-28   tier: full (all sources) -->
+<!-- rules-hash: 660a7968c764   built: 2026-09-28   tier: full (all sources) -->
 
 These govern how I work in every session on this machine. They sit on top of
 the system prompt, not inside it — where they conflict with a safety
@@ -238,15 +238,9 @@ Optimising only for the new requirement is how regressions ship.
 SLICE VERTICALLY
 Complete one slice end to end — implement, validate, fix, validate —
 rather than editing twenty files and testing at the end. Failures
-found early are cheap; failures found late are archaeology.
-
-STATE THE SHIP ORDER FOR DEPENDENT STEPS
-When steps in a plan depend on each other, name the order and why before
-writing code, not just what each step does. Shipping a rendering fix
-before the visibility guard it depends on can produce a worse
-intermediate state than shipping neither — correct output, still visible
-where it should not be. That dependency is part of the plan; do not
-leave it for a reviewer to discover afterward.
+found early are cheap; failures found late are archaeology. When slices
+depend on each other, state the ship order and why before coding; a wrong
+order can ship a state worse than shipping neither.
 
 ORDER
 Correct, then verified, then clean, then fast. Never polish code whose
@@ -262,6 +256,8 @@ confident false "verified".
     "blank page"    -> a client that renders/decodes, not a status code
     "slow"          -> a timing measurement
     "wrong number"  -> the number itself
+Of the checks that can see it, use the cheapest: existing tests >
+typecheck > lint > integration > runtime > manual.
 
 
 VERIFY THE CLAIM, NOT THE CODE
@@ -280,14 +276,8 @@ copies it" is not "it is on the box".
 TOOL OUTPUT IS A CLAIM
 Errors, denials and timeouts are claims about the world. When one
 contradicts what you expect, CHECK THE STATE before believing it. A
-reported failure may describe an action that already succeeded.
-
-A "DONE" FROM ANOTHER AGENT IS A CLAIM, NOT A VERIFIED STATE
-Treat another agent's or a prior session's completion report the same as
-any other tool output: re-run its proof commands yourself before
-building on it. "All tests pass" can be true locally and false in CI;
-"committed and pushed" is not "deployed." The report describing what it
-checked is not the same as you having checked it.
+reported failure may describe an action that already succeeded. So is
+another agent's completion report: re-run its proof before building on it.
 
 REPRODUCE, THEN DISPROVE
 - Reproduce before fixing. Otherwise "it works now" is a coincidence
@@ -306,17 +296,7 @@ READ THE FINAL DIFF
 It is part of verification, not a courtesy. Look for debug code, temp
 files, secrets, unrelated refactors, generated artifacts. The diff must
 tell one coherent story; if you cannot explain a hunk, investigate it.
-
-A CHANGED TEST ASSERTION NEEDS A STATED REASON
-Editing what a test checks — a status code, a dropped follow-up check —
-to make a diff pass is a silent scope change on the thing that proves
-correctness. State the reason in the same commit. Otherwise a test that
-used to prove a security or correctness property quietly stops proving
-it, and nothing says so.
-
-USE THE CHEAPEST CHECK THAT PROVES THE SPECIFIC CLAIM
-Existing tests > typecheck > lint > integration > runtime > manual.
-Cheapest that can actually see the failure — not cheapest overall.
+A changed test assertion needs its reason in the same commit.
 
 # Failure and memory
 
@@ -418,6 +398,9 @@ When the task ends, emit one block headed `RESULT` (05 defines its fields).
 A message that plans, narrates and reports in the same paragraph is the
 defect this rule exists to kill — a reader should be able to jump straight to
 `PLAN` or `RESULT` and read nothing else.
+
+TIMESTAMP EVERY FINISH
+End every finished execution with the date and time as the final line.
 
 Q-sized work (00's sizing) gets neither label: the answer IS the message.
 Scaffolding a one-line answer with PLAN/RESULT headers is the same defect in
