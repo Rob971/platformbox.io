@@ -107,6 +107,25 @@ highest-risk code in that repo. Read it before touching src/proxy.ts.
 COUPLING — this repo consumes capability claims from platformbox-idp via
 platformbox-delivery. A capability renamed upstream is designed to break
 this repo, not a bug to route around (see Rules/00, "capability renamed").
+
+PRODUCT STAGES — three distinct, non-overlapping stages (decided
+2026-09-28). None contains any part of another; each has its own name,
+duration, start and end.
+1. Pre-assessment — 10–20 minutes of customer time (signup, payment,
+   activation, setup questions), then PlatformBox's readiness review,
+   committed within 1 working day. No clock. Ends when the Start Gate is
+   confirmed.
+2. Assessment — its own €2,500 product, 3–5 working days, from the confirmed
+   Start Gate to the delivered Fit Decision. Its counter reads
+   "Day N · up to 5".
+3. Launch — a separate €20k purchase, 14 working days, with its own
+   readiness preconditions before its clock. It takes the Assessment's Fit
+   Decision as input (€2,500 credited within 90 days).
+A shared phase, clock or vocabulary between two stages is a defect. Launch's
+own Readiness pre-clock check belongs to Launch and is not overlap.
+Known contradictions here (verified 2026-09-28):
+- The start FAQ says "a short setup … about 10 minutes" and never names the
+  pre-assessment (src/lib/content.ts:375).
 <!-- END:roberto-project-facts -->
 
 <!-- BEGIN:roberto-operating-rules -->
@@ -118,7 +137,7 @@ this repo, not a bug to route around (see Rules/00, "capability renamed").
 <!-- GENERATED — do not edit here. Source of truth: ~/Documents/Cline/Rules/
 <!-- Regenerate:  python3 ~/Documents/Cline/bin/build-rules.py
 <!-- Verify:      python3 ~/Documents/Cline/bin/check-rules.py
-<!-- rules-hash: 660a7968c764   built: 2026-09-28   tier: full (all sources) -->
+<!-- rules-hash: 3c0efbf2569e   built: 2026-09-28   tier: full (all sources) -->
 
 These govern how I work in every session on this machine. They sit on top of
 the system prompt, not inside it — where they conflict with a safety
@@ -400,7 +419,8 @@ defect this rule exists to kill — a reader should be able to jump straight to
 `PLAN` or `RESULT` and read nothing else.
 
 TIMESTAMP EVERY FINISH
-End every finished execution with the date and time as the final line.
+End every finished execution with the date and time as the final line —
+local time, not UTC.
 
 Q-sized work (00's sizing) gets neither label: the answer IS the message.
 Scaffolding a one-line answer with PLAN/RESULT headers is the same defect in
