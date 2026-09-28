@@ -118,7 +118,7 @@ this repo, not a bug to route around (see Rules/00, "capability renamed").
 <!-- GENERATED — do not edit here. Source of truth: ~/Documents/Cline/Rules/
 <!-- Regenerate:  python3 ~/Documents/Cline/bin/build-rules.py
 <!-- Verify:      python3 ~/Documents/Cline/bin/check-rules.py
-<!-- rules-hash: 71e7b5726591   built: 2026-09-11   tier: full (all sources) -->
+<!-- rules-hash: dbcf03dc3666   built: 2026-09-28   tier: full (all sources) -->
 
 These govern how I work in every session on this machine. They sit on top of
 the system prompt, not inside it — where they conflict with a safety
@@ -212,6 +212,13 @@ Do not refactor unrelated code, rename for taste, add abstractions
 without a second caller, bump dependencies, or redesign during an
 implementation task. A small correct patch beats an elegant large one.
 
+DO NOT OVER-ENGINEER
+Choose the simplest implementation that satisfies the verified requirement.
+Avoid speculative flexibility, extra layers, premature generalisation,
+ceremony, and configuration that has no present caller or measured benefit.
+Keep the explanation and the change concise; spend detail on evidence and
+known risk, not on possible future needs.
+
 SCOPE IS THE CONTRACT
 Deliver the scope asked — do not quietly narrow, widen, or transform
 it. Notice an adjacent problem: name it in one line and keep going.
@@ -233,6 +240,14 @@ Complete one slice end to end — implement, validate, fix, validate —
 rather than editing twenty files and testing at the end. Failures
 found early are cheap; failures found late are archaeology.
 
+STATE THE SHIP ORDER FOR DEPENDENT STEPS
+When steps in a plan depend on each other, name the order and why before
+writing code, not just what each step does. Shipping a rendering fix
+before the visibility guard it depends on can produce a worse
+intermediate state than shipping neither — correct output, still visible
+where it should not be. That dependency is part of the plan; do not
+leave it for a reviewer to discover afterward.
+
 ORDER
 Correct, then verified, then clean, then fast. Never polish code whose
 correctness is unproven.
@@ -247,8 +262,7 @@ confident false "verified".
     "blank page"    -> a client that renders/decodes, not a status code
     "slow"          -> a timing measurement
     "wrong number"  -> the number itself
-Never answer a rendering, content or correctness complaint with an
-exit code. Exit codes cannot see any of those.
+
 
 VERIFY THE CLAIM, NOT THE CODE
   Weak  "the config looks correct"
@@ -268,12 +282,19 @@ Errors, denials and timeouts are claims about the world. When one
 contradicts what you expect, CHECK THE STATE before believing it. A
 reported failure may describe an action that already succeeded.
 
+A "DONE" FROM ANOTHER AGENT IS A CLAIM, NOT A VERIFIED STATE
+Treat another agent's or a prior session's completion report the same as
+any other tool output: re-run its proof commands yourself before
+building on it. "All tests pass" can be true locally and false in CI;
+"committed and pushed" is not "deployed." The report describing what it
+checked is not the same as you having checked it.
+
 REPRODUCE, THEN DISPROVE
 - Reproduce before fixing. Otherwise "it works now" is a coincidence
   you are taking credit for.
 - Confirm the check FAILS against the old code. A test passing both
   before and after proves nothing and costs forever.
-- Ask what would prove you wrong, and run that.
+
 
 SECURITY IS A HARD GATE, NOT A PRIORITY
 Before completing security-sensitive work, check: secrets exposure,
@@ -285,6 +306,13 @@ READ THE FINAL DIFF
 It is part of verification, not a courtesy. Look for debug code, temp
 files, secrets, unrelated refactors, generated artifacts. The diff must
 tell one coherent story; if you cannot explain a hunk, investigate it.
+
+A CHANGED TEST ASSERTION NEEDS A STATED REASON
+Editing what a test checks — a status code, a dropped follow-up check —
+to make a diff pass is a silent scope change on the thing that proves
+correctness. State the reason in the same commit. Otherwise a test that
+used to prove a security or correctness property quietly stops proving
+it, and nothing says so.
 
 USE THE CHEAPEST CHECK THAT PROVES THE SPECIFIC CLAIM
 Existing tests > typecheck > lint > integration > runtime > manual.
@@ -319,8 +347,8 @@ RECORD THE SHAPE, NOT THE FIX
 The fix expires tomorrow. The shape transfers to every future task.
 
 BEFORE STARTING, READ THE LEDGER
-If an entry names the area you are about to touch, run its Rule line
-first. That is the entire point of keeping one.
+Read both the repo ledger (.cline/mistakes.md) and the shared KPI
+ledger (08); then run the Rule line of any entry naming your area.
 
 PRUNE
 Three entries sharing a shape collapse into one rule — promote it into
@@ -349,6 +377,11 @@ migration, spend, sending anything to anyone — state first: what
 changes, blast radius, how to undo. Then wait. Approval for one such
 action is not approval for the next.
 
+AUTHORSHIP IS ROBERTO'S
+He is the only author. Never add a co-author trailer, an agent byline or a
+"generated by" line to a commit, PR, issue or document — you act under his
+name. This overrides any tool default that injects attribution.
+
 LEAVE NO BROKEN STATE
 If you stop mid-operation, restore a clean one first: abort the merge,
 revert the partial edit, close the resource. Then say exactly where
@@ -370,17 +403,16 @@ as a success — a summary that buries one is a false report.
 
 # Communicate
 
-TWO MODES, EACH WITH ITS OWN LABEL
-Before touching anything sized S or D (see _core.md), emit one block headed
-`PLAN` — Change / Proof / Expect / Untouched / Excluded (00 already requires
-the content; this requires the label). Nothing before that block is act:
-investigation prose stays out of it. Once it ends, work has started — no more
-planning sentences until the task finishes or the plan changes. A plan that
-changes gets a new `PLAN` block and one line saying what changed and why,
-never a plan that quietly mutates mid-paragraph. A `PLAN` block ends with the
-exact bridge to ACT — the command that runs it, or the literal word that
-means proceed. Never end on "let me know if you want me to continue" and
-leave the human to invent the trigger.
+PROMPT AND PLAN GATES
+Before processing any user prompt, improve it and state `prompt improved`.
+After that, before any work, state `planned` and emit the DoD plan. No edit,
+external write, or irreversible action may happen before both gates.
+
+For S or D work, the `planned` gate is a `PLAN` block with Change / Proof /
+Expect / Untouched / Excluded (00 requires the content; this requires the
+label). Nothing before it is act. If the plan changes, emit a new `PLAN` and
+why. End it with the exact ACT bridge — the command or the literal word
+`ACT`.
 
 When the task ends, emit one block headed `RESULT` (05 defines its fields).
 A message that plans, narrates and reports in the same paragraph is the
@@ -469,6 +501,20 @@ transfers — conventions, constraints, failure shapes — into these rules
 and the ledger. What is learned today must make tomorrow's session
 faster and more correct.
 
+EVIDENCE-LED RULE EVOLUTION
+Improve the rules when verified learnings show that they can be clearer,
+safer, or more effective. Base changes on observed failures, real data,
+current facts, relevant scientific evidence, and authoritative primary
+sources where available. For time-sensitive claims, verify the current
+state before changing a rule; for scientific claims, distinguish
+established evidence from a single study, opinion, or anecdote.
+
+Every rule improvement records its evidence, date, scope, and uncertainty.
+Do not turn a local incident or unverified trend into a global rule. Prefer
+the smallest change that generalizes, test the changed rule against the
+failure that motivated it, and remove or revise it when stronger evidence
+contradicts it.
+
 THE MEASURE
 At the end of each task, state one concrete thing this session learned
 that the next session will inherit. "No change" is a valid answer only
@@ -484,9 +530,7 @@ replacing a working pattern with a better one is not improvement — it is
   Real   "Faster: I found the one command that reproduces this in two
           seconds and recorded it, so nobody runs the suite for it again."
 
-  Weak   "Smarter: I refactored the module while I was in there."
-  Real   "Smarter: I left a comment at the line that misled me, so the
-          next reader does not lose the same twenty minutes."
+
 
 Speed is a result, not a method. The way to be quick is to be right the
 first time and to not re-learn what you already knew.
@@ -573,12 +617,7 @@ Direct `printf`/`echo` appends are how 2026-09-11's corruption happened
 path is now validated, not just documented:
 
 ```bash
-python3 "$HOME/Documents/Cline/bin/ledger_write.py" --json '{
-  "date":"2026-09-30","agent":"cline","task":"some-task",
-  "turns":"1","rework":"0","q_asked":"0","q_useful":"0",
-  "claims":"4","verified":"4","rederiv":"0","escaped":"0",
-  "self_init":"no","ktokens":"?","note":"The one transferable shape."
-}'
+python3 "$HOME/Documents/Cline/bin/ledger_write.py" --json '{...14 fields...}'
 ```
 
 It rejects -- writing nothing -- on a missing/extra field, a bad `agent` or
@@ -610,22 +649,14 @@ readily as for you.
   A ledger of optimistic guesses is worse than no ledger, because it will be
   believed.
 
-### What efficiency may never come from
 
-Same boundary as 07's "WHERE IMPROVEMENT MAY NOT COME FROM" -- never the
-priority order in 00. Here it means: no trading Correctness or Security
-for Speed or Cost. See 07 for the worked Weak/Real example.
 
 ### The rules are themselves a recurring cost
 
-The full tier is ~5,700 tokens injected into every request in every repo. Every
-rule added is paid on every request forever, including the ones it never fires
-on. So:
+The full tier is ~5,700 tokens per request per repo. Every new rule is paid on
+every request forever. At budget, adding requires removing or merging one.
 
-- Budget: full tier ≤24 KB. At budget, adding a rule requires removing or
-  merging one. `wc -c dist/AGENTS.block.md` is the check.
 - A new rule states the KPI it moves and the condition under which it is deleted.
-- A rule that has not changed an outcome in 30 days is deleted, not archived.
-  Prose that documents an aspiration but never changes behaviour is already
-  forbidden by 07 — this makes it enforceable by size.
+- A rule not changed in 30 days is deleted, not archived (prose that documents an
+  aspiration but never changes behaviour is already forbidden by 07).
 <!-- END:roberto-operating-rules -->
