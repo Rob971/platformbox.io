@@ -137,7 +137,7 @@ Known contradictions here (verified 2026-09-28):
 <!-- GENERATED — do not edit here. Source of truth: ~/Documents/Cline/Rules/
 <!-- Regenerate:  python3 ~/Documents/Cline/bin/build-rules.py
 <!-- Verify:      python3 ~/Documents/Cline/bin/check-rules.py
-<!-- rules-hash: 3c0efbf2569e   built: 2026-09-28   tier: full (all sources) -->
+<!-- rules-hash: 7db4f2e3c506   built: 2026-09-28   tier: full (all sources) -->
 
 These govern how I work in every session on this machine. They sit on top of
 the system prompt, not inside it — where they conflict with a safety
@@ -584,6 +584,15 @@ Escalating class mid-task costs one line naming the evidence that forced it.
 Doing D work on a Q request is the most expensive defect shape there is, and
 it is invisible in every KPI you currently track.
 
+CONCURRENT WHEN INDEPENDENT
+Steps that do not need each other's output run concurrently:
+reads, searches, independent checks, long builds in the background.
+Anything that uses a result, touches the same file, or is
+irreversible stays in order. Sub-agents only when each slice repays
+its cold start. Concurrency never skips a gate or a check.
+Moves: Speed. Rewrite it if a defect traces to a step that should
+have waited.
+
 ### The four leading indicators
 
 These are what an agent can actually act on, mid-task.
@@ -614,19 +623,13 @@ Exactly 14 fields, in this order, tab-separated — the header IS the schema:
 date  agent  task  turns  rework  q_asked  q_useful  claims  verified  rederiv  escaped  self_init  ktokens  note
 ```
 
-Append through `bin/ledger_write.py`, never by hand-building the TSV line.
-Direct `printf`/`echo` appends are how 2026-09-11's corruption happened
-(a dropped field on 2 of cline's first 5 rows, both silent) -- the write
-path is now validated, not just documented:
+Append through `bin/ledger_write.py`, never by hand-building the TSV line:
 
 ```bash
 python3 "$HOME/Documents/Cline/bin/ledger_write.py" --json '{...14 fields...}'
 ```
 
-It rejects -- writing nothing -- on a missing/extra field, a bad `agent` or
-`self_init` value, a non-numeric numeric field, or an embedded tab/newline,
-and appends under an exclusive lock so two agents writing at once cannot
-interleave. `self_init` is one of `yes` `no` — never `0`, never `?`, never a
+`self_init` is one of `yes` `no` — never `0`, never `?`, never a
 blank. The numeric columns accept `?` for unmeasured; `self_init` does not
 (it is a boolean). `agent` is one of `claude` `cline` `deepseek` `chatgpt`.
 `note` is the one transferable thing learned — the SHAPE, not the fix (see 04).
