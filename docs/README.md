@@ -2,7 +2,7 @@
 
 | Doc | Purpose |
 | --- | --- |
-| [BOOKING.md](./BOOKING.md) | Cal.com **Book Your Platform Assessment** CTA |
+| [BOOKING.md](./BOOKING.md) | Cal.com **Talk to Roberto** CTA (self-serve Assessment entry paused) |
 | [DEPLOY.md](./DEPLOY.md) | Build, push, Vercel deploy, and git auth |
 | [CONTRACT-TEMPLATE.md](./CONTRACT-TEMPLATE.md) | Delivery terms: working-day definition, clock start, acceptance — draft |
 

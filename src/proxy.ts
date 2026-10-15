@@ -1,4 +1,7 @@
 import type { NextRequest } from "next/server";
+// Explicit .ts extension: tests/assessment-proxy.test.mjs loads this file with
+// Node's native TypeScript support, which does not resolve extensionless imports.
+import { SELF_SERVE_ASSESSMENT_OPEN } from "./lib/constants.ts";
 
 /**
  * Same-origin control-plane proxy for the delivery application (ADR-008 in
@@ -151,6 +154,32 @@ function canonicalPublicPath(pathname: string): string | undefined {
   return Object.entries(PUBLIC_ROUTES).find(([, internal]) => path === `/admin${internal}`)?.[0];
 }
 
+/**
+ * True for every path that reaches the self-serve Assessment checkout form:
+ * /assessment/start, its /start alias, and the legacy /admin/public/assessment.
+ *
+ * The comparison is deliberately wider than the exact spelling: the upstream
+ * path mapping forwards whatever follows /admin verbatim, so a differently
+ * cased, percent-encoded, `;param`-suffixed, `.json`/`.rsc`-suffixed or
+ * double-slashed spelling could still reach Delivery's checkout handler while
+ * the flag says closed. The normalised form is used for matching only.
+ */
+function isSelfServeStartPath(pathname: string): boolean {
+  let decoded = pathname;
+  try {
+    decoded = decodeURIComponent(pathname);
+  } catch {
+    // Malformed escapes: compare the raw path.
+  }
+  const path = decoded
+    .toLowerCase()
+    .replace(/;[^/]*/g, "")
+    .replace(/\/{2,}/g, "/")
+    .replace(/\.(?:json|rsc|html)$/, "")
+    .replace(/\/+$/, "");
+  return path === "/assessment/start" || canonicalPublicPath(path) === "/assessment/start";
+}
+
 function upstreamPath(pathname: string): string {
   if (PUBLIC_ROUTES[pathname]) return PUBLIC_ROUTES[pathname];
   if (pathname === "/admin" || pathname === "/admin/") return "/";
@@ -277,6 +306,19 @@ function edgeFailureResponse(
 export function proxy(request: NextRequest): Promise<Response> | Response {
   // Public onboarding aliases reuse Delivery handlers; workspace routes retain their mapping.
   const { pathname, search, origin } = request.nextUrl;
+  // Self-serve checkout is closed (see SELF_SERVE_ASSESSMENT_OPEN): the start
+  // routes never reach Delivery. Activation, resend-activation, complete and
+  // cancelled stay proxied below so existing accounts keep working.
+  if (!SELF_SERVE_ASSESSMENT_OPEN && isSelfServeStartPath(pathname)) {
+    // 307 for GET/HEAD. A stale checkout form's POST gets 303 instead, so the
+    // browser follows with GET: /assessment is a static page with no POST handler,
+    // and a 307 would replay the visitor's form data at it.
+    const safe = request.method === "GET" || request.method === "HEAD";
+    return new Response(null, {
+      status: safe ? 307 : 303,
+      headers: { location: origin + "/assessment", "cache-control": "no-store" },
+    });
+  }
   const canonical = canonicalPublicPath(pathname);
   if (canonical) {
     return new Response(null, {

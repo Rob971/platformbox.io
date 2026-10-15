@@ -9,6 +9,7 @@
     "lint": "eslint",
     "enforce": "node scripts/enforce-agent-rules.mjs",
     "check:claims": "node scripts/check-capability-claims.mjs",
+    "test": "node --test tests/assessment-proxy.test.mjs",
     "check": "npm run lint && npm run enforce && npm run check:claims && npm run build",
     "generate-diagrams": "node scripts/generate-architecture-diagrams.mjs",
     "generate-claims": "node scripts/generate-capability-claims.mjs",

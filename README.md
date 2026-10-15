@@ -8,7 +8,7 @@ Premium landing page for **PlatformBox Launch** — a production-ready developer
 
 ## Booking CTA
 
-All **Book Your Platform Assessment** buttons open the Cal.com call:
+Every engagement starts with a conversation with Roberto. All **Talk to Roberto** buttons open the Cal.com call (self-serve Assessment signup and payment is paused from 2026-10-15; see `SELF_SERVE_ASSESSMENT_OPEN` in `src/lib/constants.ts`):
 
 **https://cal.com/roberto-platformbox/platform-assessment**
 

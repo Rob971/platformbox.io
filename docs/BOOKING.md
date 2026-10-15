@@ -1,9 +1,16 @@
-# Assessment funnel and optional call
+# Entry via a call
 
-Every engagement starts with the €2,500 Platform Readiness Assessment.
+Every engagement starts with a conversation with Roberto, then the €2,500 Platform Readiness Assessment if it is the right next step.
 
-Primary: **Start Assessment — €2,500** → `/assessment/start`.
-Secondary: **Talk to Roberto** → the optional Cal.com call below. A call is never a prerequisite.
+Primary: **Talk to Roberto** → the Cal.com call below.
+
+**Self-serve Assessment signup and payment is paused from 2026-10-15** (decision by Roberto: legal work is on hold until genuine customer interest). It is gated by `SELF_SERVE_ASSESSMENT_OPEN` in `src/lib/constants.ts`, currently `false`:
+
+- `AssessmentCta` renders nothing and the "Start Assessment — €2,500" label is shown nowhere.
+- `/assessment/start`, `/start` and `/admin/public/assessment` return a 307 to `/assessment` (`cache-control: no-store`).
+- `/assessment/activate`, `/assessment/resend-activation`, `/assessment/complete` and `/assessment/cancelled` stay proxied, so existing accounts keep working.
+
+To reopen, set the flag to `true` in a reviewed pull request, and review the "how does this start" copy (FAQ, How it works, final CTA, assessment page) at the same time. It is a constant, not an environment variable, so a misconfigured deploy cannot reopen it.
 
 ## URL
 
@@ -28,11 +35,11 @@ Source of truth in code:
 ```ts
 const BOOKING_URL = "https://cal.com/roberto-platformbox/platform-assessment";
 const BOOKING_LABEL = "Talk to Roberto";
-const ASSESSMENT_URL = "/assessment/start";
-const ASSESSMENT_LABEL = "Start Assessment — €2,500";
+const ASSESSMENT_URL = "/assessment/start"; // only shown while SELF_SERVE_ASSESSMENT_OPEN is true
+const ASSESSMENT_LABEL = "Start Assessment — €2,500"; // only shown while SELF_SERVE_ASSESSMENT_OPEN is true
 ```
 
-Call links open in a new tab (`target="_blank"` + `rel="noopener noreferrer"`). Purchase links use a full document navigation in the same tab because Delivery serves HTML rather than Next.js React responses.
+Call links open in a new tab (`target="_blank"` + `rel="noopener noreferrer"`). Purchase links (only while the checkout is open) use a full document navigation in the same tab because Delivery serves HTML rather than Next.js React responses.
 
 ## Cal.com event configuration
 
@@ -44,7 +51,7 @@ The booking flow should feel like part of the product. Configure the Cal.com eve
 
 ### Description
 
-> An optional free 30-minute conversation about the Platform Readiness Assessment. Ask questions before buying; every PlatformBox delivery engagement starts with the €2,500 Assessment.
+> A conversation with Roberto about the Platform Readiness Assessment. Every PlatformBox engagement starts with a conversation; the €2,500 Assessment follows if it is the right next step.
 
 ### Booking questions (keep lightweight)
 
@@ -71,8 +78,9 @@ Do not leave booking CTAs as `#` placeholders.
 ## Public routing contract
 
 - `/assessment` is the marketing product page.
-- `/assessment/start`, `/assessment/complete`, `/assessment/cancelled`, `/assessment/activate`, and `/assessment/resend-activation` proxy to the existing Delivery public handlers.
-- `/start` and legacy `/admin/public/...` onboarding links redirect with 307, preserving methods, bodies and queries.
+- `/assessment/complete`, `/assessment/cancelled`, `/assessment/activate`, and `/assessment/resend-activation` proxy to the existing Delivery public handlers.
+- `/assessment/start` proxies to the Delivery checkout only while `SELF_SERVE_ASSESSMENT_OPEN` is `true`. While it is `false`, `/assessment/start`, `/start` and `/admin/public/assessment` redirect with 307 to `/assessment`.
+- `/start/complete`, `/start/cancelled` and the other legacy `/admin/public/...` links redirect with 307 to their canonical routes, preserving methods, bodies and queries.
 - Delivery generates clean public form actions, absolute Stripe return URLs and activation links when `BASE_PATH=/admin`. Authenticated workspace and administration routes retain their existing mappings and access controls.
 - Checkout keeps Delivery's CSP; the marketing policy must not be added to these responses.
 

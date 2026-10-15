@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import { BOOKING_URL, BOOKING_LABEL, ASSESSMENT_URL, ASSESSMENT_LABEL } from "@/lib/constants";
+import { BOOKING_URL, BOOKING_LABEL, ASSESSMENT_URL, ASSESSMENT_LABEL, SELF_SERVE_ASSESSMENT_OPEN } from "@/lib/constants";
 
 interface BookingCtaProps {
   variant?: "primary" | "outline";
@@ -12,7 +12,8 @@ interface BookingCtaProps {
 }
 
 export function BookingCta({
-  variant = "outline",
+  // With the self-serve checkout closed, the conversation is the primary call to action.
+  variant = SELF_SERVE_ASSESSMENT_OPEN ? "outline" : "primary",
   className,
   label = BOOKING_LABEL,
   href = BOOKING_URL,
@@ -40,6 +41,14 @@ export function BookingCta({
   );
 }
 
+/** Self-serve Assessment checkout. Renders nothing while SELF_SERVE_ASSESSMENT_OPEN is false. */
 export function AssessmentCta(props: BookingCtaProps) {
+  if (!SELF_SERVE_ASSESSMENT_OPEN) return null;
   return <BookingCta variant="primary" href={ASSESSMENT_URL} label={ASSESSMENT_LABEL} {...props} />;
+}
+
+/** The single entry-point button where no booking button sits beside it. */
+export function EntryCta(props: BookingCtaProps) {
+  if (SELF_SERVE_ASSESSMENT_OPEN) return <AssessmentCta {...props} />;
+  return <BookingCta variant="primary" {...props} />;
 }
