@@ -1,4 +1,7 @@
 import type { NextRequest } from "next/server";
+// Explicit .ts extension: tests/assessment-proxy.test.mjs loads this file with
+// Node's native TypeScript support, which does not resolve extensionless imports.
+import { SELF_SERVE_ASSESSMENT_OPEN } from "./lib/constants.ts";
 
 /**
  * Same-origin control-plane proxy for the delivery application (ADR-008 in
@@ -151,6 +154,23 @@ function canonicalPublicPath(pathname: string): string | undefined {
   return Object.entries(PUBLIC_ROUTES).find(([, internal]) => path === `/admin${internal}`)?.[0];
 }
 
+/**
+ * True for every path that reaches the self-serve Assessment checkout form:
+ * /assessment/start, its /start alias, and the legacy /admin/public/assessment.
+ * Percent-encoding is decoded for the comparison only, so an encoded spelling
+ * cannot slip past the redirect while the upstream path mapping still forwards it.
+ */
+function isSelfServeStartPath(pathname: string): boolean {
+  let decoded = pathname;
+  try {
+    decoded = decodeURIComponent(pathname);
+  } catch {
+    // Malformed escapes: compare the raw path.
+  }
+  const path = decoded.replace(/\/+$/, "");
+  return path === "/assessment/start" || canonicalPublicPath(path) === "/assessment/start";
+}
+
 function upstreamPath(pathname: string): string {
   if (PUBLIC_ROUTES[pathname]) return PUBLIC_ROUTES[pathname];
   if (pathname === "/admin" || pathname === "/admin/") return "/";
@@ -277,6 +297,15 @@ function edgeFailureResponse(
 export function proxy(request: NextRequest): Promise<Response> | Response {
   // Public onboarding aliases reuse Delivery handlers; workspace routes retain their mapping.
   const { pathname, search, origin } = request.nextUrl;
+  // Self-serve checkout is closed (see SELF_SERVE_ASSESSMENT_OPEN): the start
+  // routes never reach Delivery. Activation, resend-activation, complete and
+  // cancelled stay proxied below so existing accounts keep working.
+  if (!SELF_SERVE_ASSESSMENT_OPEN && isSelfServeStartPath(pathname)) {
+    return new Response(null, {
+      status: 307,
+      headers: { location: origin + "/assessment", "cache-control": "no-store" },
+    });
+  }
   const canonical = canonicalPublicPath(pathname);
   if (canonical) {
     return new Response(null, {

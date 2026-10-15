@@ -115,7 +115,7 @@ export const aboutExperience = {
 export const aboutFinalCta = {
   headline: "If you're seeing the same problems in your engineering organization, the first step isn't necessarily building a platform.",
   sub: "First, understand what you actually have.",
-  primaryLabel: "Start Assessment — €2,500",
+  primaryLabel: "Talk to Roberto",
   secondaryHref: "/architecture#verify",
   secondaryLabel: "Explore the Technical Evidence",
 } as const;
@@ -127,7 +127,7 @@ export const howItWorks = {
     {
       label: "Assess",
       title: "Platform Assessment",
-      text: "Every engagement starts with the €2,500 Platform Readiness Assessment (3–5 working days once PlatformBox starts it). It maps your current state and recommends the right next step before you commit to implementation.",
+      text: "Every engagement starts with a conversation with Roberto. If it is the right next step, the €2,500 Platform Readiness Assessment (3–5 working days once PlatformBox starts it) maps your current state and recommends the right next step before you commit to implementation.",
       outcomes: [
         "Assessment produces an independent fit decision",
         "Paid Assessment maps current-state & target architecture",
@@ -169,7 +169,7 @@ export const howItWorks = {
     },
   ],
   outro:
-    "The mandatory first step is the €2,500 Platform Readiness Assessment, credited toward Launch if you proceed within 90 days. A free 30-minute call with Roberto is optional assistance before buying. We may conclude that PlatformBox is not the right answer for your situation. That honesty is part of the trust model.",
+    "Every engagement starts with a conversation with Roberto. If the €2,500 Platform Readiness Assessment is the right next step, it is the mandatory first step, credited toward Launch if you proceed within 90 days. We may conclude that PlatformBox is not the right answer for your situation. That honesty is part of the trust model.",
 } as const;
 
 export const delivery = {
@@ -372,7 +372,7 @@ export type Faq = { q: string; a: string };
 export const faqs: Faq[] = [
   {
     q: "How does this actually start?",
-    a: "Start the €2,500 Platform Readiness Assessment: enter your company, name and email, pay securely, activate your account, then complete a short setup in your workspace — about 10 minutes. PlatformBox reviews readiness and starts the Assessment; the 3–5 working days begin then. Talk to Roberto first if you have questions; a call is optional. The Assessment fee is credited toward Launch if you proceed within 90 days.",
+    a: "Every engagement starts with a conversation with Roberto. If the €2,500 Platform Readiness Assessment is the right next step, it is the mandatory first step; the 3–5 working days begin when PlatformBox starts the Assessment. The Assessment fee is credited toward Launch if you proceed within 90 days.",
   },
   {
     q: "Why not build this ourselves?",
@@ -684,8 +684,8 @@ export const notIncluded = {
 } as const;
 
 export const finalCta = {
-  headline: "Start with the Platform Readiness Assessment.",
-  sub: "€2,500 · Mandatory first step · Independent recommendation before implementation. Talk to Roberto first if you have questions.",
+  headline: "Start with a conversation.",
+  sub: "Then the Platform Readiness Assessment, if it is the right next step. €2,500 · Mandatory first step · Independent recommendation before implementation.",
 } as const;
 
 export const pricing = {

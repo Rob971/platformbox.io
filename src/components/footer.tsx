@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Mail } from "lucide-react";
 import { LinkedInIcon, PlatformBoxLogoIcon } from "./icons";
-import { ASSESSMENT_URL, ASSESSMENT_LABEL, BOOKING_URL, BOOKING_LABEL, WORKSPACE_PATH } from "@/lib/constants";
+import { ASSESSMENT_URL, ASSESSMENT_LABEL, BOOKING_URL, BOOKING_LABEL, SELF_SERVE_ASSESSMENT_OPEN, WORKSPACE_PATH } from "@/lib/constants";
 
 export function Footer() {
   return (
@@ -104,14 +104,16 @@ export function Footer() {
                   LinkedIn
                 </a>
               </li>
-              <li className="mt-3">
-                <a href={ASSESSMENT_URL}
-                  className="text-sm font-medium text-accent-hover transition-colors hover:text-foreground"
-                >
-                  {ASSESSMENT_LABEL} →
-                </a>
-              </li>
-              <li><a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="text-sm text-foreground-secondary">{BOOKING_LABEL}</a></li>
+              {SELF_SERVE_ASSESSMENT_OPEN && (
+                <li className="mt-3">
+                  <a href={ASSESSMENT_URL}
+                    className="text-sm font-medium text-accent-hover transition-colors hover:text-foreground"
+                  >
+                    {ASSESSMENT_LABEL} →
+                  </a>
+                </li>
+              )}
+              <li className={SELF_SERVE_ASSESSMENT_OPEN ? undefined : "mt-3"}><a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={SELF_SERVE_ASSESSMENT_OPEN ? "text-sm text-foreground-secondary" : "text-sm font-medium text-accent-hover transition-colors hover:text-foreground"}>{BOOKING_LABEL}{SELF_SERVE_ASSESSMENT_OPEN ? "" : " →"}</a></li>
             </ul>
           </div>
         </div>

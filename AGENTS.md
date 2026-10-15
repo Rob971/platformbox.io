@@ -12,10 +12,10 @@ PlatformBox.io is a premium B2B marketing site for **PlatformBox Launch** — a 
 
 **Logo (immutable):** two vertical bars — left **white**, right **blue gradient** (`#3b82f6` → `#60a5fa`). Never change, recolor, or unify. See `.clinerules/03-design.md`.
 
-**Booking CTA (all "Book Your Platform Assessment" buttons):**  
+**Booking CTA (all "Talk to Roberto" buttons — the primary call to action while self-serve Assessment entry is paused):**  
 https://cal.com/roberto-platformbox/platform-assessment  
 
-Canonical constants: `BOOKING_URL` and `BOOKING_LABEL` in `src/lib/constants.ts`. See `docs/BOOKING.md`.
+Canonical constants: `BOOKING_URL` and `BOOKING_LABEL` in `src/lib/constants.ts`. See `docs/BOOKING.md`. The self-serve Assessment checkout is gated by `SELF_SERVE_ASSESSMENT_OPEN` (currently `false`).
 
 ## Stack (locked)
 
@@ -121,11 +121,12 @@ duration, start and end.
 3. Launch — a separate €20k purchase, 14 working days, with its own
    readiness preconditions before its clock. It takes the Assessment's Fit
    Decision as input (€2,500 credited within 90 days).
+Self-serve pre-assessment entry is paused from 2026-10-15; entry is via a call.
 A shared phase, clock or vocabulary between two stages is a defect. Launch's
 own Readiness pre-clock check belongs to Launch and is not overlap.
 Known contradictions here (verified 2026-09-28):
-- The start FAQ says "a short setup … about 10 minutes" and never names the
-  pre-assessment (src/lib/content.ts:375).
+- (Resolved 2026-10-15) The start FAQ no longer describes self-serve signup or
+  the ~10 minute setup; it now says every engagement starts with a conversation.
 <!-- END:roberto-project-facts -->
 
 <!-- BEGIN:roberto-operating-rules -->

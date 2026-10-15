@@ -2,7 +2,7 @@
 
 import { Check } from "lucide-react";
 import { FadeIn } from "@/lib/motion";
-import { AssessmentCta, BookingCta } from "@/components/booking-cta";
+import { AssessmentCta, BookingCta, EntryCta } from "@/components/booking-cta";
 import { offers, care, pricingNote, pricing, whichPackage } from "@/lib/content";
 import { assessmentProduct } from "@/lib/assessment-content";
 
@@ -28,7 +28,7 @@ export function PricingSection() {
                 <ul className="mt-6 space-y-2.5">
                   {offer.features.map((feature) => <li key={feature} className="flex gap-2.5 text-sm text-foreground-secondary"><Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={2.5} /><span>{feature}</span></li>)}
                 </ul>
-                <div className="mt-8 border-t border-border pt-6"><AssessmentCta variant={offer.recommended ? "primary" : "outline"} className="w-full" /></div>
+                <div className="mt-8 border-t border-border pt-6"><EntryCta variant={offer.recommended ? "primary" : "outline"} className="w-full" /></div>
               </div>
             </FadeIn>
           ))}
@@ -55,7 +55,7 @@ export function PricingSection() {
               <p className="mt-4 text-sm font-medium text-accent-hover">{care.position}</p>
               <p className="mt-2 text-sm leading-relaxed text-foreground-tertiary">{care.blurb}</p>
               <ul className="mt-6 space-y-2.5">{care.items.map((item) => <li key={item} className="flex gap-2.5 text-sm text-foreground-secondary"><Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={2.5} /><span>{item}</span></li>)}</ul>
-              <div className="mt-8 border-t border-border pt-6"><AssessmentCta variant="outline" className="w-full" /></div>
+              <div className="mt-8 border-t border-border pt-6"><EntryCta variant="outline" className="w-full" /></div>
             </div>
           </FadeIn>
         </div>

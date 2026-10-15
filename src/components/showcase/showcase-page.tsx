@@ -1,9 +1,9 @@
 "use client";
 
-import { AssessmentCta, BookingCta } from "@/components/booking-cta";
+import { AssessmentCta, BookingCta, EntryCta } from "@/components/booking-cta";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Boxes, Gauge, LayoutDashboard, Database, KeyRound, Check, Minus } from "lucide-react";
+import { Boxes, Gauge, LayoutDashboard, Database, KeyRound, Check, Minus } from "lucide-react";
 import { Header } from "../header";
 import { Footer } from "../footer";
 import { TimelineStepper } from "./timeline-stepper";
@@ -16,7 +16,6 @@ import { ObservabilityDashboard } from "./observability-dashboard";
 import { BackstagePortal } from "./backstage-portal";
 import { DatabaseProvisioning } from "./database-provisioning";
 import { SecretManagement } from "./secret-management";
-import { ASSESSMENT_URL, ASSESSMENT_LABEL } from "@/lib/constants";
 import { fadeUp, stagger, FadeIn } from "@/lib/motion";
 import { blueprint, showcaseComparison, scopeGuardrails } from "@/lib/content";
 import { EvidenceLinks } from "@/components/proof/evidence-links";
@@ -302,10 +301,7 @@ export function ShowcasePage() {
           </div>
           <FadeIn delay={0.3}>
             <div className="mt-6 flex justify-center">
-              <a href={ASSESSMENT_URL} className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-accent-strong px-6 text-sm font-medium text-white transition-colors hover:bg-accent">
-                {ASSESSMENT_LABEL}
-                <ArrowRight className="h-4 w-4" aria-hidden />
-              </a>
+              <EntryCta />
             </div>
           </FadeIn>
         </section>

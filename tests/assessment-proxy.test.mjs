@@ -17,8 +17,9 @@ test('public routes forward to the existing Delivery handlers, preserving bodies
         'set-cookie': 'session=example; Path=/; HttpOnly; SameSite=Lax' },
     });
   });
+  // /assessment/start is intentionally absent: the self-serve checkout is closed
+  // (SELF_SERVE_ASSESSMENT_OPEN=false) and is covered by the redirect test below.
   for (const [publicPath, upstream] of [
-    ['/assessment/start', '/public/assessment'],
     ['/assessment/complete', '/public/assessment/complete'],
     ['/assessment/cancelled', '/public/assessment/cancelled'],
     ['/assessment/activate', '/public/activate'],
@@ -40,9 +41,8 @@ test('public routes forward to the existing Delivery handlers, preserving bodies
 test('legacy public links redirect without losing POST semantics or query strings', async (t) => {
   t.mock.method(globalThis, 'fetch', async () => { throw new Error('Legacy routes must redirect before fetching'); });
   for (const [legacy, canonical] of [
-    ['/start', '/assessment/start'],
     ['/start/complete', '/assessment/complete'],
-    ['/admin/public/assessment', '/assessment/start'],
+    ['/start/cancelled', '/assessment/cancelled'],
     ['/admin/public/assessment/complete', '/assessment/complete'],
     ['/admin/public/activate', '/assessment/activate'],
     ['/admin/public/resend-activation', '/assessment/resend-activation'],
@@ -50,5 +50,38 @@ test('legacy public links redirect without losing POST semantics or query string
     const res = await proxy(request(legacy + '?token=abc%2B123', 'POST', 'token=abc'));
     assert.equal(res.status, 307);
     assert.equal(res.headers.get('location'), 'https://www.platformbox.io' + canonical + '?token=abc%2B123');
+  }
+});
+
+test('closed self-serve checkout: every start route redirects to /assessment and never reaches Delivery', async (t) => {
+  t.mock.method(globalThis, 'fetch', async () => { throw new Error('The closed checkout must redirect before fetching'); });
+  for (const startPath of [
+    '/assessment/start', '/assessment/start/', '/start', '/start/',
+    '/admin/public/assessment', '/admin/public/assessment/', '/admin/public/%61ssessment',
+  ]) {
+    for (const method of ['GET', 'POST']) {
+      const res = await proxy(request(startPath + '?utm=x', method, method === 'POST' ? 'companyName=NewCo' : undefined));
+      assert.equal(res.status, 307, `${method} ${startPath}`);
+      assert.equal(res.headers.get('location'), 'https://www.platformbox.io/assessment', `${method} ${startPath}`);
+      assert.equal(res.headers.get('cache-control'), 'no-store', `${method} ${startPath}`);
+    }
+  }
+});
+
+test('closing the checkout does not touch /admin or the routes existing accounts use', async (t) => {
+  const calls = [];
+  t.mock.method(globalThis, 'fetch', async (url) => { calls.push(new URL(url).pathname); return new Response('ok'); });
+  for (const [publicPath, upstream] of [
+    ['/admin', '/'],
+    ['/admin/auth/login', '/auth/login'],
+    ['/admin/delivery/users', '/admin/users'],
+    ['/assessment/activate', '/public/activate'],
+    ['/assessment/resend-activation', '/public/resend-activation'],
+    ['/assessment/complete', '/public/assessment/complete'],
+    ['/assessment/cancelled', '/public/assessment/cancelled'],
+  ]) {
+    const res = await proxy(request(publicPath));
+    assert.equal(res.status, 200, publicPath);
+    assert.equal(calls.at(-1), upstream, publicPath);
   }
 });
