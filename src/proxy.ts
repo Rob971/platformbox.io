@@ -310,8 +310,12 @@ export function proxy(request: NextRequest): Promise<Response> | Response {
   // routes never reach Delivery. Activation, resend-activation, complete and
   // cancelled stay proxied below so existing accounts keep working.
   if (!SELF_SERVE_ASSESSMENT_OPEN && isSelfServeStartPath(pathname)) {
+    // 307 for GET/HEAD. A stale checkout form's POST gets 303 instead, so the
+    // browser follows with GET: /assessment is a static page with no POST handler,
+    // and a 307 would replay the visitor's form data at it.
+    const safe = request.method === "GET" || request.method === "HEAD";
     return new Response(null, {
-      status: 307,
+      status: safe ? 307 : 303,
       headers: { location: origin + "/assessment", "cache-control": "no-store" },
     });
   }

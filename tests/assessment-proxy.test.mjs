@@ -61,7 +61,8 @@ test('closed self-serve checkout: every start route redirects to /assessment and
   ]) {
     for (const method of ['GET', 'POST']) {
       const res = await proxy(request(startPath + '?utm=x', method, method === 'POST' ? 'companyName=NewCo' : undefined));
-      assert.equal(res.status, 307, `${method} ${startPath}`);
+      // GET keeps 307; a stale form POST gets 303 so the browser follows with GET.
+      assert.equal(res.status, method === 'GET' ? 307 : 303, `${method} ${startPath}`);
       assert.equal(res.headers.get('location'), 'https://www.platformbox.io/assessment', `${method} ${startPath}`);
       assert.equal(res.headers.get('cache-control'), 'no-store', `${method} ${startPath}`);
     }
