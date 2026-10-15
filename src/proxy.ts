@@ -157,8 +157,12 @@ function canonicalPublicPath(pathname: string): string | undefined {
 /**
  * True for every path that reaches the self-serve Assessment checkout form:
  * /assessment/start, its /start alias, and the legacy /admin/public/assessment.
- * Percent-encoding is decoded for the comparison only, so an encoded spelling
- * cannot slip past the redirect while the upstream path mapping still forwards it.
+ *
+ * The comparison is deliberately wider than the exact spelling: the upstream
+ * path mapping forwards whatever follows /admin verbatim, so a differently
+ * cased, percent-encoded, `;param`-suffixed, `.json`/`.rsc`-suffixed or
+ * double-slashed spelling could still reach Delivery's checkout handler while
+ * the flag says closed. The normalised form is used for matching only.
  */
 function isSelfServeStartPath(pathname: string): boolean {
   let decoded = pathname;
@@ -167,7 +171,12 @@ function isSelfServeStartPath(pathname: string): boolean {
   } catch {
     // Malformed escapes: compare the raw path.
   }
-  const path = decoded.replace(/\/+$/, "");
+  const path = decoded
+    .toLowerCase()
+    .replace(/;[^/]*/g, "")
+    .replace(/\/{2,}/g, "/")
+    .replace(/\.(?:json|rsc|html)$/, "")
+    .replace(/\/+$/, "");
   return path === "/assessment/start" || canonicalPublicPath(path) === "/assessment/start";
 }
 

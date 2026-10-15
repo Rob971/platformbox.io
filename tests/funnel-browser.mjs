@@ -53,7 +53,6 @@ try {
       assert.equal(result.overflow,false,`${path} overflows at ${width}px`);
     }
   }
-  assert.equal(violations.length,0,violations.join('\n'));
   // The self-serve checkout is closed: the start route lands on the Assessment page, not a form.
   await page.goto(origin+'/assessment/start',{waitUntil:'networkidle0'});
   assert.equal(page.url(),origin+'/assessment');
@@ -80,6 +79,8 @@ try {
     const res=await fetch(origin+legacy,{redirect:'manual'});
     assert.equal(res.status,307); assert.equal(new URL(res.headers.get('location'),origin).href,origin+canonical);
   }
+  // Checked last so it also covers the Delivery-rendered pages above, which keep Delivery's own CSP.
+  assert.equal(violations.length,0,violations.join('\n'));
   console.log('PASS: 5 marketing pages at desktop/mobile with no self-serve checkout offered; start routes redirect to /assessment; sitemap clean; canonical return and activation for an existing account; workspace handoff; legacy redirects. Stripe API simulated; no live payment.');
 } finally {
   if(browser) await browser.close();

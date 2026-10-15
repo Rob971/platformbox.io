@@ -363,7 +363,7 @@ export const whichPackage = {
     { title: "Choose Launch if", text: "You need your first standardized developer path." },
     { title: "Choose Scale if", text: "Multiple teams need standardized workflows and platform governance." },
     { title: "Choose Enterprise if", text: "You have complex AWS, networking, compliance, or multi-account requirements." },
-    { title: "Every engagement starts with Assessment", text: "Establish whether your environment fits the 14-working-day model before committing to implementation." },
+    { title: "Every engagement starts with a conversation", text: "Then the Assessment, if it is the right next step, establishes whether your environment fits the 14-working-day model before committing to implementation." },
   ],
 } as const;
 

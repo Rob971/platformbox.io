@@ -85,3 +85,15 @@ test('closing the checkout does not touch /admin or the routes existing accounts
     assert.equal(calls.at(-1), upstream, publicPath);
   }
 });
+
+test('closed checkout: case, ;param, extension and slash variants cannot reach Delivery', async (t) => {
+  t.mock.method(globalThis, 'fetch', async () => { throw new Error('The closed checkout must redirect before fetching'); });
+  for (const startPath of [
+    '/admin/public/Assessment', '/admin/public/ASSESSMENT', '/admin/public/assessment;x=1',
+    '/admin//public/assessment', '/assessment/start.json', '/start.json', '/Assessment/Start', '/admin/public/assessment.rsc',
+  ]) {
+    const res = await proxy(request(startPath));
+    assert.equal(res.status, 307, startPath);
+    assert.equal(res.headers.get('location'), 'https://www.platformbox.io/assessment', startPath);
+  }
+});

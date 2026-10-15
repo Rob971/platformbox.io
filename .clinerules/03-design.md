@@ -65,7 +65,7 @@ When generating any image for LinkedIn, follow LinkedIn's official specs
 
 Keep the approved marketing structure:
 
-1. Hero: brand, one H1 ("Your developer platform. Live in 14 working days."), one supporting sentence, CTA pair (Book Your Platform Assessment + See the 14-Day Blueprint), plus a 30-minute qualification note.
+1. Hero: brand, one H1 ("Your developer platform. Live in 14 working days."), one supporting sentence, CTA pair (Talk to Roberto + See the 14-Day Blueprint), plus a 30-minute qualification note.
 2. Problem: "Your engineering team is becoming your platform team."
 3. Outcome: golden path flow (Developer → Preview → Security → Production)
 4. Before/After: the shorter path contrast (outcome-oriented)
@@ -84,7 +84,7 @@ Keep the approved marketing structure:
 
 ## UX rules
 
-- Primary CTA ("Book Your Platform Assessment") should link to the Cal.com booking: https://cal.com/roberto-platformbox/platform-assessment
+- Primary CTA ("Talk to Roberto") should link to the Cal.com booking: https://cal.com/roberto-platformbox/platform-assessment
 - Secondary CTA should be outline or glass, used for navigation to the deliverables or blueprint (/showcase) section.
 - Use cards for deliverables and ROI; do not use hero cards.
 - Keep motion calm and subtle rather than playful or bouncy.
