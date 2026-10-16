@@ -131,7 +131,7 @@ export const howItWorks = {
       outcomes: [
         "Assessment produces an independent fit decision",
         "Paid Assessment maps current-state & target architecture",
-        "Fixed-price proposal or honest no-go — credited toward Launch",
+        "Fixed-price proposal or honest no-go — credited toward the recommended engagement",
       ],
     },
     {
@@ -169,7 +169,7 @@ export const howItWorks = {
     },
   ],
   outro:
-    "Every engagement starts with a conversation with Roberto. If the €2,500 Platform Readiness Assessment is the right next step, it is the mandatory first step, credited toward Launch if you proceed within 90 days. We may conclude that PlatformBox is not the right answer for your situation. That honesty is part of the trust model.",
+    "Every engagement starts with a conversation with Roberto. If the €2,500 Platform Readiness Assessment is the right next step, it is the mandatory first step, credited toward the engagement it recommends (Launch, Scale or Enterprise) if you proceed within 90 calendar days of delivery of the Executive Decision Brief. We may conclude that PlatformBox is not the right answer for your situation. That honesty is part of the trust model.",
 } as const;
 
 export const delivery = {
@@ -372,7 +372,7 @@ export type Faq = { q: string; a: string };
 export const faqs: Faq[] = [
   {
     q: "How does this actually start?",
-    a: "Every engagement starts with a conversation with Roberto. If the €2,500 Platform Readiness Assessment is the right next step, it is the mandatory first step; the 3–5 working days begin when PlatformBox starts the Assessment. The Assessment fee is credited toward Launch if you proceed within 90 days.",
+    a: "Every engagement starts with a conversation with Roberto. If the €2,500 Platform Readiness Assessment is the right next step, it is the mandatory first step; the 3–5 working days begin when PlatformBox starts the Assessment. The €2,500 Assessment fee is credited toward the PlatformBox engagement recommended in the Executive Decision Brief—Launch, Scale, or Enterprise—if you proceed within 90 calendar days of delivery of that Brief. Any extension must be agreed by PlatformBox in writing.",
   },
   {
     q: "Why not build this ourselves?",
@@ -404,7 +404,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "How exactly do you access our AWS account, and what happens after handover?",
-    a: "During the 14 working days, access is granted through AWS IAM Identity Center (SSO) — MFA-enforced, scoped to a permission set you create, and revocable by you at any time. There’s no root usage and no static access keys, and every action is recorded in CloudTrail. That access ends at handover; an ongoing PlatformBox Care engagement uses the same scoped-SSO model, not standing credentials. Once built, the platform doesn’t depend on us to keep running: CI reaches your Kubernetes cluster through a GitLab Runner inside your own VPC, on your own AWS account, authenticated via OIDC rather than a static key. Production has no public API endpoint — the only way in for anyone, us included, is through that in-VPC runner over AWS Systems Manager, never SSH.",
+    a: "During the 14 working days, you create a role from our onboarding module and can revoke it at any time; we sign in through your Identity Center with MFA. There’s no root usage and no static access keys, and every action is recorded in CloudTrail. That access ends at handover; an ongoing PlatformBox Care engagement uses the same scoped-SSO model, not standing credentials. Once built, the platform doesn’t depend on us to keep running: CI reaches your Kubernetes cluster through a GitLab Runner inside your own VPC, on your own AWS account, authenticated via OIDC rather than a static key. Production has no public API endpoint — the only way in for anyone, us included, is through that in-VPC runner over AWS Systems Manager, never SSH.",
   },
   {
     q: "What exactly happens after day 14?",
