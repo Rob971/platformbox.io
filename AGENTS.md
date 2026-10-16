@@ -120,7 +120,10 @@ duration, start and end.
    "Day N · up to 5".
 3. Launch — a separate €20k purchase, 14 working days, with its own
    readiness preconditions before its clock. It takes the Assessment's Fit
-   Decision as input (€2,500 credited within 90 days).
+   Decision as input. The €2,500 is credited toward the engagement the
+   Executive Decision Brief recommends (Launch, Scale or Enterprise) if the
+   customer proceeds within 90 calendar days of its delivery (decided
+   2026-10-16; extensions only in writing).
 Self-serve pre-assessment entry is paused from 2026-10-15; entry is via a call.
 A shared phase, clock or vocabulary between two stages is a defect. Launch's
 own Readiness pre-clock check belongs to Launch and is not overlap.
