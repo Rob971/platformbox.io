@@ -13,7 +13,7 @@ export const assessmentProduct = {
     { title: "Money", text: "Where are engineering or cloud resources being consumed, and what opportunity can the evidence support?" },
     { title: "Velocity", text: "Where does the path from code to production create measurable friction, waiting, or toil?" },
     { title: "Strategy", text: "Should you build internally, adopt a platform, use a hybrid approach, or do nothing?" },
-    { title: "Fit", text: "Is PlatformBox a strong fit, a conditional fit, not yet, a low fit, or the wrong answer?" },
+    { title: "Fit", text: "Is PlatformBox a fit, and if so which package: Launch, Scale or Enterprise? If not, what should you do instead?" },
   ],
   deliverables: [
     "Executive Decision Brief",
