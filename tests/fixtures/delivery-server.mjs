@@ -12,7 +12,9 @@ Object.getPrototypeOf(sessions).create = async params => {
   returnUrl = params.return_url;
   return { id: 'cs_test_fixture', client_secret: 'cs_test_fixture_secret' };
 };
-const h = await bootstrap({ BASE_PATH: '/admin', PUBLIC_URL: 'http://localhost:3197/admin',
+// Delivery closes public signup by default (PUBLIC_ASSESSMENT_SIGNUP_OPEN). This isolated fixture seeds an
+// account through that route, so it opens it explicitly. Never set this in a real deployment.
+const h = await bootstrap({ PUBLIC_ASSESSMENT_SIGNUP_OPEN: 'true', BASE_PATH: '/admin', PUBLIC_URL: 'http://localhost:3197/admin',
   STRIPE_SECRET_KEY: 'sk_test_fixture', STRIPE_PUBLISHABLE_KEY: 'pk_test_fixture',
   STRIPE_WEBHOOK_SECRET: 'whsec_fixture', RESEND_API_KEY: '' });
 const app = buildApp(h.db, h.env);
