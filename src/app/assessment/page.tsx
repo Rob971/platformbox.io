@@ -17,10 +17,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image-assessment.png",
         width: 1200,
         height: 630,
-        alt: "PlatformBox — Your developer platform. Live in 14 working days.",
+        alt: "PlatformBox Platform Readiness Assessment — A €2,500 decision, not a €2,500 report. 3–5 working days · Executive Decision Brief.",
       },
     ],
   },
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: "Platform Readiness Assessment — PlatformBox.io",
     description:
       "A €2,500 decision-grade assessment of platform risk, economics, delivery friction, strategy, and PlatformBox fit.",
-    images: ["/og-image.png"],
+    images: ["/og-image-assessment.png"],
   },
 };
 
