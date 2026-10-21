@@ -217,9 +217,14 @@ export function AboutPage() {
                 </div>
               ))}
             </div>
-            <p className="mt-10 border-t border-border pt-8 text-sm text-foreground-tertiary">
-              {aboutExperience.companies.join(" · ")}
-            </p>
+            <div className="mt-10 border-t border-border pt-8">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-foreground-tertiary">
+                {aboutExperience.companiesLabel}
+              </p>
+              <p className="text-sm text-foreground-tertiary">
+                {aboutExperience.companies.join(" · ")}
+              </p>
+            </div>
           </div>
         </section>
 

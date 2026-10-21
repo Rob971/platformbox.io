@@ -118,6 +118,22 @@ for (const k of evidenceKeys) {
   if (evidenceKeyById.has(k?.key)) {
     assert(false, `evidence-keys.json duplicate key "${k.key}"`);
   }
+  // publicEvidence is rendered as a link on the ledger and the proof chips, so
+  // it gets the same public-safe rules as capability-evidence.json below.
+  if (k?.publicEvidence !== undefined) {
+    if (!Array.isArray(k.publicEvidence)) {
+      assert(false, `evidence-keys.json "${k?.key}" publicEvidence must be an array`);
+    } else {
+      for (const p of k.publicEvidence) {
+        if (typeof p !== "string" || !p.startsWith("docs/")) {
+          assert(false, `evidence-keys.json "${k.key}" publicEvidence path not under docs/: "${p}"`);
+        }
+        if (/proven_with|engagement/i.test(p)) {
+          assert(false, `evidence-keys.json "${k.key}" publicEvidence path looks customer-scoped: "${p}"`);
+        }
+      }
+    }
+  }
   evidenceKeyById.set(k?.key, k);
 }
 
