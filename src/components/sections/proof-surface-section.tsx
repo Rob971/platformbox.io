@@ -53,9 +53,10 @@ export function ProofSurfaceSection() {
               </div>
               <p className="text-sm font-semibold text-foreground">Public-safe</p>
               <p className="mt-1.5 text-xs leading-relaxed text-foreground-tertiary">
-                Real customer evidence is tenant-scoped and never exposed. The
-                files below come from the reference engagement only — no
-                engagement ids, no <span className="font-mono text-[11px]">proven_with</span> data.
+                Customer evidence stays tenant-scoped in the control plane and is
+                not published here. An automated check rejects any proof link
+                outside the reference docs. The files below come from the
+                reference engagement only — no engagement ids, no <span className="font-mono text-[11px]">proven_with</span> data.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card p-5">

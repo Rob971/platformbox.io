@@ -109,6 +109,7 @@ export const aboutExperience = {
     { value: "DevOps", label: "CI/CD / deployment / operations" },
     { value: "Platform", label: "Kubernetes / Terraform / IDP" },
   ],
+  companiesLabel: "Engineering background includes",
   companies: ["Neopost", "Ortec", "Spir Communication", "My Multiverse", "Saber.tech"],
 } as const;
 
